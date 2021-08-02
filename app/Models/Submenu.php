@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Empresa extends Model
+class Submenu extends Model
 {
     /**
     * The table associated with the model.
     *
     * @var string
     */
-    protected $table = 'empresas';
+    protected $table = 'submenus';
 
     /**
     * The attributes that aren't mass assignable.
@@ -24,7 +24,12 @@ class Empresa extends Model
 
     //RELACION MUCHOS A MUCHOS
     public function menus(){
-        return $this->belongsToMany(Menu::class,'empresa_menu')
+        return $this->belongsToMany(Menu::class,'submenu_menu')
             ->withPivot('menu_id');
+    }
+
+    public function users(){
+        return $this->belongsToMany(User::class,'submenu_user')
+            ->withPivot('user_id');
     }
 }

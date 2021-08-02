@@ -78,31 +78,13 @@ class User extends Authenticatable
     }
 
     //RELACION MUCHOS A MUCHOS
-    public function files(){
-        return $this->belongsToMany(File::class,'file_user')
-            ->withPivot('user_id');
+    public function menus(){
+        return $this->belongsToMany(Menu::class,'menu_user')
+            ->withPivot('menu_id');
     }
 
-    public function categories(){
-        return $this->belongsToMany(Category::class,'category_user')
-            ->withPivot('user_id');
-    }
-
-    public function folders(){
-        return $this->belongsToMany(Folder::class,'folder_user')
-            ->withPivot('user_id');
-    }
-
-    //RELACION UNO A MUCHOS
-    /*public function logs(){
-        return $this->belongsTo(Log::class,'user_id');
-    }*/
-
-    public function filies(){
-        return $this->hasMany(File::class,'id_user');
-    }
-
-    public function foldiers(){
-        return $this->hasMany(Folder::class);
+    public function submenus(){
+        return $this->belongsToMany(Submenu::class,'submenu_user')
+            ->withPivot('submenu_id');
     }
 }

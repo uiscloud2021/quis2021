@@ -276,13 +276,20 @@ return [
                     'active' => ['permissions*'],
                     'can'  => 'permissions.index',
                 ],
-                /*[
-                    'text' => 'Empresas',
-                    'url'  => 'empresas',
-                    'icon' => 'fab fa-fw fa-buffer',
-                    'active' => ['empresas*'],
-                    'can'  => 'empresas.index',
-                ],*/
+                [
+                    'text' => 'Menús',
+                    'url'  => 'menus',
+                    'icon' => 'fas fa-fw fa-caret-square-down',
+                    'active' => ['menus*'],
+                    'can'  => 'menus.index',
+                ],
+                [
+                    'text' => 'Submenús',
+                    'url'  => 'submenus',
+                    'icon' => 'fas fa-fw fa-bars',
+                    'active' => ['submenus*'],
+                    'can'  => 'submenus.index',
+                ],
             ],
         ],
     ],

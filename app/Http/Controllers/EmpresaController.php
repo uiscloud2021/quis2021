@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Empresa;
+use App\Models\Menu;
 
 // Start of uses
 
@@ -37,7 +38,8 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        return view('empresas.create');
+        $menus = Menu::all();//PARA CHECKBOX
+        return view('empresas.create', compact('menus'));
     }
 
     /**
@@ -86,6 +88,10 @@ class EmpresaController extends Controller
         $empresas->user_id = $id_user;
         $empresas -> save();
 
+        if($request->menus){
+            $empresas->menus()->attach($request->menus);//GUARDAR LAS RELACIONES
+        }
+
 		return redirect()->route('empresas.edit', $empresas)->with('info', 'La empresa se guardó correctamente');
         
     }
@@ -109,7 +115,8 @@ class EmpresaController extends Controller
      */
     public function edit(Empresa $empresa)
     {
-        return view('empresas.edit', compact('empresa'));
+        $menus = Menu::all();//PARA CHECKBOX
+        return view('empresas.edit', compact('empresa', 'menus'));
     }
 
     /**
@@ -154,6 +161,10 @@ class EmpresaController extends Controller
 	    $empresa->justificacion_sanitario = $request->justificacion_sanitario;
         $empresa->user_id = $id_user;
         $empresa->save();
+
+        if($request->menus){
+            $empresa->menus()->sync($request->menus);//CAMBIOS EN TABLA RELACION 
+        }
 		
         return redirect()->route('empresas.edit',$empresa)->with('info', 'La empresa se modificó correctamente');
     }

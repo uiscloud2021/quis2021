@@ -601,6 +601,34 @@
         </div>
     </div>    
 </div>
+
+
+
+<!--MENÚS-->
+<div class="card card-primary card-outline">
+    <div class="card-header">
+        <h3 class="card-title" data-card-widget="collapse" style="cursor:pointer;">Menús</h3>
+
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body" style="display: block;">
+        
+        <div class="form-group">
+            <p class="font-weight-bold">Menús que tendrá la empresa</p>
+            @foreach ($menus as $menu)
+                <label class="mr-2">
+                    {!! Form::checkbox('menus[]', $menu->id, null) !!}
+                    {{$menu->description}}
+                </label><br/>
+            @endforeach
+        </div>
+    </div>    
+</div>
         
 
 

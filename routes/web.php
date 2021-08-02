@@ -7,6 +7,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\DashController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\SubmenuController;
 //EMPRESAS
 use App\Http\Controllers\EmpresaController;
 
@@ -36,6 +38,10 @@ Route::resource('home', InicioController::class);
 Route::resource('dashboard', DashController::class);
 
 Route::resource('profile', ProfileController::class);
+
+Route::resource('menus', MenuController::class);
+
+Route::resource('submenus', SubmenuController::class);
 
 
 Route::get('/dashboard', 'App\Http\Controllers\DashController@index')->name('dashboard');
