@@ -19,7 +19,7 @@
 </div>
 
 <div class="card-body">
-<table id="roles" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
+<table id="roles" class="table table-striped table-hover table-bordered shadow-lg mt-4" style="width:100%">
 <thead class="bg-mexg1 text-white">
         <tr>
             <th scope="col">Rol</th>

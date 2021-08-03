@@ -11,32 +11,25 @@
     <div class="alert alert-success"><strong>{{session('info')}}</strong></div>
 @endif
 <div class="card">
-        <div class="card-body">
-            <div class="overlay-wrapper row">
-                <div class="overlay" id="overlay" style="position:fixed; display:none">
-                    <i class="fas fa-3x fa-sync-alt fa-spin"></i>
-                    <div class="text-bold pt-2"> Guardando...</div>
-                </div>
-
-                <div class="col-md-5">
-            
-                </div>
-            
-                <div class="col-md-7">
-                    {!! Form::model($empresa, ['route' => ['empresas.update', $empresa], 'method' => 'put', 'id'=>'formedit_empresa']) !!}
-
-				        @include('empresas.form')
-
-                        <div align="right">
-                            <a href="/empresas" class="btn btn-danger">Cancelar</a>
-                            <button type="button" onclick="GuardarCambios();" class="btn btn-primary"><i class="fas fa-save"> Guardar cambios</i></button>
-                        </div>
-
-                    {!! Form::close() !!}
-                </div>
+    <div class="card-body">
+        <div class="overlay-wrapper col-md-12">
+            <div class="overlay" id="overlay" style="position:fixed; display:none">
+                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                <div class="text-bold pt-2"> Guardando...</div>
             </div>
+            {!! Form::model($empresa, ['route' => ['empresas.update', $empresa], 'method' => 'put', 'id'=>'formedit_empresa']) !!}
+
+			    @include('empresas.form')
+
+                <div align="right">
+                    <a href="/empresas" class="btn btn-danger">Cancelar</a>
+                    <button type="button" onclick="GuardarCambios();" class="btn btn-primary"><i class="fas fa-save"> Guardar cambios</i></button>
+                </div>
+
+            {!! Form::close() !!}
         </div>
     </div>
+</div>
     
 <!--MODALS-->
 @include('empresas.modals')
