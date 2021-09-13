@@ -43,7 +43,7 @@ class CreateEmpresasTable extends Migration
 	$table->string('representante_sanitario')->nullable();
 	$table->string('justificacion_sanitario')->nullable();
 	$table->boolean('is_active')->default(1);
-	$table->integer('branch_id')->default(1);
+	$table->integer('user_id')->default(1);
 	$table->timestamps();
 
   });

@@ -7,7 +7,7 @@
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-5 col-sm-3">
+            <div class="col-5 col-sm-3">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Menú de preguntas</h3>
@@ -72,9 +72,6 @@
                     <?php
                         $user_id=auth()->id(); 
                     ?>
-                    <div class="row">
-
-                    <div class="col-md-6">
                     <div class="form-group">
                         {!! Form::label('razon_social', '1. Razón social', ['class' => 'form-label']) !!}
                         {!! Form::text('razon_social', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la razón social']) !!}
@@ -85,36 +82,15 @@
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
-            
-                    <div class="form-group">
-                        {!! Form::label('figura_legal', '3. Figura legal', ['class' => 'form-label']) !!}
-                        {!! Form::select('figura_legal', ['Asociación Civil' => 'Asociación Civil', 'Persona Física' => 'Persona Física', 'Sociedad Civil' => 'Sociedad Civil', 'Sociedad Anónima de Capital Variable' => 'Sociedad Anónima de Capital Variable', 'Sociedad Anónima de Relación Limitada' => 'Sociedad Anónima de Relación Limitada', 'Sociedad Anónima Promotora de Inversión' => 'Sociedad Anónima Promotora de Inversión'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione...']) !!}
-                    </div>
-            
-                    <div class="form-group">
-                        {!! Form::label('acta', '5. Número de acta constitutiva', ['class' => 'form-label']) !!}
-                        {!! Form::text('acta', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el número de acta']) !!}
-                    </div>
-            
-                    <div class="form-group">
-                        {!! Form::label('acta_electronico', '7. Se archivó el acta constitutiva en expediente electrónico', ['class' => 'form-label']) !!}
-                        <div>
-                            <label>
-                                {!! Form::radio('acta_electronico', 'Si', null, ['class' => 'mr-1']) !!}
-                                Si
-                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <label>
-                                {!! Form::radio('acta_electronico', 'No', null, ['class' => 'mr-1']) !!}
-                                No
-                            </label>
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="col-md-6">
+                
                     <div class="form-group">
                         {!! Form::label('pais', '2. País', ['class' => 'form-label']) !!}
                         {!! Form::text('pais', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el pais']) !!}
+                    </div>
+            
+                    <div class="form-group">
+                        {!! Form::label('figura_legal', '3. Figura legal', ['class' => 'form-label']) !!}
+                        {!! Form::select('figura_legal', ['Asociación Civil','Persona Física','Sociedad Civil','Sociedad Anónima de Capital Variable','Sociedad Anónima de Relación Limitada','Sociedad Anónima Promotora de Inversión'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione...']) !!}
                     </div>
 
                     <div class="form-group">
@@ -123,6 +99,11 @@
                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                             {!! Form::date('constitucion', null, ['class' => 'form-control']) !!}
                         </div> 
+                    </div>
+            
+                    <div class="form-group">
+                        {!! Form::label('acta', '5. Número de acta constitutiva', ['class' => 'form-label']) !!}
+                        {!! Form::text('acta', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el número de acta']) !!}
                     </div>
 
                     <div class="form-group">
@@ -138,8 +119,19 @@
                             </label>
                         </div>
                     </div>
-                    </div>
-
+            
+                    <div class="form-group">
+                        {!! Form::label('acta_electronico', '7. Se archivó el acta constitutiva en expediente electrónico', ['class' => 'form-label']) !!}
+                        <div>
+                            <label>
+                                {!! Form::radio('acta_electronico', 'Si', null, ['class' => 'mr-1']) !!}
+                                Si
+                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label>
+                                {!! Form::radio('acta_electronico', 'No', null, ['class' => 'mr-1']) !!}
+                                No
+                            </label>
+                        </div>
                     </div>
                   </div>
 
@@ -189,12 +181,23 @@
 
                   <!--RFC-->
                   <div class="tab-pane fade" id="vert-tabs-4" role="tabpanel" aria-labelledby="vert-tabs-4-tab">
-                    <div class="row">
-
-                    <div class="col-md-6">
                     <div class="form-group">
                         {!! Form::label('rfc', '17. RFC', ['class' => 'form-label']) !!}
                         {!! Form::text('rfc', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el RFC']) !!}
+                    </div>
+                
+                    <div class="form-group">
+                        {!! Form::label('rfc_fisico', '18. Se archivó el RFC en expediente físico', ['class' => 'form-label']) !!}
+                        <div>
+                            <label>
+                                {!! Form::radio('rfc_fisico', 'Si', null, ['class' => 'mr-1']) !!}
+                                Si
+                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label>
+                                {!! Form::radio('rfc_fisico', 'No', null, ['class' => 'mr-1']) !!}
+                                No
+                            </label>
+                        </div>
                     </div>
             
                     <div class="form-group">
@@ -210,12 +213,25 @@
                             </label>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        {!! Form::label('imss', '20. Registro patronal IMSS', ['class' => 'form-label']) !!}
+                        {!! Form::text('imss', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el registro IMSS']) !!}
+                    </div>
             
                     <div class="form-group">
                         {!! Form::label('imss_obtencion', '21. Fecha de obtención', ['class' => 'form-label']) !!}
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                             {!! Form::date('imss_obtencion', null, ['class' => 'form-control']) !!}
+                        </div> 
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('imss_vencimiento', '22. Fecha de vencimiento', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                            {!! Form::date('imss_vencimiento', null, ['class' => 'form-control']) !!}
                         </div> 
                     </div>
             
@@ -228,6 +244,20 @@
                             </label>&nbsp;&nbsp;&nbsp;&nbsp;
                             <label>
                                 {!! Form::radio('expediente_fisico', 'No', null, ['class' => 'mr-1']) !!}
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('expediente_electronico', '24. Archivó en expediente electrónico', ['class' => 'form-label']) !!}
+                        <div>
+                            <label>
+                                {!! Form::radio('expediente_electronico', 'Si', null, ['class' => 'mr-1']) !!}
+                                Si
+                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label>
+                                {!! Form::radio('expediente_electronico', 'No', null, ['class' => 'mr-1']) !!}
                                 No
                             </label>
                         </div>
@@ -248,83 +278,18 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('fiel_vencimiento', '27. Fecha de vencimiento', ['class' => 'form-label']) !!}
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                            {!! Form::date('fiel_vencimiento', null, ['class' => 'form-control']) !!}
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('ciec', '29. Tiene CIEC', ['class' => 'form-label']) !!}
-                        <div>
-                            <label>
-                                {!! Form::radio('ciec', 'Si', null, ['class' => 'mr-1']) !!}
-                                Si
-                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <label>
-                                {!! Form::radio('ciec', 'No', null, ['class' => 'mr-1']) !!}
-                                No
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('ciec_vencimiento', '31. Fecha de vencimiento', ['class' => 'form-label']) !!}
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                            {!! Form::date('ciec_vencimiento', null, ['class' => 'form-control']) !!}
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="col-md-6">
-                    <div class="form-group">
-                        {!! Form::label('rfc_fisico', '18. Se archivó el RFC en expediente físico', ['class' => 'form-label']) !!}
-                        <div>
-                            <label>
-                                {!! Form::radio('rfc_fisico', 'Si', null, ['class' => 'mr-1']) !!}
-                                Si
-                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <label>
-                                {!! Form::radio('rfc_fisico', 'No', null, ['class' => 'mr-1']) !!}
-                                No
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('imss', '20. Registro patronal IMSS', ['class' => 'form-label']) !!}
-                        {!! Form::text('imss', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el registro IMSS']) !!}
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('imss_vencimiento', '22. Fecha de vencimiento', ['class' => 'form-label']) !!}
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                            {!! Form::date('imss_vencimiento', null, ['class' => 'form-control']) !!}
-                        </div> 
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('expediente_electronico', '24. Archivó en expediente electrónico', ['class' => 'form-label']) !!}
-                        <div>
-                            <label>
-                                {!! Form::radio('expediente_electronico', 'Si', null, ['class' => 'mr-1']) !!}
-                                Si
-                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <label>
-                                {!! Form::radio('expediente_electronico', 'No', null, ['class' => 'mr-1']) !!}
-                                No
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         {!! Form::label('fiel_obtencion', '26. Fecha de obtención', ['class' => 'form-label']) !!}
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                             {!! Form::date('fiel_obtencion', null, ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('fiel_vencimiento', '27. Fecha de vencimiento', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                            {!! Form::date('fiel_vencimiento', null, ['class' => 'form-control']) !!}
                         </div>
                     </div>
 
@@ -343,10 +308,32 @@
                     </div>
 
                     <div class="form-group">
+                        {!! Form::label('ciec', '29. Tiene CIEC', ['class' => 'form-label']) !!}
+                        <div>
+                            <label>
+                                {!! Form::radio('ciec', 'Si', null, ['class' => 'mr-1']) !!}
+                                Si
+                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label>
+                                {!! Form::radio('ciec', 'No', null, ['class' => 'mr-1']) !!}
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         {!! Form::label('ciec_obtencion', '30. Fecha de obtención', ['class' => 'form-label']) !!}
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                             {!! Form::date('ciec_obtencion', null, ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('ciec_vencimiento', '31. Fecha de vencimiento', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                            {!! Form::date('ciec_vencimiento', null, ['class' => 'form-control']) !!}
                         </div>
                     </div>
 
@@ -362,9 +349,6 @@
                                 No
                             </label>
                         </div>
-                    </div>
-                    </div>
-
                     </div>
                   </div>
 

@@ -167,9 +167,9 @@ return [
     |
     */
 
-    'right_sidebar' => false,
-    'right_sidebar_icon' => 'fas fa-cogs',
-    'right_sidebar_theme' => 'dark',
+    'right_sidebar' => true,
+    'right_sidebar_icon' => 'fas fa-building',
+    'right_sidebar_theme' => 'light',
     'right_sidebar_slide' => true,
     'right_sidebar_push' => true,
     'right_sidebar_scrollbar_theme' => 'os-theme-light',
@@ -186,7 +186,7 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/6.-Basic-Configuration
     |
     */
-
+    
     'use_route_url' => false,
     'dashboard_url' => 'dashboard',
     'logout_url' => 'logout',
@@ -225,7 +225,7 @@ return [
     */
     //RUTAS DEL MENU SIDEBAR
     'menu' => [
-        [
+        /*[
             'text' => 'Inicio',
             'route'  => 'dashboard',
             'icon'=> 'fas fa-fw fa-home',
@@ -236,7 +236,8 @@ return [
             'url'         => 'home',
             'icon'        => 'fas fa-fw fa-chart-line',
             'can'  => 'home.index',
-        ],
+        ],*/
+
 
         
 

@@ -27,16 +27,66 @@
                 <div class="form-group">
                     {!! Form::label('description', 'Descripción', ['class' => 'form-label']) !!}
                     {!! Form::text('description', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la descripción']) !!}
+                    
+                    @error('description')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+
                 </div>
 
                 <div class="form-group">
-                    <p class="font-weight-bold">Usuarios que tendrán acceso al menú</p>
-                    @foreach ($users as $user)
-                        <label class="mr-2">
-                            {!! Form::checkbox('users[]', $user->id, null) !!}
-                            {{$user->name}}
+                    {!! Form::label('position', 'Posición en la lista de menús', ['class' => 'form-label']) !!}
+                    {!! Form::select('position', ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione...']) !!}
+                
+                    @error('position')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('tiene_submenu', 'El menú tiene submenú', ['class' => 'form-label']) !!}
+                    <div>
+                        <label>
+                            {!! Form::radio('tiene_submenu', 'Si', null, ['class' => 'mr-1']) !!}
+                            Si
                         </label><br/>
+                        <label>
+                            {!! Form::radio('tiene_submenu', 'No', null, ['class' => 'mr-1']) !!}
+                            No
+                        </label>
+                    </div>
+
+                    @error('tiene_submenu')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('icon', 'Icono', ['class' => 'form-label']) !!}
+                    {!! Form::text('icon', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre del icono']) !!}
+                    <a target="_blank" href="https://fontawesome.com/v5.15/icons?d=gallery&p=2" class="btn btn-warning">Ver iconos</a>
+                    @error('icon')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('users', 'Listado de usuarios que tendrán acceso al menú', ['class' => 'form-label']) !!}
+                    @foreach ($users as $user)
+                        <div>
+                            <label>
+                                {!! Form::checkbox('users[]', $user->id, null, ['class' => 'mr-1']) !!}
+                                {{$user->name}}
+                            </label>
+                        </div>
                     @endforeach
+                
+                    @error('users')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                
                 </div>
 
                 <div align="right">
@@ -51,7 +101,6 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')

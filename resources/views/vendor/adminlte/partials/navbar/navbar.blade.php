@@ -12,8 +12,12 @@
 
         {{-- Custom left links --}}
         @yield('content_top_nav_left')
+        
+        {!! Form::select('empresa_navbar', $empresas_navbar, null, ['style' => 'width: 100%; background: transparent; border: none; color:#fff; font-weight: bold;-webkit-appearance: none; -moz-appearance: none; appearance: none; overflow:hidden; cursor:pointer; background-color: #9d2235;', 'id' =>'empresa_navbar', 'onchange' => 'Menu_Empresas(this.value);']) !!}
+        
     </ul>
 
+    
     {{-- Navbar right links --}}
     <ul class="navbar-nav ml-auto">
         {{-- Custom right links --}}
@@ -36,5 +40,6 @@
             @include('adminlte::partials.navbar.menu-item-right-sidebar-toggler')
         @endif
     </ul>
+
 
 </nav>

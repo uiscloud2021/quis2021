@@ -12,6 +12,8 @@ use Laravel\Sanctum\HasApiTokens;
 
 use Spatie\Permission\Traits\HasRoles;
 
+use App\Models\Empresas\Empresa;
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -77,14 +79,16 @@ class User extends Authenticatable
       // return view('dashboard.profile');
     }
 
-    //RELACION MUCHOS A MUCHOS
+
+
     public function menus(){
         return $this->belongsToMany(Menu::class,'menu_user')
             ->withPivot('menu_id');
     }
 
-    public function submenus(){
-        return $this->belongsToMany(Submenu::class,'submenu_user')
-            ->withPivot('submenu_id');
+    public function empresas(){
+        return $this->belongsToMany(Empresa::class,'empresa_user')
+            ->withPivot('empresa_id');
     }
+
 }

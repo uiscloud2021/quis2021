@@ -168,7 +168,7 @@ a {
 
 a:hover {
   color: #fff;
-  background-color: #005a87;
+  background-color: #98293D;
   text-decoration: none;
 }
 
@@ -4347,7 +4347,7 @@ input[type="button"].btn-block {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   color: #fff;
-  background-color: #005a87;
+  background-color: #98293D;
   border-color: #dee2e6 #dee2e6 #ffffff;
 }
 

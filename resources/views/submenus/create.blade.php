@@ -24,6 +24,10 @@
 				<div class="form-group">
                     {!! Form::label('description', 'Descripción', ['class' => 'form-label']) !!}
                     {!! Form::text('description', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la descripción']) !!}
+                
+                    @error('description')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -37,13 +41,13 @@
                 </div>
 
                 <div class="form-group">
-                    <p class="font-weight-bold">Usuarios que tendrán acceso al submenú</p>
-                    @foreach ($users as $user)
-                        <label class="mr-2">
-                            {!! Form::checkbox('users[]', $user->id, null) !!}
-                            {{$user->name}}
-                        </label><br/>
-                    @endforeach
+                    {!! Form::label('position', 'Posición en la lista de menús', ['class' => 'form-label']) !!}
+                    {!! Form::select('position', ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione...']) !!}
+                
+                    @error('position')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                
                 </div>
 
                 <div align="right">
@@ -82,7 +86,6 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')

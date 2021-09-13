@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Empresas\Empresa;
+
 class Menu extends Model
 {
     /**
@@ -37,4 +39,9 @@ class Menu extends Model
         return $this->belongsToMany(User::class,'menu_user')
             ->withPivot('user_id');
     }
+
+    /*/RELACION DE UNO A MUCHOS NORMAL
+    public function submenus(){
+        return $this->hasMany(Submenu::class);
+    }*/
 }

@@ -28,8 +28,13 @@ class Submenu extends Model
             ->withPivot('menu_id');
     }
 
-    public function users(){
-        return $this->belongsToMany(User::class,'submenu_user')
-            ->withPivot('user_id');
+    public function empresas(){
+        return $this->belongsToMany(Empresa::class,'empresa_submenu')
+            ->withPivot('empresa_id');
     }
+
+    /*/RELACION DE UNO A MUCHOS INVERSA
+    public function menus(){
+        return $this->belongsTo(Menu::class,'menu_id');
+    }*/
 }
