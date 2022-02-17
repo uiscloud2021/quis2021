@@ -44,15 +44,6 @@ $(document).ready(function() {
         "language": espanol
     });
 
-    list_socios();
-    list_domicilios();
-    list_legal();
-    list_documentos();
-    list_responsabilidades();
-    list_sanitario();
-    list_cuentas();
-    list_propiedad();
-    list_vinculacion();
 
 } );
 
@@ -103,10 +94,6 @@ function GuardarCambios(){
     $('#formedit_empresa').submit();
 }
 
-function CargarSubmenu(){
-
-}
-
 
 
 function CreateSocio(){
@@ -130,6 +117,7 @@ function CreateSocio(){
                 dataType: 'json',
                 success:function(resp){
                     $('#empresaid_socio').val(resp);
+                    $('#empresa_id').val(resp);
                     $('#createSocioModal').modal('toggle');
                 }
             });
@@ -163,6 +151,7 @@ function CreateDomicilio(){
                 dataType: 'json',
                 success:function(resp){
                     $('#empresaid_domicilio').val(resp);
+                    $('#empresa_id').val(resp);
                     $('#createDomicilioModal').modal('toggle');
                 }
             });
@@ -197,6 +186,7 @@ function CreateLegal(){
                 dataType: 'json',
                 success:function(resp){
                     $('#empresaid_legal').val(resp);
+                    $('#empresa_id').val(resp);
                     $('#createLegalModal').modal('toggle');
                 }
             });
@@ -233,6 +223,7 @@ function CreateDocumento(){
                 dataType: 'json',
                 success:function(resp){
                     $('#empresaid_documento').val(resp);
+                    $('#empresa_id').val(resp);
                     $('#createDocumentoModal').modal('toggle');
                 }
             });
@@ -269,6 +260,7 @@ function CreateResponsabilidad(){
                 dataType: 'json',
                 success:function(resp){
                     $('#empresaid_responsabilidad').val(resp);
+                    $('#empresa_id').val(resp);
                     $('#createResponsabilidadModal').modal('toggle');
                 }
             });
@@ -310,6 +302,7 @@ function CreateSanitario(){
                 dataType: 'json',
                 success:function(resp){
                     $('#empresaid_sanitario').val(resp);
+                    $('#empresa_id').val(resp);
                     $('#createSanitarioModal').modal('toggle');
                 }
             });
@@ -346,6 +339,7 @@ function CreateCuenta(){
                 dataType: 'json',
                 success:function(resp){
                     $('#empresaid_cuenta').val(resp);
+                    $('#empresa_id').val(resp);
                     $('#createCuentaModal').modal('toggle');
                 }
             });
@@ -385,6 +379,7 @@ function CreatePropiedad(){
                 dataType: 'json',
                 success:function(resp){
                     $('#empresaid_propiedad').val(resp);
+                    $('#empresa_id').val(resp);
                     $('#createPropiedadModal').modal('toggle');
                 }
             });
@@ -415,6 +410,7 @@ function CreateVinculacion(){
                 dataType: 'json',
                 success:function(resp){
                     $('#empresaid_vinculacion').val(resp);
+                    $('#empresa_id').val(resp);
                     $('#createVinculacionModal').modal('toggle');
                 }
             });

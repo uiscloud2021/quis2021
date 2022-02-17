@@ -7,12 +7,13 @@
                     <small><b>Empresas</b></small>
                 </div><br/>
 
-            @foreach ($empresas_rightbar as $empresa)
+            {{--@foreach ($empresas_rightbar as $empresa)
                 <div class="message">
                     <div align="center" class="font-weight-bold"><a href="#">{{ $empresa->razon_social }}</a></div>
                 </div>
                 <hr>
-            @endforeach
+            @endforeach--}}
+
 
             </div>
       </div>

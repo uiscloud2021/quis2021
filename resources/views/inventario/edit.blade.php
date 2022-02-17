@@ -19,7 +19,9 @@
             </div>
             {!! Form::model($inventario, ['route' => ['inventario.update', $inventario], 'method' => 'put', 'id'=>'formedit_inventario']) !!}
 
-			    @include('inventario.form')
+			    @include('inventario.resume')
+
+                @include('inventario.form')
 
                 <div align="right">
                     <a href="/inventario" class="btn btn-danger">Cancelar</a>

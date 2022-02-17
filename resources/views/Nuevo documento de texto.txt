@@ -1,0 +1,30 @@
+<!--CONTACTOS-->
+                  <div class="tab-pane fade" id="vert-tabs-2" role="tabpanel" aria-labelledby="vert-tabs-2-tab">
+
+                    <div class="row">
+
+                    <div class="col-md-6">
+                    <div class="form-group">
+                        {!! Form::label('no4', '4. Contacto de factibilidad', ['class' => 'form-label']) !!}
+                        {!! Form::text('no4', null, ['class' => 'form-control', 'placeholder' => 'Ingrese nombre']) !!}
+                    </div>
+                    </div>
+
+                    <div class="col-md-6">
+                    <div class="form-group">
+                        {!! Form::label('no5', '5. Se llenó tarjeta de contacto de factibilidad', ['class' => 'form-label']) !!}
+                        <div>
+                            <label>
+                                {!! Form::radio('no5', 'Si', null, ['class' => 'mr-1']) !!}
+                                Si
+                            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label>
+                                {!! Form::radio('no5', 'No', null, ['class' => 'mr-1']) !!}
+                                No
+                            </label>
+                        </div>
+                    </div>
+                    </div>
+
+                    </div>
+                  </div>

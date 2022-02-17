@@ -21,34 +21,34 @@
                                 <a class="nav-link active" id="vert-tabs-1-tab" data-toggle="pill" href="#vert-tabs-1" role="tab" aria-controls="vert-tabs-1" aria-selected="false"><i class="far fa-edit"></i> Identidad empresa</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="vert-tabs-2-tab" data-toggle="pill" href="#vert-tabs-2" role="tab" aria-controls="vert-tabs-2" aria-selected="false"><i class="far fa-edit"></i> Socios</a>
+                                <a class="nav-link" onclick="list_socios();" id="vert-tabs-2-tab" data-toggle="pill" href="#vert-tabs-2" role="tab" aria-controls="vert-tabs-2" aria-selected="false"><i class="far fa-edit"></i> Socios</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="vert-tabs-3-tab" data-toggle="pill" href="#vert-tabs-3" role="tab" aria-controls="vert-tabs-3" aria-selected="false"><i class="far fa-edit"></i> Domicilios</a>
+                                <a class="nav-link" onclick="list_domicilios();" id="vert-tabs-3-tab" data-toggle="pill" href="#vert-tabs-3" role="tab" aria-controls="vert-tabs-3" aria-selected="false"><i class="far fa-edit"></i> Domicilios</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="vert-tabs-4-tab" data-toggle="pill" href="#vert-tabs-4" role="tab" aria-controls="vert-tabs-4" aria-selected="false"><i class="far fa-edit"></i> RFC, IMSS, SAT</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="vert-tabs-5-tab" data-toggle="pill" href="#vert-tabs-5" role="tab" aria-controls="vert-tabs-5" aria-selected="false"><i class="far fa-edit"></i> Representante legal</a>
+                                <a class="nav-link" onclick="list_legal();" id="vert-tabs-5-tab" data-toggle="pill" href="#vert-tabs-5" role="tab" aria-controls="vert-tabs-5" aria-selected="false"><i class="far fa-edit"></i> Representante legal</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="vert-tabs-6-tab" data-toggle="pill" href="#vert-tabs-6" role="tab" aria-controls="vert-tabs-6" aria-selected="false"><i class="far fa-edit"></i> Documentos regulatorios</a>
+                                <a class="nav-link" onclick="list_documentos();" id="vert-tabs-6-tab" data-toggle="pill" href="#vert-tabs-6" role="tab" aria-controls="vert-tabs-6" aria-selected="false"><i class="far fa-edit"></i> Documentos regulatorios</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="vert-tabs-7-tab" data-toggle="pill" href="#vert-tabs-7" role="tab" aria-controls="vert-tabs-7" aria-selected="false"><i class="far fa-edit"></i> Responsabilidades regulatorias</a>
+                                <a class="nav-link" onclick="list_responsabilidades();" id="vert-tabs-7-tab" data-toggle="pill" href="#vert-tabs-7" role="tab" aria-controls="vert-tabs-7" aria-selected="false"><i class="far fa-edit"></i> Responsabilidades regulatorias</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="vert-tabs-8-tab" data-toggle="pill" href="#vert-tabs-8" role="tab" aria-controls="vert-tabs-8" aria-selected="false"><i class="far fa-edit"></i> Representante sanitario</a>
+                                <a class="nav-link" onclick="list_sanitario();" id="vert-tabs-8-tab" data-toggle="pill" href="#vert-tabs-8" role="tab" aria-controls="vert-tabs-8" aria-selected="false"><i class="far fa-edit"></i> Representante sanitario</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="vert-tabs-9-tab" data-toggle="pill" href="#vert-tabs-9" role="tab" aria-controls="vert-tabs-9" aria-selected="false"><i class="far fa-edit"></i> Cuentas bancarias</a> 
+                                <a class="nav-link" onclick="list_cuentas();" id="vert-tabs-9-tab" data-toggle="pill" href="#vert-tabs-9" role="tab" aria-controls="vert-tabs-9" aria-selected="false"><i class="far fa-edit"></i> Cuentas bancarias</a> 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="vert-tabs-10-tab" data-toggle="pill" href="#vert-tabs-10" role="tab" aria-controls="vert-tabs-10" aria-selected="false"><i class="far fa-edit"></i> Propiedad intelectual</a>
+                                <a class="nav-link" onclick="list_propiedad();" id="vert-tabs-10-tab" data-toggle="pill" href="#vert-tabs-10" role="tab" aria-controls="vert-tabs-10" aria-selected="false"><i class="far fa-edit"></i> Propiedad intelectual</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="vert-tabs-11-tab" data-toggle="pill" href="#vert-tabs-11" role="tab" aria-controls="vert-tabs-11" aria-selected="false"><i class="far fa-edit"></i> Vinculación</a>
+                                <a class="nav-link" onclick="list_vinculacion();" id="vert-tabs-11-tab" data-toggle="pill" href="#vert-tabs-11" role="tab" aria-controls="vert-tabs-11" aria-selected="false"><i class="far fa-edit"></i> Vinculación</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="vert-tabs-12-tab" data-toggle="pill" href="#vert-tabs-12" role="tab" aria-controls="vert-tabs-12" aria-selected="false"><i class="far fa-edit"></i> Menús</a>
@@ -569,12 +569,11 @@
                   
                 </div>
               </div>
+
             </div>
         </div>
     </div>
 
-</div>    
-</div>
 
                     
                   

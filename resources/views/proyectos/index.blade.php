@@ -35,10 +35,10 @@
     <tbody>
         @foreach ($proyectos as $proyecto)
             <tr>
-                <td>{{ $proyecto->no22 }}</td>
+                <td>{{ $proyecto->no18 }}</td>
+                <td>{{ $proyecto->no20 }}</td>
                 <td>{{ $proyecto->no24 }}</td>
-                <td>{{ $proyecto->no28 }}</td>
-                <td>{{ $proyecto->no31 }}</td>
+                <td>{{ $proyecto->no27 }}</td>
                 <td width="10px"><a class="btn btn-info btn-sm" title="Editar" href="{{route('proyectos.edit', $proyecto)}}"><span class="fas fa-edit"></span></a></td>
                 <td width="10px">
                 <form action="{{route('proyectos.destroy',$proyecto)}}" id="form_eliminar_{{$proyecto->id}}" method="POST">

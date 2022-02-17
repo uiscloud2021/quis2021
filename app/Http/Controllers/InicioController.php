@@ -14,6 +14,7 @@ class InicioController extends Controller
     //CONSTRUCTOR PARA PROTEGER FILES SOLO PARA LOGEADOS
     public function __construct(){
         $this->middleware('can:home.index');
+        // $this->middleware('can:home.show');
     }
     /**
      * Display a listing of the resource.
@@ -46,16 +47,18 @@ class InicioController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    // /**
+    //  * Display the specified resource.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function show(Request $request)
+    // {
+    //     //$categories = $current_user->categories;
+    //     session(['id_empresa' => $request->empresa_navbar]);
+    //     return view('dashboard');
+    // }
 
     /**
      * Show the form for editing the specified resource.

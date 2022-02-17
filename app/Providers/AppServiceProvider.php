@@ -56,7 +56,13 @@ class AppServiceProvider extends ServiceProvider
                 })->orderBy('id')->get();
 
                 //dd ($user_id);//MOSTRAR EN CONSOLA RESULTADOS
-                $view->with(compact('menus_sidebar', 'empresas_navbar', 'empresas_rightbar', 'globalempresa_id'));
+                
+                if (!session()->has('id_empresa')) {
+                    session(['id_empresa' => $globalempresa_id]);
+                }
+                //session(['menus_sidebar' => $menus_sidebar]);
+                // $view->with(compact('menus_sidebar', 'empresas_navbar', 'empresas_rightbar', 'globalempresa_id'));
+                $view->with(compact('empresas_navbar', 'empresas_rightbar', 'globalempresa_id'));
             }
         });
 

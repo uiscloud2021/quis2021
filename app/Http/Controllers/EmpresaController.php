@@ -60,16 +60,27 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {		
-		//VALIDAR CAMPOS
-        $request->validate([
-            'razon_social' => 'required|unique:empresas',
-        ]);
-
         //id usuario loggeado
         $id_user = auth()->id();
+        $id=$request->id;
+
+        if($id==""){
+            //VALIDAR CAMPOS
+            $request->validate([
+                'razon_social' => 'required|unique:empresas',
+            ]);
+
+            $empresas = new Empresa();
+        }else{
+            //VALIDAR CAMPOS
+            $request->validate([
+                'razon_social' => 'required',
+            ]);
+
+            $empresas = Empresa::find($id);
+        }
 		
 		//GUARDAR REGISTROS
-        $empresas = new Empresa();
         $empresas->razon_social = $request->razon_social;
 	    $empresas->pais = $request->pais;
 	    $empresas->figura_legal = $request->figura_legal;
@@ -98,12 +109,22 @@ class EmpresaController extends Controller
         $empresas->id_user = $id_user;
         $empresas -> save();
 
-        if($request->menus){
-            $empresas->menus()->attach($request->menus);//GUARDAR LAS RELACIONES
-        }
+        if($id==""){
+            if($request->menus){
+                $empresas->menus()->attach($request->menus);//GUARDAR LAS RELACIONES
+            }
 
-        if($request->users){
-            $empresas->users()->attach($request->users);//GUARDAR LAS RELACIONES
+            if($request->users){
+                $empresas->users()->attach($request->users);//GUARDAR LAS RELACIONES
+            }
+        }else{
+            if($request->menus){
+                $empresas->menus()->sync($request->menus);//CAMBIOS EN TABLA RELACION 
+            }
+    
+            if($request->users){
+                $empresas->users()->sync($request->users);//CAMBIOS EN TABLA RELACION
+            }
         }
 
 		return redirect()->route('empresas.edit', $empresas)->with('info', 'La empresa se guardó correctamente');
@@ -196,6 +217,15 @@ class EmpresaController extends Controller
      */
     public function destroy(Empresa $empresa)
     {
+        $socio = Socio::where('empresa_id', $empresa->id)->delete();
+        $domicilio = Domicilio::where('empresa_id', $empresa->id)->delete();
+        $legal = Legal::where('empresa_id', $empresa->id)->delete();
+        $documento = Documento::where('empresa_id', $empresa->id)->delete();
+        $resp = Responsabilidad::where('empresa_id', $empresa->id)->delete();
+        $sanitario = Sanitario::where('empresa_id', $empresa->id)->delete();
+        $cuenta = Cuenta::where('empresa_id', $empresa->id)->delete();
+        $prop = Propiedad::where('empresa_id', $empresa->id)->delete();
+        $vinc = Vinculacion::where('empresa_id', $empresa->id)->delete();
         $empresa->delete();
         return redirect()->route('empresas.index',$empresa)->with('info', 'La empresa se eliminó correctamente');
     }
