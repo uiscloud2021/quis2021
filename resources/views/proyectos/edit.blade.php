@@ -19,6 +19,8 @@
             </div>
             {!! Form::model($proyecto, ['route' => ['proyectos.update', $proyecto], 'method' => 'put', 'id'=>'formedit_proyecto']) !!}
 
+                @include('proyectos.resume')
+
 			    @include('proyectos.form')
 
                 <div align="right">
@@ -45,5 +47,11 @@
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
-    <script src="{{ asset('js/administracion/proyectos.js') }}"></script>
+    <script src="{{ asset('js/administracion/proyectos.js?1') }}"></script>
+    <script>
+        $(document).ready(function() {
+            id_investigador=$('#inv_id').val();
+            Investigador(id_investigador);
+        } );
+    </script>
 @stop

@@ -27,7 +27,7 @@ class ProyectoController extends Controller
      */
     public function index()
     {
-        $proyectos = Proyecto::all();
+        $proyectos = Proyecto::where('empresa_id', '=', session('id_empresa'))->get();
 		return view('proyectos.index', compact('proyectos'));
     }
 
@@ -38,6 +38,7 @@ class ProyectoController extends Controller
      */
     public function create()
     {
+        //$investigadores = Investigador::where('empresa_id', '=', session('id_empresa'))->pluck('investigador', 'id');
         $investigadores = Investigador::pluck('investigador', 'id');
         return view('proyectos.create', compact('investigadores'));
     }
@@ -52,15 +53,15 @@ class ProyectoController extends Controller
     {		
 		//VALIDAR CAMPOS
         $request->validate([
-            'no22' => 'required|unique:proyectos',
-            'no24' => 'required|unique:proyectos',
+            'no18' => 'required|unique:proyectos',
+            'no20' => 'required|unique:proyectos',
             'investigador' => 'required|unique:investigadores',
         ]);
 
         //id usuario loggeado
         $id_user = auth()->id();
         
-        if($request->inv == ""){
+        if($request->investigador_id == ""){
             //GUARDAR REGISTROS INVESTIGADOR
             $investigadores = new Investigador();
             $investigadores->investigador = $request->investigador;
@@ -79,7 +80,7 @@ class ProyectoController extends Controller
             $investigadores -> save();
         }else{
             //GUARDAR REGISTROS INVESTIGADOR
-            $investigadores = Investigador::find($request->inv);
+            $investigadores = Investigador::find($request->investigador_id);
             $investigadores->investigador = $request->investigador;
             $investigadores->apellido = $request->apellido;
             $investigadores->titulo = $request->titulo;
@@ -126,10 +127,6 @@ class ProyectoController extends Controller
         $proyectos->no26 = $request->no26;
         $proyectos->no27 = $request->no27;
         $proyectos->no28 = $request->no28;
-        $proyectos->no29 = $request->no29;
-        $proyectos->no30 = $request->no30;
-        $proyectos->no31 = $request->no31;
-        $proyectos->no32 = $request->no32;
         $proyectos->investigador_id = $investigadores->id;
         $proyectos->empresa_id = $request->empresa_id;
         $proyectos->id_user = $id_user;
@@ -175,8 +172,8 @@ class ProyectoController extends Controller
     {
 		//VALIDAR CAMPOS
         $request->validate([
-            'no22' => 'required|unique:proyectos',
-            'no24' => 'required|unique:proyectos',
+            'no18' => 'required|unique:proyectos',
+            'no20' => 'required|unique:proyectos',
             'investigador' => 'required|unique:investigadores',
         ]);
 		
@@ -184,22 +181,41 @@ class ProyectoController extends Controller
         $id_user = auth()->id();
 
         //GUARDAR REGISTROS INVESTIGADOR
-        $investigador = Investigador::find($investigador->id);
-        $investigador->investigador = $request->investigador;
-        $investigador->apellido = $request->apellido;
-        $investigador->titulo = $request->titulo;
-        $investigador->cedula = $request->cedula;
-        $investigador->verifico_cedula = $request->verifico_cedula;
-        $investigador->fecha_verificacion = $request->fecha_verificacion;
-        $investigador->electronico = $request->electronico;
-        $investigador->telefono = $request->telefono;
-        $investigador->verifico_telefono = $request->verifico_telefono;
-        $investigador->fecha_telefono = $request->fecha_telefono;
-        $investigador->resultado = $request->resultado;
-        $investigador->proyecto_id = $proyecto->$id;
-        $investigador->empresa_id = $request->empresa_id;
-        $investigador->id_user = $id_user;
-        $investigador -> save();
+        if($request->investigador_id == ""){
+            //GUARDAR REGISTROS INVESTIGADOR
+            $investigador = new Investigador();
+            $investigador->investigador = $request->investigador;
+            $investigador->apellido = $request->apellido;
+            $investigador->titulo = $request->titulo;
+            $investigador->cedula = $request->cedula;
+            $investigador->verifico_cedula = $request->verifico_cedula;
+            $investigador->fecha_verificacion = $request->fecha_verificacion;
+            $investigador->electronico = $request->electronico;
+            $investigador->telefono = $request->telefono;
+            $investigador->verifico_telefono = $request->verifico_telefono;
+            $investigador->fecha_telefono = $request->fecha_telefono;
+            $investigador->resultado = $request->resultado;
+            $investigador->empresa_id = $request->empresa_id;
+            $investigador->id_user = $id_user;
+            $investigador -> save();
+        }else{
+            //GUARDAR REGISTROS INVESTIGADOR
+            $investigador = Investigador::find($investigador->id);
+            $investigador->investigador = $request->investigador;
+            $investigador->apellido = $request->apellido;
+            $investigador->titulo = $request->titulo;
+            $investigador->cedula = $request->cedula;
+            $investigador->verifico_cedula = $request->verifico_cedula;
+            $investigador->fecha_verificacion = $request->fecha_verificacion;
+            $investigador->electronico = $request->electronico;
+            $investigador->telefono = $request->telefono;
+            $investigador->verifico_telefono = $request->verifico_telefono;
+            $investigador->fecha_telefono = $request->fecha_telefono;
+            $investigador->resultado = $request->resultado;
+            $investigador->empresa_id = $request->empresa_id;
+            $investigador->id_user = $id_user;
+            $investigador -> save();
+        }
 
 		$proyecto = Proyecto::find($proyecto->id);
 	    $proyecto->no1 = $request->no1;
@@ -230,11 +246,7 @@ class ProyectoController extends Controller
         $proyecto->no26 = $request->no26;
         $proyecto->no27 = $request->no27;
         $proyecto->no28 = $request->no28;
-        $proyecto->no29 = $request->no29;
-        $proyecto->no30 = $request->no30;
-        $proyecto->no31 = $request->no31;
-        $proyecto->no32 = $request->no32;
-        $proyecto->investigador_id = $investigador_id;
+        $proyecto->investigador_id = $investigador->id;
         $proyecto->empresa_id = $request->empresa_id;
         $proyecto->id_user = $id_user;
         $proyecto -> save();

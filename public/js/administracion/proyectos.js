@@ -18,6 +18,7 @@ function GuardarCambios(){
     $('#formedit_proyecto').submit();
 }
 
+
 $("input[name='no3']").click(function()
 {     
     if($(this).val() == "Si"){
@@ -35,35 +36,20 @@ $("input[name='no3']").click(function()
     }
 });
 
-$("input[name='no9']").click(function()
+$("input[name='no12']").click(function()
 {     
     if($(this).val() == "Si"){
-        $('#div10').show();
-        $('#div11').show();
-        $('#div12').show();
         $('#div13').show();
-    }else{
-        $('#div10').hide();
-        $('#div11').hide();
-        $('#div12').hide();
-        $('#div13').hide();
-    }
-});
-
-$("input[name='no16']").click(function()
-{     
-    if($(this).val() == "Si"){
+        $('#div14').show();
+        $('#div15').show();
+        $('#div16').show();
         $('#div17').show();
-        $('#div18').show();
-        $('#div19').show();
-        $('#div20').show();
-        $('#div21').show();
     }else{
+        $('#div13').hide();
+        $('#div14').hide();
+        $('#div15').hide();
+        $('#div16').hide();
         $('#div17').hide();
-        $('#div18').hide();
-        $('#div19').hide();
-        $('#div20').hide();
-        $('#div21').hide();
     }
 });
 

@@ -225,24 +225,25 @@ return [
     */
     //RUTAS DEL MENU SIDEBAR
     'menu' => [
-        /*[
+        [
             'text' => 'Inicio',
             'route'  => 'dashboard',
             'icon'=> 'fas fa-fw fa-home',
             'can'  => 'dashboard',
         ],
-        [
-            'text'        => 'Estadísticas',
-            'url'         => 'home',
-            'icon'        => 'fas fa-fw fa-chart-line',
-            'can'  => 'home.index',
-        ],*/
+        // [
+        //     'text'        => 'Estadísticas',
+        //     'url'         => 'home',
+        //     'icon'        => 'fas fa-fw fa-chart-line',
+        //     'can'  => 'home.index',
+        // ],
 
 
         
 
         //ADMINISTRADORES
         ['header' => 'Solo administradores',
+        'key'   => 'Admin',
         'can'  => 'users.index',],
         [
             'text'        => 'Empresas',

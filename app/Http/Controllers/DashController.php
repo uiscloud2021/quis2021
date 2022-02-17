@@ -34,8 +34,20 @@ class DashController extends Controller
         //RECUPERAR LAS CATEGORIAS QUE LE PERTENECEN AL USUARIO AUTENTIFICADO
         $current_user = auth()->user();
         //$categories = $current_user->categories;
-
         return view('dashboard');
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function get_empresa()
+    {
+        $id = session('id_empresa');
+        return response($id);
     }
 
     /**
@@ -47,58 +59,10 @@ class DashController extends Controller
     public function store(Request $request)
     {
         $current_user = auth()->id();
-        $category_id = $request->id_category;
-        $category_name = $request->name_category;
-        $nivel = $request->nivel_folder;
-        $nivel_id = $nivel + 1;
-        $url_folder="";
-        $folder_id = 0;
-        $folder_name="";
-
-        if($nivel==0){
-            $files = File::where('category_id', $category_id)
-            ->where('nivel', $nivel_id)
-            ->whereHas('users', function($query) use($current_user){
-                $query->where('user_id', '=', $current_user);
-            })->orderBy('name')->get();
-
-            $folders = Folder::where('nivel', '=', $nivel_id)
-            ->where('category_id', $category_id)
-            ->whereHas('users', function($query) use($current_user){
-                $query->where('user_id', '=', $current_user);
-            })->orderBy('name')->get();
-
-        }else{
-            $folder_id = $request->id_folder;
-            //$url_folder = $request->url_folder;
-
-            $fold = Folder::where('id', '=', $folder_id)->get()->first();
-            $folder_name = $fold->name;
-            $url_folder = $fold->url;
-
-
-            $files = File::where('category_id', $category_id)
-            ->where('nivel', $nivel_id)
-            ->where('id_folder', $folder_id)
-            ->whereHas('users', function($query) use($current_user){
-                $query->where('user_id', '=', $current_user);
-            })->get();
-
-            $folders = Folder::where('nivel', '=', $nivel_id)
-            ->where('category_id', $category_id)
-            ->where('folder_id', $folder_id)
-            ->whereHas('users', function($query) use($current_user){
-                $query->where('user_id', '=', $current_user);
-            })->get();
-        }
-        return view('dashboard.show', compact('files','folders'))
-            ->with('category_name', $category_name)
-            ->with('category_id', $category_id)
-            ->with('nivel_id', $nivel_id)
-            ->with('folder_id', $folder_id)
-            ->with('url_folder', $url_folder)
-            ->with('folder_name', $folder_name);
-            //return response($nivel_id);
+        $empresa_id = $request->empresa_navbar;
+        session(['id_empresa' => $empresa_id]);
+        return redirect()->route('dashboard');
+        //return view('dashboard/index');
     }
 
     /**
