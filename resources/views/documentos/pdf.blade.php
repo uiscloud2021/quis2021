@@ -7,7 +7,7 @@
     <title>Document</title>
     <style type="text/css">
 		@page { size: 8.5in 11in; margin-left: 1.18in; margin-right: 1.18in; margin-top: 1.65354in; margin-bottom: 1in }
-		p { margin-bottom: 0.0in; margin-top: 0.0in; direction: ltr; line-height: 145%; orphans: 2; widows: 2 }
+		p { margin-bottom: 0.0in; margin-top: 0.0in; direction: ltr; line-height: 135%; orphans: 2; widows: 2 }
 		p.western { font-family:"Calibri"; font-size: 11pt }
 		/* p.cjk { font-size: 12pt; so-language: es-ES }
 		p.ctl { font-size: 12pt } */
@@ -30,7 +30,7 @@
         <table width="100%" cellspacing="0">
             <col width="100%">
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" lang="x-none" align="right">
                         <span lang="es-MX">
                         Lugar, a Fecha   
@@ -38,42 +38,42 @@
                 </td>
             </tr>
             {{-- <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify"><br />
 
                     </p>
                 </td>
             </tr> --}}
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western">
                         <b>Dr.Nombre completo </b>
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western">
                         <span lang="es-ES">Especialidad</span>
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western">
-                        <span lang="es-ES">Pr e s e n t e</span>
+                        <span lang="es-ES">P r e s e n t e</span>
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify"><br />
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="right">
                         <b>Asunto:</b>
                         Presentaci&oacute;n
@@ -81,28 +81,28 @@
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="right"><br />
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify">
                         <b>Estimado Doctor(a):</b>
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify"><br />
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify">
                         Gracias
                         por su respuesta al cuestionario de factibilidad, as&iacute; como
@@ -114,14 +114,14 @@
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify"><br />
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify">
                         Queremos
                         destacarle que la Unidad de Investigaci&oacute;n en Salud (UIS)
@@ -134,14 +134,14 @@
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify"><br />
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify">
                         En
                         cada investigaci&oacute;n, la UIS se encarga de facilitar el
@@ -157,14 +157,14 @@
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify"><br />
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify">
                         El
                         proceso completo de un estudio comprende diferentes etapas. En la
@@ -180,14 +180,14 @@
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify"><br />
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify">
                         Para
                         continuar los tr&aacute;mites, anexo encuentre un documento para
@@ -198,21 +198,21 @@
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify"><br />
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify"><br />
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                         {{-- <p class="western" align="justify" style="margin-bottom: 0in"><br />
 
                         </p> --}}
@@ -229,14 +229,14 @@
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify"><br />
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify" style="margin-bottom: 0in">
                         En
                         adelante estaremos contact&aacute;ndole por v&iacute;a telef&oacute;nica
@@ -250,7 +250,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify" style="margin-bottom: 0in">
                         Es
                         necesario destacar que los patrocinadores eval&uacute;an tambi&eacute;n
@@ -263,7 +263,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify">
                         Finalmente,
                         le informaremos de manera oportuna acerca de las reuniones o
@@ -272,14 +272,14 @@
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify"><br />
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify">
                         Quedo
                         a sus &oacute;rdenes para cualquier comentario.
@@ -287,42 +287,42 @@
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="justify"><br />
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="center">
                         Atentamente
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="center">
                         <br/>
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="center"><br />
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="center"><br />
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid blue;">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
                     <p class="western" align="center" style="margin-bottom: 0in">
                         <b>Dra.
                         Merced Vel&aacute;zquez</b>
