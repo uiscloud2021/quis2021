@@ -48,8 +48,9 @@ class DocumentosController extends Controller
   {
 
     $formato = Formato::where('id', $id)->get()->first();
+    $datos = json_decode($formato->datos_json);
     $id = $id;
-    $pdf = PDF::loadView('documentos.pdf', compact('id', 'formato'));
+    $pdf = PDF::loadView('documentos.pdf', compact('id', 'formato', 'datos'));
 
     return $pdf->stream();
     // return $pdf->download('__documentos.pdf');
