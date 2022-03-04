@@ -52,9 +52,11 @@ class DocumentosController extends Controller
     $id = $id;
     $pdf = PDF::loadView('documentos.pdf', compact('id', 'formato', 'datos'));
 
+    // $pdf->setPaper('letter');
+
     return $pdf->stream();
     // return $pdf->download('__documentos.pdf');
-    // return view('documentos.pdf', compact('id', 'formato'));
+    // return view('documentos.pdf', compact('id', 'formato', 'datos'));
   }
 
   /**
