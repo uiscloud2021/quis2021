@@ -321,7 +321,8 @@
         <style type="text/css">
             @page { size: 8.5in 11in; margin-left: 1.18in; margin-right: 1.18in; margin-top: 4.17cm; margin-bottom: 2.5cm }
             p { orphans: 2; widows: 2 }
-            p.western { line-height: 103%; margin-bottom: 0.1in; margin-top: -1px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 11pt; }
+            p.western { line-height: 103%; margin-bottom: 0in; margin-top: -1px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, sans-serif; font-size: 11pt; }
+            p.trwestern { line-height: 103%; margin-bottom: 0in; margin-top: -1px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 10pt; }
             /* p.cjk { font-size: 12pt; so-language: es-ES }
             p.ctl { font-size: 12pt } */
             a:link { color: #0000ff }
@@ -1903,7 +1904,7 @@
             {{-- <tbody> --}}
                 <tr>
                     <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
-                        <p lang="x-none" align="right" class="western">
+                        <p lang="x-none" align="right" class="western" style="margin-top: -2px;">
                             Seleccionar, Fecha
                         </p>
                     </td>
@@ -1917,26 +1918,26 @@
                 </tr>
                 <tr>
                     <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
-                        <p class="western" style="margin-bottom: 0in">
+                        <p class="western" style="margin-bottom: 0in; line-height: 119%;">
                             <b>Comisi&oacute;n
                             Federal para la Protecci&oacute;n Contra Riesgos Sanitarios.
                             COFEPRIS. </b>
                         </p>
-                        <p class="western" style="margin-bottom: 0in">
+                        <p class="western" style="margin-bottom: 0in; line-height:90%;">
                             Comisi&oacute;n
                             de Autorizaci&oacute;n Sanitaria
                         </p>
-                        <p class="western" align="justify" style="margin-bottom: 0in">
+                        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 98%;">
                             Secretar&iacute;a
-                            de salud
+                            de Salud
                         </p>
-                        <p class="western" align="justify">
+                        <p class="western" align="justify" style="line-height: 100%;">
                             P r e s e n t e
                         </p>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; height: 0.56cm;">
                         <p class="western" align="right"><br>
 
                         </p>
@@ -1951,64 +1952,64 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; height: 0.56cm;">
                         <p class="western" align="justify"><br>
 
                         </p>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff">
-                        <p class="western" align="justify">
+                    <td colspan="1" width="97px" bgcolor="#ffffff" style="background: #ffffff">
+                        <p class="western" align="justify" style="line-height: 110%;">
                             <b>C&oacute;digo</b>
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff">
-                        <p class="western" align="justify">
+                        <p class="western" align="justify" style="line-height: 110%;">
                             C&oacute;digo.
                         </p>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff">
-                        <p class="western" align="justify">
+                    <td colspan="1" width="97px" bgcolor="#ffffff" style="background: #ffffff">
+                        <p class="western" align="justify" style="line-height: 110%;">
                             <b>T&iacute;tulo</b>
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff">
-                        <p class="western" align="justify">
+                        <p class="western" align="justify" style="line-height: 110%;">
                             <b>T&iacute;tulo</b></font>.
                         </p>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff">
-                        <p class="western" align="justify">
+                    <td colspan="1" width="97px" bgcolor="#ffffff" style="background: #ffffff">
+                        <p class="western" align="justify" style="line-height: 110%;">
                             <b>Patrocinador</b>
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff">
-                        <p class="western" align="justify">
+                        <p class="western" align="justify" style="line-height: 110%;">
                             Nombre
                             del patrocinador.
                         </p>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff">
-                        <p class="western" align="justify">
+                    <td colspan="1" width="97px" bgcolor="#ffffff" style="background: #ffffff">
+                        <p class="western" align="justify" style="line-height: 110%;">
                             <b>Sitio cl&iacute;nico</b>
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff">
-                        <p class="western" align="justify">
+                        <p class="western" align="justify" style="line-height: 110%;">
                             Unidad
                             de Investigaci&oacute;n en Salud de Chihuahua, S.C. Autom&aacute;tico.
                         </p>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; height: 0.56cm;">
                         <p class="western" align="justify"><br>
 
                         </p>
@@ -2022,7 +2023,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; height: 0.56cm">
                         <p class="western" align="justify"><br>
 
                         </p>
@@ -2030,7 +2031,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
-                        <p class="western" align="justify">
+                        <p class="western" align="justify" style="line-height: 106%;">
                             Con
                             la presente y como Investigador principal del estudio mencionado, <b>DELEGO</b>
                             al siguiente personal las actividades que se describen:
@@ -2038,7 +2039,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; height: 0.56cm;">
                         <p class="western" align="justify"><br>
 
                         </p>
@@ -2070,8 +2071,8 @@
                         </p>
                     </td>
                 </tr>
-        </table>
-        <table width="100%" cellpadding="0" cellspacing="0">
+        {{-- </table> --}}
+        {{-- <table width="100%" cellpadding="0" cellspacing="0"> --}}
             {{-- </tbody> --}}
             {{-- <tbody> --}}
                 <tr valign="top">
@@ -2132,41 +2133,30 @@
             {{-- </tbody> --}}
             {{-- <tbody> --}}
                 <tr>
-                    <td colspan="11" width="100%" valign="top" bgcolor="#d9d9d9" style="background: #d9d9d9; border: 1px solid #00000a; padding: 0in 0.08in">
+                    <td colspan="3" width="100%" valign="top" bgcolor="#d9d9d9" style="background: #d9d9d9; border: 1px solid #00000a; padding: 0in 0.08in">
                         <p class="western" align="center">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt">Responsabilidades</font>
-                            </font>
+                            Responsabilidades
                         </p>
                     </td>
                 </tr>
-        </table>
-        <table width="100%" cellpadding="0" cellspacing="0">
+        {{-- </table> --}}
+        {{-- <table width="100%" cellpadding="0" cellspacing="0"> --}}
             {{-- </tbody> --}}
             {{-- <tbody> --}}
                 <tr valign="top">
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">1=Conducir
-                                    el estudio</font>
-                            </font>
+                        <p class="trwestern">
+                            1=Conducir el estudio
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">11=Registro
-                                    de medicamentos </font>
-                            </font>
+                        <p class="trwestern">
+                            11=Registro de medicamentos
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">20=Preparaci&oacute;n
-                                    de muestras </font>
-                            </font>
+                        <p class="trwestern">
+                            20=Preparaci&oacute;n de muestras
                         </p>
                     </td>
                 </tr>
@@ -2174,26 +2164,18 @@
             {{-- <tbody> --}}
                 <tr valign="top">
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">2=Selecci&oacute;n
-                                    de pacientes</font>
-                            </font>
+                        <p class="trwestern">
+                            2=Selecci&oacute;n de pacientes
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">12=Control
-                                    de medicamento</font>
-                            </font>
+                        <p class="trwestern">
+                            12=Control de medicamento
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">21=ECG</font>
-                            </font>
+                        <p class="trwestern">
+                            21=ECG
                         </p>
                     </td>
                 </tr>
@@ -2201,46 +2183,34 @@
             {{-- <tbody> --}}
                 <tr valign="top">
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">3=Firma
-                                    de ICF</font>
-                            </font>
+                        <p class="trwestern">
+                            3=Firma de ICF
                         </p>
                     </td>
                     <td rowspan="1" colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border-top: 1px solid #00000a; border-bottom: none; border-left: 1px solid #00000a; border-right: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">13=Preparaci&oacute;n
-                                    y ministraci&oacute;n de producto de investigaci&oacute;n </font>
-                            </font>
+                        <p class="trwestern">
+                            13=Preparaci&oacute;n y ministraci&oacute;n
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">22=Recolectar
-                                    datos </font>
-                            </font>
+                        <p class="trwestern">
+                            22=Recolectar datos
                         </p>
                     </td>
                 </tr>
                 <tr valign="top">
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">4=Confirmar
-                                    elegibilidad</font>
-                            </font>
+                        <p class="trwestern">
+                            4=Confirmar elegibilidad
+                        </p>
+                    </td>
+                    <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border-bottom: 1px solid #00000a; border-left: 1px solid #00000a; border-rigth: 1px solid #00000a; border-top: none; padding: 0in 0.08in">
+                        <p class="trwestern">
+                            de producto de investigaci&oacute;n
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <br>
-                        </p>
-                    </td>
-                    <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
+                        <p class="trwestern">
                             23=Captura de datos CRF
                         </p>
                     </td>
@@ -2249,27 +2219,18 @@
             {{-- <tbody> --}}
                 <tr valign="top">
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">5=Examen
-                                    f&iacute;sico</font>
-                            </font>
+                        <p class="trwestern">
+                            5=Examen f&iacute;sico
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">14=Terapias
-                                    de rescate</font>
-                            </font>
+                        <p class="trwestern">
+                            14=Terapias de rescate
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">24=Actividades
-                                    administrativas</font>
-                            </font>
+                        <p class="trwestern">
+                            24=Actividades administrativas
                         </p>
                     </td>
                 </tr>
@@ -2277,27 +2238,18 @@
             {{-- <tbody> --}}
                 <tr valign="top">
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">6=Signos
-                                    vitales</font>
-                            </font>
+                        <p class="trwestern">
+                            6=Signos vitales
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">15=Finalizar
-                                    tratamiento</font>
-                            </font>
+                        <p class="trwestern">
+                            15=Finalizar tratamiento
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">25=Aplicaci&oacute;n
-                                    de escalas</font>
-                            </font>
+                        <p class="trwestern">
+                            25=Aplicaci&oacute;n de escalas
                         </p>
                     </td>
                 </tr>
@@ -2305,26 +2257,18 @@
             {{-- <tbody> --}}
                 <tr valign="top">
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">7=Aleatorizaci&oacute;n</font>
-                            </font>
+                        <p class="trwestern">
+                            7=Aleatorizaci&oacute;n
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">16=Evaluaci&oacute;n
-                                    de EA</font>
-                            </font>
+                        <p class="trwestern">
+                            16=Evaluaci&oacute;n de EA
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">26=T&eacute;cnico
-                                    radi&oacute;logo</font>
-                            </font>
+                        <p class="trwestern">
+                            26=T&eacute;cnico radi&oacute;logo
                         </p>
                     </td>
                 </tr>
@@ -2332,26 +2276,18 @@
             {{-- <tbody> --}}
                 <tr valign="top">
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">8=Comunicaci&oacute;n
-                                    IVRS</font>
-                            </font>
+                        <p class="trwestern">
+                            8=Comunicaci&oacute;n IVRS
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">17=Informaci&oacute;n
-                                    a los sujetos</font>
-                            </font>
+                        <p class="trwestern">
+                            17=Informaci&oacute;n a los sujetos
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">27=Dermat&oacute;logo</font>
-                            </font>
+                        <p class="trwestern">
+                            27=Dermat&oacute;logo
                         </p>
                     </td>
                 </tr>
@@ -2359,27 +2295,18 @@
             {{-- <tbody> --}}
                 <tr valign="top">
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">9=Prescripci&oacute;n
-                                    de producto</font>
-                            </font>
+                        <p class="trwestern">
+                            9=Prescripci&oacute;n de producto
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">18=Entrega
-                                    de materiales</font>
-                            </font>
+                        <p class="trwestern">
+                            18=Entrega de materiales
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">28=T&eacute;cnico
-                                    en espirometr&iacute;a</font>
-                            </font>
+                        <p class="trwestern">
+                            28=T&eacute;cnico en espirometr&iacute;a
                         </p>
                     </td>
                 </tr>
@@ -2387,26 +2314,18 @@
             {{-- <tbody> --}}
                 <tr valign="top">
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">10=Dispensar
-                                    medicamento</font>
-                            </font>
+                        <p class="trwestern">
+                            10=Dispensar medicamento
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">19=Obtener
-                                    muestras biol&oacute;gicas</font>
-                            </font>
+                        <p class="trwestern">
+                            19=Obtener muestras biol&oacute;gicas
                         </p>
                     </td>
                     <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 10pt">29=Oftalm&oacute;logo</font>
-                            </font>
+                        <p class="trwestern">
+                            29=Oftalm&oacute;logo
                         </p>
                     </td>
                 </tr>
@@ -2415,7 +2334,7 @@
             {{-- </tbody> --}}
             {{-- <tbody> --}}
                 <tr>
-                    <td colspan="12" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
+                    <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
                         style="border: none; padding: 0in">
                         <p class="western" align="center"><br />
 
@@ -2423,7 +2342,70 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="12" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
+                    <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                        <table width="100%">
+                            <tr>
+                                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
+                                    style="border: none; padding: 0in">
+                                    <p class="western" align="center">
+                                        <font face="Calibri, serif">
+                                            <font size="2" style="font-size: 11pt">Atentamente,</font>
+                                        </font>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
+                                    style="border: none; padding: 0in">
+                                    <p class="western" align="center"><br />
+            
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
+                                    style="border: none; padding: 0in">
+                                    <p class="western" align="center"><br />
+            
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
+                                    style="border: none; padding: 0in">
+                                    <p class="western" align="center"><br />
+            
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
+                                    style="border: none; padding: 0in">
+                                    <p class="western" align="center" style="margin-bottom: 0in">
+                                        <font face="Calibri, serif">
+                                            <font size="2" style="font-size: 11pt"><b>Dr.
+                                                    Nombre completo del Investigador principal</b></font>
+                                        </font>
+                                    </p>
+                                    <p class="western" align="center" style="margin-bottom: 0in">
+                                        <font face="Calibri, serif">
+                                            <font size="2" style="font-size: 11pt">Investigador
+                                                Principal</font>
+                                        </font>
+                                    </p>
+                                    <p class="western" align="center"><a name="_GoBack"></a>
+                                        <font face="Calibri, serif">
+                                            <font size="2" style="font-size: 11pt">Unidad
+                                                de Investigaci&oacute;n en Salud de Chihuahua, S.C.</font>
+                                        </font>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                {{-- <tr>
+                    <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
                         style="border: none; padding: 0in">
                         <p class="western" align="center">
                             <font face="Calibri, serif">
@@ -2433,7 +2415,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="12" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
+                    <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
                         style="border: none; padding: 0in">
                         <p class="western" align="center"><br />
 
@@ -2441,7 +2423,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="12" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
+                    <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
                         style="border: none; padding: 0in">
                         <p class="western" align="center"><br />
 
@@ -2449,7 +2431,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="12" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
+                    <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
                         style="border: none; padding: 0in">
                         <p class="western" align="center"><br />
 
@@ -2457,7 +2439,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="12" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
+                    <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
                         style="border: none; padding: 0in">
                         <p class="western" align="center" style="margin-bottom: 0in">
                             <font face="Calibri, serif">
@@ -2478,7 +2460,7 @@
                             </font>
                         </p>
                     </td>
-                </tr>
+                </tr> --}}
             {{-- </tbody> --}}
         </table>
         <p class="western" style="margin-bottom: 0in; line-height: 100%"><br />
