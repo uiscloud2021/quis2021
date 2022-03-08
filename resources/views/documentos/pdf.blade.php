@@ -458,12 +458,74 @@
     @endif
     @if ($formato['documento_formato_id'] === 11)
         <style type="text/css">
-            @page { size: 8.5in 11in; margin-left: 1.18in; margin-right: 1.18in; margin-top: 0.49in; margin-bottom: 0.49in }
-            p { margin-bottom: 0.1in; direction: ltr; line-height: 120%; orphans: 2; widows: 2 }
-            p.western { font-family: "Arial", serif; font-size: 12pt }
-            p.cjk { font-size: 12pt; so-language: es-ES }
-            p.ctl { font-size: 12pt }
+            @page { size: 8.5in 11in; margin-left: 1.18in; margin-right: 1.18in; margin-top: 4.2cm; margin-bottom: 2.5cm }
+            p { orphans: 2; widows: 2 }
+            p.western { line-height: 103%; margin-bottom: 0in; margin-top: -1px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, sans-serif; font-size: 11pt; }
+            p.western.ul {
+                padding-left: 8.39px;
+            }
+            /* p.cjk { font-size: 12pt; so-language: es-ES }
+            p.ctl { font-size: 12pt } */
             a:link { color: #0000ff }
+            footer {
+                position: fixed; 
+                bottom: -1.27cm; 
+                left: 0px; 
+                right: 0px;
+                height: 1.25cm;
+
+                /* margin-top: 0.45in;  */
+                /* margin-bottom: -0.45in;  */
+                line-height: 150%;
+                /* border: solid red; */
+                text-align: center;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 10pt;
+            }
+            table {
+                border-collapse: collapse;
+            }
+            tr {
+                /* border: 1px solid black; */
+                /* height: 0.55cm; */
+                /* border-collapse: collapse; */
+            }
+            td {
+                /* border: 1px solid black ; */
+                /* height: 0.56cm; */
+                /* border-collapse: collapse; */
+                padding-top: 0px;
+                paddinf-bottom: 0px;
+                padding-left: 7px;
+                padding-right: 7px;
+            }
+            b {
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 9.5pt;
+                margin-bottom: 0in;
+            }
+            br {
+                height: 0.56cm;
+            }
+            /* header{
+                position: fixed;
+                top: -60px;
+                left: 0px;
+                right: 0px;
+                height: 50px;
+
+                margin-bottom: 1.12in; 
+                line-height: 100%;
+
+                * Extra personal styles *
+                background-color: #03a9f4;
+                color: white;
+                text-align: center;
+                line-height: 35px;
+            } */
+            .pagenum:before {
+                content: counter(page);
+            }
         </style>
     @endif
     @if ($formato['documento_formato_id'] === 12)
@@ -2727,585 +2789,461 @@
 
     {{-- Instalaciones --}}
     @if ($formato['documento_formato_id'] === 11)
-        <div title="header">
+        {{-- <div title="header">
             <p lang="x-none" align="right" style="margin-bottom: 1.12in; line-height: 100%">
 
             </p>
-        </div>
-        <table width="100%" cellpadding="7" cellspacing="0">
-            <col width="100%">
-            <col width="100%">
-            <col width="100%">
+        </div> --}}
+        <footer>
+            <p lang="x-none" align="center">
+                FC-SC-2304 Instalaciones, Versi&oacute;n 26-jul-2021 - <span class="pagenum"></span> / 2
+            </p>
+        </footer>
+        <table width="100%" cellpadding="0" cellspacing="0">
             <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p lang="x-none" align="right">
-                        <font face="Cambria, serif">
-                            <font size="4" style="font-size: 16pt">
-                                <font face="Calibri, serif">
-                                    <font size="2" style="font-size: 11pt"><span lang="es-MX"><span
-                                                style="font-weight: normal">Seleccionar,
-                                                a Fecha</span></span></font>
-                                </font>
-                            </font>
-                        </font>
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <p lang="x-none" align="right" class="western" style="line-height: 100%;">
+                        Seleccionar, a Fecha
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify"><br />
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; height: 0.56cm;">
+                    <p class="western" align="justify"><br>
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" style="margin-bottom: 0in">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>Comisi&oacute;n
-                                    Federal para la Protecci&oacute;n Contra Riesgos Sanitarios.
-                                    COFEPRIS.</b></font>
-                        </font>
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" style="line-height: 106%;">
+                        <b>Comisi&oacute;n
+                        Federal para la Protecci&oacute;n Contra Riesgos Sanitarios.
+                        COFEPRIS.</b>
                     </p>
-                    <p class="western" style="margin-bottom: 0in">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Comisi&oacute;n
-                                de Autorizaci&oacute;n Sanitaria</font>
-                        </font>
+                    <p class="western" style="line-height: 95%;">
+                        Comisi&oacute;n
+                        de Autorizaci&oacute;n Sanitaria
                     </p>
-                    <p class="western" align="justify" style="margin-bottom: 0in"><a name="_GoBack"></a>
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Secretar&iacute;a
-                                de Salud</font>
-                        </font>
+                    <p class="western" align="justify" style="line-height: 95%;">
+                        Secretar&iacute;a de Salud
                     </p>
-                    <p class="western" align="justify">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">P
-                                r e s e n t e</font>
-                        </font>
+                    <p class="western" align="justify" style="line-height: 95%;">
+                        P r e s e n t e
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify"><br />
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; height: 0.58cm;">
+                    <p class="western" align="justify"><br>
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
                     <p class="western" align="right">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>Asunto:</b></font>
-                        </font>
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">
-                                Instalaciones</font>
-                        </font>
+                        <b>Asunto:</b> Instalaciones
                     </p>
                 </td>
             </tr>
             <tr valign="top">
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff" style="border: none; padding: 0in">
-                    <p class="western" align="justify"><br />
+                <td width="97.5px" bgcolor="#ffffff" style="background: #ffffff; height: 0.56cm;">
+                    <p class="western" align="justify"><br>
 
                     </p>
                 </td>
-                <td colspan="2" width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify"><br />
+                <td colspan="2" width="100%" bgcolor="#ffffff" style="background: #ffffff; height: 0.56cm;">
+                    <p class="western" align="justify"><br>
 
                     </p>
                 </td>
             </tr>
             <tr valign="top">
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff" style="border: none; padding: 0in">
-                    <p class="western" align="justify">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>C&oacute;digo</b></font>
-                        </font>
+                <td width="97.5px" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" align="justify" style="line-height: 110%;">
+                        <b>C&oacute;digo</b>
                     </p>
                 </td>
-                <td colspan="2" width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">C&oacute;digo.</font>
-                        </font>
+                <td colspan="2" width="100%" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" align="justify" style="line-height: 110%;">
+                        C&oacute;digo.
                     </p>
                 </td>
             </tr>
             <tr valign="top">
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff" style="border: none; padding: 0in">
-                    <p class="western" align="justify">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>T&iacute;tulo</b></font>
-                        </font>
+                <td width="97.5px" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" align="justify" style="line-height: 110%;">
+                        <b>T&iacute;tulo</b>
                     </p>
                 </td>
-                <td colspan="2" width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>T&iacute;tulo</b></font>
-                        </font>
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">.</font>
-                        </font>
+                <td colspan="2" width="100%" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" align="justify" style="line-height: 110%;">
+                        <b>T&iacute;tulo</b>.
                     </p>
                 </td>
             </tr>
             <tr valign="top">
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff" style="border: none; padding: 0in">
+                <td width="97.5px" bgcolor="#ffffff" style="background: #ffffff">
                     <p class="western" align="justify">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>Sitio
-                                    cl&iacute;nico</b></font>
-                        </font>
+                        <b>Sitio cl&iacute;nico</b>
                     </p>
                 </td>
-                <td colspan="2" width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
+                <td colspan="2" width="100%" bgcolor="#ffffff" style="background: #ffffff">
                     <p class="western" align="justify">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Unidad
-                                de Investigaci&oacute;n en Salud de Chihuahua, S.C. Autom&aacute;tico.</font>
-                        </font>
+                        Unidad
+                        de Investigaci&oacute;n en Salud de Chihuahua, S.C. Autom&aacute;tico.
                     </p>
                 </td>
             </tr>
             <tr valign="top">
-                <td colspan="2" width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>Investigador
-                                    Principal</b></font>
-                        </font>
+                <td colspan="1" width="135px" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" align="justify" style="line-height: 115%;">
+                        <b>Investigador Principal</b>
                     </p>
                 </td>
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff" style="border: none; padding: 0in">
-                    <p class="western" align="justify">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>T&iacute;tulo.
-                                    Nombre completo</b></font>
-                        </font>
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">.</font>
-                        </font>
+                <td width="100%" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" align="justify" style="line-height: 115%;">
+                        <b>T&iacute;tulo. Nombre completo</b>.
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="right"><br />
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; height: 0.56cm;">
+                    <p class="western" align="right"><br>
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
                     <p class="western" align="justify">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>A
-                                    quien corresponda:</b></font>
-                        </font>
+                        <b>A quien corresponda:</b>
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify"><br />
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; height: 0.57cm;">
+                    <p class="western" align="justify"><br>
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
                     <p class="western" align="justify">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Por
-                                este medio informo que para realizar el estudio arriba mencionado,
-                                la Unidad de Investigaci&oacute;n en Salud de Chihuahua, S.C.
-                                cuenta con las siguientes </font>
-                        </font>
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>INSTALACIONES</b></font>
-                        </font>
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">:
-                            </font>
-                        </font>
+                        Por
+                        este medio informo que para realizar el estudio arriba mencionado,
+                        la Unidad de Investigaci&oacute;n en Salud de Chihuahua, S.C.
+                        cuenta con las siguientes 
+                        <b>INSTALACIONES</b>:
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify"><br />
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; 0.56cm">
+                    <p class="western" align="justify"><br>
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <ul>
-                        <li />
-                        <p class="western" align="justify" style="margin-top: 0.02in; margin-bottom: 0.02in">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><span lang="es-ES">Consultorios
-                                        m&eacute;dicos equipados con b&aacute;scula calibrada y
-                                        bauman&oacute;metro.</span></font>
-                            </font>
-                        </p>
-                        <li />
-                        <p class="western" align="justify" style="margin-top: 0.02in; margin-bottom: 0.02in">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><span lang="es-ES">Electrocardi&oacute;grafo
-                                        de 12 derivaciones.</span></font>
-                            </font>
-                        </p>
-                        <li />
-                        <p class="western" align="justify" style="margin-top: 0.02in; margin-bottom: 0.02in">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><span lang="es-ES">&Aacute;rea
-                                        cl&iacute;nica con reposet, bomba de infusi&oacute;n y carro rojo
-                                        equipado.</span></font>
-                            </font>
-                        </p>
-                        <li />
-                        <p class="western" align="justify" style="margin-top: 0.02in; margin-bottom: 0.02in">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><span lang="es-ES">Farmacia
-                                        equipada con refrigerador y congelador de -20&deg;C, calibrados,
-                                        y con respaldo de energ&iacute;a el&eacute;ctrica.</span></font>
-                            </font>
-                        </p>
-                        <li />
-                        <p class="western" align="justify" style="margin-top: 0.02in; margin-bottom: 0.02in">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><span lang="es-ES">&Aacute;rea
-                                        para toma de muestras de laboratorio, con centr&iacute;fuga
-                                        calibrada.</span></font>
-                            </font>
-                        </p>
-                        <li />
-                        <p class="western" align="justify" style="margin-top: 0.02in; margin-bottom: 0.02in">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><span lang="es-ES">Archivo
-                                        de expedientes confidenciales, con almac&eacute;n de materiales y
-                                        reactivos.</span></font>
-                            </font>
-                        </p>
-                        <li />
-                        <p class="western" align="justify" style="margin-top: 0.02in; margin-bottom: 0.02in">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><span lang="es-ES">&Aacute;rea
-                                        para monitoreo y capacitaci&oacute;n.</span></font>
-                            </font>
-                        </p>
-                        <li />
-                        <p class="western" align="justify" style="margin-top: 0.02in; margin-bottom: 0.02in">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><span lang="es-ES">Control
-                                        de temperatura ambiental, conexiones de Internet, tel&eacute;fono
-                                        y fax.</span></font>
-                            </font>
-                        </p>
-                        <li />
-                        <p class="western" align="justify" style="margin-top: 0.02in">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><span lang="es-ES">Recursos
-                                        humanos de 12 personas dedicadas a actividades de investigaci&oacute;n
-                                        cl&iacute;nica.</span></font>
-                            </font>
-                        </p>
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <ul style="margin-bottom: 3.5px; margin-top: 3.5px;">
+                        <li>
+                            <p class="western ul" align="justify" style="line-height: 110%;">
+                                Consultorios
+                                m&eacute;dicos equipados con b&aacute;scula calibrada y
+                                bauman&oacute;metro.
+                            </p>
+                        </li>
+                        
+                        <li>
+                            <p class="western ul" align="justify" style="line-height: 110%;">
+                                Electrocardi&oacute;grafo
+                                de 12 derivaciones.
+                            </p>
+                        </li>
+                        
+                        <li>
+                            <p class="western ul" align="justify" style="line-height: 110%;">
+                                &Aacute;rea
+                                cl&iacute;nica con reposet, bomba de infusi&oacute;n y carro rojo
+                                equipado.
+                            </p>
+                        </li>
+                        
+                        <li>
+                            <p class="western ul" align="justify" style="line-height: 98%;">
+                                Farmacia
+                                equipada con refrigerador y congelador de -20&deg;C, calibrados,
+                                y con respaldo de energ&iacute;a el&eacute;ctrica.
+                            </p>
+                        </li>
+                        
+                        <li>
+                            <p class="western ul" align="justify" style="line-height: 110%;">
+                                &Aacute;rea
+                                para toma de muestras de laboratorio, con centr&iacute;fuga
+                                calibrada.
+                            </p>
+                        </li>
+                        
+                        <li>
+                            <p class="western ul" align="justify" style="line-height: 110%;">
+                                Archivo
+                                de expedientes confidenciales, con almac&eacute;n de materiales y
+                                reactivos.
+                            </p>
+                        </li>
+                        
+                        <li>
+                            <p class="western ul" align="justify" style="line-height: 110%;">
+                                &Aacute;rea
+                                para monitoreo y capacitaci&oacute;n.
+                            </p>
+                        </li>
+                        
+                        <li>
+                            <p class="western ul" align="justify" style="line-height: 110%;">
+                                Control
+                                de temperatura ambiental, conexiones de Internet, tel&eacute;fono
+                                y fax.
+                            </p>
+                        </li>
+                        
+                        <li>
+                            <p class="western ul" align="justify" style="line-height: 110%;">
+                                Recursos
+                                humanos de 12 personas dedicadas a actividades de investigaci&oacute;n
+                                cl&iacute;nica.
+                            </p>
+                        </li>
+                        
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify"><br />
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; height: 0.56cm;">
+                    <p class="western" align="justify"><br>
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <table width="100%" cellpadding="7" cellspacing="0">
-                        <colgroup>
-                            <col width="100%">
-                            <col width="100%>
-                    </colgroup>
-                    <colgroup>
-                        <col width=" 100% </colgroup>
-                            <colgroup>
-                                <col width="100%
-                        <col width=" 100%>
-                            </colgroup>
-                            <colgroup>
-                                <col width="100%
-                    </colgroup>
-                    <colgroup>
-                        <col width=" 100% </colgroup>
-                            <tr valign="top">
-                                <td width="100%" style="border: none; padding: 0in">
-                                    <p class="western" align="justify">
-                                        <font face="Calibri, serif">
-                                            <font size="2" style="font-size: 11pt">Cl&aacute;usula
-                                                de proveedores externos</font>
-                                        </font>
-                                    </p>
-                                </td>
-                                <td width="100% style=" border-top: none; border-bottom: none; border-left: none;
-                                    border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left:
-                                    0in; padding-right: 0.08in">
-                                    <p class="western" align="justify">
-                                        <font face="Calibri, serif">
-                                            <font size="2" style="font-size: 11pt">Si</font>
-                                        </font>
-                                    </p>
-                                </td>
-                                <td width="100%style=" border: 1px solid #00000a; padding: 0in 0.08in">
-                                    <p class="western" align="justify"><br />
-
-                                    </p>
-                                </td>
-                                <td width="100%style=" border-top: none; border-bottom: none; border-left: 1px solid
-                                    #00000a; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left:
-                                    0.08in; padding-right: 0in">
-                                    <p class="western" align="justify"><br />
-
-                                    </p>
-                                </td>
-                                <td width="100% style=" border-top: none; border-bottom: none; border-left: none;
-                                    border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left:
-                                    0in; padding-right: 0.08in">
-                                    <p class="western" align="justify">
-                                        <font face="Calibri, serif">
-                                            <font size="2" style="font-size: 11pt">No</font>
-                                        </font>
-                                    </p>
-                                </td>
-                                <td width="100%style=" border-top: 1px solid #000001; border-bottom: 1px solid #000001;
-                                    border-left: 1px solid #00000a; border-right: 1px solid #00000a; padding: 0in 0.08in">
-                                    <p class="western" align="justify"><br />
-
-                                    </p>
-                                </td>
-                                <td width="100%style=" border-top: none; border-bottom: none; border-left: 1px solid
-                                    #00000a; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left:
-                                    0.08in; padding-right: 0in">
-                                    <p class="western" align="justify"><br />
-
-                                    </p>
-                                </td>
-                            </tr>
-                    </table>
-                    <p class="western" align="justify" style="margin-bottom: 0in; line-height: 115%">
-                        <br />
-
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify" style="margin-bottom: 0in; line-height: 115%">
-                        <br />
-
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify" style="margin-bottom: 0in; line-height: 115%">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><span lang="es-ES">As&iacute;
-                                    mismo, le informo que contamos con los convenios de atenci&oacute;n
-                                    necesarios, lo cual consta en los siguientes documentos, que
-                                    adjunto a la presente:</span></font>
-                        </font>
-                    </p>
-                    <p lang="es-ES" class="western" align="justify" style="margin-bottom: 0in; line-height: 115%">
-                        <br />
-
-                    </p>
-                    <table width="100%" cellpadding="7" cellspacing="0">
-                        <col width="100%">
-                        <col width="100%">
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <table width="100%" cellpadding="0" cellspacing="0">
                         <tr valign="top">
-                            <td width="100%" bgcolor="#d9d9d9" style="background: #d9d9d9"
-                                style="border: 1px solid #00000a; padding: 0in 0.08in">
-                                <p class="western" align="center">
-                                    <font face="Calibri, serif">
-                                        <font size="2" style="font-size: 11pt"><b>Servicio</b></font>
-                                    </font>
+                            <td width="324" style="border: none; padding: 0in">
+                                <p class="western" align="justify">
+                                    Cl&aacute;usula de proveedores externos
                                 </p>
                             </td>
-                            <td width="100%" bgcolor="#d9d9d9" style="background: #d9d9d9"
-                                style="border: 1px solid #00000a; padding: 0in 0.08in">
-                                <p class="western" align="center">
-                                    <font face="Calibri, serif">
-                                        <font size="2" style="font-size: 11pt"><b>Proveedor</b></font>
-                                    </font>
+                            <td width="21px" style="">
+                                <p class="western" align="justify">
+                                    Si
                                 </p>
                             </td>
-                        </tr>
-                        <tr valign="top">
-                            <td width="100%" style="border: 1px solid #00000a; padding: 0in 0.08in">
-                                <p class="western" align="center"><br />
+                            <td width="3px" style=" border: 1px solid #00000a;">
+                                <p class="western" align="justify"><br />
 
                                 </p>
                             </td>
-                            <td width="100%" style="border: 1px solid #00000a; padding: 0in 0.08in">
-                                <p class="western" align="center"><br />
+                            <td width="3px" style=" border-top: none; border-bottom: none; border-left: 1px solid
+                                #00000a;">
+                                <p class="western" align="justify"><br>
+
+                                </p>
+                            </td>
+                            <td width="21px" style="">
+                                <p class="western" align="justify">
+                                    No
+                                </p>
+                            </td>
+                            <td width="3px" style=" border-top: 1px solid #000001; border-bottom: 1px solid #000001;
+                                border-left: 1px solid #00000a; border-right: 1px solid #00000a; padding: 0in 0.08in">
+                                <p class="western" align="justify"><br>
+
+                                </p>
+                            </td>
+                            <td width="3px" style="">
+                                <p class="western" align="justify"><br>
 
                                 </p>
                             </td>
                         </tr>
                     </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
+                    <p class="western" align="justify" style="line-height: 98%;">
+                        <br>
+
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" align="justify" style="margin-bottom: 0in; line-height: 110%">
+                        As&iacute;
+                        mismo, le informo que contamos con los convenios de atenci&oacute;n
+                        necesarios, lo cual consta en los siguientes documentos, que
+                        adjunto a la presente:
+                    </p>
+                    <p lang="es-ES" class="western" align="justify" style="margin-bottom: 0in; line-height: 110%">
+                        <br>
+
+                    </p>
+                    <table width="100%" cellpadding="0" cellspacing="0">
+
+                        <tr valign="top">
+                            <td width="100%" bgcolor="#d9d9d9" style="background: #d9d9d9; border: 1px solid #00000a; padding: 0in 0.08in">
+                                <p class="western" align="center">
+                                    <b>Servicio</b>
+                                </p>
+                            </td>
+                            <td width="100%" bgcolor="#d9d9d9" style="background: #d9d9d9; border: 1px solid #00000a; padding: 0in 0.08in">
+                                <p class="western" align="center">
+                                    <b>Proveedor</b>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <td width="100%" style="border: 1px solid #00000a; padding: 0in 0.08in">
+                                <p class="western" align="center"><br>
+
+                                </p>
+                            </td>
+                            <td width="100%" style="border: 1px solid #00000a; padding: 0in 0.08in">
+                                <p class="western" align="center"><br>
+
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
                     <p class="western" align="justify" style="margin-bottom: 0in; line-height: 115%">
-                        <br />
+                        <br>
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; padding: 0in;">
+                    <table width="100%" style="">
+                        <tr>
+                            <td>
+                                <p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%">
+                                    Sin
+                                    otro particular por el momento.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                                <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
+                                    <br>
+            
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                                <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
+                                    Atentamente,
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                                <p class="western" align="justify" style="margin-bottom: 0in; line-height: 115%">
+                                    <br>
+            
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                                <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
+                                    <br>
+            
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                                <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
+                                    <b>Dra.
+                                    Mar&iacute;a de la Merced Vel&aacute;zquez Quintana</b>
+                                </p>
+                                <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
+                                    Direcci&oacute;n
+                                    General
+                                </p>
+                                <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
+                                    Unidad
+                                    de Investigaci&oacute;n en Salud de Chihuahua, S.C.
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            {{-- <tr>
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
+                        <br>
+
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
+                        Atentamente,
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
                     <p class="western" align="justify" style="margin-bottom: 0in; line-height: 115%">
-                        <br />
+                        <br>
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" width="100%" height="16" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify" style="margin-bottom: 0in; line-height: 115%">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Sin
-                                otro particular por el momento.</font>
-                        </font>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
                     <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
-                        <br />
+                        <br>
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
+                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
                     <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Atentamente,</font>
-                        </font>
+                        <b>Dra.
+                        Mar&iacute;a de la Merced Vel&aacute;zquez Quintana</b>
+                    </p>
+                    <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
+                        Direcci&oacute;n
+                        General
+                    </p>
+                    <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
+                        Unidad
+                        de Investigaci&oacute;n en Salud de Chihuahua, S.C.
                     </p>
                 </td>
-            </tr>
-            <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify" style="margin-bottom: 0in; line-height: 115%">
-                        <br />
-
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
-                        <br />
-
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>Dra.
-                                    Mar&iacute;a de la Merced Vel&aacute;zquez Quintana</b></font>
-                        </font>
-                    </p>
-                    <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Direcci&oacute;n
-                                General</font>
-                        </font>
-                    </p>
-                    <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Unidad
-                                de Investigaci&oacute;n en Salud de Chihuahua, S.C.</font>
-                        </font>
-                    </p>
-                </td>
-            </tr>
+            </tr> --}}
         </table>
         <p class="western" style="margin-bottom: 0in; line-height: 100%"><br />
 
         </p>
-        <div title="footer">
-            <p lang="x-none" align="center" style="margin-top: 0.45in; margin-bottom: 0in; line-height: 150%">
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">FC-SC-2304
-                            Instalaciones, </span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt">Versi&oacute;n
-                    </font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">26</span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt">-</font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">jul</span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt">-202</font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">1</span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">
-                            - <sdfield type=PAGE subtype=RANDOM format=PAGE>2</sdfield></span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt">
-                        / <sdfield type=DOCSTAT subtype=PAGE format=PAGE>2</sdfield>
-                    </font>
-                </font>
-            </p>
-        </div>
     @endif
     {{-- END Instalaciones --}}
 
