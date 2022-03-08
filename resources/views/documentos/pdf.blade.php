@@ -530,12 +530,71 @@
     @endif
     @if ($formato['documento_formato_id'] === 12)
         <style type="text/css">
-            @page { size: 8.5in 11in; margin-left: 1.18in; margin-right: 1.18in; margin-top: 0.49in; margin-bottom: 0.49in }
-            p { margin-bottom: 0.1in; direction: ltr; line-height: 120%; orphans: 2; widows: 2 }
-            p.western { font-family: "Arial", serif; font-size: 12pt }
+            @page { size: 8.5in 11in; margin-left: 1.18in; margin-right: 1.18in; margin-top: 4.2cm; margin-bottom: 2.5cm }
+            p { orphans: 2; widows: 2 }
+            p.western { line-height: 103%; margin-bottom: 0in; margin-top: -1px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, sans-serif; font-size: 11pt; }
             p.cjk { font-size: 12pt; so-language: es-ES }
             p.ctl { font-size: 12pt }
             a:link { color: #0000ff }
+            footer {
+                position: fixed; 
+                bottom: -1.27cm; 
+                left: 0px; 
+                right: 0px;
+                height: 1.25cm;
+
+                /* margin-top: 0.45in;  */
+                /* margin-bottom: -0.45in;  */
+                line-height: 150%;
+                /* border: solid red; */
+                text-align: center;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 10pt;
+            }
+            table {
+                border-collapse: collapse;
+            }
+            tr {
+                /* border: 1px solid black; */
+                /* height: 0.55cm; */
+                /* border-collapse: collapse; */
+            }
+            td {
+                /* border: 1px solid black ; */
+                /* height: 0.56cm; */
+                /* border-collapse: collapse; */
+                padding-top: 0px;
+                paddinf-bottom: 0px;
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+            b {
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 9.5pt;
+                margin-bottom: 0in;
+            }
+            br {
+                height: 0.56cm;
+            }
+            /* header{
+                position: fixed;
+                top: -60px;
+                left: 0px;
+                right: 0px;
+                height: 50px;
+
+                margin-bottom: 1.12in; 
+                line-height: 100%;
+
+                * Extra personal styles *
+                background-color: #03a9f4;
+                color: white;
+                text-align: center;
+                line-height: 35px;
+            } */
+            .pagenum:before {
+                content: counter(page);
+            }
         </style>
     @endif
     @if ($formato['documento_formato_id'] === 27)
@@ -3193,53 +3252,6 @@
                     </table>
                 </td>
             </tr>
-            {{-- <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
-                    <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
-                        <br>
-
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
-                    <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
-                        Atentamente,
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
-                    <p class="western" align="justify" style="margin-bottom: 0in; line-height: 115%">
-                        <br>
-
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
-                    <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
-                        <br>
-
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
-                    <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
-                        <b>Dra.
-                        Mar&iacute;a de la Merced Vel&aacute;zquez Quintana</b>
-                    </p>
-                    <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
-                        Direcci&oacute;n
-                        General
-                    </p>
-                    <p class="western" align="center" style="margin-bottom: 0in; line-height: 115%">
-                        Unidad
-                        de Investigaci&oacute;n en Salud de Chihuahua, S.C.
-                    </p>
-                </td>
-            </tr> --}}
         </table>
         <p class="western" style="margin-bottom: 0in; line-height: 100%"><br />
 
@@ -3250,302 +3262,198 @@
 
     {{-- Anticorrupcion --}}
     @if ($formato['documento_formato_id'] === 12)
-        <div title="header">
+        {{-- <div title="header">
             <p lang="x-none" align="right" style="margin-bottom: 1.12in; line-height: 100%">
 
             </p>
-        </div>
-        <table width="100%" cellpadding="7" cellspacing="0">
-            <col width="100%">
-            <col width="100%">
+        </div> --}}
+        <footer>
+            <p lang="x-none" align="center">
+                FC-SC-2305 Anticorrupci&oacute;n, Versi&oacute;n 26-jul-2021 - <span class="pagenum"></span> / 1
+            </p>
+        </footer>
+        <table width="100%" cellpadding="0" cellspacing="0">
             <tr>
-                <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p lang="x-none" align="right">
-                        <font face="Cambria, serif">
-                            <font size="4" style="font-size: 16pt">
-                                <font face="Calibri, serif">
-                                    <font size="2" style="font-size: 11pt"><span lang="es-MX"><span
-                                                style="font-weight: normal">Seleccionar,
-                                                Fecha</span></span></font>
-                                </font>
-                            </font>
-                        </font>
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <p lang="x-none" align="right" class="western" style="line-height: 100%;">
+                        Seleccionar, Fecha
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify"><br />
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; height: 0.56cm;">
+                    <p class="western" align="justify"><br>
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" style="margin-bottom: 0in">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>Destinatario</b></font>
-                        </font>
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" style="line-height: 107.2%;">
+                        <b>Destinatario</b>
                     </p>
-                    <p class="western" align="justify">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">P
-                                r e s e n t e</font>
-                        </font>
+                    <p class="western" align="justify" style="line-height: 90%;">
+                        P r e s e n t e 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify"><br />
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; height: 0.58cm;">
+                    <p class="western" align="justify"><br>
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
                     <p class="western" align="right">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>Asunto:</b></font>
-                        </font>
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">
-                                Anticorrupci&oacute;n</font>
-                        </font>
+                        <b>Asunto:</b> Anticorrupci&oacute;n
                     </p>
                 </td>
             </tr>
             <tr valign="top">
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff" style="border: none; padding: 0in">
-                    <p class="western" align="justify"><br />
-
-                    </p>
-                </td>
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff" style="border: none; padding: 0in">
-                    <p class="western" align="justify"><br />
+                <td width="100%" bgcolor="#ffffff" style="background: #ffffff; height: 0.58cm;">
+                    <p class="western" align="justify"><br>
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify" style="margin-bottom: 0in">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Por
-                                este medio </font>
-                        </font>
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>DECLARO</b></font>
-                        </font>
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">
-                                que la Unidad de Investigaci&oacute;n en Salud de Chihuahua, S.C.
-                                (UIS), es una empresa comprometida con la &eacute;tica. Por ello,
-                                vigila el cumplimiento de todas las leyes y disposiciones
-                                anticorrupci&oacute;n aplicables a sus actividades. </font>
-                        </font>
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" align="justify" style="line-height: 105%;">
+                        Por este medio <b>DECLARO</b>
+                        que la Unidad de Investigaci&oacute;n en Salud de Chihuahua, S.C.
+                        (UIS), es una empresa comprometida con la &eacute;tica. Por ello,
+                        vigila el cumplimiento de todas las leyes y disposiciones
+                        anticorrupci&oacute;n aplicables a sus actividades.
                     </p>
-                    <p class="western" align="justify" style="margin-bottom: 0in"><br />
+                    <p class="western" align="justify" style="height: 0.61cm;"><br />
 
                     </p>
                     <p class="western" align="justify" style="margin-bottom: 0in">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Adem&aacute;s,
-                                se asegura de que todos los convenios que establece con terceras
-                                partes, cumplan todas las leyes y regulaciones relevantes. </font>
-                        </font>
+                        Adem&aacute;s,
+                        se asegura de que todos los convenios que establece con terceras
+                        partes, cumplan todas las leyes y regulaciones relevantes. 
                     </p>
-                    <p class="western" align="justify" style="margin-bottom: 0in"><br />
+                    <p class="western" align="justify" style="height: 0.60cm;"><br>
 
                     </p>
+                    <p class="western" align="justify" style="line-height: 105%;">
+                        Por
+                        otra parte, mediante su C&oacute;digo de &Eacute;tica, promueve
+                        los valores necesarios para que el personal act&uacute;e con
+                        integridad, transparencia y tolerancia cero a cualquier actividad
+                        de corrupci&oacute;n, que pueda ser cometida ya sea por empleados,
+                        funcionarios, o terceras partes que act&uacute;en para o en
+                        representaci&oacute;n de la UIS.
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
+                    <p lang="es-ES" class="western" align="justify" style="line-height: 115%;"><br>
+
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" align="justify" style="line-height: 93%;">
+                        Las
+                        actividades de corrupci&oacute;n que se vigilan incluyen sobornos,
+                        pagos de facilitaci&oacute;n, intercambios tipo &ldquo;quid pro
+                        quo&rdquo;, o pagos indirectos que se realicen para&nbsp;prop&oacute;sitos
+                        inadecuados de influencia o persuasi&oacute;n, o como recompensa
+                        para actos de omisi&oacute;n o decisi&oacute;n,&nbsp;a fin de
+                        asegurar una ventaja inadecuada,&nbsp;o ayudar de&nbsp;forma
+                        incorrecta a la empresa en la&nbsp;obtenci&oacute;n o
+                        mantenimiento de cualquier negocio.
+                    </p>
+                    <p class="western" align="justify" style="height: 0.61cm;">
+                        <br>
+
+                    </p>
+                    <p class="western" align="justify" style="line-height: 92%;">
+                        Los
+                        pagos indirectos incluyen la promesa, oferta, entrega o
+                        autorizaci&oacute;n de pagos prohibidos, realizados en efectivo,
+                        regalos, servicios, ofertas de empleo, pr&eacute;stamos, gastos de
+                        viaje, entretenimiento, contribuciones pol&iacute;ticas,
+                        donaciones ben&eacute;ficas, subsidios, pagos diarios,
+                        patrocinios, honorarios o entrega de activos, incluso en su valor
+                        nominal.
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff;">
+                    <p class="western" align="justify" style="line-height: 100%;"><br>
+
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
                     <p class="western" align="justify">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Por
-                                otra parte, mediante su C&oacute;digo de &Eacute;tica, promueve
-                                los valores necesarios para que el personal act&uacute;e con
-                                integridad, transparencia y tolerancia cero a cualquier actividad
-                                de corrupci&oacute;n, que pueda ser cometida ya sea por empleados,
-                                funcionarios, o terceras partes que act&uacute;en para o en
-                                representaci&oacute;n de la UIS.</font>
-                        </font>
+                        Sin
+                        otro particular por el momento.
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p lang="es-ES" class="western" align="justify"><br />
-
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" align="justify" style="line-height: 115%;">
+                        <br>
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" width="100%" height="102" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify" style="margin-top: 0.02in; margin-bottom: 0.02in">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Las
-                                actividades de corrupci&oacute;n que se vigilan incluyen sobornos,
-                                pagos de facilitaci&oacute;n, intercambios tipo &ldquo;quid pro
-                                quo&rdquo;, o pagos indirectos que se realicen para&nbsp;prop&oacute;sitos
-                                inadecuados de influencia o persuasi&oacute;n, o como recompensa
-                                para actos de omisi&oacute;n o decisi&oacute;n,&nbsp;a fin de
-                                asegurar una ventaja inadecuada,&nbsp;o ayudar de&nbsp;forma
-                                incorrecta a la empresa en la&nbsp;obtenci&oacute;n o
-                                mantenimiento de cualquier negocio.</font>
-                        </font>
-                    </p>
-                    <p class="western" align="justify" style="margin-top: 0.02in; margin-bottom: 0.02in">
-                        <br />
-                        <br />
-
-                    </p>
-                    <p class="western" align="justify" style="margin-top: 0.02in">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Los
-                                pagos indirectos incluyen la promesa, oferta, entrega o
-                                autorizaci&oacute;n de pagos prohibidos, realizados en efectivo,
-                                regalos, servicios, ofertas de empleo, pr&eacute;stamos, gastos de
-                                viaje, entretenimiento, contribuciones pol&iacute;ticas,
-                                donaciones ben&eacute;ficas, subsidios, pagos diarios,
-                                patrocinios, honorarios o entrega de activos, incluso en su valor
-                                nominal.</font>
-                        </font>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify"><br />
-
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Sin
-                                otro particular por el momento.</font>
-                        </font>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"> </font>
-                        </font>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
                     <p class="western" align="center">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Atentamente,</font>
-                        </font>
+                        Atentamente,
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify"><br />
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" align="justify" style="height: 0.56cm"><br>
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="justify"><br />
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" align="justify" style="height: 0.56cm"><br>
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="center"><br />
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" align="center" style="height: 0.56cm"><br>
 
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: none; padding: 0in">
-                    <p class="western" align="center" style="margin-bottom: 0in">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>Dra.
-                                    Mar&iacute;a de la Merced Vel&aacute;zquez Quintana</b></font>
-                        </font>
+                <td width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                    <p class="western" align="center" style="line-height: 115%;">
+                        <b style="font-size: 9.8pt">Dra.
+                        Mar&iacute;a de la Merced Vel&aacute;zquez Quintana</b>
                     </p>
-                    <p class="western" align="center" style="margin-bottom: 0in">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Direcci&oacute;n
-                                General</font>
-                        </font>
+                    <p class="western" align="center" style="line-height:108%;">
+                        Direcci&oacute;n General
                     </p>
-                    <p class="western" align="center"><a name="_GoBack"></a>
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt">Unidad
-                                de Investigaci&oacute;n en Salud de Chihuahua, S.C.</font>
-                        </font>
+                    <p class="western" align="center" style="line-height: 110%;">
+                        Unidad
+                        de Investigaci&oacute;n en Salud de Chihuahua, S.C.
                     </p>
                 </td>
             </tr>
         </table>
-        <p class="western" style="margin-bottom: 0in; line-height: 100%"><br />
+        <p class="western" style="margin-bottom: 0in; line-height: 100%"><br>
 
         </p>
-        <div title="footer">
-            <p lang="x-none" align="center" style="margin-top: 0.45in; margin-bottom: 0in; line-height: 150%">
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">FC-SC-2305
-                            Anticorrupci&oacute;n, </span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt">Versi&oacute;n
-                    </font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">26</span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt">-</font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">jul</span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt">-202</font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">1</span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">
-                            - <sdfield type=PAGE subtype=RANDOM format=PAGE>1</sdfield></span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt">
-                        / <sdfield type=DOCSTAT subtype=PAGE format=PAGE>1</sdfield>
-                    </font>
-                </font>
-            </p>
-        </div>
     @endif
     {{-- END Anticorrupcion --}}
 
