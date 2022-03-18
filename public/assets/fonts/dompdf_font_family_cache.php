@@ -79,18 +79,9 @@ return array (
     'normal' => $rootDir . '/lib/fonts/DejaVuSerif',
   ),
   'calibri' => array(
-    'normal' => $fontDir . '/calibri_normal_06610cc6a57bfee5d048f3dc99c9a3c8',
+    'normal' => $fontDir . '/calibri_normal_f21d86de75df47c7d115c47fbf48dcaa',
     '100' => $fontDir . '/calibri_100_f21d86de75df47c7d115c47fbf48dcaa',
     '200' => $fontDir . '/calibri_200_f21d86de75df47c7d115c47fbf48dcaa',
-  ),
-  'calibri bold' => array(
-    'normal' => $fontDir . '/calibri_bold_normal_b116cbd37538a08c23307b252a16a006',
-  ),
-  'calibri-bold' => array(
-    'normal' => $fontDir . '/calibri_bold_normal_b116cbd37538a08c23307b252a16a006',
-  ),
-  'century-gothic-bold' => array(
-    'normal' => $fontDir . '/century_gothic_bold_normal_6d936fe7e94edf1714e38ec68bbaf4af',
   ),
 );
 }; ?>

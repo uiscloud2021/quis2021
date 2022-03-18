@@ -168,6 +168,8 @@ Route::post('/documentos/delete_formato', 'App\Http\Controllers\DocumentosContro
 Route::post('/documentos/edit_formato', 'App\Http\Controllers\DocumentosController@edit_formato')->name('documentos.edit_formato');
 Route::post('/documentos/download_formato', 'App\Http\Controllers\DocumentosController@download_formato')->name('documentos.download_formato');
 Route::post('/documentos/list_proyectos', 'App\Http\Controllers\DocumentosController@list_proyectos')->name('documentos.list_proyectos');
+// Prueba generar pdf
+Route::get('sc/documentos/pdf/{id}', [DocumentosController::class,'pdf'])->name('documentos.pdf');
 
 //RECURSOS FACTIBILIDAD SC
 Route::resource('factibilidad', FactibilidadController::class);
@@ -401,6 +403,3 @@ Route::post('/auditoria/edit_requisito', 'App\Http\Controllers\Calidad\Auditoria
 Route::post('/auditoria/delete_requisito', 'App\Http\Controllers\Calidad\AuditoriaController@delete_requisito')->name('auditoria.delete_requisito');
 //RECURSOS MEJORA A-CALIDAD 
 Route::resource('mejora', MejoraController::class);
-
-// Prueba generar pdf
-Route::get('sc/documentos/pdf/{id}', [DocumentosController::class,'pdf'])->name('documentos.pdf');
