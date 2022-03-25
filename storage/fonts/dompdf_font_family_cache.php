@@ -92,5 +92,11 @@ return array (
   'century-gothic-bold' => array(
     'normal' => $fontDir . '/century_gothic_bold_normal_6d936fe7e94edf1714e38ec68bbaf4af',
   ),
+  'calibri-bold-a' => array(
+    'normal' => $fontDir . '/calibri_bold_a_normal_139fe0b760bcd9626f8aa3549cdec6e6',
+  ),
+  'calibri-bold-b' => array(
+    'normal' => $fontDir . '/calibri_bold_b_normal_84e342a636f0a7e2ae90d22465323ba6',
+  ),
 );
 }; ?>

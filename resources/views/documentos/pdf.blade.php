@@ -19,6 +19,14 @@
             font-family: 'Century-gothic-bold';
             src: url('assets/fonts/CenturyGothicBold.ttf') format("truetype");
         }
+        @font-face {
+            font-family: 'Calibri-bold-a';
+            src: url('assets/fonts/calibri-bold-a.ttf') format("truetype");
+        }
+        @font-face {
+            font-family: 'Calibri-bold-b';
+            src: url('assets/fonts/calibri-bold-b.ttf') format("truetype");
+        }
 	</style>
     @if ($formato['documento_formato_id'] === 1)
         <style type="text/css?2">
@@ -1028,32 +1036,185 @@
     @endif
     @if ($formato['documento_formato_id'] === 72)
         <style type="text/css">
-            @page { size: 8.5in 11in; margin-left: 1.18in; margin-right: 1.18in; margin-top: 0.49in; margin-bottom: 0.49in }
-            p { margin-bottom: 0.1in; direction: ltr; line-height: 120%; orphans: 2; widows: 2 }
-            p.western { font-family: "Arial", serif; font-size: 12pt }
-            p.cjk { font-size: 12pt; so-language: es-ES }
-            p.ctl { font-size: 12pt }
+            @page { size: 8.5in 11in; margin-left: 1.18in; margin-right: 1.18in; margin-top: 4.17cm; margin-bottom: 2.5cm }
+            p { orphans: 2; widows: 2 }
+            p.western { line-height: 120%; margin-bottom: 0in; margin-top: 0px; font-family: Calibri; font-size: 11pt; }
+            p.western-bold { margin-bottom: 0in; margin-top: 0px; line-height: 120%; font-family: 'Calibri-bold'; font-size: 11pt; }
+            /* p.cjk { font-size: 12pt; so-language: es-ES }
+            p.ctl { font-size: 12pt } */
             a:link { color: #0000ff }
+            footer {
+                position: fixed; 
+                bottom: -1.48cm; 
+                left: 0px; 
+                right: 0px;
+                height: 1.25cm;
+
+                /* margin-top: 0.45in;  */
+                /* margin-bottom: -0.45in;  */
+                line-height: 150%;
+                /* border: solid red; */
+                text-align: center;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 10pt;
+            }
+            table {
+                /* border: 1px solid black; */
+                border-collapse: collapse;
+            }
+            tr {
+                /* border: 1px solid black; */
+                /* height: 0.55cm; */
+                /* border-collapse: collapse; */
+            }
+            td {
+                /* border: 1px solid black ; */
+                /* height: 0.56cm; */
+                /* border-collapse: collapse; */
+                padding-top: 0px;
+                paddinf-bottom: 0px;
+                padding-left: 7px;
+                padding-right: 7px;
+            }
+            br {
+                height: 0.56cm;
+            }
+            .pagenum:before {
+                content: counter(page);
+            }
         </style>
     @endif
     @if ($formato['documento_formato_id'] === 76)
         <style type="text/css">
-            @page { size: 8.5in 11in; margin-left: 1.18in; margin-right: 1.18in; margin-top: 0.49in; margin-bottom: 0.49in }
-            p { margin-bottom: 0.1in; direction: ltr; line-height: 120%; orphans: 2; widows: 2 }
-            p.western { font-family: "Arial", serif; font-size: 12pt }
-            p.cjk { font-size: 12pt; so-language: es-ES }
-            p.ctl { font-size: 12pt }
+            @page { size: 8.5in 11in; margin-left: 1.18in; margin-right: 1.18in; margin-top: 2.5cm; margin-bottom: 2.5cm }
+            p { orphans: 2; widows: 2 }
+            p.western { line-height: 120%; margin-bottom: 0in; margin-top: 0px; font-family: Calibri; font-size: 11pt; }
+            p.western-bold { margin-bottom: 0in; margin-top: 0px; line-height: 120%; font-family: 'Calibri-bold'; font-size: 11pt; }
+            /* p.cjk { font-size: 12pt; so-language: es-ES }
+            p.ctl { font-size: 12pt } */
             a:link { color: #0000ff }
+            footer {
+                position: fixed; 
+                bottom: -1.48cm; 
+                left: 0px; 
+                right: 0px;
+                height: 1.25cm;
+
+                /* margin-top: 0.45in;  */
+                /* margin-bottom: -0.45in;  */
+                line-height: 150%;
+                /* border: solid red; */
+                text-align: center;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 10pt;
+            }
+            header{
+                position: fixed;
+                top: -58px;
+                left: 0px;
+                right: 0px;
+                height: 50px;
+
+                margin-bottom: 1.12in; 
+                line-height: 100%;
+
+                /* * Extra personal styles * */
+                /* background-color: #03a9f4; */
+                /* color: white; */
+                /* text-align: center; */
+                /* line-height: 35px; */
+            }
+            table {
+                /* border: 1px solid black; */
+                border-collapse: collapse;
+            }
+            tr {
+                /* border: 1px solid black; */
+                /* height: 0.55cm; */
+                /* border-collapse: collapse; */
+            }
+            td {
+                /* border: 1px solid black ; */
+                /* height: 0.56cm; */
+                /* border-collapse: collapse; */
+                padding-top: 0px;
+                paddinf-bottom: 0px;
+                padding-left: 7px;
+                padding-right: 7px;
+            }
+            br {
+                height: 0.56cm;
+            }
+            .pagenum:before {
+                content: counter(page);
+            }
         </style>
     @endif
     @if ($formato['documento_formato_id'] === 77)
         <style type="text/css">
-            @page { size: 8.5in 11in; margin-left: 1.18in; margin-right: 1.18in; margin-top: 0.49in; margin-bottom: 0.49in }
-            p { margin-bottom: 0.1in; direction: ltr; line-height: 120%; orphans: 2; widows: 2 }
-            p.western { font-family: "Arial", serif; font-size: 12pt }
-            p.cjk { font-size: 12pt; so-language: es-ES }
-            p.ctl { font-size: 12pt }
+            @page { size: 8.5in 11in; margin-left: 1.18in; margin-right: 1.18in; margin-top: 2.5cm; margin-bottom: 2.5cm }
+            p { orphans: 2; widows: 2 }
+            p.western { line-height: 120%; margin-bottom: 0in; margin-top: 0px; font-family: Calibri; font-size: 11pt; }
+            p.western-arial { line-height: 120%; margin-bottom: 0in; margin-top: 0px; font-family: Arial, Helvetica, sans-serif; font-size: 12pt; }
+            p.western-bold { margin-bottom: 0in; margin-top: 0px; line-height: 120%; font-family: 'Calibri-bold'; font-size: 11pt; }
+            /* p.cjk { font-size: 12pt; so-language: es-ES }
+            p.ctl { font-size: 12pt } */
             a:link { color: #0000ff }
+            footer {
+                position: fixed; 
+                bottom: -1.48cm; 
+                left: 0px; 
+                right: 0px;
+                height: 1.25cm;
+
+                /* margin-top: 0.45in;  */
+                /* margin-bottom: -0.45in;  */
+                line-height: 150%;
+                /* border: solid red; */
+                text-align: center;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 10pt;
+            }
+            header{
+                position: fixed;
+                top: -47px;
+                left: 0px;
+                right: 0px;
+                height: 50px;
+
+                margin-bottom: 1.12in; 
+                line-height: 100%;
+
+                /* * Extra personal styles * */
+                /* background-color: #03a9f4; */
+                /* color: white; */
+                /* text-align: center; */
+                /* line-height: 35px; */
+            }
+            table {
+                /* border: 1px solid black; */
+                border-collapse: collapse;
+            }
+            tr {
+                /* border: 1px solid black; */
+                /* height: 0.55cm; */
+                /* border-collapse: collapse; */
+            }
+            td {
+                /* border: 1px solid black ; */
+                /* height: 0.56cm; */
+                /* border-collapse: collapse; */
+                padding-top: 0px;
+                paddinf-bottom: 0px;
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+            br {
+                height: 0.56cm;
+            }
+            .pagenum:before {
+                content: counter(page);
+            }
         </style>
     @endif
     @if ($formato['documento_formato_id'] === 78)
@@ -5649,14 +5810,15 @@
             <tr>
                 <td width="233px" height="18px"
                     style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-rigth: 0.08in;">
-                    <p class="western-bold" style="line-height: 90%; border: 1px solid chocolate; padding-left: 8px; margin-top: 0px; font-size: 16pt;">
+                    <p class="western-bold" style="line-height: 50%; padding-left: 8px; margin-top: 4px; font-size: 16pt; margin-bottom: 10px;">
                         Fecha de la visita
                     </p>
                 </td>
                 <td width="100%" height="18px"
                     style="border: 1px solid #00000a;">
-                    <p class="western" align="center" style="line-height: 90%; border: 1px solid red;">
-
+                    <p class="western-bold" align="center" style="line-height: 50%; font-size: 16pt; margin-top: 8px; margin-bottom: 15.5px;">
+                        <!-- TODO: para que este del tamaño correcto hace falta agregar el texto -->
+                        <br>
                     </p>
                 </td>
             </tr>
@@ -5676,14 +5838,15 @@
             <tr>
                 <td width="233px" height="38px"
                     style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-rigth: 0.08in;">
-                    <p class="western-bold" style="line-height: 90%; border: 1px solid chocolate; padding-left: 8px; margin-top: 0px; font-size: 16pt;">
+                    <p class="western-bold" style="line-height: 50%; padding-left: 8px; margin-top: 3px; font-size: 16pt; margin-bottom: 10px;">
                         C&oacute;digo del protocolo
                     </p>
                 </td>
                 <td width="100%" height="38px"
                     style="border: 1px solid #00000a;">
-                    <p class="western-bold" align="center">
-
+                    <p class="western-bold" align="center" style="line-height: 50%; font-size: 16pt; margin-top: 8px; margin-bottom: 17px;">
+                        <br>
+                        {{-- 13412 --}}
                     </p>
                 </td>
             </tr>
@@ -5703,42 +5866,42 @@
             <tr>
                 <td width="233px" height="39px"
                     style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-right: 0.08in">
-                    <p class="western-bold" style="line-height: 90%; border: 1px solid chocolate; padding-left: 8px; margin-top: 0px; font-size: 16pt;">
+                    <p class="western-bold" style="line-height: 50%; padding-left: 8px; margin-top: 3px; font-size: 16pt; margin-bottom: 10px;">
                         Investigador principal
                     </p>
                 </td>
                 <td width="100%" height="39px" valign="top"
                     style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
-                    <p class="western-bold" align="center">
-
+                    <p class="western-bold" align="center" style="line-height: 50%; font-size: 16pt; margin-top: 8px; margin-bottom: 15.5px;">
+                        <br>
                     </p>
                 </td>
             </tr>
             <tr>
                 <td width="233px" height="38px"
                     style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a;  padding-right: 0.08in">
-                    <p class="western-bold" style="line-height: 90%; border: 1px solid chocolate; padding-left: 8px; margin-top: 0px; font-size: 16pt;">
+                    <p class="western-bold" style="line-height: 50%; padding-left: 8px; margin-top: 4px; font-size: 16pt; margin-bottom: 10px;">
                         Sub-investigador
                     </p>
                 </td>
                 <td width="100%" height="38px" valign="top"
                     style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
-                    <p class="western-bold" align="center">
-
+                    <p class="western-bold" align="center" style="line-height: 50%; font-size: 16pt; margin-top: 8px; margin-bottom: 15.5px;">
+                        <br>
                     </p>
                 </td>
             </tr>
             <tr>
                 <td width="233px" height="39px"
                     style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-right: 0.08in">
-                    <p class="western-bold" style="line-height: 90%; border: 1px solid chocolate; padding-left: 8px; margin-top: 0px; font-size: 16pt;">
+                    <p class="western-bold" style="line-height: 50%; padding-left: 8px; margin-top: 3px; font-size: 16pt; margin-bottom: 10px;">
                         Coordinador de estudios
                     </p>
                 </td>
                 <td width="100%" height="39px" valign="top"
                     style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
-                    <p class="western-bold" align="center">
-
+                    <p class="western-bold" align="center" style="line-height: 50%; font-size: 16pt; margin-top: 8px; margin-bottom: 15.5px;">
+                        <br>
                     </p>
                 </td>
             </tr>
@@ -5750,63 +5913,63 @@
                 </td>
                 <td width="100%" height="39px" valign="top"
                     style="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: none; padding: 0in">
-                    <p class="western" align="center"><br />
-
+                    <p class="western" align="center">
+                        <br>
                     </p>
                 </td>
             </tr>
             <tr>
                 <td width="233px" height="39px"
                     style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-right: 0.08in">
-                    <p class="western-bold" style="line-height: 90%; border: 1px solid chocolate; padding-left: 8px; margin-top: 0px; font-size: 16pt;">
+                    <p class="western-bold" style="line-height: 50%; padding-left: 8px; margin-top: 3px; font-size: 16pt; margin-bottom: 10px;">
                         N&uacute;mero de sujeto
                 </td>
                 <td width="100%" height="39px" valign="top"
                     style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
-                    <p class="western-bold" align="center">
-
+                    <p class="western-bold" align="center" style="line-height: 50%; font-size: 16pt; margin-top: 8px; margin-bottom: 15.5px;">
+                        <br>
                     </p>
                 </td>
             </tr>
             <tr>
                 <td width="233px" height="39px"
                     style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-right: 0.08in">
-                    <p class="western-bold" style="line-height: 90%; border: 1px solid chocolate; padding-left: 8px; margin-top: 0px; font-size: 16pt;">
+                    <p class="western-bold" style="line-height: 50%; padding-left: 8px; margin-top: 3px; font-size: 16pt; margin-bottom: 10px;">
                         Iniciales del sujeto
                     </p>
                 </td>
                 <td width="100%" height="39px" valign="top"
                     style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
-                    <p class="western-bold" align="center">
-
+                    <p class="western-bold" align="center" style="line-height: 50%; font-size: 16pt; margin-top: 8px; margin-bottom: 15.5px;">
+                        <br>
                     </p>
                 </td>
             </tr>
         </table>
-        <p class="western" align="center" style="margin-bottom: 0in; line-height: 120%">
+        <p class="western" align="center" style="margin-bottom: 0in; line-height: 137%">
             <br />
 
         </p>
-        <p class="western" align="center" style="margin-bottom: 0in; line-height: 120%">
+        <p class="western" align="center" style="margin-bottom: 0in; line-height: 137%">
             <br />
 
         </p>
-        <p class="western" align="center" style="margin-bottom: 0in; line-height: 120%">
+        <p class="western" align="center" style="margin-bottom: 0in; line-height: 137%">
             <br />
 
         </p>
-        <p class="western" align="center" style="margin-bottom: 0in; line-height: 120%">
+        <p class="western" align="center" style="margin-bottom: 0in; line-height: 137%">
             <br />
 
         </p>
-        <p class="western" align="center" style="margin-bottom: 0in; line-height: 120%">
+        <p class="western" align="center" style="margin-bottom: 0in; line-height: 137%">
             <br />
 
         </p>
-        <p class="western" align="center" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western" align="center" style="margin-bottom: 0in; line-height: 150%; font-size: 12pt;">
             Sitio cl&iacute;nico
         </p>
-        <p class="western" align="center" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western" align="center" style="margin-bottom: 0in; line-height: 200%; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 8pt;">
             Unidad de Investigaci&oacute;n
                 en Salud de Chihuahua, S.C. Seleccionar <a href="http://www.uis.com.mx/">www.uis.com.mx</a>
         </p>
@@ -5816,383 +5979,238 @@
 
     {{-- Recibo ICF --}}
     @if ($formato['documento_formato_id'] === 72)
-        <div title="header">
-            <p lang="x-none" align="right" style="margin-bottom: 1.11in; line-height: 100%">
-
-            </p>
-        </div>
-        <table width="100%" cellpadding="7" cellspacing="0">
-            <colgroup>
-                <col width="100%">
-                <col width="100%">
-            </colgroup>
-            <colgroup>
-                <col width="100%">
-            </colgroup>
-            <colgroup>
-                <col width="100%">
-            </colgroup>
+    <footer>
+        <p lang="x-none" align="center">
+            FC-SC-4701 Acuse de recibo, Versi&oacute;n 26-jul-2021 - <span class="pagenum"></span> / 1
+        </p>
+    </footer>
+        <table width="100%" cellpadding="0" cellspacing="0">
             <tbody>
                 <tr>
-                    <td colspan="4" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p lang="x-none" align="center">
-                            <font face="Cambria, serif">
-                                <font size="4" style="font-size: 16pt"><b>
-                                        <font face="Calibri, serif">
-                                            <font size="4" style="font-size: 14pt"><span lang="es-MX">Acuse
-                                                    de recibo</span></font>
-                                        </font>
-                                    </b></font>
+                    <td colspan="2" width="100%" height="26px" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                        <p class="western-bold" align="center" style="font-size: 14pt; margin-top: -7px;">
+                            Acuse de recibo
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="100%" height="0.56cm" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff; padding-right: 8px;">
+                        <p class="western" align="right" style="margin-top: -5px; margin-bottom: 1px;">
+                            Lugar, Fecha
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="100%" height="0.58cm" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="100%" height="0.56cm" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                        <p class="western" align="right" style="margin-top: -5px;">
+                            <font face="Calibri-bold" style="font-size: 11pt">Asunto:</font>
+                            </font> 
+                            Acuse de recibo
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="100%" height="0.52cm" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                        
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td width="96.7px" height="0.56cm" bgcolor="#ffffff" style="background: #ffffff">
+                        <p class="western-bold" align="justify" style="line-height: 90%;">
+                            C&oacute;digo
+                        </p>
+                    </td>
+                    <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff">
+                        <p class="western" align="justify" style="line-height: 90%;">
+                            C&oacute;digo.
+                        </p>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td width="96.7px" height="0.56cm" bgcolor="#ffffff" style="background: #ffffff">
+                        <p class="western-bold" align="justify" style="line-height: 90%;">
+                            T&iacute;tulo
+                        </p>
+                    </td>
+                    <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff">
+                        <p class="western" align="justify" style="line-height: 90%;">
+                            <font face="Calibri-bold" style="font-size: 11pt">T&iacute;tulo</font>.
+                        </p>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td width="96.7px" height="0.52cm" bgcolor="#ffffff" style="background: #ffffff">
+                        <p class="western-bold" align="justify" style="line-height: 80%;">
+                            Patrocinador
+                        </p>
+                    </td>
+                    <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff">
+                        <p class="western" align="justify" style="line-height: 80%;">
+                            Nombre del patrocinador.
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="100%" height="0.52cm" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                        <p class="western-bold" align="justify" style="line-height: 90%; margin-bottom: 0in">
+                            A quien corresponda
+                        </p>
+                        <p class="western" align="justify" style="line-height: 90%; ">
+                            P r e s e n t e
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="100%" height="0.52cm" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                        <p class="western" align="justify" style="line-height: 101%; margin-top: 3px;">
+                            Por este medio hago constar que <font face="Calibri-bold" style="font-size: 11pt">RECIB&Iacute; EL FORMATO DE CONSENTIMIENTO INFORMADO 
                             </font>
+                            relacionado con mi participaci&oacute;n en el estudio arriba mencionado.
                         </p>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p align="right" style="font-weight: normal"><br />
-
+                    <td colspan="2" width="100%" height="0.56cm" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                        <p class="western" align="justify" style="line-height: 105%">
+                            Dicho
+                            documento fue firmado por el m&eacute;dico, por m&iacute; y por
+                            los dos testigos en cuya presencia se me inform&oacute; sobre mi
+                            participaci&oacute;n en el estudio.
                         </p>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p lang="x-none" align="right">
-                            <font face="Cambria, serif">
-                                <font size="4" style="font-size: 16pt">
-                                    <font face="Calibri, serif">
-                                        <font size="2" style="font-size: 11pt"><span lang="es-MX"><span
-                                                    style="font-weight: normal">Lugar,
-                                                    Fecha</span></span></font>
-                                    </font>
-                                </font>
-                            </font>
-                        </p>
+                    <td colspan="2" width="100%" height="0.598cm" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                        
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="4" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p align="right" style="font-weight: normal"><br />
-
+            </table>
+            <table width="100%" cellpadding="0" cellspacing="0">
+                <tr valign="top">
+                    <td width="189px" bgcolor="#ffffff" height="0.54cm" style="background: #ffffff; border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 7px">
+                        <p class="western-bold" align="right" style="line-height: 101%;">
+                            Nombre del documento
                         </p>
                     </td>
-                </tr>
-                <tr>
-                    <td colspan="4" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p class="western" align="right">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><b>Asunto:</b></font>
-                            </font>
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt">
-                                    Acuse de recibo</font>
-                            </font>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p class="western" align="right"><br />
+                    <td width="100%" bgcolor="#ffffff" height="0.54cm" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
+                        <p class="western" align="center" style="line-height: 101%;"><br>
 
                         </p>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <td width="100%" bgcolor="#ffffff" style="background: #ffffff" style="border: none; padding: 0in">
-                        <p class="western" align="justify">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><b>C&oacute;digo</b></font>
-                            </font>
+                    <td width="189px" bgcolor="#ffffff" height="0.54cm" style="background: #ffffff; border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 7px">
+                        <p class="western-bold" align="right" style="line-height: 101%;">
+                            Versi&oacute;n
                         </p>
                     </td>
-                    <td colspan="3" width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p class="western" align="justify">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt">C&oacute;digo.</font>
-                            </font>
-                        </p>
-                    </td>
-                </tr>
-                <tr valign="top">
-                    <td width="100%" bgcolor="#ffffff" style="background: #ffffff" style="border: none; padding: 0in">
-                        <p class="western" align="justify">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><b>T&iacute;tulo</b></font>
-                            </font>
-                        </p>
-                    </td>
-                    <td colspan="3" width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p class="western" align="justify">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><b>T&iacute;tulo</b></font>
-                            </font>
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt">.</font>
-                            </font>
-                        </p>
-                    </td>
-                </tr>
-                <tr valign="top">
-                    <td width="100%" bgcolor="#ffffff" style="background: #ffffff" style="border: none; padding: 0in">
-                        <p class="western" align="justify">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><b>Patrocinador</b></font>
-                            </font>
-                        </p>
-                    </td>
-                    <td colspan="3" width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p class="western" align="justify">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt">Nombre
-                                    del patrocinador.</font>
-                            </font>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p class="western" align="center"><br />
-
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p class="western" align="justify" style="margin-bottom: 0in">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><b>A
-                                        quien corresponda</b></font>
-                            </font>
-                        </p>
-                        <p class="western" align="justify">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt">P
-                                    r e s e n t e</font>
-                            </font>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p class="western" align="right"><br />
-
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p class="western" align="justify">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt">Por
-                                    este medio hago constar que </font>
-                            </font>
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><b>RECIB&Iacute;
-                                        EL FORMATO DE CONSENTIMIENTO INFORMADO </b></font>
-                            </font>
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt">relacionado
-                                    con mi participaci&oacute;n en el estudio arriba mencionado.</font>
-                            </font>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p class="western" align="justify"><br />
-
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p class="western" align="justify">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt">Dicho
-                                    documento fue firmado por el m&eacute;dico, por m&iacute; y por
-                                    los dos testigos en cuya presencia se me inform&oacute; sobre mi
-                                    participaci&oacute;n en el estudio.</font>
-                            </font>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p class="western" align="center"><br />
+                    <td width="100%" bgcolor="#ffffff" height="0.54cm" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
+                        <p class="western" align="center" style="line-height: 101%;"><br>
 
                         </p>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <td colspan="2" width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
-                        <p class="western" align="right">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><b>Nombre
-                                        del documento</b></font>
-                            </font>
+                    <td width="189px" bgcolor="#ffffff" height="0.54cm" style="background: #ffffff; border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 7px">
+                        <p class="western-bold" align="right" style="line-height: 101%;">
+                            Fecha de versi&oacute;n
                         </p>
                     </td>
-                    <td colspan="2" width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western" align="center"><br />
+                    <td width="100%" bgcolor="#ffffff" height="0.54cm" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
+                        <p class="western" align="center" style="line-height: 101%;"><br>
 
                         </p>
                     </td>
                 </tr>
+            </table>
+            <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td colspan="2" width="100%" height="0.52cm" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff">
+                        <p class="western" align="center" style="line-height: 90%">
+                                Atentamente,
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="100%" height="0.62cm" valign="top" bgcolor="#ffffff" style="background: #ffffff; border-top: none; border-bottom: 1px solid #00000a; border-left: none; border-right: none; padding: 0in">
+
+                    </td>
+                </tr>
+            </tbody>
+            <tbody>
                 <tr valign="top">
-                    <td colspan="2" width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
-                        <p class="western" align="right">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><b>Versi&oacute;n</b></font>
-                            </font>
+                    <td colspan="1" width="100%" bgcolor="#d9d9d9" style="background: #d9d9d9; border: 1px solid #00000a; padding: 0in 0.08in">
+                        <p class="western-bold" align="center" style="line-height: 100%; margin-top: -2px; padding-bottom: 3.5px;">
+                            Nombre del sujeto
                         </p>
                     </td>
-                    <td colspan="2" width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western" align="center"><br />
-
-                        </p>
-                    </td>
-                </tr>
-                <tr valign="top">
-                    <td colspan="2" width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
-                        <p class="western" align="right">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><b>Fecha
-                                        de versi&oacute;n</b></font>
-                            </font>
-                        </p>
-                    </td>
-                    <td colspan="2" width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western" align="center"><br />
-
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p class="western" align="center"><br />
-
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: none; padding: 0in">
-                        <p class="western" align="center">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt">Atentamente,</font>
-                            </font>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" width="100%" valign="top" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border-top: none; border-bottom: 1px solid #00000a; border-left: none; border-right: none; padding: 0in">
-                        <p class="western" align="center"><br />
-
+                    <td width="100%" bgcolor="#d9d9d9" style="background: #d9d9d9; border: 1px solid #00000a; padding: 0in 0.08in">
+                        <p class="western-bold" align="center" style="line-height: 100%; margin-top: -2px; padding-bottom: 3.5px;">
+                            Firma del sujeto
                         </p>
                     </td>
                 </tr>
             </tbody>
             <tbody>
                 <tr valign="top">
-                    <td colspan="3" width="100%" bgcolor="#d9d9d9" style="background: #d9d9d9"
-                        style="border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western" align="center">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><b>Nombre
-                                        del sujeto</b></font>
-                            </font>
-                        </p>
-                    </td>
-                    <td width="100%" bgcolor="#d9d9d9" style="background: #d9d9d9"
-                        style="border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western" align="center">
-                            <font face="Calibri, serif">
-                                <font size="2" style="font-size: 11pt"><b>Firma
-                                        del sujeto</b></font>
-                            </font>
-                        </p>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody>
-                <tr valign="top">
-                    <td colspan="3" width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western" align="center" style="margin-bottom: 0in"><br />
+                    <td colspan="1" width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
+                        <p class="western" align="center" style="margin-bottom: 0in"><br>
 
                         </p>
-                        <p class="western" align="center" style="margin-bottom: 0in"><br />
+                        <p class="western" align="center" style="margin-bottom: 0in; line-height: 70%;"><br>
 
                         </p>
-                        <p class="western" align="center"><br />
+                        <p class="western" align="center"><br>
 
                         </p>
                     </td>
-                    <td width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                        style="border: 1px solid #00000a; padding: 0in 0.08in">
-                        <p class="western" align="center"><a name="_GoBack"></a><br />
+                    <td width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
+                        <p class="western" align="center"><br>
+
+                        </p>
+                        <p class="western" align="center" style="margin-bottom: 0in; line-height: 70%;"><br>
+
+                        </p>
+                        <p class="western" align="center"><br>
 
                         </p>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <p class="western" style="margin-bottom: 0in; line-height: 100%"><br />
+        <p class="western" style="margin-bottom: 0in; line-height: 100%"><br>
 
         </p>
-        <div title="footer">
-            <p lang="x-none" align="center" style="margin-top: 0.45in; margin-bottom: 0in; line-height: 100%">
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">FC-SC-4701
-                            Acuse de recibo, Versi&oacute;n 26-jul-2021</span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 11pt">
-                    </font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">
-                        </span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 11pt"><span lang="es-MX">-
-                        </span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">
-                            <sdfield type=PAGE subtype=RANDOM format=PAGE>1</sdfield>
-                        </span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt">
-                        / <sdfield type=DOCSTAT subtype=PAGE format=PAGE>1</sdfield>
-                    </font>
-                </font>
-            </p>
-        </div>
     @endif
     {{-- END Recibo ICF --}}
 
@@ -6487,211 +6505,193 @@
 
     {{-- Privacidad de sujetos --}}
     @if ($formato['documento_formato_id'] === 77)
-        <div title="header">
-            <p lang="x-none" style="margin-bottom: 0in; line-height: 100%">
-                <font size="2" style="font-size: 10pt"> </font><img
-                    src="621c36c0df778621c36c0df77a_html_57127a7fee9f9d57.png" name="Picture 5" align="left" hspace="12"
-                    width="100%" height="40" border="0" />
-            </p>
-            <p lang="x-none" style="margin-bottom: 0.45in; line-height: 100%">
-
-            </p>
-        </div>
-        <p class="western" align="center" style="margin-bottom: 0in; line-height: 100%"><a name="_GoBack"></a>
-            <br />
+    <header>
+            <img src="assets/image/uisPrivacidadSujetos.png" name="UIS" align="left" hspace="12" width="126" height="40" border="0" style="padding-left: 0in; padding-top: 0in;" />
+    </header>
+    <footer>
+        <p lang="x-none" align="center">
+            FC-SC-4706 Privacidad para sujetos, Versi&oacute;n 02-sep-2021 - <span class="pagenum"></span> / 3
+        </p>
+    </footer>
+        <p class="western" align="center" style="margin-bottom: 0in; line-height: 80%">
+            <br>
 
         </p>
-        <p class="western" align="center" style="margin-bottom: 0in; line-height: 150%">
-            <font size="4" style="font-size: 14pt"><b>Aviso de Privacidad para
-                    Sujetos en Investigaci&oacute;n</b></font>
+        <p class="western-bold" align="center" style="margin-bottom: 0in; line-height: 150%;">
+            <b style="font-family: Arial, Helvetica, sans-serif; font-size: 14pt;">Aviso de Privacidad para Sujetos en Investigaci&oacute;n</b>
         </p>
-        <p class="western" style="margin-bottom: 0in; line-height: 100%"><br />
+        <p class="western" style="margin-bottom: 0in; line-height: 134%"><br>
 
         </p>
-        <table width="100%" cellpadding="7" cellspacing="0">
-            <col width="100%">
-            <col width="100%">
+        <table width="100%" cellpadding="0" cellspacing="0">
             <tr valign="top">
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
-                    <p class="western" align="center">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>C&oacute;digo</b></font>
-                        </font>
+                <td width="103px" bgcolor="#ffffff" style="background: #ffffff; border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
+                    <p class="western-bold" align="center">
+                        C&oacute;digo
                     </p>
                 </td>
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: 1px solid #00000a; padding: 0in 0.08in">
-                    <p class="western" align="justify"><br />
-
+                <td width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
+                    <p class="western-bold" align="center" style="margin-top: 0px; line-height: 135%; text-align: top;">
+                        <br>
+                        {{-- prueba --}}
                     </p>
                 </td>
             </tr>
             <tr valign="top">
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
-                    <p class="western" align="center">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>T&iacute;tulo</b></font>
-                        </font>
+                <td width="103px" bgcolor="#ffffff" style="background: #ffffff; border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
+                    <p class="western-bold" align="center">
+                        T&iacute;tulo
                     </p>
                 </td>
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: 1px solid #00000a; padding: 0in 0.08in">
-                    <p class="western" align="justify"><br />
-
+                <td width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
+                    <p class="western-bold" align="center" style="margin-top: 0px; line-height: 135%; text-align: top;">
+                        <br>
+                        {{-- prueba --}}
                     </p>
                 </td>
             </tr>
             <tr valign="top">
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
-                    <p class="western" align="center">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>Investigador</b></font>
-                        </font>
+                <td width="103px" bgcolor="#ffffff" style="background: #ffffff; border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
+                    <p class="western-bold" align="center">
+                        Investigador
                     </p>
                 </td>
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: 1px solid #00000a; padding: 0in 0.08in">
-                    <p class="western" align="justify"><br />
-
+                <td width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
+                    <p class="western-bold" align="center" style="margin-top: 0px; line-height: 135%; text-align: top;">
+                        <br>
+                        {{-- prueba --}}
                     </p>
                 </td>
             </tr>
             <tr valign="top">
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
-                    <p class="western" align="center">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>Patrocinador</b></font>
-                        </font>
+                <td width="103px" bgcolor="#ffffff" style="background: #ffffff; border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
+                    <p class="western-bold" align="center">
+                        Patrocinador
                     </p>
                 </td>
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: 1px solid #00000a; padding: 0in 0.08in">
-                    <p class="western" align="justify"><br />
-
+                <td width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
+                    <p class="western-bold" align="center" style="margin-top: 0px; line-height: 135%; text-align: top;">
+                        <br>
+                        {{-- prueba --}}
                     </p>
                 </td>
             </tr>
             <tr valign="top">
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
-                    <p class="western" align="center">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>Sitio
-                                    cl&iacute;nico</b></font>
-                        </font>
+                <td width="103px" bgcolor="#ffffff" style="background: #ffffff; border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
+                    <p class="western-bold" align="center">
+                        Sitio cl&iacute;nico
                     </p>
                 </td>
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: 1px solid #00000a; padding: 0in 0.08in">
-                    <p class="western" align="justify"><br />
-
+                <td width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
+                    <p class="western-bold" align="center" style="margin-top: 0px; line-height: 135%; text-align: top;">
+                        <br>
+                        {{-- prueba --}}
                     </p>
                 </td>
             </tr>
             <tr valign="top">
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
-                    <p class="western" align="center">
-                        <font face="Calibri, serif">
-                            <font size="2" style="font-size: 11pt"><b>Direcci&oacute;n</b></font>
-                        </font>
+                <td width="103px" bgcolor="#ffffff" style="background: #ffffff; border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
+                    <p class="western-bold" align="center">
+                        Direcci&oacute;n
                     </p>
                 </td>
-                <td width="100%" bgcolor="#ffffff" style="background: #ffffff"
-                    style="border: 1px solid #00000a; padding: 0in 0.08in">
-                    <p class="western" align="justify"><br />
-
+                <td width="100%" bgcolor="#ffffff" style="background: #ffffff; border: 1px solid #00000a; padding: 0in 0.08in">
+                    <p class="western-bold" align="center" style="margin-top: 0px; line-height: 135%; text-align: top;">
+                        <br>
+                        {{-- prueba --}}
                     </p>
                 </td>
             </tr>
         </table>
-        <p class="western" style="margin-bottom: 0in; line-height: 100%"><br />
+        <p class="western-arial" style="margin-bottom: 0in; line-height: 100%"><br />
 
         </p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 130%">
             <br />
 
         </p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 172%">
             La Unidad de Investigaci&oacute;n en Salud | UIS, es responsable del
             resguardo de los datos personales que se recaben durante la
             investigaci&oacute;n mencionada. Dicha informaci&oacute;n se
-            utilizar&aacute; para:</p>
-        <ul>
-            <li />
-            <p align="justify" style="margin-bottom: 0in; line-height: 150%">
-                Evaluar su participaci&oacute;n en el estudio<i>.</i></p>
-            <li />
-            <p align="justify" style="margin-bottom: 0in; line-height: 150%">
-                En su caso, iniciar y dar seguimiento a la conducci&oacute;n.</p>
+            utilizar&aacute; para:
+        </p>
+        <ul style="margin-top: 0px;">
+            <li>
+                <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 172%; margin-left: 8px;">
+                    Evaluar su participaci&oacute;n en el estudio.</p>
+            </li>
+            
+            <li>
+                <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 172%; margin-left: 8px;">
+                    En su caso, iniciar y dar seguimiento a la conducci&oacute;n.</p>
+            </li>
+            
         </ul>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
-            <br />
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 75%">
+            <br>
 
         </p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 172%">
             Los datos personales que se recabar&aacute;n son: Nombre, N&uacute;mero
             de identificaci&oacute;n oficial, Fecha de nacimiento, Lugar de
             nacimiento, Sexo, Direcci&oacute;n y N&uacute;meros de contacto.
         </p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
-            <br />
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 168%">
+            <br>
 
         </p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 170%">
             Adicionalmente, se solicitar&aacute;n los siguientes <b>datos
                 considerados sensibles</b>, de acuerdo con la Ley Federal de
             Protecci&oacute;n de Datos Personales en Posesi&oacute;n de
             Particulares: Etnicidad, Historia cl&iacute;nica y Estado de salud.</p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 165%">
             <br />
 
         </p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 172%">
             La Unidad de Investigaci&oacute;n en Salud tomar&aacute; las medidas
             necesarias para garantizar en todo momento el apego a los principios
             de protecci&oacute;n de informaci&oacute;n, establecidos por la Ley
             Federal de Protecci&oacute;n de Datos Personales en Posesi&oacute;n
             de los Particulares.</p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 160%">
             <br />
 
         </p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 172%">
             Usted tiene derecho a tener acceso a sus datos personales. Puede
             rectificarlos, cuando est&eacute;n desactualizados, o sean inexactos
-            o incompletos. Tambi&eacute;n puede cancelarlos, para que eliminemos
+            o incompletos. Tambi&eacute;n puede
+            cancelarlos, para que eliminemos
             su informaci&oacute;n personal de nuestra base de datos. Puede
             oponerse al uso de su informaci&oacute;n, o retirar el consentimiento
             que haya otorgado previamente. Si decide ejercer cualquiera de estos
             derechos, debe notificarlo al personal del estudio o al personal del
             sitio.</p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
-            <br />
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 110%">
+            <br>
 
         </p>
-        <p class="western" align="center" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="center" style="margin-bottom: 0in; line-height: 172%">
             <b>Es importante que considere que el retiro de su consentimiento
                 implicar&aacute; que NO podr&aacute; continuar participando en el
                 estudio cl&iacute;nico mencionado.</b>
         </p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 165%">
             <br />
 
         </p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 172%">
             Adem&aacute;s, cuando usted realice un cambio al consentimiento
             otorgado previamente a un Aviso de Privacidad, el Investigador deber&aacute;
             notificarlo de inmediato al patrocinador del estudio.</p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 165%">
             <br />
 
         </p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 172%">
             Este Aviso de Privacidad puede sufrir modificaciones o
             actualizaciones, debido a nuevos requerimientos legales para la
             prestaci&oacute;n de servicios o para la conducci&oacute;n de
@@ -6700,11 +6700,11 @@
             Sitio Cl&iacute;nico a conocer el nuevo Aviso de Privacidad y si est&aacute;
             de acuerdo, firme nuevamente.
         </p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 168%">
             <br />
 
         </p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 168%">
             Si usted, como titular de sus datos personales, considera que alguno
             de sus derechos ha sido lesionado por la conducta de un empleado de
             UIS, o presume que en el tratamiento de sus datos personales existe
@@ -6714,57 +6714,68 @@
             correspondiente ante el Instituto Federal de Acceso a la Informaci&oacute;n
             y Protecci&oacute;n de Datos (IFAI). Para mayor informaci&oacute;n,
             visite <a href="http://www.ifai.org.mx/">www.ifai.org.mx</a>.</p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 170%">
             <br />
 
         </p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
-            <img src="621c36c0df778621c36c0df77a_html_5048f9a58e071cd4.gif" align="left" hspace="13" vspace="1" />
-
-            Acepto y autorizo <font color="#000000">que mis datos
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 172%">
+            <img src="assets/image/Square.svg.png" align="left" width="28" height="28" hspace="20" style="margin-left: -25px" />
+            Acepto y autorizo que mis datos
                 personales y los datos personales sensibles descritos sean tratados
                 conforme a los t&eacute;rminos y condiciones referidos en el presente
-                Aviso de Privacidad. </font>
+                Aviso de Privacidad.
         </p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 150%">
             <br />
 
         </p>
-        <p class="western" align="justify" style="text-indent: 0.5in; margin-bottom: 0in; line-height: 150%">
-            <img src="621c36c0df778621c36c0df77a_html_5048f9a58e071cd4.gif" align="left" hspace="13" vspace="1" />
+        <p class="western-arial" align="justify" style="text-indent: 0.5in; margin-bottom: 0in; line-height: 172%">
+            <img src="assets/image/Square.svg.png" align="left" width="28" height="28" hspace="20" style="margin-left: -25px" />
             Entiendo
             que mis datos personales y datos personales sensibles estar&aacute;n
             seguros en todo momento, se conservar&aacute;n en una base de datos
             y/o expediente cl&iacute;nico y ser&aacute;n tratados de manera
             confidencial.
         </p>
-        <p class="western" align="justify" style="text-indent: 0.5in; margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="text-indent: 0.5in; margin-bottom: 0in; line-height: 150%">
             <br />
 
         </p>
-        <p class="western" align="justify" style="text-indent: 0.5in; margin-bottom: 0in; line-height: 150%">
-            <img src="621c36c0df778621c36c0df77a_html_5048f9a58e071cd4.gif" align="left" hspace="13" vspace="1" />
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 172%">
+            <img src="assets/image/Square.svg.png" align="left" width="28" height="28" hspace="20" style="margin-left: -25px" />
             Entiendo
             que el acceso a mi informaci&oacute;n personal se limitar&aacute; a
             lo descrito en el presente Aviso de Privacidad.
         </p>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
-            <br />
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 172.5%">
+            <br>
 
         </p>
-        <table width="100%" cellpadding="7" cellspacing="0">
-            <col width="100%">
-            <col width="100%">
+        <table width="100%" cellpadding="0" cellspacing="0">
             <tr valign="top">
                 <td width="100%"
                     style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
-                    <p class="western" align="right">
-                        <font size="2" style="font-size: 11pt"><b>Firma</b></font>
+                    <p class="western-arial" align="right" style="line-height: 170%;">
+                        <b style="font-size: 11pt;">Firma</b>
                     </p>
                 </td>
                 <td width="100%"
                     style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
-                    <p class="western" align="justify"><br />
+                    <p class="western-arial" align="justify" style="line-height: 170%;">
+                        <br>
+                    </p>
+                </td>
+            </tr>
+            <tr valign="top">
+                <td width="100%"
+                    style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
+                    <p class="western-arial" align="right" style="line-height: 170%;">
+                        <b style="font-size: 11pt;">Nombre del sujeto o su representante</b>
+                    </p>
+                </td>
+                <td width="100%"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p class="western-arial" align="justify" style="line-height: 170%;"><br>
 
                     </p>
                 </td>
@@ -6772,85 +6783,25 @@
             <tr valign="top">
                 <td width="100%"
                     style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
-                    <p class="western" align="right">
-                        <font size="2" style="font-size: 11pt"><b>Nombre
-                                del sujeto o su representante</b></font>
+                    <p class="western-arial" align="right" style="line-height: 165%;">
+                        <b style="font-size: 11pt;">Fecha</b>
                     </p>
                 </td>
                 <td width="100%"
                     style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
-                    <p class="western" align="justify"><br />
-
-                    </p>
-                </td>
-            </tr>
-            <tr valign="top">
-                <td width="100%"
-                    style="border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
-                    <p class="western" align="right">
-                        <font size="2" style="font-size: 11pt"><b>Fecha</b></font>
-                    </p>
-                </td>
-                <td width="100%"
-                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
-                    <p class="western" align="justify"><br />
-
+                    <p class="western-arial" align="justify" style="line-height: 165%;">
+                        <br>
                     </p>
                 </td>
             </tr>
         </table>
-        <p class="western" align="justify" style="margin-bottom: 0in; line-height: 150%">
+        <p class="western-arial" align="justify" style="margin-bottom: 0in; line-height: 150%">
             <br />
 
         </p>
-        <p class="western" style="margin-bottom: 0in; line-height: 150%"><br />
+        <p class="western-arial" style="margin-bottom: 0in; line-height: 150%"><br />
 
         </p>
-        <div title="footer">
-            <p lang="x-none" align="center" style="margin-top: 0.45in; margin-bottom: 0in; line-height: 100%">
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">FC-SC-4706
-                            Privacidad para sujetos,</span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt">
-                        Versi&oacute;n </font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt">0</font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">2</span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt">-</font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">sep</span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt">-202</font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">1
-                        </span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 11pt"><span lang="es-MX">-
-                        </span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt"><span lang="es-MX">
-                            <sdfield type=PAGE subtype=RANDOM format=PAGE>3</sdfield>
-                        </span></font>
-                </font>
-                <font face="Calibri, serif">
-                    <font size="2" style="font-size: 10pt">
-                        / <sdfield type=DOCSTAT subtype=PAGE format=PAGE>3</sdfield>
-                    </font>
-                </font>
-            </p>
-        </div>
     @endif
     {{-- END Privacidad de sujetos --}}
 

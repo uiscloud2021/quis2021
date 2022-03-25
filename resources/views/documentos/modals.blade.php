@@ -61,7 +61,7 @@
             {!! Form::hidden('empresa_id', null, ['id' => 'empresa_id']) !!}
             {!! Form::hidden('menu_id', null, ['id' => 'menu_id']) !!}
             {!! Form::hidden('proyecto_id', null, ['id' => 'proyecto_id']) !!}
-            {!! Form::hidden('user_id', null, ['id' => 'user_id']) !!}
+            {{-- {!! Form::hidden('user_id', null, ['id' => 'user_id']) !!} --}}
             {!! Form::hidden('formato_id', null, ['id' => 'formato_id']) !!}
 
             <div class="container-fluid" id="div0">

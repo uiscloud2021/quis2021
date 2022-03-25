@@ -14,7 +14,9 @@ use App\Models\Documentos\Documentos_formatos;
 use App\Models\Documentos\Formato;
 use App\Models\Administracion\Proyecto;
 use App\Models\User;
-use PDF;
+use Aws\Glacier\TreeHash;
+// use PDF;
+use Carbon\Carbon;
 
 class DocumentosController extends Controller
 {
@@ -38,7 +40,7 @@ class DocumentosController extends Controller
     $documentos_capacitacion = Documentos_capacitacion::all();
     $documentos_instructivos = Documentos_instructivos::all();
     $documentos_procedimientos = Documentos_procedimientos::all();
-    $documentos_formatos = Documentos_formatos::pluck('nombre_doc', 'id');
+    $documentos_formatos = Documentos_formatos::orderBy('nombre_doc', 'asc')->pluck('nombre_doc', 'id');
     
     return view('documentos.index', compact('documentos_manuales', 'documentos_procesos', 'documentos_capacitacion', 'documentos_instructivos', 'documentos_procedimientos', 'documentos_formatos'));
 
@@ -49,14 +51,114 @@ class DocumentosController extends Controller
 
     $formato = Formato::where('id', $id)->get()->first();
     $datos = json_decode($formato->datos_json);
-    $id = $id;
-    $pdf = PDF::loadView('documentos.pdf', compact('id', 'formato', 'datos'));
+    $nombreDocumento = Documentos_formatos::where('id', $formato['documento_formato_id'])->get()->first();
+    $codigoUIS = Proyecto::where('id', $formato->proyecto_id)->get()->first();
+    $codigoUIS = $codigoUIS->no18;
 
+    $currentTime = Carbon::now();
+
+    // $pdf = PDF::loadView('documentos.pdf', compact('id', 'formato', 'datos'));
     // $pdf->setPaper('letter');
-
-    return $pdf->stream();
+    // return $pdf->stream();
     // return $pdf->download('__documentos.pdf');
     // return view('documentos.pdf', compact('id', 'formato', 'datos'));
+
+
+    $my_template = new \PhpOffice\PhpWord\TemplateProcessor(storage_path('../public/' . $nombreDocumento['directorio'] . ''));
+
+    // Documento Presentacion
+    if (1 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      //TODO: ver como esta lo del titulo
+      $my_template->setValue('titulo', 'Dr.');
+      $my_template->setValue('nombreCompleto', $datos[2]);
+      $my_template->setValue('especialidad', $datos[3]);
+      //TODO: Ver que si es mujer-hombre o con el titulo
+      $my_template->setValue('estimado/a', 'Estimado Doctor(a):');
+      $my_template->setValue('patologia', $datos[4]);
+      $my_template->setValue('tipoColaboracion', $datos[5]);
+      $my_template->setValue('personaAcargo', $datos[6]);
+    }
+
+    // Documento publicidad
+    if (3 == $formato['documento_formato_id']) {
+      $my_template->setValue('nombrePatologia', $datos[0]);
+      $my_template->setValue('telefonos', $datos[1]);
+
+      $my_template->cloneBlock('block_requisitos', count($datos) - 2, true, true);
+      for ($i=0; $i < count($datos) - 2; $i++) { 
+        $my_template->setValue('requisito#'.($i+1), htmlspecialchars($datos[$i + 2], ENT_COMPAT, 'UTF-8'));
+      }
+    }
+
+    // Documento Sometimiento
+    if (7 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('codigoUis', $codigoUIS);
+      $my_template->setValue('codigo', $datos[2]);
+      $my_template->setValue('titulo', $datos[3]);
+      $my_template->setValue('patrocinador', $datos[4]);
+      $my_template->setValue('nombreInvestigador', $datos[5]);
+
+      $my_template->cloneRow('datosDocumento', count($datos) - 6);
+      for ($i=0; $i < count($datos) - 6; $i++) { 
+        $my_template->setValue('datosDocumento#'.($i+1), htmlspecialchars($datos[$i + 6], ENT_COMPAT, 'UTF-8'));
+      }
+    }
+
+    // Documento Compromisos
+    if (8 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('tipoInvestigador', $datos[2]);
+      $my_template->setValue('codigo', $datos[3]);
+      $my_template->setValue('titulo', $datos[4]);
+      $my_template->setValue('patrocinador', $datos[5]);
+      $my_template->setValue('direccion', $datos[6]);
+      //TODO: ver como insertar ese dato, si modificar el modal o no
+      $my_template->setValue('tituloPersona', $datos[8]);
+      $my_template->setValue('nombrePersona', $datos[9]);
+      $my_template->setValue('cedula', $datos[10]);
+
+      $my_template->replaceBlock('block_investigadorPrincipal', 2, true);
+      // $my_template->cloneBlock('block_principalSub', 2, true);
+    }
+
+    // $my_template->setValue('lugar', $datos[0]);
+    // $my_template->setValue('fecha', $datos[1]);
+    // $my_template->setValue('proveedor', $datos[2]);
+    // $my_template->setValue('numDoc', $datos[3]);
+    // $my_template->setValue('nombreSujeto', $datos[4]);
+    // // el clonRow recibe el nombre donde esta la variable y el numero de veces que se va a clonar
+    // $my_template->cloneRow('nombreEstudio', count($datos));
+
+    // for($number = 0; $number < count($datos); $number++) {
+    //   $my_template->setValue('nombreEstudio#'.($number+1), htmlspecialchars($datos[$number], ENT_COMPAT, 'UTF-8'));
+    // }
+
+    // $my_template->setValue('nombrePersonaSolicita', $datos[6]);
+    // $my_template->setValue('puesto', $datos[7]);
+
+    // $my_template->setValue('lugar', $datos[0]);
+    // $my_template->setValue('fecha', $datos[1]);
+    // $my_template->setValue('codigo', $datos[2]);
+    // $my_template->setValue('codigo2', $datos[3]);
+    // $my_template->setValue('titulo', $datos[4]);
+    // // el clonRow recibe el nombre donde esta la variable y el numero de veces que se va a clonar
+    // $my_template->cloneBlock('block_table', 3, true, true);
+
+    // $my_template->setValue('patrocinador', $datos[6]);
+    // $my_template->setValue('investigador', $datos[7]);
+
+    try{
+      $my_template->saveAs(storage_path( '../public/assets/SC-documents/' . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
+    }catch (Exception $e){
+        //handle exception
+    }
+
+    return response()->download(storage_path( '../public/assets/SC-documents/'  . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] ));
   }
 
   /**
