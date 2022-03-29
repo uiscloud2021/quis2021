@@ -1317,7 +1317,8 @@
                             {!! Form::label('55no3', '3. Teléfono', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                {!! Form::select('55no3', [ '437 2837 y 614 129 4020 ' => '437 2837 y 614 129 4020 ', '55 1451 1757 y 55 2127 1039' => '55 1451 1757 y 55 2127 1039' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione un teléfono', 'required']) !!}
+                                {!! Form::select('55no3', [ '437 2837' => '437 2837', '55 1451 1757' => '55 1451 1757' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione un teléfono', 'required']) !!}
+                                {{-- {!! Form::select('55no3', [ '437 2837 y 614 129 4020 ' => '437 2837 y 614 129 4020 ', '55 1451 1757 y 55 2127 1039' => '55 1451 1757 y 55 2127 1039' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione un teléfono', 'required']) !!} --}}
                             </div>
                         </div>
 

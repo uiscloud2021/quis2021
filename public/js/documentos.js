@@ -790,10 +790,10 @@ $('#no0').change(
                 $("#10no7").val(proyect[0]['investigador']);//investigador
 
                 $('#11no3').val(proyect[0]['no20']);//Codigo
-                $('#11no5').val(proyect[0]['no19']);//Titulo
-                $('#11no6').val(proyect[0]['razon_social']);//Direccion
-                $('#11no7').val(proyect[0]['titulo']);//Titulo investigador
-                $('#11no8').val(proyect[0]['investigador']);//investigador
+                $('#11no4').val(proyect[0]['no19']);//Titulo
+                $('#11no5').val(proyect[0]['razon_social']);//Direccion
+                $('#11no6').val(proyect[0]['titulo']);//Titulo investigador
+                $('#11no7').val(proyect[0]['investigador']);//investigador
 
                 // TODO: cambiar o quitar segun sea el caso
                 $('#12no111').val(proyect[0]['Nombre de la empresa'])//Nombre de la empresa
@@ -814,7 +814,7 @@ $('#no0').change(
                 $('#56no1').val(proyect[0]['no20']);//Codigo
                 $('#56no2').val(proyect[0]['investigador']);//Investigador
                 // TODO: Ver donde esta la dirreccion, y checar si va a llevar la ciudad y la fecha en el formato.
-                $('#55no5').val(proyect[0]['razon_social']);//Direccion sisitio clinico
+                $('#56no5').val(proyect[0]['razon_social']);//Direccion sisitio clinico
 
                 $('#57no1').val(proyect[0]['no20']);//Codigo
                 $('#57no2').val(proyect[0]['investigador']);//Investigador
@@ -2474,6 +2474,18 @@ $("#8no3").change(
         rol = $("#8no3").val();
         $("#8no8").val(rol);
         $("#8no12").val(rol);
+    }
+)
+//Llenar campos tarjeta de bolsillo, telefono y movil
+$("#55no3").change(
+    function() {
+        telefono = $("#55no3").val();
+        if (telefono == '437 2837') {
+            $("#55no4").val('614 129 4020');
+        }
+        if (telefono == '55 1451 1757') {
+            $("55no4").val('55 2127 1039');
+        }
     }
 )
 

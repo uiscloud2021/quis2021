@@ -122,35 +122,188 @@ class DocumentosController extends Controller
       $my_template->setValue('nombrePersona', $datos[9]);
       $my_template->setValue('cedula', $datos[10]);
 
-      $my_template->replaceBlock('block_investigadorPrincipal', 2, true);
-      // $my_template->cloneBlock('block_principalSub', 2, true);
+      if ($datos[2] == 'Investigador Principal') {
+        $my_template->setValue('block_investigadorPrincipal', '');
+        $my_template->setValue('block_investigadorPrincipal_espacio', '');
+      } else {
+        $my_template->cloneRow('block_investigadorPrincipal', 0);
+        $my_template->cloneRow('block_investigadorPrincipal_espacio', 0);
+      }
+
+      if ($datos[2] == 'Investigador Principal' || $datos[2] == 'Sub Investigador') {
+        $my_template->setValue('block_principalSub_espacio', '');
+        $my_template->setValue('block_principalSub', '');
+      } else {
+        $my_template->cloneRow('block_principalSub_espacio', 0);
+        $my_template->cloneRow('block_principalSub', 0);
+      }
     }
 
-    // $my_template->setValue('lugar', $datos[0]);
-    // $my_template->setValue('fecha', $datos[1]);
-    // $my_template->setValue('proveedor', $datos[2]);
-    // $my_template->setValue('numDoc', $datos[3]);
-    // $my_template->setValue('nombreSujeto', $datos[4]);
-    // // el clonRow recibe el nombre donde esta la variable y el numero de veces que se va a clonar
-    // $my_template->cloneRow('nombreEstudio', count($datos));
+    //Documento Responsabilidades
+    if (9 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('codigo', $datos[2]);
+      $my_template->setValue('titulo', $datos[3]);
+      $my_template->setValue('patrocinador', $datos[4]);
+      $my_template->setValue('direccion', $datos[5]);
+      // TODO Cambiar para el titulo
+      $my_template->setValue('tituloInvestigador', 'Dr/Dra');
+      $my_template->setValue('nombreInvestigador', $datos[6]);
 
-    // for($number = 0; $number < count($datos); $number++) {
-    //   $my_template->setValue('nombreEstudio#'.($number+1), htmlspecialchars($datos[$number], ENT_COMPAT, 'UTF-8'));
-    // }
+      $my_template->cloneRow('nombre', (count($datos) - 7) / 3);
+      $aux = 0;
+      for ($i = 0; $i < (count($datos) - 7) / 3; $i++) { 
+        $my_template->setValue('nombre#'.($i+1), htmlspecialchars($datos[$aux + 7], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('rolEstudio#'.($i+1), htmlspecialchars($datos[$aux + 8], ENT_COMPAT, 'UTF-8'));
+        $respon = implode(", " ,$datos[$aux + 9]);
+        $my_template->setValue('responsabilidades#'.($i+1), htmlspecialchars($respon, ENT_COMPAT, 'UTF-8'));
+        $aux = $aux + 3;
+      }
+    }
 
-    // $my_template->setValue('nombrePersonaSolicita', $datos[6]);
-    // $my_template->setValue('puesto', $datos[7]);
+    //Documento Autorizacion
+    if (10 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('codigo', $datos[2]);
+      $my_template->setValue('titulo', $datos[3]);
+      $my_template->setValue('patrocinador', $datos[4]);
+      $my_template->setValue('direccion', $datos[5]);
+      //TODO: Cambiar lo del titulo automatico
+      $my_template->setValue('tituloInvestigador', 'Dr/Dra.');
+      $my_template->setValue('nombreInvestigador', $datos[6]);
+      $my_template->setValue('nombreHospital', $datos[7]);
+    }
 
-    // $my_template->setValue('lugar', $datos[0]);
-    // $my_template->setValue('fecha', $datos[1]);
-    // $my_template->setValue('codigo', $datos[2]);
-    // $my_template->setValue('codigo2', $datos[3]);
-    // $my_template->setValue('titulo', $datos[4]);
-    // // el clonRow recibe el nombre donde esta la variable y el numero de veces que se va a clonar
-    // $my_template->cloneBlock('block_table', 3, true, true);
+    //Documento Instalaciones
+    if (11 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('codigo', $datos[2]);
+      $my_template->setValue('titulo', $datos[3]);
+      $my_template->setValue('direccion', $datos[4]);
+      // TODO: Cambiar a automatico
+      $my_template->setValue('tituloInvestigador', $datos[5]);
+      $my_template->setValue('nombreInvestigador', $datos[6]);
 
-    // $my_template->setValue('patrocinador', $datos[6]);
-    // $my_template->setValue('investigador', $datos[7]);
+      //TODO Ver que onda con lo de la direccion, para poner dependiendo el sitio clinico o puede ser por la empresa
+      if ('chihuahua' == 'chihuahua') {
+        $my_template->cloneBlock('block_chihuahua', 1, true, true);
+        $my_template->cloneBlock('block_chihuahua2', 1, true, true);
+      } else {
+        $my_template->cloneBlock('block_chihuahua', 0, true, true);
+        $my_template->cloneBlock('block_chihuahua2', 0, true, true);
+      }
+      if ('charcot' == 'charcot') {
+        $my_template->cloneBlock('block_charcot', 1, true, true);
+      } else {
+        $my_template->cloneBlock('block_charcot', 0, true, true);
+      }
+
+      if ($datos[7] == 'Si') {
+        $my_template->setValue('si', 'x');
+        $my_template->setValue('no', '');
+      } else {
+        $my_template->setValue('si', '');
+        $my_template->setValue('no', 'x');
+      }
+
+      $my_template->cloneRow('servicio', (count($datos) - 8) / 2);
+      $aux = 0;
+      for ($i = 0; $i < (count($datos) - 8) / 2; $i++) { 
+        $my_template->setValue('servicio#'.($i+1), htmlspecialchars($datos[$aux + 8], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('proveedor#'.($i+1), htmlspecialchars($datos[$aux + 9], ENT_COMPAT, 'UTF-8'));
+        $aux = $aux + 2;
+      }
+    }
+
+    //Documento Anticorrupción
+    if (12 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('destinatario', $datos[2]);
+    }
+
+    //Documentos Destrucción de materiales
+    if (27 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('hora', $datos[2]);
+      $my_template->setValue('numeroDia', $datos[3]);
+      $my_template->setValue('mes', $datos[4]);
+      $my_template->setValue('direccion', $datos[5]);
+      $my_template->setValue('codigo', $datos[6]);
+      $my_template->setValue('titulo', $datos[7]);
+
+      $my_template->cloneRow('tipokit', (count($datos) - 8) / 3);
+      $aux = 0;
+      for ($i = 0; $i < (count($datos) - 8) / 3; $i++) { 
+        $my_template->setValue('tipokit#'.($i+1), htmlspecialchars($datos[$aux + 8], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('fechaCaducidad#'.($i+1), htmlspecialchars($datos[$aux + 9], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('cantidad#'.($i+1), htmlspecialchars($datos[$aux + 10], ENT_COMPAT, 'UTF-8'));
+        $aux = $aux + 3;
+      }
+    }
+
+    // Documento Destrucción de productos
+    if (28 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('hora', $datos[2]);
+      $my_template->setValue('numeroDia', $datos[3]);
+      $my_template->setValue('mes', $datos[4]);
+      $my_template->setValue('direccion', $datos[5]);
+      $my_template->setValue('codigo', $datos[6]);
+      $my_template->setValue('titulo', $datos[7]);
+
+      $my_template->cloneBlock('block_productos', (count($datos) - 8) / 4, true, true);
+      $aux = 0;
+      for ($i = 0; $i < (count($datos) - 8) / 4; $i++) { 
+        $my_template->setValue('nombreGenerico#'.($i+1), htmlspecialchars($datos[$aux + 8], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('estado#'.($i+1), htmlspecialchars($datos[$aux + 9], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('numerokit#'.($i+1), htmlspecialchars($datos[$aux + 10], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('cantidad#'.($i+1), htmlspecialchars($datos[$aux + 11], ENT_COMPAT, 'UTF-8'));
+        $aux = $aux + 4;
+      }
+    }
+
+    // Documento tarjeta de bolsillo
+    if (55 == $formato['documento_formato_id']) {
+      $my_template->setValue('codigo', $datos[0]);
+      $my_template->setValue('patologia', $datos[1]);
+      $my_template->setValue('telefono', $datos[2]);
+      $my_template->setValue('movil', $datos[3]);
+    }
+
+    // Documento Carpeta documento fuente
+    if (56 == $formato['documento_formato_id']) {
+      $my_template->setValue('codigo', $datos[0]);
+      $my_template->setValue('investigador', $datos[1]);
+      // $my_template->setValue('investigador', $datos[2]);
+      // $my_template->setValue('investigador', $datos[3]);
+      $my_template->setValue('direccion', $datos[4]);
+    }
+
+    // Documento Hoja inicial
+    if (57 == $formato['documento_formato_id']) {
+      $my_template->setValue('codigo', $datos[0]);
+      $my_template->setValue('investigadorPrincipal', $datos[1]);
+      $my_template->setValue('subInvestigador', $datos[2]);
+      $my_template->setValue('coordinador', $datos[3]);
+      // $my_template->setValue('numeroSujeto', $datos[4]);
+      // $my_template->setValue('inicialesSujeto', $datos[5]);
+      // $my_template->setValue('sexo', $datos[6]);
+      // $my_template->setValue('edad', $datos[7]);
+      $my_template->setValue('direccion', $datos[8]);
+    }
+
+    // Documento Contacto
+    if (58 == $formato['documento_formato_id']) {
+      $my_template->setValue('numeroSujeto', $datos[0]);
+      $my_template->setValue('inicialesSujeto', $datos[1]);
+      $my_template->setValue('codigo', $datos[2]);
+    }
 
     try{
       $my_template->saveAs(storage_path( '../public/assets/SC-documents/' . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
