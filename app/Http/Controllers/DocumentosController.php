@@ -92,6 +92,58 @@ class DocumentosController extends Controller
       }
     }
 
+    // Documento Codigos y titulos
+    if (4 == $formato['documento_formato_id']) {
+      $my_template->setValue('codigo', $datos[0]);
+      $my_template->setValue('codigoUis', $datos[1]);
+      $my_template->setValue('numeroSitio', $datos[2]);
+      $my_template->setValue('titulo', $datos[3]);
+      $my_template->setValue('nickname1', $datos[4]);
+      $my_template->setValue('nickname2', $datos[5]);
+      $my_template->setValue('nickname3', $datos[6]);
+      $my_template->setValue('patrocinador', $datos[7]);
+      $my_template->setValue('cro', $datos[8]);
+      $my_template->setValue('nombreInvestigador', $datos[9]);
+      $my_template->setValue('telefonoInvestigador', $datos[10]);
+      $my_template->setValue('movilInvestigador', $datos[11]);
+      $my_template->setValue('mailInvestigador', $datos[12]);
+      $my_template->setValue('nombreSubInv', $datos[13]);
+      $my_template->setValue('telefonoSubInv', $datos[14]);
+      $my_template->setValue('movilSubInv', $datos[15]);
+      $my_template->setValue('mailsubInv', $datos[16]);
+      $my_template->setValue('nombreCoordinador', $datos[17]);
+      $my_template->setValue('nombreMonitor', $datos[18]);
+      $my_template->setValue('telefonoMonitor', $datos[19]);
+      $my_template->setValue('movilMonitor', $datos[20]);
+      $my_template->setValue('mailMonitor', $datos[21]);
+      $my_template->setValue('nombreLaboratorio', $datos[22]);
+      $my_template->setValue('contactoLaboratorio', $datos[23]);
+      $my_template->setValue('telefonoLaboratorio', $datos[24]);
+      $my_template->setValue('faxLaboratorio', $datos[25]);
+      $my_template->setValue('mailLaboratorio', $datos[26]);
+      $my_template->setValue('nombreMustras', $datos[27]);
+      $my_template->setValue('contactoMuestras', $datos[28]);
+      $my_template->setValue('telefonoMuestras', $datos[29]);
+      $my_template->setValue('movilMuestras', $datos[30]);
+      $my_template->setValue('mailMuestras', $datos[31]);
+      $my_template->setValue('plataformaCRF', $datos[32]);
+      $my_template->setValue('ligaCRF', $datos[33]);
+      $my_template->setValue('nombreCRF', $datos[34]);
+      $my_template->setValue('usuarioCRF', $datos[35]);
+      $my_template->setValue('passwordCRF', $datos[36]);
+      $my_template->setValue('idCRF', $datos[37]);
+      $my_template->setValue('plataformaIVRS', $datos[38]);
+      $my_template->setValue('ligaIVRS', $datos[39]);
+      $my_template->setValue('nombreIVRS', $datos[40]);
+      $my_template->setValue('usuarioIVRS', $datos[41]);
+      $my_template->setValue('passwordIVRS', $datos[42]);
+      $my_template->setValue('plataformaOtros', $datos[43]);
+      $my_template->setValue('ligaOtros', $datos[44]);
+      $my_template->setValue('nombreOtros', $datos[45]);
+      $my_template->setValue('usuarioOtros', $datos[46]);
+      $my_template->setValue('passwordOtros', $datos[47]);
+    }
+
     // Documento Sometimiento
     if (7 == $formato['documento_formato_id']) {
       $my_template->setValue('lugar', $datos[0]);
@@ -303,6 +355,346 @@ class DocumentosController extends Controller
       $my_template->setValue('numeroSujeto', $datos[0]);
       $my_template->setValue('inicialesSujeto', $datos[1]);
       $my_template->setValue('codigo', $datos[2]);
+      $my_template->setValue('nombreContacto', $datos[3]);
+      $my_template->setValue('sexo', $datos[4]);
+      $my_template->setValue('fechaNacimiento', $datos[5]);
+      $my_template->setValue('calleNumero', $datos[6]);
+      $my_template->setValue('colonia', $datos[7]);
+      $my_template->setValue('ciudadEstado', $datos[8]);
+      $my_template->setValue('codigoPostal', $datos[9]);
+      $my_template->setValue('telCasa', $datos[10]);
+      $my_template->setValue('telMovil', $datos[11]);
+      $my_template->setValue('telTrabajo', $datos[12]);
+      $my_template->setValue('correo', $datos[13]);
+
+      $my_template->setValue('nombreContacto1', $datos[14]);
+      $my_template->setValue('domicilioContacto1', $datos[15]);
+      $my_template->setValue('parentescoContacto1', $datos[16]);
+      $my_template->setValue('telCasaContacto1', $datos[17]);
+      $my_template->setValue('telMovilContacto1', $datos[18]);
+      $my_template->setValue('telTrabajoContacto1', $datos[19]);
+
+      $my_template->setValue('nombreContacto2', $datos[20]);
+      $my_template->setValue('domicilioContacto2', $datos[21]);
+      $my_template->setValue('parentescoContacto2', $datos[22]);
+      $my_template->setValue('telCasaContacto2', $datos[23]);
+      $my_template->setValue('telMovilContacto2', $datos[24]);
+      $my_template->setValue('telTrabajoContacto2', $datos[25]);
+    }
+
+    // Documento Senalador de visita
+    if (63 == $formato['documento_formato_id']) {
+      $my_template->setValue('nombreVisita', $datos[0]);
+      $my_template->setValue('fechaVisita', $datos[1]);
+      $my_template->setValue('codigo', $datos[2]);
+      $my_template->setValue('investigadorPrincipal', $datos[3]);
+      $my_template->setValue('subInvestigador', $datos[4]);
+      $my_template->setValue('coordinador', $datos[5]);
+      $my_template->setValue('numeroSujeto', $datos[6]);
+      $my_template->setValue('inicialesSujeto', $datos[7]);
+      $my_template->setValue('direccion', $datos[8]);
+    }
+
+    // Documento Solicitud de resumen
+    if (76 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('codigo', $datos[2]);
+      $my_template->setValue('titulo', $datos[3]);
+      $my_template->setValue('patrocinador', $datos[4]);
+    }
+
+    // Documento Recibo ICF
+    if (77 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('codigo', $datos[2]);
+      $my_template->setValue('titulo', $datos[3]);
+      $my_template->setValue('patrocinador', $datos[4]);
+      $my_template->setValue('nombreDocumento', $datos[5]);
+      $my_template->setValue('version', $datos[6]);
+      $my_template->setValue('fechaVersion', $datos[7]);
+    }
+
+    // Documento Orden de compra
+    if (79 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('proveedor', $datos[2]);
+      $my_template->setValue('numeroDocumento', $datos[3]);
+      $my_template->setValue('nombreSujeto', $datos[4]);
+      $my_template->setValue('nombreSolicitante', $datos[5]);
+      $my_template->setValue('puesto', $datos[6]);
+
+      $my_template->cloneRow('nombreEstudio', count($datos) - 7);
+      for ($i = 0; $i < count($datos) - 7; $i++) { 
+        $my_template->setValue('nombreEstudio#'.($i+1), htmlspecialchars($datos[$i + 7], ENT_COMPAT, 'UTF-8'));
+      }
+    }
+
+    // Documento Envio de muestras
+    if (80 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('codigo', $datos[1]);
+      $my_template->setValue('titulo', $datos[2]);
+      $my_template->setValue('patrocinador', $datos[3]);
+      $my_template->setValue('numeroSujeto', $datos[4]);
+      $my_template->setValue('numeroVisita', $datos[5]);
+      $my_template->setValue('fechaRecoleccion', $datos[6]);
+      $my_template->setValue('reqAlmacen', $datos[7]);
+      $my_template->setValue('desviacion', $datos[8]);
+      $my_template->setValue('courier', $datos[9]);
+      $my_template->setValue('numeroGuia', $datos[10]);
+      $my_template->setValue('fechaEnvio', $datos[11]);
+      $my_template->setValue('hora', $datos[12]);
+      $my_template->setValue('temperatura', $datos[13]);
+      $my_template->setValue('nombre', $datos[14]);
+      $my_template->setValue('iniciales', $datos[15]);
+    }
+
+    // Documento Orden de compra hospital
+    if (81 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('proveedor', $datos[2]);
+      $my_template->setValue('codigo', $datos[3]);
+      $my_template->setValue('titulo', $datos[4]);
+      $my_template->setValue('nombreSolicitante', $datos[5]);
+      $my_template->setValue('puesto', $datos[6]);
+
+      $countSujetos = 1;
+      $countServicios = 0;
+      $countRestricciones = 0;
+
+      for ($i=8; $i < count($datos); $i++) { 
+        $element = $datos[$i];
+        $choice = substr($element, 0, 1);
+        $only_data = substr($element, 2, strlen($element));
+
+        $datos[$i] = $only_data;
+        if ($choice == 'u') {
+          $countSujetos++;
+        }
+        if ($choice == 's') {
+          $countServicios++;
+        }
+        if ($choice == 'r') {
+          $countRestricciones++;
+        }
+      }
+
+      $my_template->cloneRow('nombreSujeto', $countSujetos);
+      $my_template->cloneRow('servicio', $countServicios);
+      $my_template->cloneRow('restriccion', $countRestricciones);
+
+      for ($i = 0; $i < $countSujetos; $i++) { 
+        $my_template->setValue('nombreSujeto#'.($i+1), htmlspecialchars($datos[$i + 7], ENT_COMPAT, 'UTF-8'));
+      }
+      for ($i = 0; $i < $countServicios; $i++) { 
+        $my_template->setValue('servicio#'.($i+1), htmlspecialchars($datos[$i + 7 + $countSujetos], ENT_COMPAT, 'UTF-8'));
+      }
+      for ($i = 0; $i < $countRestricciones; $i++) { 
+        $my_template->setValue('restriccion#'.($i+1), htmlspecialchars($datos[$i + 7 + $countSujetos + $countServicios], ENT_COMPAT, 'UTF-8'));
+      }
+    }
+
+    // Documento Aviso EAS
+    if (82 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('codigo', $datos[2]);
+      $my_template->setValue('titulo', $datos[3]);
+      $my_template->setValue('patrocinador', $datos[4]);
+      $my_template->setValue('tituloInvestigador', 'Dr/Dra');
+      $my_template->setValue('nombreInvestigador', $datos[5]);
+
+      $my_template->cloneRow('numSujeto', (count($datos) - 6) / 3);
+      $aux = 0;
+      for ($i = 0; $i < (count($datos) - 6) / 3; $i++) { 
+        $my_template->setValue('numSujeto#'.($i+1), htmlspecialchars($datos[$aux + 6], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('fechaReporte#'.($i+1), htmlspecialchars($datos[$aux + 7], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('descripcion#'.($i+1), htmlspecialchars($datos[$aux + 8], ENT_COMPAT, 'UTF-8'));
+        $aux = $aux + 3;
+      }
+    }
+
+    // Documento Aviso SUSAR
+    if (83 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('codigo', $datos[2]);
+      $my_template->setValue('titulo', $datos[3]);
+      $my_template->setValue('patrocinador', $datos[4]);
+      $my_template->setValue('tituloInvestigador', 'Dr/Dra');
+      $my_template->setValue('investigadorPrincipal', $datos[5]);
+
+      $my_template->cloneRow('numReporte', (count($datos) - 6) / 6);
+      $aux = 0;
+      for ($i = 0; $i < (count($datos) - 6) / 6; $i++) { 
+        $my_template->setValue('numReporte#'.($i+1), htmlspecialchars($datos[$aux + 6], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('fechaReporte#'.($i+1), htmlspecialchars($datos[$aux + 7], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('protocolo#'.($i+1), htmlspecialchars($datos[$aux + 8], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('pais#'.($i+1), htmlspecialchars($datos[$aux + 9], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('tipoReporte#'.($i+1), htmlspecialchars($datos[$aux + 10], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('desc#'.($i+1), htmlspecialchars($datos[$aux + 11], ENT_COMPAT, 'UTF-8'));
+        $aux = $aux + 6;
+      }
+    }
+
+    // Documento Somete desviacion
+    if (84 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('codigoUis', $datos[2]);
+      $my_template->setValue('codigo', $datos[3]);
+      $my_template->setValue('titulo', $datos[4]);
+      $my_template->setValue('patrocinador', $datos[5]);
+      $my_template->setValue('tituloInvestigador', 'Dr/Dra');
+      $my_template->setValue('InvestigadorPrincipal', $datos[6]);
+
+      $my_template->cloneBlock('block_desviaciones', (count($datos) - 7) / 5, true, true);
+      $aux = 0;
+      for ($i = 0; $i < (count($datos) - 7) / 5; $i++) { 
+        $my_template->setValue('numSujeto#'.($i+1), htmlspecialchars($datos[$aux + 6], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('numVisita#'.($i+1), htmlspecialchars($datos[$aux + 7], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('fechaDes#'.($i+1), htmlspecialchars($datos[$aux + 8], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('desc#'.($i+1), htmlspecialchars($datos[$aux + 9], ENT_COMPAT, 'UTF-8'));
+        $my_template->setValue('acciones#'.($i+1), htmlspecialchars($datos[$aux + 10], ENT_COMPAT, 'UTF-8'));
+        $aux = $aux + 5;
+      }
+    }
+
+    // Documento Aviso al CE
+    if (85 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('codigo', $datos[2]);
+      $my_template->setValue('titulo', $datos[3]);
+      $my_template->setValue('patrocinador', $datos[4]);
+      $my_template->setValue('tituloInvestigador', 'Dr/Dra');
+      $my_template->setValue('investigadorPrincipal', $datos[5]);
+
+      $my_template->cloneRow('asunto', count($datos) - 6);
+      for ($i = 0; $i < count($datos) - 6; $i++) { 
+        $my_template->setValue('asunto#'.($i+1), htmlspecialchars($datos[$i + 6], ENT_COMPAT, 'UTF-8'));
+      }
+    }
+
+    // Documento Fe de erratas
+    if (86 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('codigo', $datos[2]);
+      $my_template->setValue('titulo', $datos[3]);
+      $my_template->setValue('patrocinador', $datos[4]);
+      $my_template->setValue('fechaDocumento', $datos[6]);
+      $my_template->setValue('tituloInvestigador', 'Dr/Dra');
+      $my_template->setValue('investigadorPrincipal', $datos[5]);
+
+      $my_template->cloneRow('desc', count($datos) - 7);
+      for ($i = 0; $i < count($datos) - 7; $i++) { 
+        $my_template->setValue('desc#'.($i+1), htmlspecialchars($datos[$i + 7], ENT_COMPAT, 'UTF-8'));
+      }
+    }
+
+    // Documento Renovacion anual
+    if (87 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('codigo', $datos[2]);
+      $my_template->setValue('titulo', $datos[3]);
+      $my_template->setValue('patrocinador', $datos[4]);
+      $my_template->setValue('sitioClinico', $datos[5]);
+      $my_template->setValue('campo22Eq', $datos[6]);
+      $my_template->setValue('comite', $datos[7]);
+      $my_template->setValue('campo46Eq', $datos[8]);
+      $my_template->setValue('estadoProyecto', $datos[9]);
+      $my_template->setValue('fechaInicio', $datos[10]);
+      $my_template->setValue('sujetosFirma', $datos[11]);
+      $my_template->setValue('sujetosActivos', $datos[12]);
+      $my_template->setValue('informesIniciales', $datos[13]);
+      $my_template->setValue('desviaciones', $datos[14]);
+      $my_template->setValue('tituloInvestigador', 'Dr/Dra');
+      $my_template->setValue('investigadorPrincipal', $datos[15]);
+
+      $comiteExterno = false;
+
+      if ($comiteExterno) {
+        $my_template->setValue('tipoComite', 'Para ello, encuentre adjunto el informe correspondiente.');
+      }else{
+        $my_template->setValue('tipoComite', 'Para ello, encuentre en el sistema electrónico el informe correspondiente.');
+      }
+
+    }
+
+    // Documento Informe tecnico
+    if (88 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('presidenteComite', $datos[2]);
+      $my_template->setValue('periodo', $datos[3]);
+      $my_template->setValue('codigo', $datos[4]);
+      $my_template->setValue('titulo', $datos[5]);
+      $my_template->setValue('patrocinador', $datos[6]);
+      $my_template->setValue('direccion', $datos[7]);
+      $my_template->setValue('campo22Eq', $datos[8]);
+      $my_template->setValue('comite', $datos[9]);
+      $my_template->setValue('campo46Eq', $datos[10]);
+      $my_template->setValue('estadoProyecto', $datos[11]);
+      $my_template->setValue('fechaInicio', $datos[12]);
+      $my_template->setValue('sujetosFirma', $datos[13]);
+      $my_template->setValue('sujetosActivos', $datos[14]);
+      $my_template->setValue('informes', $datos[15]);
+      $my_template->setValue('desviaciones', $datos[16]);
+      $my_template->setValue('tituloInvestigador', 'Dr/Dra');
+      $my_template->setValue('investigadorPrincipal', $datos[17]);
+    }
+
+    // Documento Aviso de cierre
+    if (89 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('codigo', $datos[2]);
+      $my_template->setValue('titulo', $datos[3]);
+      $my_template->setValue('patrocinador', $datos[4]);
+      $my_template->setValue('fechaInicio', $datos[5]);
+      $my_template->setValue('fechaReclutamiento', $datos[6]);
+      $my_template->setValue('sujetosFirma', $datos[7]);
+      $my_template->setValue('sujetosAleatorios', $datos[8]);
+      $my_template->setValue('fallas', $datos[9]);
+      $my_template->setValue('retiros', $datos[10]);
+      $my_template->setValue('sujetosFinalizaron', $datos[11]);
+      $my_template->setValue('sujetosActivos', $datos[12]);
+      $my_template->setValue('eventos', $datos[13]);
+      $my_template->setValue('desviaciones', $datos[14]);
+      $my_template->setValue('fechaCierre', $datos[15]);
+      $my_template->setValue('tituloInvestigador', 'Dr/Dra');
+      $my_template->setValue('investigadorPrincipal', $datos[16]);
+    }
+
+    // Documento Archivo muerto
+    if (90 == $formato['documento_formato_id']) {
+      $my_template->setValue('codigoUis', $codigoUIS);
+      $my_template->setValue('fecha', $datos[0]);
+      $my_template->setValue('caja', $datos[1]);
+      $my_template->setValue('allc', $datos[2]);
+    }
+
+    // Documento Cambio de domicilio 
+    if (91 == $formato['documento_formato_id']) {
+      $my_template->setValue('lugar', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('destinatario', $datos[2]);
+      $my_template->setValue('puestoDestinatario', $datos[3]);
+      $my_template->setValue('empresa', $datos[4]);
+      $my_template->setValue('codigo', $datos[5]);
+      $my_template->setValue('titulo', $datos[6]);
+      $my_template->setValue('patrocinador', $datos[7]);
+      $my_template->setValue('tituloDestinatario', $datos[8]);
+      $my_template->setValue('apellidoDestinatario', $datos[9]);
+      $my_template->setValue('domicilio', $datos[10]);
+      $my_template->setValue('quienNotifica', $datos[11]);
+      $my_template->setValue('puesto', $datos[12]);
     }
 
     try{
