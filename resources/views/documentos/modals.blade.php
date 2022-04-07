@@ -57,12 +57,11 @@
 
             <!-- Datos ID -->
             {!! Form::hidden('documentoformato_id', null, ['id' => 'documentoformato_id']) !!}
-            {!! Form::hidden('empresaid_presentacion', session('id_empresa'), ['id' => 'empresaid_presentacion']) !!}
-            {!! Form::hidden('empresa_id', null, ['id' => 'empresa_id']) !!}
+            {!! Form::hidden('empresa_id', session('id_empresa'), ['id' => 'empresa_id']) !!}
             {!! Form::hidden('menu_id', null, ['id' => 'menu_id']) !!}
+            {!! Form::hidden('formato_id', null, ['id' => 'formato_id']) !!}
             {!! Form::hidden('proyecto_id', null, ['id' => 'proyecto_id']) !!}
             {{-- {!! Form::hidden('user_id', null, ['id' => 'user_id']) !!} --}}
-            {!! Form::hidden('formato_id', null, ['id' => 'formato_id']) !!}
 
             <div class="container-fluid" id="div0">
                 {!! Form::label('no0', 'Proyecto (Código UIS)', ['class' => 'form-label']) !!}
@@ -73,7 +72,7 @@
             </div>
 
             {{-- Presentacion --}}
-            <div style="display: none" id="body-presentacion">
+            <div style="display: none" id="body-1" name="body-presentacion">
             <div class="modal-body">
                 {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_presentacion']) !!}
 
@@ -151,7 +150,7 @@
             {{-- END Presentacion --}}
 
             {{-- Constancia anual --}}
-            <div style="display: none" id="body-constanciaAnual">
+            <div style="display: none" id="body-0" name="body-constanciaAnual">
             <div class="modal-body">
                 {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_constanciaAnual']) !!}
 
@@ -230,7 +229,7 @@
             {{-- END constancia anual --}}
 
             {{-- Publicidad --}}
-            <div style="display: none" id="body-publicidad">
+            <div style="display: none" id="body-3" name="body-publicidad">
                 <div class="modal-body">
                     {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_publicidad']) !!}
     
@@ -272,7 +271,7 @@
                 {{-- END Publicidad --}}
 
                 {{-- Codigo y titulo --}}
-                <div style="display: none" id="body-codigoTitulo">
+                <div style="display: none" id="body-4" name="body-codigoTitulo">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_codigoTitulo']) !!}
         
@@ -754,7 +753,7 @@
                 {{-- END Codigo y titulo --}}
 
                 {{-- Sometimiento --}}
-                <div style="display: none" id="body-sometimiento">
+                <div style="display: none" id="body-7" name="body-sometimiento">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_sometimiento']) !!}
         
@@ -827,7 +826,7 @@
                 {{-- END Sometimiento --}}
 
                 {{-- Compromisos --}}
-                <div style="display: none" id="body-compromisos">
+                <div style="display: none" id="body-8" name="body-compromisos">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_compromisos']) !!}
         
@@ -937,7 +936,7 @@
                 {{-- END Compromisos --}}
 
                 {{-- Responsabilidades --}}
-                <div style="display: none" id="body-responsabilidades">
+                <div style="display: none" id="body-9" name="body-responsabilidades">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_responsabilidades']) !!}
         
@@ -1245,7 +1244,7 @@
                 {{-- END Responsabilidades --}}
 
                 {{-- Autorizacion --}}
-                <div style="display: none" id="body-autorizacion">
+                <div style="display: none" id="body-10" name="body-autorizacion">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_autorizacion']) !!}
         
@@ -1323,7 +1322,7 @@
                 {{-- END Autorizacion --}}
 
                 {{-- Instalaciones --}}
-                <div style="display: none" id="body-instalaciones">
+                <div style="display: none" id="body-11" name="body-instalaciones">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_instalaciones']) !!}
         
@@ -1415,7 +1414,7 @@
                 {{-- END Instalaciones --}}
 
                 {{-- Anticorrupcion --}}
-                <div style="display: none" id="body-anticorrupcion">
+                <div style="display: none" id="body-12" name="body-anticorrupcion">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_anticorupcion']) !!}
         
@@ -1454,7 +1453,7 @@
                 {{-- END Anticorrupcion --}}
 
                 {{-- Destruccioen de materiales --}}
-                <div style="display: none" id="body-destruccionmateriales">
+                <div style="display: none" id="body-27" name="body-destruccionmateriales">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_destruccionMateriales']) !!}
         
@@ -1573,8 +1572,8 @@
                 </div>
                 {{-- END Destruccion de Materiales --}}
 
-                {{-- Destruccioen de productos --}}
-                <div style="display: none" id="body-destruccionproductos">
+                {{-- Destruccion de productos --}}
+                <div style="display: none" id="body-28" name="body-destruccionproductos">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_destruccionProductos']) !!}
         
@@ -1697,7 +1696,7 @@
                 {{-- END Destruccion de Productos --}}
 
                 {{-- Tarjeta de Bolsillo --}}
-                <div style="display: none" id="body-tarjetabolsillo">
+                <div style="display: none" id="body-55" name="body-tarjetabolsillo">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_tarjetaBolsillo']) !!}
         
@@ -1745,7 +1744,7 @@
                 {{-- END Tarjeta de Bolsillo --}}
 
                 {{-- Carpeta documento fuente --}}
-                <div style="display: none" id="body-documentofuente">
+                <div style="display: none" id="body-56" name="body-documentofuente">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_documentoFuente']) !!}
         
@@ -1800,7 +1799,7 @@
                 {{-- END Carpeta documento fuente --}}
 
                 {{-- Carpeta Hoja inicial --}}
-                <div style="display: none" id="body-hojainicial">
+                <div style="display: none" id="body-57" name="body-hojainicial">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_hojaInicial']) !!}
         
@@ -1887,7 +1886,7 @@
                 {{-- END Carpeta Hoja inicial --}}
 
                 {{-- Contacto --}}
-                <div style="display: none" id="body-contacto">
+                <div style="display: none" id="body-58" name="body-contacto">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_contacto']) !!}
         
@@ -2154,7 +2153,7 @@
                 {{-- END Contacto --}}
 
                 {{-- Señalador de visita --}}
-                <div style="display: none" id="body-señaladorvisita">
+                <div style="display: none" id="body-63" name="body-señaladorvisita">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_señaladorVisita']) !!}
         
@@ -2242,7 +2241,7 @@
 
                 {{-- Recibo ICF --}}
                 <!-- TODO: Preguntar por nombre de sujeto y firma del sujeto -->
-                <div style="display: none" id="body-reciboicf">
+                <div style="display: none" id="body-72" name="body-reciboicf">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_reciboICF']) !!}
         
@@ -2328,7 +2327,7 @@
                 {{-- END Recibo ICF --}}
 
                 {{-- Solicitud de resumen --}}
-                <div style="display: none" id="body-solicitudresumen">
+                <div style="display: none" id="body-76" name="body-solicitudresumen">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_solicitudResumen']) !!}
         
@@ -2382,8 +2381,8 @@
                 </div>
                 {{-- END Solicitud de resumen --}}
 
-                {{-- Privacidad de sujetos --}}
-                <div style="display: none" id="body-privicidadsujetos">
+                {{-- Privacidad para sujetos --}}
+                <div style="display: none" id="body-77" name="body-privicidadsujetos">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_privacidadSujetos']) !!}
         
@@ -2445,7 +2444,7 @@
                 {{-- END Privacidad de sujetos --}}
 
                 {{-- Privacidad y datos --}}
-                <div style="display: none" id="body-privacidaddatos">
+                <div style="display: none" id="body-0" name="body-privacidaddatos">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_privacidadDatos']) !!}
         
@@ -2500,7 +2499,7 @@
                 {{-- END Privacidad y datos --}}
 
                 {{-- Orden de compra --}}
-                <div style="display: none" id="body-ordencompra">
+                <div style="display: none" id="body-79" name="body-ordencompra">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_ordenCompra']) !!}
         
@@ -2582,7 +2581,7 @@
                 {{-- END Orden de compra --}}
 
                 {{-- Envío de muestras --}}
-                <div style="display: none" id="body-enviomuestras">
+                <div style="display: none" id="body-80" name="body-enviomuestras">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_envioMuestras']) !!}
         
@@ -2725,7 +2724,7 @@
                 {{-- END Envío de muestras --}}
 
                 {{-- Orden de compra hospital --}}
-                <div style="display: none" id="body-ordencomprahospital">
+                <div style="display: none" id="body-81" name="body-ordencomprahospital">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_ordenCompraHospital']) !!}
         
@@ -2842,7 +2841,7 @@
                 {{-- END Orden de compra hospital --}}
 
                 {{-- Aviso EAS --}}
-                <div style="display: none" id="body-avisoeas">
+                <div style="display: none" id="body-82" name="body-avisoeas">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_avisoEAS']) !!}
         
@@ -2955,7 +2954,7 @@
                 {{-- END Aviso EAS --}}
 
                 {{-- Aviso SUSAR --}}
-                <div style="display: none" id="body-avisosusar">
+                <div style="display: none" id="body-83" name="body-avisosusar">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_avisoSUSAR']) !!}
         
@@ -3088,7 +3087,7 @@
                 {{-- END Aviso SUSAR --}}
 
                 {{-- Somete desviación --}}
-                <div style="display: none" id="body-sometedesviacion">
+                <div style="display: none" id="body-84" name="body-sometedesviacion">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_someteDesviacion']) !!}
         
@@ -3228,7 +3227,7 @@
                 {{-- END Somete desviación --}}
 
                 {{-- Aviso al CE --}}
-                <div style="display: none" id="body-avisoce">
+                <div style="display: none" id="body-85" name="body-avisoce">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_avisoCE']) !!}
         
@@ -3302,7 +3301,7 @@
                 {{-- END Aviso al CE --}}
 
                 {{-- Fe de erratas --}}
-                <div style="display: none" id="body-fedeerratas">
+                <div style="display: none" id="body-86" name="body-fedeerratas">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_feDeErratas']) !!}
         
@@ -3384,7 +3383,7 @@
                 {{-- END Fe de erratas --}}
 
                 {{-- Renovacion anual --}}
-                <div style="display: none" id="body-renovacionanual">
+                <div style="display: none" id="body-87" name="body-renovacionanual">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_renovacionAnual']) !!}
         
@@ -3571,7 +3570,7 @@
                 {{-- END Renovación anual --}}
 
                 {{-- Informte técnico --}}
-                <div style="display: none" id="body-informetecnico">
+                <div style="display: none" id="body-88" name="body-informetecnico">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_informeTecnico']) !!}
         
@@ -3774,7 +3773,7 @@
                 {{-- END Informe técnico --}}
 
                 {{-- Aviso de cierre --}}
-                <div style="display: none" id="body-avisocierre">
+                <div style="display: none" id="body-89" name="body-avisocierre">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_avisoCierre']) !!}
         
@@ -3957,8 +3956,55 @@
                 </div>
                 {{-- END Aviso de cierre --}}
 
+                {{-- Archivo muerto --}}
+                <div style="display: none" id="body-90" name="body-archivomuerto">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_archivoMuerto']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('90no1', '1. Código UIS', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="far fa-archive"></i></span>
+                                {!! Form::text('90no1', null, ['class' => 'form-control', 'placeholder' => 'Código UIS', 'readonly','required']) !!}
+                                {{-- {!! Form::select('90no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('90no2', '2. Depurar en Fecha', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {!! Form::date('90no2', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div3">
+                            {!! Form::label('90no3', '3. # Caja', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                {!! Form::number('90no3', null, ['class' => 'form-control', 'placeholder' => '# Caja', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div4">
+                            {!! Form::label('90no4', '4. Total Cajas', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                {!! Form::number('90no4', null, ['class' => 'form-control', 'placeholder' => 'Total Cajas', 'required']) !!}
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCarchivomuerto" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGarchivomuerto" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Archivo muerto --}}
+
                 {{-- Cambio de domicilio --}}
-                <div style="display: none" id="body-cambiodomicilio">
+                <div style="display: none" id="body-91" name="body-cambiodomicilio">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_cambioDomicilio']) !!}
         

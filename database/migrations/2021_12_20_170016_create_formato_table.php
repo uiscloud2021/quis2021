@@ -18,7 +18,6 @@ class CreateFormatoTable extends Migration
         Schema::create('formato', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('documento_formato_id');
-            // TODO: Eliminar la columna de datos, ya no es necesario
             $table->json('datos_json')->nullable();
             $table->unsignedBigInteger('empresa_id')->nullable();
             $table->unsignedBigInteger('menu_id')->nullable();

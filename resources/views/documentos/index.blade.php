@@ -64,32 +64,7 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="esquemas" role="tabpanel" aria-labelledby="esquemas-tab">
                         <!--CARUOSEL-->
-                        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                              <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                              <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                              <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                              <div class="carousel-item active">
-                                <img src="https://www.quis.com.mx/quis/areas/sitio/formatos/SC/EQ-SC-1.png" class="mx-auto d-block w-10" alt="...">
-                              </div>
-                              <div class="carousel-item">
-                                <img src="https://www.quis.com.mx/quis/areas/sitio/formatos/SC/EQ-SC-2.png" class="mx-auto d-block w-10" alt="...">
-                              </div>
-                              <div class="carousel-item">
-                                <img src="https://www.quis.com.mx/quis/areas/sitio/formatos/SC/EQ-SC-3.png" class="mx-auto d-block w-10" alt="...">
-                              </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Next</span>
-                            </button>
-                        </div>
+                        
                         <!--CAROUSEL END-->
                     </div>
 
@@ -290,7 +265,7 @@
                             <div align="right">
                                 {{-- TODO: cambiar el metodo, que se va a mandar a llamar en el JS-documentos --}}
                                 {{-- <button type="button" class="btn btn-primary" onclick="CreateSeguimiento();"> --}}
-                                <a target="_blank" rel="noreferrer noopener" href="{{url('sc/documentos/pdf/23')}}" class="btn btn-primary"><span class="fas fa-file"></span> 
+                                <a target="_blank" rel="noreferrer noopener" href="" class="btn btn-primary"><span class="fas fa-file"></span> 
                                     {{ __('PDF') }}</a> 
                                     <!-- TODO: Enviar en el metodo el id del formato para decidir que mola usar o si se abre una ventana nueva -->
                                 <button id="new_format" type="button" class="btn btn-primary"  onclick="CreateFormato();">
@@ -356,5 +331,5 @@
     <!-- Select2 -->
     <script src="{{ asset('vendor/select2/js/select2.full.js') }}"></script>
 
-    <script src="{{ asset('js/documentos.js?153') }}"></script>
+    <script src="{{ asset('js/documentos.js?154') }}"></script>
 @stop

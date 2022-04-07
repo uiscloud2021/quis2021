@@ -82,7 +82,7 @@ $("#doc_formatos").change(
     function(){
         // alert(this.value);
         list_formatos();
-        select_content_modal(this.value);
+        select_content_modal(this.value, $("#" + this.id + " option:selected").text());
     }
 );
 
@@ -1021,6 +1021,8 @@ $('#no0').change(
                 $("#89no6").val(proyect[0]['razon_social']);//sitio clinico direccion
                 $("#89no17").val(proyect[0]['investigador']);//Investigador
 
+                $("#90no1").val(proyect[0]['no18']);//codigo UIS 
+
                 // TODO Cambiar por la ciudad correcta
                 $("#91no1").val(proyect[0]['razon_social']);//ciudad
                 $("#91no6").val(proyect[0]['no20']);//Código
@@ -1038,6 +1040,8 @@ $('#no0').change(
 // Borrar campos -- reset form
 function borrar_campos() {
     documento_formato_id = $("#doc_formatos").val();
+
+    $("#no0").val('Seleccione un proyecto...');
 
     $("#documentoformato_id").val(null);
     $("#empresa_id").val(null);
@@ -1077,6 +1081,7 @@ function borrar_campos() {
     $("#formcreate_renovacionAnual")[0].reset();
     $("#formcreate_informeTecnico")[0].reset();
     $("#formcreate_avisoCierre")[0].reset();
+    $("#formcreate_archivoMuerto")[0].reset();
     $("#formcreate_cambioDomicilio")[0].reset();
 
     if (publicidad_req_count > 3) {
@@ -1272,1362 +1277,119 @@ function borrar_campos() {
 // Limpiar los campos - botones cancelar -
 $('#btnCpresentacion').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCconstanciaAnual').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCpublicidad').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCcodigotitulo').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCsometimiento').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCcompromisos').click(function() {
     borrar_campos();
-    list_formatos();
 })
 $('#btnCresponsabilidades').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCautorizacion').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCinstalaciones').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCanticorrupcion').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCdestruccionMateriales').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCdestruccionProductos').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCtarjetabolsillo').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCdocumentofuente').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnChojainicial').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCcontacto').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCseñaladorvisita').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCreciboicf').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCsolicitudresumen').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCprivacidadsujetos').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCprivacidaddatos').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCordencompra').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCenviomuestras').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCordencomprahospital').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCavisoeas').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCavisosusar').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCsometedesviacion').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCavisoce').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCfedeerrata').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCrenovacionanual').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCinformetecnico').click(function(){
     borrar_campos();
-    list_formatos();
 })
 $('#btnCavisocierre').click(function(){
     borrar_campos();
-    list_formatos();
+})
+$('#btnCarchivomuerto').click(function(){
+    borrar_campos();
 })
 $('btnCcambiodomicilio').click(function(){
     borrar_campos();
-    list_formatos();
 })
 // END Limpiar campos - botones cancelar -
 
 // Metodo para seleccionar el form del modal
-function select_content_modal(documento_formato_id) {
-    $("#createModalLabel").text('Nuevo Formato');
-    $("#body-presentacion").hide();
-    $("#body-constanciaAnual").hide();
-    $("#body-publicidad").hide();
-    $("#body-codigoTitulo").hide();
-    $("#body-sometimiento").hide();
-    $("#body-compromisos").hide();
-    $("#body-responsabilidades").hide();
-    $("#body-autorizacion").hide();
-    $("#body-instalaciones").hide();
-    $("#body-anticorrupcion").hide();
-    $("#body-destruccionmateriales").hide();
-    $("#body-destruccionproductos").hide();
-    $("#body-tarjetabolsillo").hide();
-    $("#body-documentofuente").hide();
-    $("#body-hojainicial").hide();
-    $("#body-contacto").hide();
-    $("#body-señaladorvisita").hide();
-    $("#body-reciboicf").hide();
-    $("#body-solicitudresumen").hide();
-    $("#body-privicidadsujetos").hide();
-    $("#body-privacidaddatos").hide();
-    $("#body-ordencompra").hide();
-    $("#body-enviomuestras").hide();
-    $("#body-ordencomprahospital").hide();
-    $("#body-avisoeas").hide();
-    $("#body-avisosusar").hide();
-    $("#body-sometedesviacion").hide();
-    $("#body-avisoce").hide();
-    $("#body-fedeerratas").hide();
-    $("#body-renovacionanual").hide();
-    $("#body-informetecnico").hide();
-    $("#body-avisocierre").hide();
-    $("#body-cambiodomicilio").hide();
+function select_content_modal(documento_formato_id, nombre_formato) {
 
-    if (documento_formato_id == 1) {
-        $("#createModalLabel").text('Nuevo Formato Presentación');
-        $("#body-presentacion").show();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 2) {
-        $("#createModalLabel").text('Nuevo Formato Constancia Anual');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").show();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 3) {
-        $("#createModalLabel").text('Nuevo Formato Publicidad');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").show();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 4) {
-        $("#createModalLabel").text('Nuevo Formato Códigos y Títulos');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").show();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 7) {
-        $("#createModalLabel").text('Nuevo Formato Sometimiento');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").show();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 8) {
-        $("#createModalLabel").text('Nuevo Formato Compromisos');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").show();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 9) {
-        $("#createModalLabel").text('Nuevo Formato Responsabilidades');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").show();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 10) {
-        $("#createModalLabel").text('Nuevo Formato Autorización');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").show();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 11) {
-        $("#createModalLabel").text('Nuevo Formato Instalaciones');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").show();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 12) {
-        $("#createModalLabel").text('Nuevo Formato Instalaciones');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").show();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 27) {
-        $("#createModalLabel").text('Nuevo Formato Destrucción de materiales');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").show();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 28) {
-        $("#createModalLabel").text('Nuevo Formato Destrucción de productos');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").show();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 55) {
-        $("#createModalLabel").text('Nuevo Formato Tarjeta de bolsillo');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").show();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 56) {
-        $("#createModalLabel").text('Nuevo Formato Documento fuente');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").show();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 57) {
-        $("#createModalLabel").text('Nuevo Formato Hoja inicial');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").show();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 58) {
-        $("#createModalLabel").text('Nuevo Formato contacto');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").show();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 63) {
-        $("#createModalLabel").text('Nuevo Formato Señalador de visita');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").show();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 72) {
-        $("#createModalLabel").text('Nuevo Formato Recibo ICF');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").show();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 76) {
-        $("#createModalLabel").text('Nuevo Formato Solicitud de resumen');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").show();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 77) {
-        $("#createModalLabel").text('Nuevo Formato Privacidad de sujetos');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").show();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 78) {
-        $("#createModalLabel").text('Nuevo Formato Privacidad y datos');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").show();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 79) {
-        $("#createModalLabel").text('Nuevo Formato Orden de compra');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").show();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 80) {
-        $("#createModalLabel").text('Nuevo Formato Envío de muestras');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").show();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 81) {
-        $("#createModalLabel").text('Nuevo Formato Orden de compra hospital');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").show();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 82) {
-        $("#createModalLabel").text('Nuevo Formato Aviso EAS');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").show();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 83) {
-        $("#createModalLabel").text('Nuevo Formato Aviso SUSAR');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").show();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 84) {
-        $("#createModalLabel").text('Nuevo Formato Somete desviación');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").show();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 85) {
-        $("#createModalLabel").text('Nuevo Formato Aviso al CE');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").show();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 86) {
-        $("#createModalLabel").text('Nuevo Formato Fe de erratas');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").show();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 87) {
-        $("#createModalLabel").text('Nuevo Formato Renovación anual');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").show();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 88) {
-        $("#createModalLabel").text('Nuevo Formato Informe técnico');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").show();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 89) {
-        $("#createModalLabel").text('Nuevo Formato Aviso de cierre');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").show();
-        $("#body-cambiodomicilio").hide();
-    }
-    if (documento_formato_id == 91) {
-        $("#createModalLabel").text('Nuevo Formato Cambio de Domicilio');
-        $("#body-presentacion").hide();
-        $("#body-constanciaAnual").hide();
-        $("#body-publicidad").hide();
-        $("#body-codigoTitulo").hide();
-        $("#body-sometimiento").hide();
-        $("#body-compromisos").hide();
-        $("#body-responsabilidades").hide();
-        $("#body-autorizacion").hide();
-        $("#body-instalaciones").hide();
-        $("#body-anticorrupcion").hide();
-        $("#body-destruccionmateriales").hide();
-        $("#body-destruccionproductos").hide();
-        $("#body-tarjetabolsillo").hide();
-        $("#body-documentofuente").hide();
-        $("#body-hojainicial").hide();
-        $("#body-contacto").hide();
-        $("#body-señaladorvisita").hide();
-        $("#body-reciboicf").hide();
-        $("#body-solicitudresumen").hide();
-        $("#body-privicidadsujetos").hide();
-        $("#body-privacidaddatos").hide();
-        $("#body-ordencompra").hide();
-        $("#body-enviomuestras").hide();
-        $("#body-ordencomprahospital").hide();
-        $("#body-avisoeas").hide();
-        $("#body-avisosusar").hide();
-        $("#body-sometedesviacion").hide();
-        $("#body-avisoce").hide();
-        $("#body-fedeerratas").hide();
-        $("#body-renovacionanual").hide();
-        $("#body-informetecnico").hide();
-        $("#body-avisocierre").hide();
-        $("#body-cambiodomicilio").show();
+    $("#createModalLabel").text('Nuevo Formato ' + nombre_formato);
+
+    for (let i = 1; i < 91; i++) {
+        if (documento_formato_id == i) {
+            $("#body-" + i).show();
+        } else {
+            $("#body-" + i).hide();
+        }
     }
 }
 // END Metodo para seleccionar form del modal
@@ -7508,6 +6270,105 @@ $('#formcreate_avisoCierre').on('submit', function(e) {
     
 });
 // END Submit Aviso de Cierre
+
+
+// Submit Archivo Muerto 
+$('#formcreate_archivoMuerto').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    user_id = $('#user_id').val();
+    
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    // TODO: En el controller usar el empresa_id de los providers
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('user_id', user_id);
+    // formData.append('_token', $('input[name=_token]').val()); 
+
+    if (!formato_id) {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                // dataType: 'json',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
+                    }
+    
+                }
+            });
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    } else {
+        if(documentoformato_id!="" && proyecto_id ){
+
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                    }
+                    $('#formato_id').val(null);
+                }
+            });
+
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    }
+    
+});
+// END Submit Archiv Muerto
 
 
 // Submit Cambio de domicilio

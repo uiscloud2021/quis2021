@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Documentos;
 use App\Models\Documentos\Documentos_capacitacion;
 use App\Models\Documentos\Documentos_instructivos;
 use App\Models\Documentos\Documentos_manuales;
@@ -35,6 +34,7 @@ class DocumentosController extends Controller
   public function index()
   {
 
+    // TODO: hacer una condicion para que solo muestre los documentos de esa area o los solo los de determinada empresa
     $documentos_manuales = Documentos_manuales::all();
     $documentos_procesos = Documentos_procesos::all();
     $documentos_capacitacion = Documentos_capacitacion::all();
@@ -674,10 +674,10 @@ class DocumentosController extends Controller
 
     // Documento Archivo muerto
     if (90 == $formato['documento_formato_id']) {
-      $my_template->setValue('codigoUis', $codigoUIS);
-      $my_template->setValue('fecha', $datos[0]);
-      $my_template->setValue('caja', $datos[1]);
-      $my_template->setValue('allc', $datos[2]);
+      $my_template->setValue('codigoUis', $datos[0]);
+      $my_template->setValue('fecha', $datos[1]);
+      $my_template->setValue('caja', $datos[2]);
+      $my_template->setValue('allc', $datos[3]);
     }
 
     // Documento Cambio de domicilio 
@@ -700,7 +700,7 @@ class DocumentosController extends Controller
     try{
       $my_template->saveAs(storage_path( '../public/assets/SC-documents/' . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
     }catch (Exception $e){
-        //handle exception
+      return back()->withError($e->getMessage())->withInput();
     }
 
     return response()->download(storage_path( '../public/assets/SC-documents/'  . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] ));
@@ -781,6 +781,7 @@ class DocumentosController extends Controller
 
       return json_encode($proyectos);
     }else{
+      // TODO: cambiar para que sean los proyectos de la empresa en la que esta
       $proyectos = Proyecto::all()->toJson();
 
       return json_encode($proyectos);
@@ -884,7 +885,7 @@ class DocumentosController extends Controller
 
         //count para saber cuantos datos son, dependiendo del formulario
         $countArray = count($datos_array);
-        // TODO: ver que onda con el ultimo valor no se guarda
+        // TODO: ver que onda con el ultimo valor no se guarda,   ----  talvez ya resuelto 
         for ($i=1; $i < $countArray - 6; $i++) { 
           $key = $documento_formato_id . 'no' . $i;
           $datos[] = $datos_array[$key];
