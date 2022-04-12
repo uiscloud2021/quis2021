@@ -1311,6 +1311,9 @@ $('#btnCdestruccionMateriales').click(function(){
 $('#btnCdestruccionProductos').click(function(){
     borrar_campos();
 })
+$('#btnCnotaarchivo').click(function(){
+    borrar_campos();
+})
 $('#btnCtarjetabolsillo').click(function(){
     borrar_campos();
 })
@@ -1323,10 +1326,40 @@ $('#btnChojainicial').click(function(){
 $('#btnCcontacto').click(function(){
     borrar_campos();
 })
+$('#btnCeventoadverso').click(function(){
+    borrar_campos();
+})
+$('#btnCmedicamentosconta').click(function(){
+    borrar_campos();
+})
+$('#btnCmedicamentoestudio').click(function(){
+    borrar_campos();
+})
+$('#btnChitoriaclinica').click(function(){
+    borrar_campos();
+})
 $('#btnCseñaladorvisita').click(function(){
     borrar_campos();
 })
+$('#btnCvisitasd').click(function(){
+    borrar_campos();
+})
+$('#btnCnotamedica').click(function(){
+    borrar_campos();
+})
+$('#btnCnpreseleccion').click(function(){
+    borrar_campos();
+})
+$('#btnCseleccion').click(function(){
+    borrar_campos();
+})
+$('#btnCdocconsentimiento').click(function(){
+    borrar_campos();
+})
 $('#btnCreciboicf').click(function(){
+    borrar_campos();
+})
+$('#btnCcarnetviaticos').click(function(){
     borrar_campos();
 })
 $('#btnCsolicitudresumen').click(function(){
@@ -1384,7 +1417,9 @@ function select_content_modal(documento_formato_id, nombre_formato) {
 
     $("#createModalLabel").text('Nuevo Formato ' + nombre_formato);
 
-    for (let i = 1; i < 91; i++) {
+    ultimo_id = $('#last_format').val();
+
+    for (let i = 1; i <= ultimo_id; i++) {
         if (documento_formato_id == i) {
             $("#body-" + i).show();
         } else {
@@ -2469,6 +2504,8 @@ $("#wrapper_fedeerratas").on('click', '.remove_button', function(e) {
 
 
 
+
+
 // Metodos submit de los forms 
 // Submit - presentacion
 $('#formcreate_presentacion').on('submit', function(e) {
@@ -2525,7 +2562,9 @@ $('#formcreate_presentacion').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -2561,7 +2600,9 @@ $('#formcreate_presentacion').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -2624,7 +2665,9 @@ $('#formcreate_constanciaAnual').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -2660,7 +2703,9 @@ $('#formcreate_constanciaAnual').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -2739,7 +2784,9 @@ $('#formcreate_publicidad').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -2781,7 +2828,9 @@ $('#formcreate_publicidad').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -2844,7 +2893,9 @@ $('#formcreate_codigoTitulo').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -2880,7 +2931,9 @@ $('#formcreate_codigoTitulo').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -2959,7 +3012,9 @@ $('#formcreate_sometimiento').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -3001,7 +3056,9 @@ $('#formcreate_sometimiento').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -3063,7 +3120,9 @@ $('#formcreate_compromisos').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -3099,7 +3158,9 @@ $('#formcreate_compromisos').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -3184,7 +3245,9 @@ $('#formcreate_responsabilidades').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -3226,7 +3289,9 @@ $('#formcreate_responsabilidades').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -3289,7 +3354,9 @@ $('#formcreate_autorizacion').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -3325,7 +3392,9 @@ $('#formcreate_autorizacion').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -3404,7 +3473,9 @@ $('#formcreate_instalaciones').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -3446,7 +3517,9 @@ $('#formcreate_instalaciones').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -3509,7 +3582,9 @@ $('#formcreate_anticorupcion').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -3545,7 +3620,9 @@ $('#formcreate_anticorupcion').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -3624,7 +3701,9 @@ $('#formcreate_destruccionMateriales').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -3666,7 +3745,9 @@ $('#formcreate_destruccionMateriales').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -3745,7 +3826,9 @@ $('#formcreate_destruccionProductos').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -3787,7 +3870,9 @@ $('#formcreate_destruccionProductos').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -3850,7 +3935,9 @@ $('#formcreate_tarjetaBolsillo').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -3886,7 +3973,9 @@ $('#formcreate_tarjetaBolsillo').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -3949,7 +4038,9 @@ $('#formcreate_documentoFuente').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -3985,7 +4076,9 @@ $('#formcreate_documentoFuente').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -4048,7 +4141,9 @@ $('#formcreate_hojaInicial').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -4084,7 +4179,9 @@ $('#formcreate_hojaInicial').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -4147,7 +4244,9 @@ $('#formcreate_contacto').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -4183,7 +4282,9 @@ $('#formcreate_contacto').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -4246,7 +4347,9 @@ $('#formcreate_señaladorVisita').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -4282,7 +4385,9 @@ $('#formcreate_señaladorVisita').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -4345,7 +4450,9 @@ $('#formcreate_reciboICF').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -4381,7 +4488,9 @@ $('#formcreate_reciboICF').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -4444,7 +4553,9 @@ $('#formcreate_solicitudResumen').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -4480,7 +4591,9 @@ $('#formcreate_solicitudResumen').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -4543,7 +4656,9 @@ $('#formcreate_privacidadSujetos').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -4579,7 +4694,9 @@ $('#formcreate_privacidadSujetos').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -4642,7 +4759,9 @@ $('#formcreate_privacidadDatos').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -4678,7 +4797,9 @@ $('#formcreate_privacidadDatos').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -4756,7 +4877,9 @@ $('#formcreate_ordenCompra').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -4798,7 +4921,9 @@ $('#formcreate_ordenCompra').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -4861,7 +4986,9 @@ $('#formcreate_envioMuestras').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -4897,7 +5024,9 @@ $('#formcreate_envioMuestras').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -5214,7 +5343,9 @@ $('#formcreate_ordenCompraHospital').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -5364,7 +5495,9 @@ $('#formcreate_ordenCompraHospital').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -5443,7 +5576,9 @@ $('#formcreate_avisoEAS').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -5485,7 +5620,9 @@ $('#formcreate_avisoEAS').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -5564,7 +5701,9 @@ $('#formcreate_avisoSUSAR').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -5606,7 +5745,9 @@ $('#formcreate_avisoSUSAR').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -5685,7 +5826,9 @@ $('#formcreate_someteDesviacion').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -5727,7 +5870,9 @@ $('#formcreate_someteDesviacion').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -5805,7 +5950,9 @@ $('#formcreate_avisoCE').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -5847,7 +5994,9 @@ $('#formcreate_avisoCE').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -5925,7 +6074,9 @@ $('#formcreate_feDeErratas').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -5967,7 +6118,9 @@ $('#formcreate_feDeErratas').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -6030,7 +6183,9 @@ $('#formcreate_renovacionAnual').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -6066,7 +6221,9 @@ $('#formcreate_renovacionAnual').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -6129,7 +6286,9 @@ $('#formcreate_informeTecnico').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -6165,7 +6324,9 @@ $('#formcreate_informeTecnico').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -6228,7 +6389,9 @@ $('#formcreate_avisoCierre').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -6264,7 +6427,9 @@ $('#formcreate_avisoCierre').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -6327,7 +6492,9 @@ $('#formcreate_archivoMuerto').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -6363,7 +6530,9 @@ $('#formcreate_archivoMuerto').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
@@ -6426,7 +6595,9 @@ $('#formcreate_cambioDomicilio').on('submit', function(e) {
                 }
             });
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     } else {
         if(documentoformato_id!="" && proyecto_id ){
@@ -6462,9 +6633,687 @@ $('#formcreate_cambioDomicilio').on('submit', function(e) {
             });
 
         }else{
-            alert("Seleccione un proyecto");
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
     
 });
 // END Submit Cambio de domicilio
+
+
+
+
+
+
+// Metodos para descargar los archivos con excepciones 
+// Generar y descargar archivo Nota al archivo 
+$('#formcreate_notaArchivo').on('submit', function(e) {
+    e.preventDefault();
+    id = 'notaArchivo';
+    var formData = new FormData();
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('id', id);
+    formData.append('_token', $('input[name=_token]').val());
+
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    // $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+
+                    // alert(resp);
+
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
+                    }
+    
+                }
+            });
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+        }
+    
+});
+// END Generar y descargar documento nota al archivo
+
+
+// Generar y descargar documento Eventos adversos
+$('#formcreate_eventosAdversos').on('submit', function(e) {
+    e.preventDefault();
+    id = 'eventosAdversos';
+    var formData = new FormData();
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('id', id);
+    formData.append('_token', $('input[name=_token]').val());
+
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    // $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+
+                    // alert(resp);
+
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
+                    }
+    
+                }
+            });
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+        }
+    
+});
+// END Generar y descargar documento Eventos adversos
+
+
+// Generar y descargar documento Medicamentos 
+$('#formcreate_medicamentosContaminantes').on('submit', function(e) {
+    e.preventDefault();
+    id = 'medicamentosContaminantes';
+    var formData = new FormData();
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('id', id);
+    formData.append('_token', $('input[name=_token]').val());
+
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    // $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+
+                    // alert(resp);
+
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
+                    }
+    
+                }
+            });
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+        }
+    
+});
+// END Generar y descargar documentos Medicamentos contaminantes
+
+
+// Generar y descargar documentos Medicamento de estudio
+$('#formcreate_medicamentoEstudio').on('submit', function(e) {
+    e.preventDefault();
+    id = 'medicamentoEstudio';
+    var formData = new FormData();
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('id', id);
+    formData.append('_token', $('input[name=_token]').val());
+
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    // $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+
+                    // alert(resp);
+
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
+                    }
+    
+                }
+            });
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+        }
+    
+});
+// END Generar y descargar documentos Medicamento de estudio
+
+
+// Generar y descargar documento Historia clinica
+$('#formcreate_historiaClinica').on('submit', function(e) {
+    e.preventDefault();
+    id = 'historiaClinica';
+    var formData = new FormData();
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('id', id);
+    formData.append('_token', $('input[name=_token]').val());
+
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    // $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+
+                    // alert(resp);
+
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
+                    }
+    
+                }
+            });
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+        }
+    
+});
+// END Generar y descargar documento Historia clinica
+
+
+// Generar y descargar documento Visita SD
+$('#formcreate_visitaSD').on('submit', function(e) {
+    e.preventDefault();
+    id = 'visitaSD';
+    var formData = new FormData();
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('id', id);
+    formData.append('_token', $('input[name=_token]').val());
+
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    // $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+
+                    // alert(resp);
+
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
+                    }
+    
+                }
+            });
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+        }
+    
+});
+// END Generar y descargar documento Visita SD
+
+
+// Generar y descargar documento Nota medica
+$('#formcreate_notaMedica').on('submit', function(e) {
+    e.preventDefault();
+    id = 'notaMedica';
+    var formData = new FormData();
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('id', id);
+    formData.append('_token', $('input[name=_token]').val());
+
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    // $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+
+                    // alert(resp);
+
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
+                    }
+    
+                }
+            });
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+        }
+    
+});
+// END Generar y descargar documento Nota medica
+
+
+// Generar y descargar documento Pre-seleccion
+$('#formcreate_preSeleccion').on('submit', function(e) {
+    e.preventDefault();
+    id = 'preSeleccion';
+    var formData = new FormData();
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('id', id);
+    formData.append('_token', $('input[name=_token]').val());
+
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    // $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+
+                    // alert(resp);
+
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
+                    }
+    
+                }
+            });
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+        }
+    
+});
+// END Generar y descargar documento Pre-seleccion
+
+
+// Generar y descargar documento Seleccion 
+$('#formcreate_seleccion').on('submit', function(e) {
+    e.preventDefault();
+    id = 'seleccion';
+    var formData = new FormData();
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('id', id);
+    formData.append('_token', $('input[name=_token]').val());
+
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    // $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+
+                    // alert(resp);
+
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
+                    }
+    
+                }
+            });
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+        }
+    
+});
+// END Generar y descargar documento Seleccion
+
+
+// Generar y descargar documento Documentacion consentimiento
+$('#formcreate_docConsentimiento').on('submit', function(e) {
+    e.preventDefault();
+    id = 'docConsentimiento';
+    var formData = new FormData();
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('id', id);
+    formData.append('_token', $('input[name=_token]').val());
+
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    // $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+
+                    // alert(resp);
+
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
+                    }
+    
+                }
+            });
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+        }
+    
+});
+// END Generar y descargar documento Documentacion consentimiento
+
+
+// Generar y descargar documento Carnet de viaticos 
+$('#formcreate_carnetViaticos').on('submit', function(e) {
+    e.preventDefault();
+    id = 'carnetViaticos';
+    var formData = new FormData();
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('id', id);
+    formData.append('_token', $('input[name=_token]').val());
+
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    // $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+
+                    // alert(resp);
+
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        // $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
+                    }
+    
+                }
+            });
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+        }
+    
+});
+// END Generar y descargar documento Carnet de viaticos

@@ -170,6 +170,9 @@ Route::post('/documentos/download_formato', 'App\Http\Controllers\DocumentosCont
 Route::post('/documentos/list_proyectos', 'App\Http\Controllers\DocumentosController@list_proyectos')->name('documentos.list_proyectos');
 // Prueba generar pdf
 Route::get('sc/documentos/pdf/{id}', [DocumentosController::class,'pdf'])->name('documentos.pdf');
+// Route::get('sc/documentos/pdf/{idFormato}/{idProyecto}', [DocumentosController::class, 'pdf'])->name('documentos.pdf');
+// Descargar documento
+Route::get('sc/documentos/descargar/pdf/{ruta}', [DocumentosController::class, 'download'])->name('documentos.download');
 
 //RECURSOS FACTIBILIDAD SC
 Route::resource('factibilidad', FactibilidadController::class);

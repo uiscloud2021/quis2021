@@ -41,8 +41,10 @@ class DocumentosController extends Controller
     $documentos_instructivos = Documentos_instructivos::all();
     $documentos_procedimientos = Documentos_procedimientos::all();
     $documentos_formatos = Documentos_formatos::orderBy('nombre_doc', 'asc')->pluck('nombre_doc', 'id');
+    $last_format = Documentos_formatos::orderBy('id', 'desc')->select('id')->first();
+    $last_format = $last_format->id;
     
-    return view('documentos.index', compact('documentos_manuales', 'documentos_procesos', 'documentos_capacitacion', 'documentos_instructivos', 'documentos_procedimientos', 'documentos_formatos'));
+    return view('documentos.index', compact('documentos_manuales', 'documentos_procesos', 'documentos_capacitacion', 'documentos_instructivos', 'documentos_procedimientos', 'documentos_formatos', 'last_format'));
 
   }
 
@@ -698,6 +700,7 @@ class DocumentosController extends Controller
     }
 
     try{
+      // TODO: cambiar el nombre para que tenga el id del formato para diferenciarlos y que no se sobreescriban 
       $my_template->saveAs(storage_path( '../public/assets/SC-documents/' . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
     }catch (Exception $e){
       return back()->withError($e->getMessage())->withInput();
@@ -802,6 +805,13 @@ class DocumentosController extends Controller
       
   }
 
+  public function download(Request $request, $ruta)
+  {		
+    // dd($ruta);
+    return response()->download(storage_path('../public/assets/SC-documents/'  .  $ruta ));
+      
+  }
+
   /**
    * Store a newly created resource in storage.
    *
@@ -812,51 +822,182 @@ class DocumentosController extends Controller
   {		
 
     if ($request->ajax()) {
-      // //VALIDAR CAMPOS
-      $request->validate([
-        'documentoformato_id' => 'required',
-        'proyecto_id' => 'required',
-      ]);
 
-      // //id usuario loggeado
-      $id_user = auth()->id();
-      // //TODO: Buscar los datos del usuario, la empresa y el area(menu) en  un provider o donde sea que se encuentren
-      $documento_formato_id = $request->documentoformato_id;
-      $empresa_id = $request->empresa_id;
-      $proyecto_id = $request->proyecto_id;
-      $menu_id = $request->menu_id;
-      $formato_id = $request->formato_id;
+      // obtener el has_form del formato para ver si se guardan los datos o se genera el arhivo
+      // $documento_formato_id = $request->documentoformato_id;
+      $has_form = Documentos_formatos::where('id', $request->documentoformato_id)->value('has_form');
+      // condicion para crear los archivos que no se guardan
+      if ($has_form == 2) {
 
-      // Create formato
-      if (!$formato_id) {
-        
-        // consulta para seber si ya existe el formato que se guardara
-        //TODO: ver si se guardaran datos "repetidos"
-        // $formato = Formato::where('documento_formato_id', $documento_formato_id)
-        // ->where('empresa_id', $empresa_id)
-        // ->where('menu_id', $menu_id)
-        // ->where('proyecto_id', $proyecto_id)
-        // ->where('user_id', $id_user)
-        // ->get()->first();
+        // $formato = Formato::where('id', $id)->get()->first();
+        // $datos = json_decode($formato->datos_json);
+        $nombreDocumento = Documentos_formatos::where('id', $request->documentoformato_id)->get()->first();
+        $datosProyecto = Proyecto::where('id', $request->proyecto_id)
+        ->get()->first();
+        $proyectos = Proyecto::where('proyectos.id', $request->proyecto_id)
+        ->join('investigadores', 'proyectos.investigador_id', '=', 'investigadores.id')
+        ->join('empresas', 'proyectos.empresa_id', '=', 'empresas.id')
+        ->join('users', 'proyectos.id_user' , '=', 'users.id')
+        ->select('proyectos.*', 'investigadores.*', 'empresas.*', 'users.*')
+        ->get()->first();
+        // $codigoUIS = $codigoUIS->no18;
 
-        $formato = null;
+        $currentTime = Carbon::now();
 
-        $datos_json = json_encode($request->all());
-        $datos_array = json_decode($datos_json, true);
-        $datos = null;
-        
-        //count para saber cuantos datos son, dependiendo del formulario
-        $countArray = count($datos_array);
+        $my_template = new \PhpOffice\PhpWord\TemplateProcessor(storage_path('../public/' . $nombreDocumento['directorio'] . ''));
 
-        for ($i=1; $i < $countArray - 6; $i++) { 
-          $key = $documento_formato_id . 'no' . $i;
-          $datos[] = $datos_array[$key];
+        // Documento Nota al archivo
+        if (54 == $request->documentoformato_id) {
+          $my_template->setValue('codigo', $datosProyecto->no20);
         }
-        $datos = json_encode($datos);
+
+        // Documento Eventos adversos
+        if (59 == $request->documentoformato_id) {
+          $my_template->setValue('codigo', $datosProyecto->no20);
+        }
+
+        // Documento Medicamentos contaminantes
+        if (60 == $request->documentoformato_id) {
+          $my_template->setValue('codigo', $datosProyecto->no20);
+        }
         
-        if (!$formato) {
-          // GUARDAR REGISTROS
-          $formatos = new Formato();
+        // Documento Medicamento de estudio
+        if (61 == $request->documentoformato_id) {
+          $my_template->setValue('codigo', $datosProyecto->no20);
+        }
+
+        // Documento Historia clinica
+        if (62 == $request->documentoformato_id) {
+          $my_template->setValue('codigo', $datosProyecto->no20);
+        }
+        
+        // Documento Visita SD
+        if (64 == $request->documentoformato_id) {
+          $my_template->setValue('codigo', $datosProyecto->no20);
+        }
+        
+        // Documento Nota medica
+        if (65 == $request->documentoformato_id) {
+          $my_template->setValue('codigo', $datosProyecto->no20);
+        }
+        
+        // Documento Pre-seleccion
+        if (66 == $request->documentoformato_id) {
+          $my_template->setValue('codigo', $datosProyecto->no20);
+        }
+        
+        // Documento Seleccion
+        if (67 == $request->documentoformato_id) {
+          $my_template->setValue('codigo', $datosProyecto->no20);
+          $my_template->setValue('titulo', $datosProyecto->no19);
+        }
+        
+        // Documento Seleccion
+        if (71 == $request->documentoformato_id) {
+          $my_template->setValue('codigo', $datosProyecto->no20);
+        }
+        
+        // Documento Carnet de viaticos
+        if (75 == $request->documentoformato_id) {
+          $my_template->setValue('codigo', $datosProyecto->no20);
+          $my_template->setValue('investigadorPrincipal', $proyectos->investigador);
+        }
+
+        try{
+          // TODO: cambiar el nombre para que tenga el id del formato para diferenciarlos y que no se sobreescriban 
+          $my_template->saveAs(storage_path( '../public/assets/SC-documents/' . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
+        }catch (Exception $e){
+          return response(null);
+        }
+    
+        // return response()->download(storage_path( '../public/assets/SC-documents/'  . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] ));
+        return response( $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] );
+        
+      } else {
+
+        // VALIDAR CAMPOS
+        $request->validate([
+          'documentoformato_id' => 'required',
+          'proyecto_id' => 'required',
+        ]);
+
+        // id usuario loggeado
+        $id_user = auth()->id();
+        //TODO: Buscar los datos del usuario, la empresa y el area(menu) en  un provider o donde sea que se encuentren
+        $documento_formato_id = $request->documentoformato_id;
+        $empresa_id = $request->empresa_id;
+        $proyecto_id = $request->proyecto_id;
+        $menu_id = $request->menu_id;
+        $formato_id = $request->formato_id;
+
+        // Create formato
+        if (!$formato_id) {
+          
+          // consulta para seber si ya existe el formato que se guardara
+          //TODO: ver si se guardaran datos "repetidos"
+          // $formato = Formato::where('documento_formato_id', $documento_formato_id)
+          // ->where('empresa_id', $empresa_id)
+          // ->where('menu_id', $menu_id)
+          // ->where('proyecto_id', $proyecto_id)
+          // ->where('user_id', $id_user)
+          // ->get()->first();
+
+          $formato = null;
+
+          $datos_json = json_encode($request->all());
+          $datos_array = json_decode($datos_json, true);
+          $datos = null;
+          
+          //count para saber cuantos datos son, dependiendo del formulario
+          $countArray = count($datos_array);
+
+          for ($i=1; $i < $countArray - 6; $i++) { 
+            $key = $documento_formato_id . 'no' . $i;
+            $datos[] = $datos_array[$key];
+          }
+          $datos = json_encode($datos);
+          
+          if (!$formato) {
+            // GUARDAR REGISTROS
+            $formatos = new Formato();
+            $formatos->documento_formato_id = $request->documentoformato_id;
+            $formatos->datos_json = $datos;
+            //TODO: cambiar para que sea la empresa y el menu correctos
+            $formatos->empresa_id = $empresa_id;
+            $formatos->menu_id = $menu_id;
+            $formatos->proyecto_id = $proyecto_id;
+            $formatos->user_id = $id_user;
+            $formatos-> save();
+
+            if ($formatos) {
+              return response('guardado');
+            }else{
+              return response(null);
+            }
+            
+          }else{
+            return response(null);
+          }
+
+          // Update formato
+        }else{
+
+          $datos_json = json_encode($request->all());
+          $datos_array = json_decode($datos_json, true);
+          $datos = null;
+
+          //count para saber cuantos datos son, dependiendo del formulario
+          $countArray = count($datos_array);
+          // TODO: ver que onda con el ultimo valor no se guarda,   ----  talvez ya resuelto 
+          for ($i=1; $i < $countArray - 6; $i++) { 
+            $key = $documento_formato_id . 'no' . $i;
+            $datos[] = $datos_array[$key];
+          }
+          $datos = json_encode($datos);
+
+
+          $formatos = Formato::find($formato_id);
+
           $formatos->documento_formato_id = $request->documentoformato_id;
           $formatos->datos_json = $datos;
           //TODO: cambiar para que sea la empresa y el menu correctos
@@ -867,50 +1008,14 @@ class DocumentosController extends Controller
           $formatos-> save();
 
           if ($formatos) {
-            return response('guardado');
+            return response('editado');
           }else{
             return response(null);
           }
-          
-        }else{
-          return response(null);
-        }
 
-        // Update formato
-      }else{
-
-        $datos_json = json_encode($request->all());
-        $datos_array = json_decode($datos_json, true);
-        $datos = null;
-
-        //count para saber cuantos datos son, dependiendo del formulario
-        $countArray = count($datos_array);
-        // TODO: ver que onda con el ultimo valor no se guarda,   ----  talvez ya resuelto 
-        for ($i=1; $i < $countArray - 6; $i++) { 
-          $key = $documento_formato_id . 'no' . $i;
-          $datos[] = $datos_array[$key];
-        }
-        $datos = json_encode($datos);
-
-
-        $formatos = Formato::find($formato_id);
-
-        $formatos->documento_formato_id = $request->documentoformato_id;
-        $formatos->datos_json = $datos;
-        //TODO: cambiar para que sea la empresa y el menu correctos
-        $formatos->empresa_id = $empresa_id;
-        $formatos->menu_id = $menu_id;
-        $formatos->proyecto_id = $proyecto_id;
-        $formatos->user_id = $id_user;
-        $formatos-> save();
-
-        if ($formatos) {
-          return response('editado');
-        }else{
-          return response(null);
-        }
-
-      };
+        };
+        
+      }
   
     }
       

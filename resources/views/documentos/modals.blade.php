@@ -50,7 +50,7 @@
         <div class="modal-content" id="content_presentacion">
             <div class="modal-header">
                 <h5 class="modal-title" id="createModalLabel">Nuevo Formato</h5>
-                <button type="button" onclick="borrar_campos(); list_formatos();" class="close" data-bs-dismiss="modal" aria-label="Cancelar">
+                <button type="button" onclick="borrar_campos();" class="close" data-bs-dismiss="modal" aria-label="Cancelar">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -61,6 +61,7 @@
             {!! Form::hidden('menu_id', null, ['id' => 'menu_id']) !!}
             {!! Form::hidden('formato_id', null, ['id' => 'formato_id']) !!}
             {!! Form::hidden('proyecto_id', null, ['id' => 'proyecto_id']) !!}
+            {!! Form::hidden('last_format', $last_format, ['id' => 'last_format']) !!}
             {{-- {!! Form::hidden('user_id', null, ['id' => 'user_id']) !!} --}}
 
             <div class="container-fluid" id="div0">
@@ -1695,6 +1696,21 @@
                 </div>
                 {{-- END Destruccion de Productos --}}
 
+                {{-- Nota al archivo --}}
+                <div style="display: none" id="body-54" name="body-notaarchivo">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_notaArchivo']) !!}
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCnotaarchivo" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGnotaarchivo" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                        {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Nota al archivo --}}
+
                 {{-- Tarjeta de Bolsillo --}}
                 <div style="display: none" id="body-55" name="body-tarjetabolsillo">
                     <div class="modal-body">
@@ -2152,6 +2168,66 @@
                 </div>
                 {{-- END Contacto --}}
 
+                {{-- Eventos adversos --}}
+                <div style="display: none" id="body-59" name="body-eventosadversos">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_eventosAdversos']) !!}
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCeventoadverso" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGeventoadverso" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                        {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Eventos adversos --}}
+
+                {{-- Medicamentos contaminantes --}}
+                <div style="display: none" id="body-60" name="body-medicamentoscontaminantes">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_medicamentosContaminantes']) !!}
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCmedicamentosconta" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGmedicamentosconta" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                        {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Medicamentos contaminantes --}}
+
+                {{-- Medicamento de estudio --}}
+                <div style="display: none" id="body-61" name="body-medicamentoestudio">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_medicamentoEstudio']) !!}
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCmedicamentoestudio" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGmedicamentoestudio" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                        {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Medicamentos de estudio --}}
+
+                {{-- Historia clinica --}}
+                <div style="display: none" id="body-62" name="body-historiaclinica">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_historiaClinica']) !!}
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnChitoriaclinica" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGhitoriaclinica" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                        {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Historia clinica --}}
+
                 {{-- Señalador de visita --}}
                 <div style="display: none" id="body-63" name="body-señaladorvisita">
                     <div class="modal-body">
@@ -2239,6 +2315,81 @@
                 </div>
                 {{-- END Señalador de visita --}}
 
+                {{-- Visita SD --}}
+                <div style="display: none" id="body-64" name="body-visitasd">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_visitaSD']) !!}
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCvisitasd" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGvisitasd" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                        {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Visita SD --}}
+                
+                {{-- Nota medica --}}
+                <div style="display: none" id="body-65" name="body-notamedica">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_notaMedica']) !!}
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCnotamedica" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGnotamedica" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                        {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Nota medica --}}
+                
+                {{-- Pre-seleccion --}}
+                <div style="display: none" id="body-66" name="body-preseleccion">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_preSeleccion']) !!}
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCnpreseleccion" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGnpreseleccion" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                        {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Pre-seleccion --}}
+                
+                {{-- Seleccion --}}
+                <div style="display: none" id="body-67" name="body-seleccion">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_seleccion']) !!}
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCseleccion" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGseleccion" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                        {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Seleccion --}}
+                
+                {{-- Documentacion consentimiento --}}
+                <div style="display: none" id="body-71" name="body-docconsentimiento">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_docConsentimiento']) !!}
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCdocconsentimiento" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGdocconsentimiento" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                        {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Documentacion consentimiento --}}
+
                 {{-- Recibo ICF --}}
                 <!-- TODO: Preguntar por nombre de sujeto y firma del sujeto -->
                 <div style="display: none" id="body-72" name="body-reciboicf">
@@ -2325,6 +2476,21 @@
                     {!! Form::close() !!}
                 </div>
                 {{-- END Recibo ICF --}}
+
+                {{-- Carnet de viaticos --}}
+                <div style="display: none" id="body-75" name="body-carnetviaticos">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_carnetViaticos']) !!}
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCcarnetviaticos" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGcarnetviaticos" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                        {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Carnet de viaticos --}}
 
                 {{-- Solicitud de resumen --}}
                 <div style="display: none" id="body-76" name="body-solicitudresumen">
@@ -2768,14 +2934,6 @@
                                 {!! Form::text('81no5', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
                             </div>
                         </div>
-
-                        {{-- <div class="form-group" id="div6">
-                            {!! Form::label('81no6', '6. Nombre del sujeto', ['class' => 'form-label']) !!}
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                {!! Form::text('81no6', null, ['class' => 'form-control', 'placeholder' => 'Nombre del sujeto', 'required']) !!}
-                            </div>
-                        </div> --}}
 
                         <div class="form-group" id="div6">
                             {!! Form::label('81no6', '6. Nombre de la persona que solicita', ['class' => 'form-label']) !!}
