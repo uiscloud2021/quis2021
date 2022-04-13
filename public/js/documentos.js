@@ -81,16 +81,57 @@ function cambiarInstructivos(dir) {
 $("#doc_formatos").change(
     function(){
         // alert(this.value);
-        list_formatos();
-        select_content_modal(this.value, $("#" + this.id + " option:selected").text());
+        formato_id = this.value;
+        selectValue = $("#" + this.id + " option:selected").text();
+        // console.log(formato_id);
+
+        $("#table-formato").hide();
+        $("#download-formato").hide();
+
+        // TODO: motodo ajax para obtener el has_form y tomar una desicion
+        $.ajax({
+            url: "/documentos/has_form",
+            method:'POST',
+            dataType: 'json',
+            // cache:false,
+            // contentType: false,
+            // processData: false,
+            data:{ formato_id:formato_id, _token:$('input[name="_token"]').val()},
+            success:function(data){
+                
+                // alert(data['has_form']);
+                // console.log(selectValue);
+
+                if (data['has_form'] == 0 || data['has_form'] == 1 || data['has_form'] == 2 || data['has_form'] == 3) {
+
+                    if (data['has_form'] == 0) {
+                        // data['directorio'];
+                        download_formatos(data['nombre_doc'] + '.' + data['format']);
+                    }
+                    if (data['has_form'] == 1) {
+                        list_formatos();
+                        $("#table-formato").show();
+                        select_content_modal(formato_id, selectValue);
+                    }
+                    if (data['has_form'] == 2) {
+                        $("#download-formato").show();
+                        list_proyectos();
+                        select_content_modal(formato_id, selectValue);
+                        $('#createFormatoModal').modal('toggle');
+                    }
+                    if (data['has_form'] == 3) {
+                        // archivos que todavia no se que onda 
+                    }
+                    
+                } else {
+                    toastr.warning('El formato no se cargo correctamente, vuelva a intentarlo', 'Carga de formatos', {timeOut:1700})
+                }
+
+            }
+        });
+        
     }
 );
-
-// $("#new_format").click(
-//     function(){
-//         alert($("#new_format").val());
-//     }
-// )
 
 // MODAL mostrar el modal
 function CreateFormato(){
@@ -131,7 +172,7 @@ function list_formatos(documento_formato){
         formato_id = $("#doc_formatos").val();
 
         $("#new_format").attr("value", formato_id);
-        $("#table-formato").show();
+        // $("#table-formato").show();
 
         var list = $('#formatos_table').DataTable({
             dom: 'T<"clear">lfrtip',
@@ -163,7 +204,7 @@ function list_formatos(documento_formato){
         // alert('formato_id')
 
         $("#new_format").attr("value", formato_id);
-        $("#table-formato").show();
+        // $("#table-formato").show();
 
         var list = $('#formatos_table').DataTable({
             dom: 'T<"clear">lfrtip',
@@ -223,9 +264,9 @@ function delete_formatos(formato_id) {
 // END Metodo eliminar
 
 // Metodo Descargar
-function download_formatos(formato_id) {
-    alert(formato_id);
-
+function download_formatos(directorio) {
+    // alert(directorio);
+    window.open('/documentos/download_formato/' + directorio, '_blank');
 }
 // END Metodo Descargar
 

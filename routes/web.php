@@ -166,8 +166,9 @@ Route::post('/documentos/list_formatos', 'App\Http\Controllers\DocumentosControl
 Route::post('/documentos/create_formato', 'App\Http\Controllers\DocumentosController@create_formato')->name('documentos.create_formato');
 Route::post('/documentos/delete_formato', 'App\Http\Controllers\DocumentosController@delete_formato')->name('documentos.delete_formato');
 Route::post('/documentos/edit_formato', 'App\Http\Controllers\DocumentosController@edit_formato')->name('documentos.edit_formato');
-Route::post('/documentos/download_formato', 'App\Http\Controllers\DocumentosController@download_formato')->name('documentos.download_formato');
+Route::get('/documentos/download_formato/{ruta}', 'App\Http\Controllers\DocumentosController@download_formato')->name('documentos.download_formato');
 Route::post('/documentos/list_proyectos', 'App\Http\Controllers\DocumentosController@list_proyectos')->name('documentos.list_proyectos');
+Route::post('/documentos/has_form', 'App\Http\Controllers\DocumentosController@has_form')->name('documentos.has_form');
 // Prueba generar pdf
 Route::get('sc/documentos/pdf/{id}', [DocumentosController::class,'pdf'])->name('documentos.pdf');
 // Route::get('sc/documentos/pdf/{idFormato}/{idProyecto}', [DocumentosController::class, 'pdf'])->name('documentos.pdf');

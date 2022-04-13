@@ -807,7 +807,7 @@ class DocumentosController extends Controller
 
   public function download(Request $request, $ruta)
   {		
-    // dd($ruta);
+    
     return response()->download(storage_path('../public/assets/SC-documents/'  .  $ruta ));
       
   }
@@ -1070,9 +1070,31 @@ class DocumentosController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function download_formato(Request $request)
+  public function download_formato(Request $request, $ruta)
   {		
-    
+    return response()->download(storage_path('../public/assets/SC/5- FC-SC/'  .  $ruta ));
+  }
+  
+  /**
+   * Get the has_form of the format.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function has_form(Request $request)
+  {		
+    if ($request->ajax()) {
+      // obtener el has_form del formato para ver si se guardan los datos o se genera el arhivo
+      // $documento_formato_id = $request->documentoformato_id;
+      // $has_form = Documentos_formatos::where('id', $request->formato_id)->get()->first()->value('has_form');
+      $formato = Documentos_formatos::where('id', $request->formato_id)->get()->first();
+
+      if ($formato) {
+        return $formato;
+      } else {
+        return null;
+      }
+    }
   }
 
 

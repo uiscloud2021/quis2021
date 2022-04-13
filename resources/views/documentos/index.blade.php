@@ -265,8 +265,8 @@
                             <div align="right">
                                 {{-- TODO: cambiar el metodo, que se va a mandar a llamar en el JS-documentos --}}
                                 {{-- <button type="button" class="btn btn-primary" onclick="CreateSeguimiento();"> --}}
-                                <a target="_blank" rel="noreferrer noopener" href="" class="btn btn-primary"><span class="fas fa-file"></span> 
-                                    {{ __('PDF') }}</a> 
+                                {{-- <a target="_blank" rel="noreferrer noopener" href="" class="btn btn-primary"><span class="fas fa-file"></span> 
+                                    {{ __('PDF') }}</a>  --}}
                                     <!-- TODO: Enviar en el metodo el id del formato para decidir que mola usar o si se abre una ventana nueva -->
                                 <button id="new_format" type="button" class="btn btn-primary"  onclick="CreateFormato();">
                                     <i class="fas fa-file"></i> Nuevo formato
@@ -292,7 +292,16 @@
 
 
                         <div id="download-formato" style="display: none">
-                            
+                            <div align="right">
+                                {{-- TODO: cambiar el metodo, que se va a mandar a llamar en el JS-documentos --}}
+                                {{-- <button type="button" class="btn btn-primary" onclick="CreateSeguimiento();"> --}}
+                                {{-- <a target="_blank" rel="noreferrer noopener" href="" class="btn btn-primary"><span class="fas fa-file"></span> 
+                                    {{ __('PDF') }}</a>  --}}
+                                    <!-- TODO: Enviar en el metodo el id del formato para decidir que mola usar o si se abre una ventana nueva -->
+                                <button id="new_format" type="button" class="btn btn-primary"  onclick="CreateFormato();">
+                                    <i class="fas fa-file"></i> Nuevo formato
+                                </button>  
+                            </div><br>
                         </div>
 
 
@@ -331,5 +340,5 @@
     <!-- Select2 -->
     <script src="{{ asset('vendor/select2/js/select2.full.js') }}"></script>
 
-    <script src="{{ asset('js/documentos.js?157') }}"></script>
+    <script src="{{ asset('js/documentos.js?158') }}"></script>
 @stop
