@@ -772,7 +772,7 @@ class DocumentosController extends Controller
 
   public function list_proyectos(Request $request){
 
-    //TODO: condición para saber si el request tiene datos o no
+    //condición para saber si el request tiene datos o no
     if ($request->proyecto_id) {
       // $proyectos = Proyecto::where('id', $request->proyecto_id)->get()->toJson();
       $proyectos = Proyecto::where('proyectos.id', $request->proyecto_id)
@@ -925,7 +925,7 @@ class DocumentosController extends Controller
         $id_user = auth()->id();
         //TODO: Buscar los datos del usuario, la empresa y el area(menu) en  un provider o donde sea que se encuentren
         $documento_formato_id = $request->documentoformato_id;
-        $empresa_id = $request->empresa_id;
+        $empresa_id = session('id_empresa');
         $proyecto_id = $request->proyecto_id;
         $menu_id = $request->menu_id;
         $formato_id = $request->formato_id;
@@ -935,14 +935,13 @@ class DocumentosController extends Controller
           
           // consulta para seber si ya existe el formato que se guardara
           //TODO: ver si se guardaran datos "repetidos"
-          // $formato = Formato::where('documento_formato_id', $documento_formato_id)
-          // ->where('empresa_id', $empresa_id)
-          // ->where('menu_id', $menu_id)
-          // ->where('proyecto_id', $proyecto_id)
-          // ->where('user_id', $id_user)
-          // ->get()->first();
+          $formato = Formato::where('documento_formato_id', $documento_formato_id)
+          ->where('empresa_id', $empresa_id)
+          ->where('menu_id', $menu_id)
+          ->where('proyecto_id', $proyecto_id)
+          ->get()->first();
 
-          $formato = null;
+          // $formato = null;
 
           $datos_json = json_encode($request->all());
           $datos_array = json_decode($datos_json, true);
@@ -967,16 +966,16 @@ class DocumentosController extends Controller
             $formatos->menu_id = $menu_id;
             $formatos->proyecto_id = $proyecto_id;
             $formatos->user_id = $id_user;
-            $formatos-> save();
+            $formatos->save();
 
             if ($formatos) {
               return response('guardado');
             }else{
-              return response(null);
+              return response('no guardado');
             }
             
           }else{
-            return response(null);
+            return response('dato existe');
           }
 
           // Update formato
@@ -1005,7 +1004,7 @@ class DocumentosController extends Controller
           $formatos->menu_id = $menu_id;
           $formatos->proyecto_id = $proyecto_id;
           $formatos->user_id = $id_user;
-          $formatos-> save();
+          $formatos->save();
 
           if ($formatos) {
             return response('editado');
@@ -1036,7 +1035,7 @@ class DocumentosController extends Controller
       $formato = Formato::where('id', $formato_id)->delete();
 
       if ($formato > 0) {
-        return response($formato);
+        return response('eliminado');
       }else{
         return response(null);
       }

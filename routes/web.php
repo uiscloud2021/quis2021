@@ -161,18 +161,18 @@ Route::post('/proyectos/cargar_investigador', 'App\Http\Controllers\Administraci
 Route::resource('inventario', InventarioController::class);
 //RECURSOS DOCUMENTOS
 Route::resource('documentos', DocumentosController::class);
-//Documentos_formatos_Select
+//Documentos sitio clinico
 Route::post('/documentos/list_formatos', 'App\Http\Controllers\DocumentosController@list_formatos')->name('documentos.list_formatos');
 Route::post('/documentos/create_formato', 'App\Http\Controllers\DocumentosController@create_formato')->name('documentos.create_formato');
 Route::post('/documentos/delete_formato', 'App\Http\Controllers\DocumentosController@delete_formato')->name('documentos.delete_formato');
 Route::post('/documentos/edit_formato', 'App\Http\Controllers\DocumentosController@edit_formato')->name('documentos.edit_formato');
-Route::get('/documentos/download_formato/{ruta}', 'App\Http\Controllers\DocumentosController@download_formato')->name('documentos.download_formato');
 Route::post('/documentos/list_proyectos', 'App\Http\Controllers\DocumentosController@list_proyectos')->name('documentos.list_proyectos');
 Route::post('/documentos/has_form', 'App\Http\Controllers\DocumentosController@has_form')->name('documentos.has_form');
-// Prueba generar pdf
+// Geenerar pdf (word)
 Route::get('sc/documentos/pdf/{id}', [DocumentosController::class,'pdf'])->name('documentos.pdf');
 // Route::get('sc/documentos/pdf/{idFormato}/{idProyecto}', [DocumentosController::class, 'pdf'])->name('documentos.pdf');
 // Descargar documento
+Route::get('/documentos/download_formato/{ruta}', 'App\Http\Controllers\DocumentosController@download_formato')->name('documentos.download_formato');
 Route::get('sc/documentos/descargar/pdf/{ruta}', [DocumentosController::class, 'download'])->name('documentos.download');
 
 //RECURSOS FACTIBILIDAD SC

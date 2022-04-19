@@ -250,7 +250,7 @@ function delete_formatos(formato_id) {
             data:{formato_id:formato_id, _token:$('input[name="_token"]').val()},
             success:function(resp){
                 // alert(resp);
-                if(resp == 'eliminado'){
+                if(resp){
                     toastr.success('El formato fue eliminado correctamente', 'Eliminar formato', {timeOut:3000});
                     list_formatos(documento_formato_id);
                 }else{
@@ -1086,10 +1086,10 @@ function borrar_campos() {
     $("#no0").val('Seleccione un proyecto...');
 
     $("#documentoformato_id").val(null);
-    // $("#empresa_id").val(null);
-    // $("#menu_id").val(null);
+    $("#empresa_id").val(null);
+    $("#menu_id").val(null);
     $("#proyecto_id").val(null);
-    // $("#user_id").val(null);
+    $("#user_id").val(null);
     $("#formato_id").val(null);
     $("#formcreate_presentacion")[0].reset();
     $("#formcreate_constanciaAnual")[0].reset();
@@ -2588,26 +2588,17 @@ $('#formcreate_presentacion').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -2700,26 +2691,17 @@ $('#formcreate_constanciaAnual').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -2819,7 +2801,7 @@ $('#formcreate_publicidad').on('submit', function(e) {
                 },
                 success:function(resp){
     
-                    // alert(resp);
+                    // console.log(resp);
 
                     if (publicidad_req_count > 3) {
                         for (let i = 4; i <= publicidad_req_count; i++) {
@@ -2828,26 +2810,17 @@ $('#formcreate_publicidad').on('submit', function(e) {
                         publicidad_req_count = 3;
                     };
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     };
     
                 }
@@ -2946,26 +2919,17 @@ $('#formcreate_codigoTitulo').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -3019,7 +2983,7 @@ $('#formcreate_codigoTitulo').on('submit', function(e) {
 // END Submit Codigo y titulo 
 
 
-// Submit sometimiento
+// Submit publicidad 
 $('#formcreate_sometimiento').on('submit', function(e) {
     e.preventDefault();
     var formData = new FormData(this);
@@ -3074,26 +3038,17 @@ $('#formcreate_sometimiento').on('submit', function(e) {
                         sometimiento_doc_count = 7;
                     };
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     };
     
                 }
@@ -3150,7 +3105,7 @@ $('#formcreate_sometimiento').on('submit', function(e) {
     }
     
 });
-// END Submit sometimiento
+// END Submit publicidad 
 
 // Submit Compromisos
 $('#formcreate_compromisos').on('submit', function(e) {
@@ -3191,26 +3146,17 @@ $('#formcreate_compromisos').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -3325,26 +3271,17 @@ $('#formcreate_responsabilidades').on('submit', function(e) {
                         responsabilidades_res_count = 10;
                     };
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     };
     
                 }
@@ -3443,26 +3380,17 @@ $('#formcreate_autorizacion').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -3571,26 +3499,17 @@ $('#formcreate_instalaciones').on('submit', function(e) {
                         instalaciones_doc_count = 10;
                     }
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     };
     
                 }
@@ -3689,26 +3608,17 @@ $('#formcreate_anticorupcion').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -3817,26 +3727,17 @@ $('#formcreate_destruccionMateriales').on('submit', function(e) {
                         destruccion_materiales_count = 11;
                     }
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     };
     
                 }
@@ -3942,7 +3843,7 @@ $('#formcreate_destruccionProductos').on('submit', function(e) {
                 },
                 success:function(resp){
     
-                    // console.log(resp);
+                    console.log(resp);
 
                     if (destruccion_productos_count > 12) {
                         for (let i = 13; i <= destruccion_productos_count; i++) {
@@ -3951,26 +3852,17 @@ $('#formcreate_destruccionProductos').on('submit', function(e) {
                         destruccion_productos_count = 12;
                     }
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     };
     
                 }
@@ -4069,26 +3961,17 @@ $('#formcreate_tarjetaBolsillo').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -4181,26 +4064,17 @@ $('#formcreate_documentoFuente').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -4293,26 +4167,17 @@ $('#formcreate_hojaInicial').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -4405,26 +4270,17 @@ $('#formcreate_contacto').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -4517,26 +4373,17 @@ $('#formcreate_señaladorVisita').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -4629,26 +4476,17 @@ $('#formcreate_reciboICF').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -4741,26 +4579,17 @@ $('#formcreate_solicitudResumen').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -4853,26 +4682,17 @@ $('#formcreate_privacidadSujetos').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -4965,26 +4785,17 @@ $('#formcreate_privacidadDatos').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -5092,26 +4903,17 @@ $('#formcreate_ordenCompra').on('submit', function(e) {
                         ordencompra_estudio_count = 8;
                     };
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     };
     
                 }
@@ -5210,26 +5012,17 @@ $('#formcreate_envioMuestras').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -5576,26 +5369,17 @@ $('#formcreate_ordenCompraHospital').on('submit', function(e) {
                         ordencomprahospital_restricciones_count = 10;
                     }
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     };
     
                 }
@@ -5818,26 +5602,17 @@ $('#formcreate_avisoEAS').on('submit', function(e) {
                         aviso_eas_count = 9;
                     }
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     };
     
                 }
@@ -5952,26 +5727,17 @@ $('#formcreate_avisoSUSAR').on('submit', function(e) {
                         aviso_susar_count = 12;
                     }
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     };
     
                 }
@@ -6086,26 +5852,17 @@ $('#formcreate_someteDesviacion').on('submit', function(e) {
                         somete_desviacion_count = 12;
                     }
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     };
     
                 }
@@ -6219,26 +5976,17 @@ $('#formcreate_avisoCE').on('submit', function(e) {
                         aviso_ce_count = 7;
                     };
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     };
     
                 }
@@ -6352,26 +6100,17 @@ $('#formcreate_feDeErratas').on('submit', function(e) {
                         fe_de_erratas_count = 8;
                     };
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos()
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     };
     
                 }
@@ -6470,26 +6209,17 @@ $('#formcreate_renovacionAnual').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -6582,26 +6312,17 @@ $('#formcreate_informeTecnico').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -6694,26 +6415,17 @@ $('#formcreate_avisoCierre').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -6806,26 +6518,17 @@ $('#formcreate_archivoMuerto').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
@@ -6918,26 +6621,17 @@ $('#formcreate_cambioDomicilio').on('submit', function(e) {
     
                     // console.log(resp);
     
-                    if(resp == 'guardado'){
+                    if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
                         $('#btnGpresentacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
-                        if (resp == 'no guardado') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                        }
-                        if (resp == 'dato existe') {
-                            $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
-                            borrar_campos();
-                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                        }
-                        
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
                     }
     
                 }
