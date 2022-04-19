@@ -93,9 +93,6 @@ $("#doc_formatos").change(
             url: "/documentos/has_form",
             method:'POST',
             dataType: 'json',
-            // cache:false,
-            // contentType: false,
-            // processData: false,
             data:{ formato_id:formato_id, _token:$('input[name="_token"]').val()},
             success:function(data){
                 
@@ -162,11 +159,12 @@ function list_proyectos() {
 // Cargar tabla de formatos, depende de que formato se seleccione
 function list_formatos(documento_formato){
 
+    // TODO: ver si quitar el if, por lo que parece no importa mucho
     formato_id = documento_formato;
     // Cargar los proyectos en el select no0 del form 
     list_proyectos();
 
-    if (!formato_id) {
+    // if (!formato_id) {
         
         // alert('!formato_id')
 
@@ -201,39 +199,39 @@ function list_formatos(documento_formato){
             "language": espanol
         });
 
-    }else{
-        // alert('formato_id')
+    // }else{
+    //     // alert('formato_id')
 
-        $("#new_format").attr("value", formato_id);
-        // $("#table-formato").show();
+    //     $("#new_format").attr("value", formato_id);
+    //     // $("#table-formato").show();
 
-        var list = $('#formatos_table').DataTable({
-            dom: 'T<"clear">lfrtip',
-            "processing": true,
-            "serverSide": true,
-            destroy: true,
-            "lengthMenu": [[5, 10, 50, -1], [5, 10, 50, "Todos"]],
-            "ajax":{
-                "url": "/documentos/list_formatos",
-                "method": "POST",
-                "data": {
-                    formato_id:formato_id,
-                    _token:$('input[name="_token"]').val()
-                },
+    //     var list = $('#formatos_table').DataTable({
+    //         dom: 'T<"clear">lfrtip',
+    //         "processing": true,
+    //         "serverSide": true,
+    //         destroy: true,
+    //         "lengthMenu": [[5, 10, 50, -1], [5, 10, 50, "Todos"]],
+    //         "ajax":{
+    //             "url": "/documentos/list_formatos",
+    //             "method": "POST",
+    //             "data": {
+    //                 formato_id:formato_id,
+    //                 _token:$('input[name="_token"]').val()
+    //             },
                 
-            },
-            "columns": [
-                {"data": 'fecha'},
-                {"data": 'codigo_uis'},
-                {"data": 'fecha_aprob'},
-                {"data": 'usuario'},
-                {"data": 'download_delete'},
-                {"data": 'edit'},
-            ],
-            "language": espanol
-        });
+    //         },
+    //         "columns": [
+    //             {"data": 'fecha'},
+    //             {"data": 'codigo_uis'},
+    //             {"data": 'fecha_aprob'},
+    //             {"data": 'usuario'},
+    //             {"data": 'download_delete'},
+    //             {"data": 'edit'},
+    //         ],
+    //         "language": espanol
+    //     });
 
-    }
+    // }
 
 }
 
@@ -1085,11 +1083,11 @@ function borrar_campos() {
 
     $("#no0").val('Seleccione un proyecto...');
 
-    $("#documentoformato_id").val(null);
     // $("#empresa_id").val(null);
     // $("#menu_id").val(null);
-    $("#proyecto_id").val(null);
     // $("#user_id").val(null);
+    $("#documentoformato_id").val(null);
+    $("#proyecto_id").val(null);
     $("#formato_id").val(null);
     $("#formcreate_presentacion")[0].reset();
     $("#formcreate_constanciaAnual")[0].reset();
@@ -2576,7 +2574,6 @@ $('#formcreate_presentacion').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
@@ -2688,13 +2685,12 @@ $('#formcreate_constanciaAnual').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGconstanciaAnual').hide();
                 },
                 success:function(resp){
     
@@ -2703,19 +2699,19 @@ $('#formcreate_constanciaAnual').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGconstanciaAnual').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGconstanciaAnual').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGconstanciaAnual').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -2740,7 +2736,7 @@ $('#formcreate_constanciaAnual').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGconstanciaAnual').hide();
                 },
                 success:function(resp){
     
@@ -2749,12 +2745,12 @@ $('#formcreate_constanciaAnual').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGconstanciaAnual').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGconstanciaAnual').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -2809,13 +2805,12 @@ $('#formcreate_publicidad').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGpublicidad').hide();
                 },
                 success:function(resp){
     
@@ -2831,19 +2826,19 @@ $('#formcreate_publicidad').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGpublicidad').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGpublicidad').show();
                             borrar_campos()
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGpublicidad').show();
                             borrar_campos()
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -2867,7 +2862,7 @@ $('#formcreate_publicidad').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGpublicidad').hide();
                 },
                 success:function(resp){
     
@@ -2883,12 +2878,12 @@ $('#formcreate_publicidad').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGpublicidad').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGpublicidad').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -2934,13 +2929,12 @@ $('#formcreate_codigoTitulo').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGcodigotitulo').hide();
                 },
                 success:function(resp){
     
@@ -2949,19 +2943,19 @@ $('#formcreate_codigoTitulo').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGcodigotitulo').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGcodigotitulo').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGcodigotitulo').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -2986,7 +2980,7 @@ $('#formcreate_codigoTitulo').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGcodigotitulo').hide();
                 },
                 success:function(resp){
     
@@ -2995,12 +2989,12 @@ $('#formcreate_codigoTitulo').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGcodigotitulo').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGcodigotitulo').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -3055,13 +3049,12 @@ $('#formcreate_sometimiento').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGsometimiento').hide();
                 },
                 success:function(resp){
     
@@ -3077,19 +3070,19 @@ $('#formcreate_sometimiento').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGsometimiento').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGsometimiento').show();
                             borrar_campos()
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGsometimiento').show();
                             borrar_campos()
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -3113,7 +3106,7 @@ $('#formcreate_sometimiento').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGsometimiento').hide();
                 },
                 success:function(resp){
     
@@ -3129,12 +3122,12 @@ $('#formcreate_sometimiento').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGsometimiento').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGsometimiento').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -3179,13 +3172,12 @@ $('#formcreate_compromisos').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGcompromisos').hide();
                 },
                 success:function(resp){
     
@@ -3194,19 +3186,19 @@ $('#formcreate_compromisos').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGcompromisos').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGcompromisos').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGcompromisos').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -3231,7 +3223,7 @@ $('#formcreate_compromisos').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGcompromisos').hide();
                 },
                 success:function(resp){
     
@@ -3240,12 +3232,12 @@ $('#formcreate_compromisos').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGcompromisos').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGcompromisos').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -3306,13 +3298,12 @@ $('#formcreate_responsabilidades').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGresponsabilidades').hide();
                 },
                 success:function(resp){
     
@@ -3328,19 +3319,19 @@ $('#formcreate_responsabilidades').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGresponsabilidades').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGresponsabilidades').show();
                             borrar_campos()
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGresponsabilidades').show();
                             borrar_campos()
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -3364,7 +3355,7 @@ $('#formcreate_responsabilidades').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGresponsabilidades').hide();
                 },
                 success:function(resp){
     
@@ -3380,12 +3371,12 @@ $('#formcreate_responsabilidades').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGresponsabilidades').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGresponsabilidades').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -3431,13 +3422,12 @@ $('#formcreate_autorizacion').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGautorizacion').hide();
                 },
                 success:function(resp){
     
@@ -3446,19 +3436,19 @@ $('#formcreate_autorizacion').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGautorizacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGautorizacion').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGautorizacion').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -3483,7 +3473,7 @@ $('#formcreate_autorizacion').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGautorizacion').hide();
                 },
                 success:function(resp){
     
@@ -3492,12 +3482,12 @@ $('#formcreate_autorizacion').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGautorizacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGautorizacion').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -3552,13 +3542,12 @@ $('#formcreate_instalaciones').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGinstalaciones').hide();
                 },
                 success:function(resp){
     
@@ -3574,19 +3563,19 @@ $('#formcreate_instalaciones').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGinstalaciones').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGinstalaciones').show();
                             borrar_campos()
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGinstalaciones').show();
                             borrar_campos()
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -3610,7 +3599,7 @@ $('#formcreate_instalaciones').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGinstalaciones').hide();
                 },
                 success:function(resp){
     
@@ -3626,12 +3615,12 @@ $('#formcreate_instalaciones').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGinstalaciones').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGinstalaciones').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -3677,13 +3666,12 @@ $('#formcreate_anticorupcion').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGanticorrupcion').hide();
                 },
                 success:function(resp){
     
@@ -3692,19 +3680,19 @@ $('#formcreate_anticorupcion').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGanticorrupcion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGanticorrupcion').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGanticorrupcion').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -3729,7 +3717,7 @@ $('#formcreate_anticorupcion').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGanticorrupcion').hide();
                 },
                 success:function(resp){
     
@@ -3738,12 +3726,12 @@ $('#formcreate_anticorupcion').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGanticorrupcion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGanticorrupcion').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -3798,13 +3786,12 @@ $('#formcreate_destruccionMateriales').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGdestruccionMateriales').hide();
                 },
                 success:function(resp){
     
@@ -3820,19 +3807,19 @@ $('#formcreate_destruccionMateriales').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGdestruccionMateriales').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGdestruccionMateriales').show();
                             borrar_campos()
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGdestruccionMateriales').show();
                             borrar_campos()
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -3856,7 +3843,7 @@ $('#formcreate_destruccionMateriales').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGdestruccionMateriales').hide();
                 },
                 success:function(resp){
     
@@ -3872,12 +3859,12 @@ $('#formcreate_destruccionMateriales').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGdestruccionMateriales').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGdestruccionMateriales').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -3932,13 +3919,12 @@ $('#formcreate_destruccionProductos').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGdestruccionProductos').hide();
                 },
                 success:function(resp){
     
@@ -3954,19 +3940,19 @@ $('#formcreate_destruccionProductos').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGdestruccionProductos').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGdestruccionProductos').show();
                             borrar_campos()
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGdestruccionProductos').show();
                             borrar_campos()
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -3990,7 +3976,7 @@ $('#formcreate_destruccionProductos').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGdestruccionProductos').hide();
                 },
                 success:function(resp){
     
@@ -4006,12 +3992,12 @@ $('#formcreate_destruccionProductos').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGdestruccionProductos').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGdestruccionProductos').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -4057,13 +4043,12 @@ $('#formcreate_tarjetaBolsillo').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGtarjetabolsillo').hide();
                 },
                 success:function(resp){
     
@@ -4072,19 +4057,19 @@ $('#formcreate_tarjetaBolsillo').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGtarjetabolsillo').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGtarjetabolsillo').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGtarjetabolsillo').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -4109,7 +4094,7 @@ $('#formcreate_tarjetaBolsillo').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGtarjetabolsillo').hide();
                 },
                 success:function(resp){
     
@@ -4118,12 +4103,12 @@ $('#formcreate_tarjetaBolsillo').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGtarjetabolsillo').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGtarjetabolsillo').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -4169,13 +4154,12 @@ $('#formcreate_documentoFuente').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGdocumentofuente').hide();
                 },
                 success:function(resp){
     
@@ -4184,19 +4168,19 @@ $('#formcreate_documentoFuente').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGdocumentofuente').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGdocumentofuente').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGdocumentofuente').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -4221,7 +4205,7 @@ $('#formcreate_documentoFuente').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGdocumentofuente').hide();
                 },
                 success:function(resp){
     
@@ -4230,12 +4214,12 @@ $('#formcreate_documentoFuente').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGdocumentofuente').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGdocumentofuente').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -4281,13 +4265,12 @@ $('#formcreate_hojaInicial').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGhojainicial').hide();
                 },
                 success:function(resp){
     
@@ -4296,19 +4279,19 @@ $('#formcreate_hojaInicial').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGhojainicial').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGhojainicial').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGhojainicial').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -4333,7 +4316,7 @@ $('#formcreate_hojaInicial').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGhojainicial').hide();
                 },
                 success:function(resp){
     
@@ -4342,12 +4325,12 @@ $('#formcreate_hojaInicial').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGhojainicial').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGhojainicial').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -4393,13 +4376,12 @@ $('#formcreate_contacto').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGcontacto').hide();
                 },
                 success:function(resp){
     
@@ -4408,19 +4390,19 @@ $('#formcreate_contacto').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGcontacto').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGcontacto').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGcontacto').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -4445,7 +4427,7 @@ $('#formcreate_contacto').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGcontacto').hide();
                 },
                 success:function(resp){
     
@@ -4454,12 +4436,12 @@ $('#formcreate_contacto').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGcontacto').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGcontacto').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -4505,13 +4487,12 @@ $('#formcreate_señaladorVisita').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGseñaladorvisita').hide();
                 },
                 success:function(resp){
     
@@ -4520,19 +4501,19 @@ $('#formcreate_señaladorVisita').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGseñaladorvisita').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGseñaladorvisita').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGseñaladorvisita').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -4557,7 +4538,7 @@ $('#formcreate_señaladorVisita').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGseñaladorvisita').hide();
                 },
                 success:function(resp){
     
@@ -4566,12 +4547,12 @@ $('#formcreate_señaladorVisita').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGseñaladorvisita').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGseñaladorvisita').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -4617,13 +4598,12 @@ $('#formcreate_reciboICF').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGreciboicf').hide();
                 },
                 success:function(resp){
     
@@ -4632,19 +4612,19 @@ $('#formcreate_reciboICF').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGreciboicf').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGreciboicf').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGreciboicf').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -4669,7 +4649,7 @@ $('#formcreate_reciboICF').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGreciboicf').hide();
                 },
                 success:function(resp){
     
@@ -4678,12 +4658,12 @@ $('#formcreate_reciboICF').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGreciboicf').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGreciboicf').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -4729,13 +4709,12 @@ $('#formcreate_solicitudResumen').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGsolicitudresumen').hide();
                 },
                 success:function(resp){
     
@@ -4744,19 +4723,19 @@ $('#formcreate_solicitudResumen').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGsolicitudresumen').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGsolicitudresumen').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGsolicitudresumen').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -4781,7 +4760,7 @@ $('#formcreate_solicitudResumen').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGsolicitudresumen').hide();
                 },
                 success:function(resp){
     
@@ -4790,12 +4769,12 @@ $('#formcreate_solicitudResumen').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGsolicitudresumen').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGsolicitudresumen').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -4841,13 +4820,12 @@ $('#formcreate_privacidadSujetos').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGprivacidadsujetos').hide();
                 },
                 success:function(resp){
     
@@ -4856,19 +4834,19 @@ $('#formcreate_privacidadSujetos').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGprivacidadsujetos').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGprivacidadsujetos').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGprivacidadsujetos').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -4893,7 +4871,7 @@ $('#formcreate_privacidadSujetos').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGprivacidadsujetos').hide();
                 },
                 success:function(resp){
     
@@ -4902,12 +4880,12 @@ $('#formcreate_privacidadSujetos').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGprivacidadsujetos').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGprivacidadsujetos').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -4953,13 +4931,12 @@ $('#formcreate_privacidadDatos').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGprivacidaddatos').hide();
                 },
                 success:function(resp){
     
@@ -4968,19 +4945,19 @@ $('#formcreate_privacidadDatos').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGprivacidaddatos').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGprivacidaddatos').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGprivacidaddatos').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -5005,7 +4982,7 @@ $('#formcreate_privacidadDatos').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGprivacidaddatos').hide();
                 },
                 success:function(resp){
     
@@ -5014,12 +4991,12 @@ $('#formcreate_privacidadDatos').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGprivacidaddatos').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGprivacidaddatos').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -5073,13 +5050,12 @@ $('#formcreate_ordenCompra').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGordencompra').hide();
                 },
                 success:function(resp){
     
@@ -5095,19 +5071,19 @@ $('#formcreate_ordenCompra').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGordencompra').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGordencompra').show();
                             borrar_campos()
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGordencompra').show();
                             borrar_campos()
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -5131,7 +5107,7 @@ $('#formcreate_ordenCompra').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGordencompra').hide();
                 },
                 success:function(resp){
     
@@ -5147,12 +5123,12 @@ $('#formcreate_ordenCompra').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGordencompra').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGordencompra').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -5198,13 +5174,12 @@ $('#formcreate_envioMuestras').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGenviomuestras').hide();
                 },
                 success:function(resp){
     
@@ -5213,19 +5188,19 @@ $('#formcreate_envioMuestras').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGenviomuestras').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGenviomuestras').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGenviomuestras').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -5250,7 +5225,7 @@ $('#formcreate_envioMuestras').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGenviomuestras').hide();
                 },
                 success:function(resp){
     
@@ -5259,12 +5234,12 @@ $('#formcreate_envioMuestras').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGenviomuestras').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGenviomuestras').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -5449,13 +5424,12 @@ $('#formcreate_ordenCompraHospital').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGordencomprahospital').hide();
                 },
                 success:function(resp){
     
@@ -5579,19 +5553,19 @@ $('#formcreate_ordenCompraHospital').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGordencomprahospital').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGordencomprahospital').show();
                             borrar_campos()
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGordencomprahospital').show();
                             borrar_campos()
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -5615,7 +5589,7 @@ $('#formcreate_ordenCompraHospital').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGordencomprahospital').hide();
                 },
                 success:function(resp){
     
@@ -5739,12 +5713,12 @@ $('#formcreate_ordenCompraHospital').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGordencomprahospital').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGordencomprahospital').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -5799,13 +5773,12 @@ $('#formcreate_avisoEAS').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGavisoeas').hide();
                 },
                 success:function(resp){
     
@@ -5821,19 +5794,19 @@ $('#formcreate_avisoEAS').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGavisoeas').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGavisoeas').show();
                             borrar_campos()
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGavisoeas').show();
                             borrar_campos()
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -5857,7 +5830,7 @@ $('#formcreate_avisoEAS').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGavisoeas').hide();
                 },
                 success:function(resp){
     
@@ -5873,12 +5846,12 @@ $('#formcreate_avisoEAS').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGavisoeas').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGavisoeas').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -5933,13 +5906,12 @@ $('#formcreate_avisoSUSAR').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGavisosusar').hide();
                 },
                 success:function(resp){
     
@@ -5955,19 +5927,19 @@ $('#formcreate_avisoSUSAR').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGavisosusar').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGavisosusar').show();
                             borrar_campos()
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGavisosusar').show();
                             borrar_campos()
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -5991,7 +5963,7 @@ $('#formcreate_avisoSUSAR').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGavisosusar').hide();
                 },
                 success:function(resp){
     
@@ -6007,12 +5979,12 @@ $('#formcreate_avisoSUSAR').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGavisosusar').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGavisosusar').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -6067,13 +6039,12 @@ $('#formcreate_someteDesviacion').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGsometedesviacion').hide();
                 },
                 success:function(resp){
     
@@ -6089,19 +6060,19 @@ $('#formcreate_someteDesviacion').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGsometedesviacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGsometedesviacion').show();
                             borrar_campos()
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGsometedesviacion').show();
                             borrar_campos()
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -6125,7 +6096,7 @@ $('#formcreate_someteDesviacion').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGsometedesviacion').hide();
                 },
                 success:function(resp){
     
@@ -6141,12 +6112,12 @@ $('#formcreate_someteDesviacion').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGsometedesviacion').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGsometedesviacion').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -6200,13 +6171,12 @@ $('#formcreate_avisoCE').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGavisoce').hide();
                 },
                 success:function(resp){
     
@@ -6222,19 +6192,19 @@ $('#formcreate_avisoCE').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGavisoce').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGavisoce').show();
                             borrar_campos()
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGavisoce').show();
                             borrar_campos()
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -6258,7 +6228,7 @@ $('#formcreate_avisoCE').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGavisoce').hide();
                 },
                 success:function(resp){
     
@@ -6274,12 +6244,12 @@ $('#formcreate_avisoCE').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGavisoce').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGavisoce').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -6333,13 +6303,12 @@ $('#formcreate_feDeErratas').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGfedeerratas').hide();
                 },
                 success:function(resp){
     
@@ -6355,19 +6324,19 @@ $('#formcreate_feDeErratas').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGfedeerratas').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGfedeerratas').show();
                             borrar_campos()
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGfedeerratas').show();
                             borrar_campos()
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -6391,7 +6360,7 @@ $('#formcreate_feDeErratas').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGfedeerratas').hide();
                 },
                 success:function(resp){
     
@@ -6407,12 +6376,12 @@ $('#formcreate_feDeErratas').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGfedeerratas').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGfedeerratas').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -6458,13 +6427,12 @@ $('#formcreate_renovacionAnual').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGrenovacionanual').hide();
                 },
                 success:function(resp){
     
@@ -6473,19 +6441,19 @@ $('#formcreate_renovacionAnual').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGrenovacionanual').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGrenovacionanual').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGrenovacionanual').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -6510,7 +6478,7 @@ $('#formcreate_renovacionAnual').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGrenovacionanual').hide();
                 },
                 success:function(resp){
     
@@ -6519,12 +6487,12 @@ $('#formcreate_renovacionAnual').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGrenovacionanual').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGrenovacionanual').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -6570,13 +6538,12 @@ $('#formcreate_informeTecnico').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGinformetecnico').hide();
                 },
                 success:function(resp){
     
@@ -6585,19 +6552,19 @@ $('#formcreate_informeTecnico').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGinformetecnico').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGinformetecnico').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGinformetecnico').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -6622,7 +6589,7 @@ $('#formcreate_informeTecnico').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGinformetecnico').hide();
                 },
                 success:function(resp){
     
@@ -6631,12 +6598,12 @@ $('#formcreate_informeTecnico').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGinformetecnico').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGinformetecnico').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -6682,13 +6649,12 @@ $('#formcreate_avisoCierre').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGavisocierre').hide();
                 },
                 success:function(resp){
     
@@ -6697,19 +6663,19 @@ $('#formcreate_avisoCierre').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGavisocierre').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGavisocierre').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGavisocierre').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -6734,7 +6700,7 @@ $('#formcreate_avisoCierre').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGavisocierre').hide();
                 },
                 success:function(resp){
     
@@ -6743,12 +6709,12 @@ $('#formcreate_avisoCierre').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGavisocierre').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGavisocierre').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -6794,13 +6760,12 @@ $('#formcreate_archivoMuerto').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGarchivomuerto').hide();
                 },
                 success:function(resp){
     
@@ -6809,19 +6774,19 @@ $('#formcreate_archivoMuerto').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGarchivomuerto').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGarchivomuerto').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGarchivomuerto').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -6846,7 +6811,7 @@ $('#formcreate_archivoMuerto').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGarchivomuerto').hide();
                 },
                 success:function(resp){
     
@@ -6855,12 +6820,12 @@ $('#formcreate_archivoMuerto').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGarchivomuerto').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGarchivomuerto').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -6906,13 +6871,12 @@ $('#formcreate_cambioDomicilio').on('submit', function(e) {
             $.ajax({
                 url: "/documentos/create_formato",
                 type:'post',
-                // dataType: 'json',
                 data:formData,
                 cache:false,
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGcambiodomicilio').hide();
                 },
                 success:function(resp){
     
@@ -6921,19 +6885,19 @@ $('#formcreate_cambioDomicilio').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGcambiodomicilio').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGcambiodomicilio').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGpresentacion').show();
+                            $('#btnGcambiodomicilio').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -6958,7 +6922,7 @@ $('#formcreate_cambioDomicilio').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGpresentacion').hide();
+                    $('#btnGcambiodomicilio').hide();
                 },
                 success:function(resp){
     
@@ -6967,12 +6931,12 @@ $('#formcreate_cambioDomicilio').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGpresentacion').show();
+                        $('#btnGcambiodomicilio').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGpresentacion').show();
+                        $('#btnGcambiodomicilio').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
