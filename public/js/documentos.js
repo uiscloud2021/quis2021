@@ -164,10 +164,6 @@ function list_formatos(documento_formato){
     // Cargar los proyectos en el select no0 del form 
     list_proyectos();
 
-    // if (!formato_id) {
-        
-        // alert('!formato_id')
-
         formato_id = $("#doc_formatos").val();
 
         $("#new_format").attr("value", formato_id);
@@ -198,40 +194,6 @@ function list_formatos(documento_formato){
             ],
             "language": espanol
         });
-
-    // }else{
-    //     // alert('formato_id')
-
-    //     $("#new_format").attr("value", formato_id);
-    //     // $("#table-formato").show();
-
-    //     var list = $('#formatos_table').DataTable({
-    //         dom: 'T<"clear">lfrtip',
-    //         "processing": true,
-    //         "serverSide": true,
-    //         destroy: true,
-    //         "lengthMenu": [[5, 10, 50, -1], [5, 10, 50, "Todos"]],
-    //         "ajax":{
-    //             "url": "/documentos/list_formatos",
-    //             "method": "POST",
-    //             "data": {
-    //                 formato_id:formato_id,
-    //                 _token:$('input[name="_token"]').val()
-    //             },
-                
-    //         },
-    //         "columns": [
-    //             {"data": 'fecha'},
-    //             {"data": 'codigo_uis'},
-    //             {"data": 'fecha_aprob'},
-    //             {"data": 'usuario'},
-    //             {"data": 'download_delete'},
-    //             {"data": 'edit'},
-    //         ],
-    //         "language": espanol
-    //     });
-
-    // }
 
 }
 

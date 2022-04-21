@@ -700,13 +700,15 @@ class DocumentosController extends Controller
     }
 
     try{
-      // TODO: cambiar el nombre para que tenga el id del formato para diferenciarlos y que no se sobreescriban 
-      $my_template->saveAs(storage_path( '../public/assets/SC-documents/' . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
+      // TODO: cambiar el nombre para que tenga el id del formato para diferenciarlos y que no se sobreescriban - se puede utilizar el codigo del proyecto
+      $my_template->saveAs(storage_path( '../public/assets/SC-documents/' . $nombreDocumento['nombre_doc'] . '-' . $codigoUIS . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
+      // $my_template->saveAs(storage_path( '../public/assets/SC-documents/' . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
     }catch (Exception $e){
       return back()->withError($e->getMessage())->withInput();
     }
 
-    return response()->download(storage_path( '../public/assets/SC-documents/'  . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] ));
+    return response()->download(storage_path( '../public/assets/SC-documents/'  . $nombreDocumento['nombre_doc'] . '-' . $codigoUIS . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] ));
+    // return response()->download(storage_path( '../public/assets/SC-documents/'  . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] ));
   }
 
   /**
@@ -831,6 +833,11 @@ class DocumentosController extends Controller
 
         // $formato = Formato::where('id', $id)->get()->first();
         // $datos = json_decode($formato->datos_json);
+// $formato = Formato::where('id', $id)->get()->first();
+// $datos = json_decode($formato->datos_json);
+// $nombreDocumento = Documentos_formatos::where('id', $formato['documento_formato_id'])->get()->first();
+// $codigoUIS = Proyecto::where('id', $formato->proyecto_id)->get()->first();
+// $codigoUIS = $codigoUIS->no18;
         $nombreDocumento = Documentos_formatos::where('id', $request->documentoformato_id)->get()->first();
         $datosProyecto = Proyecto::where('id', $request->proyecto_id)
         ->get()->first();
@@ -840,7 +847,7 @@ class DocumentosController extends Controller
         ->join('users', 'proyectos.id_user' , '=', 'users.id')
         ->select('proyectos.*', 'investigadores.*', 'empresas.*', 'users.*')
         ->get()->first();
-        // $codigoUIS = $codigoUIS->no18;
+        $codigoUIS = $datosProyecto->no18;
 
         $currentTime = Carbon::now();
 
@@ -905,13 +912,16 @@ class DocumentosController extends Controller
 
         try{
           // TODO: cambiar el nombre para que tenga el id del formato para diferenciarlos y que no se sobreescriban 
-          $my_template->saveAs(storage_path( '../public/assets/SC-documents/' . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
+          $my_template->saveAs(storage_path( '../public/assets/SC-documents/' . $nombreDocumento['nombre_doc'] . '-' . $codigoUIS . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
+          // $my_template->saveAs(storage_path( '../public/assets/SC-documents/' . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
         }catch (Exception $e){
           return response(null);
         }
     
         // return response()->download(storage_path( '../public/assets/SC-documents/'  . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] ));
-        return response( $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] );
+        
+        return response( $nombreDocumento['nombre_doc'] . '-' . $codigoUIS . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] );
+        // return response( $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] );
         
       } else {
 
