@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
+
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -50,10 +51,10 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|unique:users',
             'password' => 'required',
-            'role' => 'required',
-            'position' => 'required',
-            'phone' => 'required'
+            'role' => 'required'
         ]);
+
+        $directorio = "avatar.png";
         
         //GUARDAR REGISTROS
         $users = new User();
@@ -62,12 +63,14 @@ class UserController extends Controller
         $users -> password = bcrypt($request->get('password'));
         $users -> position = $request->get('position');
         $users -> phone = $request->get('phone');
+        $users -> profile_photo_path = $directorio;
         //guarda
         $users -> save();
 
         if($request->role){
             $users->roles()->attach($request->role);//GUARDAR LAS RELACIONES ROLES
         }
+        //$users =$request->get('name');
         return redirect()->route('users.edit', $users)->with('info', 'El usuario se creó correctamente');
 
     }
@@ -108,9 +111,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => "required|unique:users,email,$user->id",
-            'role' => 'required',
-            'position' => 'required',
-            'phone' => 'required'
+            'role' => 'required'
         ]);
         
         //CONDICION PARA GUARDAR CAMBIO DE PASSWORD

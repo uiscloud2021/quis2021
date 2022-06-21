@@ -19,8 +19,7 @@
                     data-accordion="false"
                 @endif>
 
-
-                <li class="nav-item">
+               <!-- <li class="nav-item">
                     <a class="nav-link submenu" href="{{ url('/dashboard') }}">
                         <i class="fas fa-fw fa-home"> </i>
                         <p>Inicio</p>
@@ -32,8 +31,9 @@
                         <i class="fas fa-fw fa-chart-bar"> </i>
                         <p>Estadísiticas</p>
                     </a>
-                </li>
+                </li>-->
 
+              {{--  @if(isset($menus_sidebar))
                 @foreach ($menus_sidebar as $menu)
                     @if($menu->tiene_submenu == "No")
                         <!-- SIN SUBMENU -->
@@ -45,8 +45,8 @@
                         </li>
                     @else
                         <!-- CON SUBMENU -->
-                        <li class="nav-item has-treeview">
-                            <a class="nav-link" href="#">
+                        <li class="nav-item has-treeview" id='{{ $menu->name }}'>
+                            <a class="nav-link" href="#" id='menu_{{ $menu->name }}'>
                                 <i class="fas fa-fw fa-{{ $menu->icon }} "> </i>
                                 <p>{{ $menu->name }}
                                     <i class="fas fa-angle-left right"></i>
@@ -56,7 +56,7 @@
                              @foreach($menu->submenus as $menu_submenu)
                                     @can($menu_submenu->name_permission.'.index')
                                         <li class="nav-item">
-                                            <a class="nav-link submenu" href="{{ url('/'.$menu_submenu->name_permission) }}">
+                                            <a class="nav-link submenu" id='{{ $menu_submenu->name }}' href="{{ url('/'.$menu_submenu->name_permission) }}">
                                                 @if($menu_submenu->name == "Documentos")
                                                     <i class="fas fa-fw fa-file-pdf"> </i>
                                                 @else
@@ -68,10 +68,10 @@
                                     @endcan
                              @endforeach
                             </ul>
-                        </li>
+                        </li> 
                     @endif 
-                @endforeach
-
+                @endforeach 
+                @endif --}}
 
                 {{-- Configured sidebar links --}}
                 @each('adminlte::partials.sidebar.menu-item', $adminlte->menu('sidebar'), 'item') 
@@ -79,13 +79,23 @@
         </nav>
     </div>
     <script > 
-        var submenus = document.getElementsByClassName("nav-link submenu");
-        var url = window.location;
-        //alert(url);
+        //var submenus = document.getElementsByClassName("nav-link submenu");
+        //var url = window.location;
+        /*console.log(submenus[3].id);
+        $("#"+submenus[3].id).classList.add("nav-link submenu active");
+        
+        function Menu(nombre){
+            var menu = nombre.split(",");
+        $(".nav-link").removeAttr('nav-link active');
+        $("#"+menu[0]).addClass("nav-item has-treeview menu-open");
+        $("#menu_"+menu[0]).addClass("nav-link active");
+        $("#"+menu[1]).addClass("nav-link active");
         /*for(let i = 0; i <= submenus.length; i++){
-            if(submenus[i].pathname == url.pathname){
+            if(submenus[i] == url){
                 submenus[i].classList.add("active");
             }
         }*/
+        //}
     </script>
 </aside>
+

@@ -67,7 +67,8 @@ class User extends Authenticatable
     ];
 
     public function adminlte_image(){ //metodo para la imagen de usuario
-        return "https://picsum.photos/300/300";
+        //return "https://picsum.photos/300/300";
+        return asset('assets/profiles/'.$this->profile_photo_path);
     }
 
     public function adminlte_desc(){ //metodo para rol de usuario

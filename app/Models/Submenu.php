@@ -25,7 +25,7 @@ class Submenu extends Model
     //RELACION MUCHOS A MUCHOS
     public function menus(){
         return $this->belongsToMany(Menu::class,'submenu_menu')
-            ->withPivot('menu_id');
+            ->withPivot('menu_id')->orderBy('position');
     }
 
     public function empresas(){

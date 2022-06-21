@@ -16,4 +16,9 @@ return [
     'Important'                     => 'Importante',
     'Warning'                       => 'Aviso',
     'Information'                   => 'Informação',
+
+    //MENUS DINAMICOS
+    //'dynamic_menus'                 => 'Menus dinámicos',
 ];
+
+

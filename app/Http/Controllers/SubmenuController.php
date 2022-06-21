@@ -62,7 +62,7 @@ class SubmenuController extends Controller
         //id usuario loggeado
         $id_user = auth()->id();
 
-        //QUITAR ACENTOS Y DEJAR EL NOMBRE EN MINUSCULAS PARA LOS PERMISOS
+        //QUITAR ACENTOS Y DEJAR EL NOMBRE EN MINUSCULAS PARA LOS PERMISOS.
         $cadena=$request->name;
         $name_acento = strtr(utf8_decode($cadena), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
 		$name_orig = strtolower($name_acento);

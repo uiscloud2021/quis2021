@@ -17,3 +17,4 @@ function GuardarCambios(){
     $('#overlay').show();
     $('#formedit_inventario').submit();
 }
+

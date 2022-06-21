@@ -29,7 +29,7 @@
                       </ul>
                     </div>
                     <div class="col-5 text-center">
-                      <img src="https://picsum.photos/300/300" alt="" class="img-circle img-fluid">
+                      <img src="../assets/profiles/{{$user->profile_photo_path}}" alt="" class="img-circle img-fluid">
                     </div>
                   </div>
                 </div>
@@ -46,7 +46,7 @@
                 <div class="card-header text-muted border-bottom-0">
                   Cambiar datos
                 </div>
-                {!! Form::model($user, ['route' => ['profile.update', $user], 'method' => 'put']) !!}
+                {!! Form::model($user, ['route' => ['profile.update', $user], 'method' => 'put', 'enctype' => 'multipart/form-data']) !!}
                 <div class="card-body">
                         
                         <div class="form-group">
@@ -64,6 +64,11 @@
                         <div class="form-group">
                             {!! Form::label('phone', 'Teléfono', ['class' => 'form-label']) !!}
                             {!! Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el teléfono']) !!}
+                        </div>
+
+                        <div class="form-group">
+                          {!! Form::label('img', 'Foto de perfil', ['class' => 'form-label']) !!}
+                          {!! Form::file('img', null, ['class' => 'form-control', 'id' => 'img']) !!}
                         </div>
 
                 </div>
@@ -89,5 +94,15 @@
 @stop
 
 @section('js')
-    
+    <script>
+      $('input[type="file"]').on('change', function(){
+        var ext = $( this ).val().split('.').pop();
+        if ($( this ).val() != '') {
+          if(ext != "png" && ext != "PNG" && ext != "JPG" && ext != "jpg" && ext != "JPEG" && ext != "jpeg"){
+            $( this ).val('');
+            alert("Solo se permiten imagenes PNG o JPG");
+          }
+        }
+      });
+    </script>
 @stop

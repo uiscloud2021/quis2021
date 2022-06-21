@@ -26,7 +26,7 @@ class InventarioController extends Controller
      */
     public function index()
     {
-        $inventarios = Inventario::all();
+        $inventarios = Inventario::where('empresa_id', '=', session('id_empresa'))->get();
 		return view('inventario.index', compact('inventarios'));
     }
 

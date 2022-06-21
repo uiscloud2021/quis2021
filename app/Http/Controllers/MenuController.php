@@ -63,21 +63,9 @@ class MenuController extends Controller
         //id usuario loggeado
         $id_user = auth()->id();
 
-        //GUARDAR REGISTROS
-        $menus = new Menu();
-        $menus->name = $request->name;
-	    $menus->description = $request->description;
-        $menus->position = $request->position;
-        $menus->tiene_submenu = $request->tiene_submenu;
-        $menus->icon = $request->icon;
-        $menus->id_user = $id_user;
-        $menus -> save();
+        $submenu=$request->tiene_submenu;
 
-        if($request->users){
-            $menus->users()->attach($request->users);//GUARDAR LAS RELACIONES
-        }
-		
-        if($request->tiene_submenu == "No"){
+        if($submenu == "No"){
             //QUITAR ACENTOS Y DEJAR EL NOMBRE EN MINUSCULAS PARA LOS PERMISOS
             $cadena=$request->name;
             $name_acento = strtr(utf8_decode($cadena), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
@@ -118,6 +106,27 @@ class MenuController extends Controller
 	        $permisos->description = $description_destroy;
             $permisos->guard_name = "web";
             $permisos -> save();
+        }
+
+        if($request->tiene_submenu == "No"){
+            $perm = $permission_index;
+        }else{
+            $perm = NULL;
+        }
+
+        //GUARDAR REGISTROS
+        $menus = new Menu();
+        $menus->name = $request->name;
+	    $menus->description = $request->description;
+        $menus->position = $request->position;
+        $menus->tiene_submenu = $request->tiene_submenu;
+        $menus->icon = $request->icon;
+        $menus->permission = $perm;
+        $menus->id_user = $id_user;
+        $menus -> save();
+
+        if($request->users){
+            $menus->users()->attach($request->users);//GUARDAR LAS RELACIONES
         }
 
 		return redirect()->route('menus.edit', $menus)->with('info', 'El menú se guardó correctamente');
@@ -163,11 +172,81 @@ class MenuController extends Controller
             'position' => 'required',
             'tiene_submenu' => 'required',
             'icon' => 'required',
-            'users' => 'required',
+            'users' => 'required'
         ]);
 
 		//id usuario loggeado
         $id_user = auth()->id();
+
+        if($request->tiene_submenu == "No"){
+            //NOMBRE ORIGINAL Y NUEVO
+            $name_menu = $menu->name;
+            $name_new = $request->name;
+            $permission_menu = $menu->permission;
+
+            if($name_new != $name_menu){
+                //QUITAR ACENTOS, QUITAR ESPACIO EN BLANCO Y DEJAR EL NOMBRE EN MINUSCULAS PARA LOS PERMISOS
+                $name_acento = strtr(utf8_decode($name_menu), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+		        $name_orig = strtolower($name_acento);
+                $name = str_replace(" ", "_", $name_orig);
+
+                $name_index = $name.".index";
+                $name_create = $name.".create";
+                $name_edit = $name.".edit";
+                $name_destroy = $name.".destroy";
+
+                $name_sin_acento = strtr(utf8_decode($name_new), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+		        $name_min = strtolower($name_sin_acento);
+                $name_esp = str_replace(" ", "_", $name_min);
+
+                $permission_index = $name_esp.".index";
+                $description_index = "Lista de ".$name_new;
+                $permission_create = $name_esp.".create";
+                $description_create = "Agregar ".$name_new;
+                $permission_edit = $name_esp.".edit";
+                $description_edit = "Editar ".$name_new;
+                $permission_destroy = $name_esp.".destroy";
+                $description_destroy = "Eliminar ".$name_new;
+                
+                //CONSULTA INDEX
+                $permiso_index = Permission::where('name', '=', $name_index)->get()->first();
+                $id_index = $permiso_index->id;
+                $cons_index = Permission::find($id_index);
+	            $cons_index->name = $permission_index;
+                $cons_index->description = $description_index;
+                $cons_index->save();
+
+                //CONSULTA CREATE
+                $permiso_create = Permission::where('name', '=', $name_create)->get()->first();
+                $id_create = $permiso_create->id;
+                $cons_create = Permission::find($id_create);
+	            $cons_create->name = $permission_create;
+                $cons_create->description = $description_create;
+                $cons_create->save();
+
+                //CONSULTA EDIT
+                $permiso_edit = Permission::where('name', '=', $name_edit)->get()->first();
+                $id_edit = $permiso_edit->id;
+                $cons_edit = Permission::find($id_edit);
+	            $cons_edit->name = $permission_edit;
+                $cons_edit->description = $description_edit;
+                $cons_edit->save();
+
+                //CONSULTA DESTROY
+                $permiso_destroy = Permission::where('name', '=', $name_destroy)->get()->first();
+                $id_destroy = $permiso_destroy->id;
+                $cons_destroy = Permission::find($id_destroy);
+	            $cons_destroy->name = $permission_destroy;
+                $cons_destroy->description = $description_destroy;
+                $cons_destroy->save();
+
+                $perm = $permission_index;
+            }else{
+                $perm = $permission_menu;
+            }
+        }else{
+            $perm = NULL;
+        }
 
 		$menu = Menu::find($menu->id);
 	    $menu->name = $request->name;
@@ -175,74 +254,12 @@ class MenuController extends Controller
         $menu->position = $request->position;
         $menu->tiene_submenu = $request->tiene_submenu;
         $menu->icon = $request->icon;
+        $menu->permission = $perm;
         $menu->id_user = $id_user;
         $menu->save();
 
         if($request->users){
             $menu->users()->sync($request->users);//CAMBIOS EN TABLA RELACION
-        }
-
-        if($request->tiene_submenu == "No"){
-            //NORMBRE ORIGINAL Y NUEVO
-            $name_menu = $menu->name;
-            $name_new = $request->name;
-
-            if($name_new != $name_submenu){
-            //QUITAR ACENTOS, QUITAR ESPACIO EN BLANCO Y DEJAR EL NOMBRE EN MINUSCULAS PARA LOS PERMISOS
-            $name_acento = strtr(utf8_decode($name_menu), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
-		    $name_orig = strtolower($name_acento);
-            $name = str_replace(" ", "_", $name_orig);
-
-            $name_index = $name.".index";
-            $name_create = $name.".create";
-            $name_edit = $name.".edit";
-            $name_destroy = $name.".destroy";
-
-            $name_sin_acento = strtr(utf8_decode($name_new), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
-		    $name_min = strtolower($name_sin_acento);
-            $name_esp = str_replace(" ", "_", $name_min);
-
-            $permission_index = $name_esp.".index";
-            $description_index = "Lista de ".$name_new;
-            $permission_create = $name_esp.".create";
-            $description_create = "Agregar ".$name_new;
-            $permission_edit = $name_esp.".edit";
-            $description_edit = "Editar ".$name_new;
-            $permission_destroy = $name_esp.".destroy";
-            $description_destroy = "Eliminar ".$name_new;
-
-            //CONSULTA INDEX
-            $permiso_index = Permission::where('name', '=', $name_index)->get()->first();
-            $id_index = $permiso_index->id;
-            $cons_index = Permission::find($id_index);
-	        $cons_index->name = $permission_index;
-            $cons_index->description = $description_index;
-            $cons_index->save();
-
-            //CONSULTA CREATE
-            $permiso_create = Permission::where('name', '=', $name_create)->get()->first();
-            $id_create = $permiso_create->id;
-            $cons_create = Permission::find($id_create);
-	        $cons_create->name = $permission_create;
-            $cons_create->description = $description_create;
-            $cons_create->save();
-
-            //CONSULTA EDIT
-            $permiso_edit = Permission::where('name', '=', $name_edit)->get()->first();
-            $id_edit = $permiso_edit->id;
-            $cons_edit = Permission::find($id_edit);
-	        $cons_edit->name = $permission_edit;
-            $cons_edit->description = $description_edit;
-            $cons_edit->save();
-
-            //CONSULTA DESTROY
-            $permiso_destroy = Permission::where('name', '=', $name_destroy)->get()->first();
-            $id_destroy = $permiso_destroy->id;
-            $cons_destroy = Permission::find($id_destroy);
-	        $cons_destroy->name = $permission_destroy;
-            $cons_destroy->description = $description_destroy;
-            $cons_destroy->save();
-            }
         }
 		
         return redirect()->route('menus.edit',$menu)->with('info', 'El menú se modificó correctamente');

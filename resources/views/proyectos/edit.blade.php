@@ -19,6 +19,8 @@
             </div>
             {!! Form::model($proyecto, ['route' => ['proyectos.update', $proyecto], 'method' => 'put', 'id'=>'formedit_proyecto']) !!}
 
+                @include('proyectos.resume')
+
 			    @include('proyectos.form')
 
                 <div align="right">
@@ -37,6 +39,8 @@
 @section('css')
     <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="{{ asset('vendor/select2/css/select2.css?2') }}" rel="stylesheet">
 @stop
 
 @section('js')
@@ -45,5 +49,13 @@
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
-    <script src="{{ asset('js/administracion/proyectos.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset('vendor/select2/js/select2.full.js') }}"></script>
+    <script src="{{ asset('js/administracion/proyectos.js?2') }}"></script>
+    <script>
+        $(document).ready(function() {
+            id_investigador=$('#inv_id').val();
+            Investigador(id_investigador);
+        } );
+    </script>
 @stop

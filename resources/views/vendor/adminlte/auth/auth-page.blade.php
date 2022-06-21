@@ -20,10 +20,9 @@
 
         {{-- Logo --}}
         <div class="{{ $auth_type ?? 'login' }}-logo">
-            <a href="{{ $dashboard_url }}">
+            
                 <img src="{{ asset(config('adminlte.logo_img_inicio')) }}" height="90">
                 
-            </a>
         </div>
 
         {{-- Card Box --}}

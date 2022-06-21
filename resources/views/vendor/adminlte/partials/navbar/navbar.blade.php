@@ -13,8 +13,12 @@
         {{-- Custom left links --}}
         @yield('content_top_nav_left')
         
+        {{--
+        {!! Form::open(['route' => 'dashboard.store', 'autocomplete' => 'off', 'id'=>'form_emp']) !!}
         {!! Form::select('empresa_navbar', $empresas_navbar, null, ['style' => 'width: 100%; background: transparent; border: none; color:#fff; font-weight: bold;-webkit-appearance: none; -moz-appearance: none; appearance: none; overflow:hidden; cursor:pointer; background-color: #9d2235;', 'id' =>'empresa_navbar', 'onchange' => 'Menu_Empresas(this.value);']) !!}
-        
+        {!! Form::close() !!}
+        --}}
+        {!! Form::text('name_empresa_id', null, ['style' => 'width: 400px; background: transparent; border: none; color:#fff; font-weight: bold;-webkit-appearance: none; -moz-appearance: none; appearance: none; overflow:hidden; cursor:pointer; background-color: #9d2235;', 'id' => 'name_empresa_id', 'disabled'=>'disabled']) !!}
     </ul>
 
     

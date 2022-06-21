@@ -40,12 +40,12 @@ class AppServiceProvider extends ServiceProvider
                 $empresa_id = $empresas->id;
                 $globalempresa_id=$empresa_id;
 
-                $menus_sidebar = Menu::whereHas('empresas', function($query) use($empresa_id){
+                /*$menus_sidebar = Menu::whereHas('empresas', function($query) use($empresa_id){
                 $query->where('empresa_id', '=', $empresa_id);
                 })
                 ->whereHas('users', function($query) use($user_id){
                     $query->where('user_id', '=', $user_id);
-                })->orderBy('position')->get();
+                })->orderBy('position')->get();*/
 
                 $empresas_navbar = Empresa::whereHas('users', function($query) use($user_id){
                     $query->where('user_id', '=', $user_id);
@@ -56,7 +56,13 @@ class AppServiceProvider extends ServiceProvider
                 })->orderBy('id')->get();
 
                 //dd ($user_id);//MOSTRAR EN CONSOLA RESULTADOS
-                $view->with(compact('menus_sidebar', 'empresas_navbar', 'empresas_rightbar', 'globalempresa_id'));
+                if (!session()->has('id_empresa')) {
+                    session(['id_empresa' => $globalempresa_id]);
+                }
+                //session(['id_empresa' => $globalempresa_id]);
+                //session(['menus_sidebar' => $menus_sidebar]);
+                //$view->with(compact('menus_sidebar', 'empresas_navbar', 'empresas_rightbar', 'globalempresa_id'));
+                $view->with(compact('empresas_navbar', 'empresas_rightbar', 'globalempresa_id'));
             }
         });
 

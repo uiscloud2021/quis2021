@@ -59,6 +59,20 @@ return [
             'url' => env('USE_LAMBDA_STORAGE', true) ? "/tmp" : storage_path('app/temp'),
         ],
 
+        'mce' => [
+            'driver' => 'local',
+            'root' => public_path('assets/MCE'),
+            'url' => env('APP_URL').'/MCE',
+            'visibility' => 'public',
+        ],
+
+        'profiles' => [
+            'driver' => 'local',
+            'root' => public_path('assets/profiles'),
+            'url' => env('APP_URL').'/profiles',
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*

@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>QUIS</b>', //nombre en sidebar title
+    'logo' => '<b style="color:#fff">= Calidad</b>', //nombre en sidebar title
     'logo_img' => 'vendor/adminlte/dist/img/quis_sid.png', //imagen de sidebar title
     'logo_img_class' => 'brand-image', //tamaño de imagen en sidebar
     'logo_img_xl' => null, //para poner una imagen en sidebar mas grande cuando este abierta la sidebar
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'QUIS',
+    'logo_img_alt' => '= Calidad',
     'logo_img_inicio' => 'vendor/adminlte/dist/img/ppal.png', //imagen de inicio de sesion
 
     /*
@@ -88,7 +88,7 @@ return [
     'layout_boxed' => null, //contenido en true solo en 1250px, null pantalla completa
     'layout_fixed_sidebar' => true, //en true para sidebar fijo con scroll aparte, null con scroll de pagina
     'layout_fixed_navbar' => true, //para dejar fija la barra de arriba del nombre de usuario
-    'layout_fixed_footer' => null,
+    'layout_fixed_footer' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -127,7 +127,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '', //color en div header del body
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-white elevation-4', //color de sidebar dark o light
+    'classes_sidebar' => 'sidebar-light-white elevation-4', //color de sidebar dark o light
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-dark bg-mexg2', //color del navbar
     'classes_topnav_nav' => 'navbar-expand',
@@ -173,7 +173,7 @@ return [
     'right_sidebar_slide' => true,
     'right_sidebar_push' => true,
     'right_sidebar_scrollbar_theme' => 'os-theme-light',
-    'right_sidebar_scrollbar_auto_hide' => 'l',
+    'right_sidebar_scrollbar_auto_hide' => '1',
 
     /*
     |--------------------------------------------------------------------------
@@ -225,17 +225,23 @@ return [
     */
     //RUTAS DEL MENU SIDEBAR
     'menu' => [
-        /*[
+        [
+            'key' => 'Inicio',
             'text' => 'Inicio',
             'route'  => 'dashboard',
             'icon'=> 'fas fa-fw fa-home',
             'can'  => 'dashboard',
         ],
+        /*[
+            'text'        => 'Calendario',
+            'url'         => 'calendario',
+            'icon'        => 'fas fa-fw fa-calendar-alt',
+            'can'  => 'calendario.index',
+        ],
         [
-            'text'        => 'Estadísticas',
-            'url'         => 'home',
-            'icon'        => 'fas fa-fw fa-chart-line',
-            'can'  => 'home.index',
+            'key'           => 'dynamic_menus',
+            'text'          => 'dynamic_menus',
+            'icon'          => 'fas fa-fw fa-chart-line',
         ],*/
 
 
@@ -243,7 +249,8 @@ return [
 
         //ADMINISTRADORES
         ['header' => 'Solo administradores',
-        'can'  => 'users.index',],
+        'key'   => 'Admin',
+        'can'  => 'empresas.index',],
         [
             'text'        => 'Empresas',
             'url'         => 'empresas',

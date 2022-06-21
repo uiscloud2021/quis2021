@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Auth;
 
 class ProfileController extends Controller
@@ -46,11 +47,20 @@ class ProfileController extends Controller
             $pw=$pw_new;
         }
 
+        $img = $request->file('img');
+        if($img!=""){
+            $filename = $request->file('img')->getClientOriginalName();
+            Storage::disk('profiles')->put($filename, fopen($request->file('img'), 'r+'), 'public');
+        }else{
+            $filename="avatar.png";
+        }
+
         //GUARDAR Cambios
         $users = User::find($request->get('id'));
         $users -> name = $request->get('name');
         $users -> password = $pw;
         $users -> phone = $request->get('phone');
+        $users -> profile_photo_path = $filename;
         //guarda
         $users -> save();
 

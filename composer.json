@@ -20,7 +20,8 @@
         "laravelcollective/html": "^6.2",
         "league/flysystem-aws-s3-v3": "~1.0",
         "livewire/livewire": "^2.0",
-        "nesbot/carbon": "^2.46",
+        "nesbot/carbon": "^2.57",
+        "phpoffice/phpword": "^0.18.3",
         "spatie/laravel-permission": "^4.0",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
