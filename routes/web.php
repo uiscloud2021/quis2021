@@ -22,6 +22,8 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\DocumentosController;
 //DOCUMENTOS COMITE ETICA
 use App\Http\Controllers\DocumentosCEController;
+//DOCUMENTOS ID
+use App\Http\Controllers\DocumentosIDController;
 //DOCUMENTOS ADMINISTRACION
 use App\Http\Controllers\DocumentosADController;
 //DOCUMENTOS CALIDAD
@@ -42,6 +44,8 @@ use App\Http\Controllers\SitioClinico\SCController;
 
 //COMITÉ DE ÉTICA
 use App\Http\Controllers\ComiteEtica\CEController;
+
+
 
 
 //ADMINISTRACION
@@ -301,6 +305,22 @@ Route::get('/documentos_ce/word/{id}', [DocumentosCEController::class,'word'])->
 Route::get('/documentos_ce/download_formato/{ruta}', 'App\Http\Controllers\DocumentosCEController@download_formato')->name('documentos_ce.download_formato');
 Route::get('/documentos_ce/descargar/word/{ruta}', [DocumentosCEController::class, 'download'])->name('documentos_ce.download');
 //FIN DE DOCUMENTOS COMITE DE ETICA
+
+// RECURSOS DOCUMENTOS INNOVACION Y DESARROLLO
+Route::resource('documentos_id', DocumentosIDController::class);
+Route::post('/documentos_id/list_formatos', 'App\Http\Controllers\DocumentosIDController@list_formatos')->name('documentos_id.list_formatos');
+Route::post('/documentos_id/create_formato', 'App\Http\Controllers\DocumentosIDController@create_formato')->name('documentos_id.create_formato');
+Route::post('/documentos_id/delete_formato', 'App\Http\Controllers\DocumentosIDController@delete_formato')->name('documentos_id.delete_formato');
+Route::post('/documentos_id/edit_formato', 'App\Http\Controllers\DocumentosIDController@edit_formato')->name('documentos_id.edit_formato');
+Route::post('/documentos_id/datos_protocolo', 'App\Http\Controllers\DocumentosIDController@datos_protocolo')->name('documentos_id.datos_protocolo');
+Route::post('/documentos_id/codigos_nombre', 'App\Http\Controllers\DocumentosIDController@codigos_nombre')->name('documentos_id.codigos_nombre');
+Route::post('/documentos_id/has_form', 'App\Http\Controllers\DocumentosIDController@has_form')->name('documentos_id.has_form');
+// Geenerar word
+Route::get('/documentos_id/word/{id}', [DocumentosIDController::class,'word'])->name('documentos_id.word');
+// Descargar documento
+Route::get('/documentos_id/download_formato/{ruta}', 'App\Http\Controllers\DocumentosIDController@download_formato')->name('documentos_id.download_formato');
+Route::get('/documentos_id/descargar/word/{ruta}', [DocumentosIDController::class, 'download'])->name('documentos_id.download');
+//FIN DE DOCUMENTOS INNOVACION Y DESARROLLO
 
 
 // RECURSOS DOCUMENTOS ADMINISTRACION
