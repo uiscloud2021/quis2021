@@ -200,8 +200,7 @@ class DocumentosIDController extends Controller
      */
     public function download_formato(Request $request, $ruta)
     {		
-        $directorio = Documentos_id_formatos::where('nombre_doc', $ruta)->get()->first();
-        return response()->file(storage_path('../public/assets/ID/5. FC-ID/'  .  $directorio->directorio ));
+        return response()->file(storage_path('../public/assets/ID/5. FC-ID/'  .  $ruta ));
     }
 
     public function list_formatos(Request $request)

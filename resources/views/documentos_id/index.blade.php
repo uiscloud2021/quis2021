@@ -303,7 +303,7 @@
 </div>
 
 <!--MODALS-->
-@include('documentos_ce.modals')
+@include('documentos_id.modals')
 
 @stop
 
@@ -325,5 +325,5 @@
     <!-- Select2 -->
     <script src="{{ asset('vendor/select2/js/select2.full.js') }}"></script>
 
-    <script src="{{ asset('js/documentos_ce.js?1') }}"></script>
+    <script src="{{ asset('js/documentos_id.js?2') }}"></script>
 @stop
