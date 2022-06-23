@@ -93,12 +93,13 @@ function list_codigos(proyecto_id){
 }
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+var idFormato = 0;
 
 $("#doc_formatos").change(
     function(){
         formato_id = this.value;
         selectValue = $("#" + this.id + " option:selected").text();
-        
+        idFormato = formato_id;
         $("#tabla_buscador").hide();
         codigo_id=$("#protocolo_id").val();
 
@@ -230,7 +231,9 @@ function download_formatos_datos() {
             if(resp){
                 borrar_campos();
                 list_formatos();
+                alert(resp);
                 window.open('/documentos_id/descargar/word/' + resp, '_blank');
+                
             }else{
                 borrar_campos();
                 toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
@@ -1419,7 +1422,7 @@ function borrar_campos() {
     $("#proyecto_id").val(null);
     $("#formato_id").val(null);
 
-    $("#formcreate_invitacion")[0].reset();
+    $("#formcreate_propuestaInicial")[0].reset();
     $("#formcreate_confidencialidad")[0].reset();
     $("#formcreate_designacion")[0].reset();
     $("#formcreate_instalacion")[0].reset();
@@ -2900,7 +2903,9 @@ $("#add_doc_migracion").click(
 $("#wrapper_migraciondoc").on('click', '.remove_button', function(e) {
     e.preventDefault();
 
-    var div = $(this).parents('#body-75');
+    var idBody = "#body-"+idFormato;
+    
+    var div = $(this).parents(idBody);
     $(this).parent('div').remove();
 
     var aux = 19;
@@ -3006,8 +3011,9 @@ $("#wrapper_migraciondocCI").on('click', '.remove_button', function(e) {
 
 // Metodos submit de los forms 
 // Submit - invitacion
-$('#formcreate_invitacion').on('submit', function(e) {
+$('#formcreate_guardadoSimple').on('submit', function(e) {
     e.preventDefault();
+
     var formData = new FormData(this);
 
     formato_id = $('#formato_id').val();
@@ -3024,7 +3030,13 @@ $('#formcreate_invitacion').on('submit', function(e) {
     formData.append('empresa_id', empresa_id);
     formData.append('menu_id', menu_id);
     formData.append('user_id', user_id);
+    
+    guardar(formato_id, documentoformato_id, proyecto_id, empresa_id, menu_id, user_id);
+    
+    
+});
 
+function guardar(formato_id, documentoformato_id, proyecto_id, empresa_id, menu_id, user_id){
     if (!formato_id) {
         if(documentoformato_id!="" && proyecto_id ){
             $.ajax({
@@ -3035,7 +3047,7 @@ $('#formcreate_invitacion').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGinvitacion').hide();
+                    $('#btnGuardar').hide();
                 },
                 success:function(resp){
     
@@ -3044,19 +3056,19 @@ $('#formcreate_invitacion').on('submit', function(e) {
                     if(resp == 'guardado'){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        $('#btnGinvitacion').show();
+                        $('#btnGuardar').show();
                         borrar_campos();
                         list_formatos(documentoformato_id);
                     }else{
                         if (resp == 'no guardado') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGinvitacion').show();
+                            $('#btnGuardar').show();
                             borrar_campos();
                             toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
                         }
                         if (resp == 'dato existe') {
                             $('#createFormatoModal').modal('hide');
-                            $('#btnGinvitacion').show();
+                            $('#btnGuardar').show();
                             borrar_campos();
                             toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
                         }
@@ -3081,7 +3093,7 @@ $('#formcreate_invitacion').on('submit', function(e) {
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#btnGinvitacion').hide();
+                    $('#btnGuardar').hide();
                 },
                 success:function(resp){
     
@@ -3090,12 +3102,12 @@ $('#formcreate_invitacion').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGinvitacion').show();
+                        $('#btnGuardar').show();
                         borrar_campos();
                         list_formatos();
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGinvitacion').show();
+                        $('#btnGuardar').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -3109,8 +3121,9 @@ $('#formcreate_invitacion').on('submit', function(e) {
             toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
-    
-});
+
+}
+   
 // END Submit - invitacion
 
 
@@ -10046,8 +10059,17 @@ $('#formcreate_avisoCancelacion').on('submit', function(e) {
 
 
 // Submit Aviso al Migracion
-$('#formcreate_migracion').on('submit', function(e) {
+$('#formcreate_agregado').on('submit', function(e) {
     e.preventDefault();
+
+    guardadoConAgregado();
+    
+});
+// END Submit Aviso al Migracion
+
+function guardadoConAgregado(){
+    
+
     var formData = new FormData(this);
 
     formato_id = $('#formato_id').val();
@@ -10151,12 +10173,12 @@ $('#formcreate_migracion').on('submit', function(e) {
                     if(resp){
                         $('#createFormatoModal').modal('hide');
                         toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                        $('#btnGmigracion').show();
+                        $('#btnGuardado').show();
                         borrar_campos();
                         list_formatos();
                     }else{
                         $('#createFormatoModal').modal('hide');
-                        $('#btnGmigracion').show();
+                        $('#btnGuardar').show();
                         borrar_campos();
                         toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
                     }
@@ -10170,10 +10192,7 @@ $('#formcreate_migracion').on('submit', function(e) {
             toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
         }
     }
-    
-});
-// END Submit Aviso al Migracion
-
+};
 
 
 

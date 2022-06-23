@@ -392,7 +392,7 @@ class DocumentosIDController extends Controller
 
         $formato = Formatos_id::where('id', $id)->get()->first();
         $datos = json_decode($formato->datos_json);
-
+        
         // Obtener Los datos del tipo de formato 
         $nombreDocumento = Documentos_id_formatos::where('id', $formato['documento_formato_id'])->get()->first();
 
@@ -409,69 +409,17 @@ class DocumentosIDController extends Controller
 
         $my_template = new \PhpOffice\PhpWord\TemplateProcessor(storage_path('../public/assets/ID/5. FC-ID/' . $nombreDocumento['directorio'] . ''));
 
-        // Documento Invitacion
-        if (1 == $formato['documento_formato_id']) {
-            $my_template->setValue('fecha', date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            // list($day,$month,$year) = explode("/",date('d/m/Y', strtotime($datos[0])));
-            // $my_template->setValue('fecha', $day . ' de ' . $month . ' de ' . $year);
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('comite', $datos[3]);
-            $my_template->setValue('primerApellido', $datos[4]);
-            // if ($datos[2] == 'Dr.') {
-            //     $my_template->setValue('estimado/a', 'Estimado Doctor:');
-            // };
-            // if ($datos[2] == 'Dra.') {
-            //     $my_template->setValue('estimado/a', 'Estimada Doctora:');
-            // };
-            $my_template->setValue('integracion', $datos[5]);
-            $my_template->setValue('aspectos', $datos[6]);
-            if ($datos[3] == 'Comité de Ética en Investigación (CEI)') {
-                $my_template->setValue('abre', 'CEI');
-            };
-            if ($datos[3] == 'Comité de Investigación (CI)') {
-                $my_template->setValue('abre', 'CI');
-            };
-        }
 
-        // Documento Condidencialidad
-        if (2 == $formato['documento_formato_id']) {
-            $my_template->setValue('comite', $datos[0]);
-            $my_template->setValue('comite2', $datos[1]);
-        }
+        
 
-        // Documento Designacion
-        if (5 == $formato['documento_formato_id']) {
+        
+
+        // Documento Propuesta Inicial
+        if (3 == $formato['documento_formato_id']) {
             // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
+            //$my_template->setValue('fecha', date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
             $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('comite', $datos[3]);
-            $my_template->setValue('apellido', $datos[4]);
-            $my_template->setValue('comite2', $datos[5]);
-            $my_template->setValue('aspectos', $datos[6]);
-            $my_template->setValue('comite3', $datos[7]);
-            if ($datos[8] == 'Si') {
-                $my_template->setValue('si1', 'x');
-                $my_template->setValue('no1', '');
-            } else {
-                $my_template->setValue('si1', '');
-                $my_template->setValue('no1', 'x');
-            }
-            if ($datos[9] == 'Si') {
-                $my_template->setValue('si2', 'x');
-                $my_template->setValue('no2', '');
-            } else {
-                $my_template->setValue('si2', '');
-                $my_template->setValue('no2', 'x');
-            }
-            if ($datos[10] == 'Si') {
-                $my_template->setValue('si3', 'x');
-                $my_template->setValue('no3', '');
-            } else {
-                $my_template->setValue('si3', '');
-                $my_template->setValue('no3', 'x');
-            }
+            
         }
 
         // Documento Instalacion
