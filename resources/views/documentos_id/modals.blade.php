@@ -81,26 +81,26 @@
                     
     
                     <div class="form-group" id="div1">
-                        {!! Form::label('getcodigo', '1. Código', ['class' => 'form-label']) !!}
+                        {!! Form::label('codigo', '1. Código', ['class' => 'form-label']) !!}
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
-                            {!! Form::text('getcodigo', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                            {!! Form::text('codigo', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
                         </div>
                     </div>
     
                     <div class="form-group" id="div2">
-                        {!! Form::label('15no5', '5. Título', ['class' => 'form-label']) !!}
+                        {!! Form::label('titulo', '2. Título', ['class' => 'form-label']) !!}
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
-                            {!! Form::text('15no5', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                            {!! Form::text('titulo', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
                         </div>
                     </div>
     
                     <div class="form-group" id="div3">
-                        {!! Form::label('3no2', '3. Diseño', ['class' => 'form-label']) !!}
+                        {!! Form::label('disenio', '3. Diseño', ['class' => 'form-label']) !!}
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user-md"></i></span>
-                            {!! Form::text('3no2', null, ['class' => 'form-control', 'placeholder' => 'Diseño', 'required']) !!}
+                            {!! Form::text('diseno', null, ['class' => 'form-control', 'placeholder' => 'Diseño', 'required']) !!}
                         </div>
                     </div>
     
@@ -119,10 +119,10 @@
                     </div>
     
                     <div class="form-group" id="div4">
-                        {!! Form::label('3no2', '4. Tamaño de la muestra', ['class' => 'form-label']) !!}
+                        {!! Form::label('tamanio', '4. Tamaño de la muestra', ['class' => 'form-label']) !!}
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user-md"></i></span>
-                            {!! Form::text('3no2', null, ['class' => 'form-control', 'placeholder' => 'Tamaño de la muestra', 'required']) !!}
+                            {!! Form::text('3no3', null, ['class' => 'form-control', 'placeholder' => 'Tamaño de la muestra', 'required']) !!}
                         </div>
                     </div>
         

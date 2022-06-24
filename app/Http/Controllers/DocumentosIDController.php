@@ -12,6 +12,7 @@ use App\Models\DocumentosID\Documentos_id_manuales;
 use App\Models\DocumentosID\Documentos_id_procedimientos;
 use App\Models\DocumentosID\Documentos_id_procesos;
 
+
 use App\Models\DocumentosID\Formatos_id;
 
 use App\Models\Administracion\Proyecto;
@@ -278,7 +279,6 @@ class DocumentosIDController extends Controller
 
             $my_template = new \PhpOffice\PhpWord\TemplateProcessor(storage_path('../public/assets/ID/5. FC-ID/' . $nombreDocumento['directorio'] . ''));
 
-
             try{
                 // TODO: cambiar el nombre para que tenga el id del formato para diferenciarlos y que no se sobreescriban 
                 $my_template->saveAs(storage_path( '../public/assets/ID-documents/' . $nombreDocumento['nombre_doc'] . '-' . $codigoUIS . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
@@ -292,7 +292,7 @@ class DocumentosIDController extends Controller
             return response( $nombreDocumento['nombre_doc'] . '-' . $codigoUIS . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] );
             // return response( $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] );
             
-        } else {
+        }else {
 
             // VALIDAR CAMPOS
             $request->validate([
@@ -312,82 +312,140 @@ class DocumentosIDController extends Controller
             // Create formato
             if (!$formato_id) {
 
-                // $formato = null;
+            $datos_json = json_encode($request->all());
+            $datos_array = json_decode($datos_json, true);
+            $datos = null;
 
-                $datos_json = json_encode($request->all());
-                $datos_array = json_decode($datos_json, true);
-                $datos = null;
-                
-                //count para saber cuantos datos son, dependiendo del formulario
-                $countArray = count($datos_array);
+            //count para saber cuantos datos son, dependiendo del formulario
+            $countArray = count($datos_array);
 
-                for ($i=1; $i < $countArray - 6; $i++) { 
-                    $key = $documento_formato_id . 'no' . $i;
-                    $datos[] = $datos_array[$key];
-                }
-                $datos = json_encode($datos);
-                
-                    // GUARDAR REGISTROS
-                    $formatos = new Formatos_id();
-                    $formatos->documento_formato_id = $request->documentoformato_id;
-                    $formatos->datos_json = $datos;
-                    $formatos->empresa_id = $empresa_id;
-                    $formatos->menu_id = $menu_id;
-                    $formatos->proyecto_id = $proyecto_id;
-                    $formatos->user_id = $id_user;
-                    $formatos->save();
-
-                    if ($formatos) {
-                        return response('guardado');
-                    }else{
-                        return response('no guardado');
-                    }
-
-            // Update formato
-            }else{
-
-                $datos_json = json_encode($request->all());
-                $datos_array = json_decode($datos_json, true);
-                $datos = null;
-
-                //count para saber cuantos datos son, dependiendo del formulario
-                $countArray = count($datos_array);
-                // TODO: ver que onda con el ultimo valor no se guarda,   ----  talvez ya resuelto 
-                // TODO: ver si todavia es $countArray -6, puede que se cambie a 5
-                for ($i=1; $i < $countArray - 6; $i++) { 
-                    $key = $documento_formato_id . 'no' . $i;
-                    $datos[] = $datos_array[$key];
-                }
-                $datos = json_encode($datos);
-
-
-                $formatos = Formatos_id::find($formato_id);
-
+            
+            
+            unset($datos_array['_token']);
+            unset($datos_array['formato_id']);
+            unset($datos_array['documentoformato_id']);
+            unset($datos_array['proyecto_id']);
+            unset($datos_array['empresa_id']);
+            unset($datos_array['menu_id']);
+            unset($datos_array['user_id']);
+            
+           
+            $datos = json_encode($datos_array);
+            
+            
+            
+                // GUARDAR REGISTROS
+                $formatos = new Formatos_id();
                 $formatos->documento_formato_id = $request->documentoformato_id;
                 $formatos->datos_json = $datos;
-                //TODO: cambiar para que sea la empresa y el menu correctos
                 $formatos->empresa_id = $empresa_id;
                 $formatos->menu_id = $menu_id;
                 $formatos->proyecto_id = $proyecto_id;
                 $formatos->user_id = $id_user;
                 $formatos->save();
+            
+                
+                $formatoWord = Formatos_id::where('id', $request->documentoformato_id)->get()->first();
+                
+        
+                // Obtener Los datos del tipo de formato 
+                $nombreDocumento = Documentos_id_formatos::where('id', $formatoWord['documento_formato_id'])->get()->first();
 
-                if ($formatos) {
-                    return response('editado');
-                }else{
-                    return response(null);
+                // Obtener los datos del proyecto
+                $codigoUIS = Proyecto::where('id', $formatoWord->proyecto_id)->get()->first();
+                $codigoUIS = $codigoUIS->no18;
+
+                // Obtener los datos del investigador
+                // TODO: probar cuando ya esten los investigadores capturados o poner los datos desde el modal
+                // $investigador = Investigador::where('id', $codigoUIS->investigador_id)->get()->first();
+
+                $currentTime = Carbon::now();
+                $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+
+                $my_template = new \PhpOffice\PhpWord\TemplateProcessor(storage_path('../public/assets/ID/5. FC-ID/' . $nombreDocumento['directorio'] . ''));
+
+
+                if (3 == $formatoWord['documento_formato_id']) {
+                 
+                    $my_template->setValue('codigo', $datos_array['codigo']);
+                    $my_template->setValue('titulo', $datos_array['titulo']);
+                    $my_template->setValue('disenio', $datos_array['disenio']);
+        
+                    /*$my_template->cloneRow('documento', count($datos) - 4);
+                    for ($i=0; $i < count($datos) - 4; $i++) { 
+                        $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 4], ENT_COMPAT, 'UTF-8'));
+                    }*/
+        
+                    $my_template->setValue('tamanio', $datos_array['tamanio']);
+                    
+                    
                 }
 
-            };
-            
-        }
-    
-        }
+                //GUARDADO EN WORD
+                try{
+                    // TODO: cambiar el nombre para que tenga el id del formato para diferenciarlos y que no se sobreescriban - se puede utilizar el codigo del proyecto
+                    $my_template->saveAs(storage_path( '../public/assets/ID-documents/' . $request->documentoformato_id . '-' .$nombreDocumento['directorio'] ) );
+                    // $my_template->saveAs(storage_path( '../public/assets/CE-documents/' . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
+                }catch (Exception $e){
+                    return back()->withError($e->getMessage())->withInput();
+                }
+        
+                response()->download(storage_path( '../public/assets/ID-documents/'  . $request->documentoformato_id . '-' .$nombreDocumento['directorio'] ) );
+             
+
+                
+               if ($formatos) {
+                    return response('guardado');
+                }else{
+                    return response('no guardado');
+                } 
+
+
+
+
+        }else{
+
+            $datos_json = json_encode($request->all());
+            $datos_array = json_decode($datos_json, true);
+            $datos = null;
+
+            //count para saber cuantos datos son, dependiendo del formulario
+            $countArray = count($datos_array);
+            // TODO: ver que onda con el ultimo valor no se guarda,   ----  talvez ya resuelto 
+            // TODO: ver si todavia es $countArray -6, puede que se cambie a 5
+            for ($i=1; $i < $countArray - 6; $i++) { 
+                $key = $documento_formato_id . 'no' . $i;
+                $datos[] = $datos_array[$key];
+            }
+            $datos = json_encode($datos);
+
+            $formatos = Formatos_id::find($formato_id);
+
+            $formatos->documento_formato_id = $request->documentoformato_id;
+            $formatos->datos_json = $datos;
+            //TODO: cambiar para que sea la empresa y el menu correctos
+            $formatos->empresa_id = $empresa_id;
+            $formatos->menu_id = $menu_id;
+            $formatos->proyecto_id = $proyecto_id;
+            $formatos->user_id = $id_user;
+            $formatos->save();
+
+            if ($formatos) {
+                return response('editado');
+            }else{
+                return response(null);
+            }
+
+        };
         
     }
 
+    }
 
-    public function word(Request $request, $id)
+}
+
+
+    function word(request $request, $id)
     {
 
         $formato = Formatos_id::where('id', $id)->get()->first();
@@ -418,1094 +476,30 @@ class DocumentosIDController extends Controller
         if (3 == $formato['documento_formato_id']) {
             // $my_template->setValue('fecha', $datos[0]);
             //$my_template->setValue('fecha', date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
+            $my_template->setValue('codigo', $datos['0']);
+            $my_template->setValue('titulo', $datos['1']);
+            $my_template->setValue('disenio', $datos['2']);
+
+            /*$my_template->cloneRow('documento', count($datos) - 4);
+            for ($i=0; $i < count($datos) - 4; $i++) { 
+                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 4], ENT_COMPAT, 'UTF-8'));
+            }*/
+
+            $my_template->setValue('tamanio', $datos[4]);
+            
             
         }
 
-        // Documento Instalacion
-        if (6 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('comite', $datos[1]);
-            $my_template->setValue('comite2', $datos[2]);
-            if ($datos[1] == 'Comité de Ética en Investigación') {
-                $my_template->setValue('abre', 'CEI');
-                $my_template->setValue('aspectos', 'evaluar los aspectos éticos y legales');
-            };
-            if ($datos[1] == 'Comité de Investigación') {
-                $my_template->setValue('abre', 'CI');
-                $my_template->setValue('aspectos', 'revisar los aspectos metodológicos');
-            };
-            $my_template->setValue('hora', $datos[3]);
-            $my_template->setValue('dia', $datos[4]);
-            $my_template->setValue('mes', $datos[5]);
-            $my_template->setValue('anio', $datos[6]);
-        }
-
-        // Documento Constancia de miembro
-        if (9 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('titulo', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('comite', $datos[3]);
-            $my_template->setValue('fecha2', 'el ' . date('d', strtotime($datos[4])) . ' de '  . $meses[ date('n', strtotime($datos[4]))-1 ] . ' del ' . date('Y', strtotime($datos[4])) );
-            $my_template->setValue('asunto', $datos[5]);
-            $my_template->setValue('comite2', $datos[3]);
-            $my_template->setValue('comision', $datos[6]);
-        }
-
-        // Documento No voto
-        if (15 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('comite', $datos[1]);
-            $my_template->setValue('codigoUis', $datos[2]);
-            $my_template->setValue('codigo', $datos[3]);
-            $my_template->setValue('titulo', $datos[4]);
-            $my_template->setValue('patrocinador', $datos[5]);
-            $my_template->setValue('domicilio', $datos[6]);
-            $my_template->setValue('fecha2', date('d-m-Y', strtotime($datos[7])) );
-            $my_template->setValue('nombre', $datos[8] );
-            $my_template->setValue('atentamente', $datos[9] );
-            $my_template->setValue('comite2', $datos[10] );
-        }
-
-        // Documento No aprobado
-        if (17 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-
-            $countDocumentos = 1;
-            $countArgumentos = 0;
-
-            for ($i=10; $i < count($datos); $i++) { 
-                $element = $datos[$i];
-                $choice = substr($element, 0, 1);
-                $only_data = substr($element, 2, strlen($element));
-
-                $datos[$i] = $only_data;
-                if ($choice == 'd') {
-                $countDocumentos++;
-                }
-                if ($choice == 'a') {
-                $countArgumentos++;
-                }
-            }
-
-            $my_template->cloneRow('documento', $countDocumentos);
-            $my_template->cloneRow('argumento', $countArgumentos);
-
-            for ($i = 0; $i < $countDocumentos; $i++) { 
-                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-            for ($i = 0; $i < $countArgumentos; $i++) { 
-                $my_template->setValue('argumento#'.($i+1), htmlspecialchars($datos[$i + 9 + $countDocumentos], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Pendiente de aprobacion
-        if (18 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-            $my_template->cloneRow('cambio', count($datos) - 9);
-            for ($i=0; $i < count($datos) - 9; $i++) { 
-                $my_template->setValue('cambio#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Pendiente de aprobacion CEI
-        if (19 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-            $my_template->cloneRow('cambio', count($datos) - 9);
-            for ($i=0; $i < count($datos) - 9; $i++) { 
-                $my_template->setValue('cambio#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Pendiente de aprobacion CI
-        if (20 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-            $my_template->cloneRow('cambio', count($datos) - 9);
-            for ($i=0; $i < count($datos) - 9; $i++) { 
-                $my_template->setValue('cambio#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Aprobacion inicial
-        if (21 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('dictamen', $datos[9] );
-
-            $my_template->cloneRow('documento', count($datos) - 10);
-            for ($i=0; $i < count($datos) - 10; $i++) { 
-                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 10], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Aprobacion inicial CEI
-        if (22 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('dictamen', $datos[9] );
-
-            $my_template->cloneRow('documento', count($datos) - 10);
-            for ($i=0; $i < count($datos) - 10; $i++) { 
-                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 10], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Aprobacion inicial CI
-        if (23 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-            $my_template->cloneRow('documento', count($datos) - 9);
-            for ($i=0; $i < count($datos) - 9; $i++) { 
-                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Aceptacion de responsabilidades
-        if (24 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('dictamen', $datos[9] );
-
-            $my_template->cloneRow('documento', count($datos) - 10);
-            for ($i=0; $i < count($datos) - 10; $i++) { 
-                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 10], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Aceptacion de responsabilidades CEI
-        if (25 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('dictamen', $datos[9] );
-
-            $my_template->cloneRow('documento', count($datos) - 10);
-            for ($i=0; $i < count($datos) - 10; $i++) { 
-                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 10], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Aceptacion de responsabilidades CEI
-        if (26 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-            $my_template->cloneRow('documento', count($datos) - 9);
-            for ($i=0; $i < count($datos) - 9; $i++) { 
-                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Adherencia GCP-ICH
-        if (27 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('codigo', $datos[1]);
-            $my_template->setValue('titulo', $datos[2]);
-            $my_template->setValue('patrocinador', $datos[3]);
-        }
-
-        // Documento Adherencia GCP-ICH CEI
-        if (28 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('codigo', $datos[1]);
-            $my_template->setValue('titulo', $datos[2]);
-            $my_template->setValue('patrocinador', $datos[3]);
-        }
-
-        // Documento Adherencia GCP-ICH CI
-        if (29 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('codigo', $datos[1]);
-            $my_template->setValue('titulo', $datos[2]);
-            $my_template->setValue('patrocinador', $datos[3]);
-        }
-
-        // Documento Lista de miembros
-        if (30 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('codigo', $datos[1]);
-            $my_template->setValue('titulo', $datos[2]);
-            $my_template->setValue('patrocinador', $datos[3]);
-            $my_template->setValue('fecha2', date('d-m-Y', strtotime($datos[4])) );
-        }
-
-        // Documento Lista de miembros CEI
-        if (31 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('codigo', $datos[1]);
-            $my_template->setValue('titulo', $datos[2]);
-            $my_template->setValue('patrocinador', $datos[3]);
-            $my_template->setValue('fecha2', date('d-m-Y', strtotime($datos[4])) );
-        }
-
-        // Documento Lista de miembros CI
-        if (32 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('codigo', $datos[1]);
-            $my_template->setValue('titulo', $datos[2]);
-            $my_template->setValue('patrocinador', $datos[3]);
-            $my_template->setValue('fecha2', date('d-m-Y', strtotime($datos[4])) );
-        }
-
-        // Documento Confidencialidad y no conflicto
-        if (34 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('codigo', $datos[1]);
-            $my_template->setValue('titulo', $datos[2]);
-            $my_template->setValue('patrocinador', $datos[3]);
-        }
-
-        // Documento Confidencialidad y no conflicto
-        if (35 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('codigo', $datos[1]);
-            $my_template->setValue('titulo', $datos[2]);
-            $my_template->setValue('patrocinador', $datos[3]);
-        }
-
-        // Documento Confidencialidad y no conflicto
-        if (36 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('codigo', $datos[1]);
-            $my_template->setValue('titulo', $datos[2]);
-            $my_template->setValue('patrocinador', $datos[3]);
-        }
-
-        // Documento Informacion sobre auditorias
-        if (37 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('codigo', $datos[1]);
-            $my_template->setValue('titulo', $datos[2]);
-            $my_template->setValue('patrocinador', $datos[3]);
-        }
-
-        // Documento Informacion sobre auditorias CEI
-        if (38 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('codigo', $datos[1]);
-            $my_template->setValue('titulo', $datos[2]);
-            $my_template->setValue('patrocinador', $datos[3]);
-        }
-
-        // Documento Informacion sobre auditorias CI
-        if (39 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('codigo', $datos[1]);
-            $my_template->setValue('titulo', $datos[2]);
-            $my_template->setValue('patrocinador', $datos[3]);
-        }
-
-        // Documento Aprobacion de enmienda
-        if (43 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-            $my_template->cloneRow('enmienda', count($datos) - 9);
-            for ($i=0; $i < count($datos) - 9; $i++) { 
-                $my_template->setValue('enmienda#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Aprobacion de enmienda CEI
-        if (44 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-            $my_template->cloneRow('enmienda', count($datos) - 9);
-            for ($i=0; $i < count($datos) - 9; $i++) { 
-                $my_template->setValue('enmienda#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Aprobacion de enmienda CI
-        if (45 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-            $my_template->cloneRow('enmienda', count($datos) - 9);
-            for ($i=0; $i < count($datos) - 9; $i++) { 
-                $my_template->setValue('enmienda#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Revision de desviacion
-        if (46 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('fecha2', date( 'd-M-Y', strtotime($datos[9])) );
-            $my_template->setValue('evento', $datos[10] );
-
-            $my_template->cloneBlock('block_reporte', (count($datos) - 11) / 5, true, true);
-            $aux = 0;
-            for ($i = 0; $i < (count($datos) - 11) / 5; $i++) { 
-                $my_template->setValue('numSujeto#'.($i+1), htmlspecialchars($datos[$aux + 11], ENT_COMPAT, 'UTF-8'));
-                $my_template->setValue('numVisita#'.($i+1), htmlspecialchars($datos[$aux + 12], ENT_COMPAT, 'UTF-8'));
-                $my_template->setValue('fechaRep#'.($i+1), htmlspecialchars($datos[$aux + 13], ENT_COMPAT, 'UTF-8'));
-                $my_template->setValue('desc#'.($i+1), htmlspecialchars($datos[$aux + 14], ENT_COMPAT, 'UTF-8'));
-                $my_template->setValue('acciones#'.($i+1), htmlspecialchars($datos[$aux + 15], ENT_COMPAT, 'UTF-8'));
-                $aux = $aux + 5;
-            }
-        }
-
-        // Documento Revision de desviacion CEI
-        if (47 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('fecha2', date( 'd-M-Y', strtotime($datos[9])) );
-            $my_template->setValue('evento', $datos[10] );
-        }
-
-        // Documento Revision de desviacion CI
-        if (48 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('fecha2', date( 'd-M-Y', strtotime($datos[9])) );
-            $my_template->setValue('evento', $datos[10] );
-        }
-
-        // Documento Enterado
-        if (49 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-            $my_template->cloneRow('documento', count($datos) - 9);
-            for ($i=0; $i < count($datos) - 9; $i++) { 
-                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Enterado CEI
-        if (50 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-            $my_template->cloneRow('documento', count($datos) - 9);
-            for ($i=0; $i < count($datos) - 9; $i++) { 
-                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Enterado CI
-        if (51 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-            $my_template->cloneRow('documento', count($datos) - 9);
-            for ($i=0; $i < count($datos) - 9; $i++) { 
-                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Enterado EA
-        if (52 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('sujeto', $datos[9] );
-            $my_template->setValue('diagnostico', $datos[10] );
-        }
-
-        // Documento Enterado EA CEI
-        if (53 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('sujeto', $datos[9] );
-            $my_template->setValue('diagnostico', $datos[10] );
-        }
-
-        // Documento Enterado EA CI
-        if (54 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('sujeto', $datos[9] );
-            $my_template->setValue('diagnostico', $datos[10] );
-        }
-
-        // Documento Enterado EAS
-        if (55 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('fecha2', date('d-M-Y' , strtotime($datos[9])) );
-            $my_template->setValue('sujeto', $datos[10] );
-            $my_template->setValue('evento', $datos[11] );
-        }
-
-        // Documento Enterado EAS CEI
-        if (56 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('fecha2', date('d-M-Y' , strtotime($datos[9])) );
-            $my_template->setValue('sujeto', $datos[10] );
-            $my_template->setValue('evento', $datos[11] );
-        }
-
-        // Documento Enterado EAS CI
-        if (57 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('fecha2', date('d-M-Y' , strtotime($datos[9])) );
-            $my_template->setValue('sujeto', $datos[10] );
-            $my_template->setValue('evento', $datos[11] );
-        }
-
-        // Documento Aprobacion subsecuente
-        if (58 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-            $my_template->cloneRow('documento', count($datos) - 9);
-            for ($i=0; $i < count($datos) - 9; $i++) { 
-                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Aprobacion subsecuente CEI
-        if (59 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-            $my_template->cloneRow('documento', count($datos) - 9);
-            for ($i=0; $i < count($datos) - 9; $i++) { 
-                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Aprobacion subsecuente CI
-        if (60 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-            $my_template->cloneRow('documento', count($datos) - 9);
-            for ($i=0; $i < count($datos) - 9; $i++) { 
-                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Renovacion anual
-        if (61 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-        }
-
-        // Documento Renovacion anual CEI
-        if (62 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-        }
-
-        // Documento Renovacion anual CI
-        if (63 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigo', $datos[3]);
-            $my_template->setValue('titulo', $datos[4]);
-            $my_template->setValue('patrocinador', $datos[5]);
-            $my_template->setValue('domicilio',$datos[6] );
-            $my_template->setValue('apellido', $datos[7] );
-        }
-
-        // Documento Fe de erratas
-        if (64 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('nombreDoc', $datos[9] );
-            $my_template->setValue('fecha2', date('d-M-Y', strtotime($datos[10])) );
-            $my_template->setValue('datos', $datos[11] );
-            $my_template->setValue('aclarar', $datos[12] );
-        }
-
-        // Documento Fe de erratas CEI
-        if (65 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('nombreDoc', $datos[9] );
-            $my_template->setValue('fecha2', date('d-M-Y', strtotime($datos[10])) );
-            $my_template->setValue('datos', $datos[11] );
-            $my_template->setValue('aclarar', $datos[12] );
-        }
-
-        // Documento Fe de erratas CI
-        if (66 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigo', $datos[3]);
-            $my_template->setValue('titulo', $datos[4]);
-            $my_template->setValue('patrocinador', $datos[5]);
-            $my_template->setValue('domicilio',$datos[6] );
-            $my_template->setValue('apellido', $datos[7] );
-            $my_template->setValue('nombreDoc', $datos[8] );
-            $my_template->setValue('fecha2', date('d-M-Y', strtotime($datos[9])) );
-            $my_template->setValue('datos', $datos[10] );
-            $my_template->setValue('aclarar', $datos[11] );
-        }
-
-        // Documento Recibo de informe
-        if (67 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigo', $datos[3]);
-            $my_template->setValue('titulo', $datos[4]);
-            $my_template->setValue('patrocinador', $datos[5]);
-            $my_template->setValue('domicilio',$datos[6] );
-            $my_template->setValue('apellido', $datos[7] );
-            $my_template->setValue('fechaDesde', date('d-m-Y', strtotime($datos[8])) );
-            $my_template->setValue('fechaHasta', date('d-m-Y', strtotime($datos[9])) );
-            $my_template->setValue('estadoPro', $datos[10] );
-            $my_template->setValue('numSujetosICF', $datos[11] );
-            $my_template->setValue('numSujetosAct', $datos[12] );
-            $my_template->setValue('infInicialesEAS', $datos[13] );
-            $my_template->setValue('desviaciones', $datos[14] );
-        }
-
-        // Documento Aviso al investigador CEI
-        if (68 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-            $my_template->cloneRow('descripcion', count($datos) - 9);
-            for ($i=0; $i < count($datos) - 9; $i++) { 
-                $my_template->setValue('descripcion#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Aviso al investigador CI
-        if (69 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-
-            $my_template->cloneRow('descripcion', count($datos) - 9);
-            for ($i=0; $i < count($datos) - 9; $i++) { 
-                $my_template->setValue('descripcion#'.($i+1), htmlspecialchars($datos[$i + 9], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Aviso de auditoria
-        if (70 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('fecha2', date('d-m-Y', strtotime($datos[9])) );
-        }
-
-        // Documento Dictamen
-        if (71 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('fecha2', date( 'd-m-Y', strtotime($datos[9])) );
-
-            if ($datos[10] == 'No se encontraron transgresiones éticas durante el desarrollo de la investigación') {
-                $my_template->setValue('resultadoAudi', 'No se encontraron transgresiones éticas durante el desarrollo de la investigación. El estudio requiere verificación a profundidad sobre el estado ético' );
-            }
-            if ($datos[10] == 'Si se encontraron transgresiones éticas durante el desarrollo de la investigación.') {
-                $my_template->setValue('resultadoAudi', 'Si se encontraron transgresiones éticas durante el desarrollo de la investigación' );
-            }
-            
-        }
-
-        // Documento Dictamen CEI
-        if (72 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('fecha2', date( 'd-m-Y', strtotime($datos[9])) );
-
-            if ($datos[10] == 'No se encontraron transgresiones éticas durante el desarrollo de la investigación') {
-                $my_template->setValue('resultadoAudi', 'No se encontraron transgresiones éticas durante el desarrollo de la investigación. El estudio requiere verificación a profundidad sobre el estado ético' );
-            }
-            if ($datos[10] == 'Si se encontraron transgresiones éticas durante el desarrollo de la investigación.') {
-                $my_template->setValue('resultadoAudi', 'Si se encontraron transgresiones éticas durante el desarrollo de la investigación' );
-            }
-            
-        }
-
-        // Documento Dictamen CI
-        if (73 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-            $my_template->setValue('fecha2', date( 'd-m-Y', strtotime($datos[9])) );
-
-            if ($datos[10] == 'No se encontraron transgresiones éticas durante el desarrollo de la investigación') {
-                $my_template->setValue('resultadoAudi', 'No se encontraron transgresiones éticas durante el desarrollo de la investigación. El estudio requiere verificación a profundidad sobre el estado ético' );
-            }
-            if ($datos[10] == 'Si se encontraron transgresiones éticas durante el desarrollo de la investigación.') {
-                $my_template->setValue('resultadoAudi', 'Si se encontraron transgresiones éticas durante el desarrollo de la investigación' );
-            }
-            
-        }
-
-        // Documento Aviso de cancelacion
-        if (74 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('codigoUis', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('domicilio',$datos[7] );
-            $my_template->setValue('apellido', $datos[8] );
-        }
-
-        // Documento Migracion
-        if (75 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('comite', $datos[3]);
-            $my_template->setValue('institucion', $datos[4]);
-            $my_template->setValue('codigo', $datos[5]);
-            $my_template->setValue('titulo', $datos[6]);
-            $my_template->setValue('patrocinador', $datos[7]);
-            $my_template->setValue('domicilio',$datos[8] );
-            $my_template->setValue('investigador',$datos[9] );
-            $my_template->setValue('apellido', $datos[10] );
-            $my_template->setValue('dia', date('d', strtotime($datos[11])) );
-            $my_template->setValue('mes', $meses[ date('n', strtotime($datos[11]))-1 ] );
-            $my_template->setValue('anio', date('Y', strtotime($datos[11])) );
-            $my_template->setValue('numRenova', $datos[12] );
-            $my_template->setValue('desviaciones', $datos[13] );
-            $my_template->setValue('susar', $datos[14] );
-            $my_template->setValue('numInicialesEAS', $datos[15] );
-            $my_template->setValue('numSegEAS', $datos[16] );
-
-            $my_template->cloneRow('documento', count($datos) - 17);
-            for ($i=0; $i < count($datos) - 17; $i++) { 
-                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 17], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Migracion CEI
-        if (76 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('comite', $datos[3]);
-            $my_template->setValue('institucion', $datos[4]);
-            $my_template->setValue('codigo', $datos[5]);
-            $my_template->setValue('titulo', $datos[6]);
-            $my_template->setValue('patrocinador', $datos[7]);
-            $my_template->setValue('domicilio',$datos[8] );
-            $my_template->setValue('investigador',$datos[9] );
-            $my_template->setValue('apellido', $datos[10] );
-            $my_template->setValue('dia', date('d', strtotime($datos[11])) );
-            $my_template->setValue('mes', $meses[ date('n', strtotime($datos[11]))-1 ] );
-            $my_template->setValue('anio', date('Y', strtotime($datos[11])) );
-            $my_template->setValue('numRenova', $datos[12] );
-            $my_template->setValue('desviaciones', $datos[13] );
-            $my_template->setValue('susar', $datos[14] );
-            $my_template->setValue('numInicialesEAS', $datos[15] );
-            $my_template->setValue('numSegEAS', $datos[16] );
-
-            $my_template->cloneRow('documento', count($datos) - 17);
-            for ($i=0; $i < count($datos) - 17; $i++) { 
-                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 17], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Migracion CI
-        if (77 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('tituloAbre', $datos[1]);
-            $my_template->setValue('nombre', $datos[2]);
-            $my_template->setValue('comite', $datos[3]);
-            $my_template->setValue('institucion', $datos[4]);
-            $my_template->setValue('codigo', $datos[5]);
-            $my_template->setValue('titulo', $datos[6]);
-            $my_template->setValue('patrocinador', $datos[7]);
-            $my_template->setValue('domicilio',$datos[8] );
-            $my_template->setValue('investigador',$datos[9] );
-            $my_template->setValue('apellido', $datos[10] );
-            $my_template->setValue('dia', date('d', strtotime($datos[11])) );
-            $my_template->setValue('mes', $meses[ date('n', strtotime($datos[11]))-1 ] );
-            $my_template->setValue('anio', date('Y', strtotime($datos[11])) );
-            $my_template->setValue('numRenova', $datos[12] );
-            $my_template->setValue('desviaciones', $datos[13] );
-            $my_template->setValue('susar', $datos[14] );
-            $my_template->setValue('numInicialesEAS', $datos[15] );
-            $my_template->setValue('numSegEAS', $datos[16] );
-
-            $my_template->cloneRow('documento', count($datos) - 17);
-            for ($i=0; $i < count($datos) - 17; $i++) { 
-                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 17], ENT_COMPAT, 'UTF-8'));
-            }
-        }
-
-        // Documento Contenido del paquete
-        if (78 == $formato['documento_formato_id']) {
-            $my_template->setValue('codigo', $datos[0]);
-            $my_template->setValue('titulo', $datos[1]);
-            $my_template->setValue('investigador',$datos[2] );
-            $my_template->setValue('nombreSitio', $datos[3] );
-        }
-
-        // Documento Archivo de concentracion
-        if (79 == $formato['documento_formato_id']) {
-            // $my_template->setValue('fecha', $datos[0]);
-            $my_template->setValue('codigoUis', $datos[0]);
-            $my_template->setValue('codigo', $datos[1]);
-            $my_template->setValue('fecha',  date('d', strtotime($datos[2])) . ' de '  . $meses[ date('n', strtotime($datos[2]))-1 ] . ' de ' . date('Y', strtotime($datos[2])) );
-        }
-
-        // Documento Cambio de domicilio 
-        if (80 == $formato['documento_formato_id']) {
-            $my_template->setValue('fecha', 'a ' . date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
-            $my_template->setValue('destinatario', $datos[1]);
-            $my_template->setValue('puesto', $datos[2]);
-            $my_template->setValue('empresa', $datos[3]);
-            $my_template->setValue('codigo', $datos[4]);
-            $my_template->setValue('titulo', $datos[5]);
-            $my_template->setValue('patrocinador', $datos[6]);
-            $my_template->setValue('tituloAbre', $datos[7]);
-            $my_template->setValue('apellido', $datos[8]);
-            $my_template->setValue('domicilio', $datos[9]);
-            $my_template->setValue('nombreNotifica', $datos[10]);
-            $my_template->setValue('puestoNotifica', $datos[11]);
-        }
-
+       
         try{
             // TODO: cambiar el nombre para que tenga el id del formato para diferenciarlos y que no se sobreescriban - se puede utilizar el codigo del proyecto
-            $my_template->saveAs(storage_path( '../public/assets/CE-documents/' . $id . '-' .$nombreDocumento['directorio'] ) );
+            $my_template->saveAs(storage_path( '../public/assets/ID-documents/' . $id . '-' .$nombreDocumento['directorio'] ) );
             // $my_template->saveAs(storage_path( '../public/assets/CE-documents/' . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
         }catch (Exception $e){
             return back()->withError($e->getMessage())->withInput();
         }
 
-        return response()->download(storage_path( '../public/assets/CE-documents/'  . $id . '-' .$nombreDocumento['directorio'] ) );
+        return response()->download(storage_path( '../public/assets/ID-documents/'  . $id . '-' .$nombreDocumento['directorio'] ) );
         // return response()->download(storage_path( '../public/assets/CE-documents/'  . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] ));
     }
 
