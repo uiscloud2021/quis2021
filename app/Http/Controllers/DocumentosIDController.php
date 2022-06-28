@@ -299,7 +299,6 @@ class DocumentosIDController extends Controller
             $datos = json_encode($datos_array);
             
             
-            
                 // GUARDAR REGISTROS
                 $formatos = new Formatos_id();
                 $formatos->documento_formato_id = $request->documentoformato_id;
@@ -309,27 +308,33 @@ class DocumentosIDController extends Controller
                 $formatos->proyecto_id = $proyecto_id;
                 $formatos->user_id = $id_user;
                 $formatos->save();
-            
+                
                  
                 $formatoWord = Formatos_id::where('id', $request->documentoformato_id)->get()->first();
                 $array_depurado =  json_decode($datos, true);;
-        
+               
                 // Obtener Los datos del tipo de formato 
-                $nombreDocumento = Documentos_id_formatos::where('id', $formatoWord['documento_formato_id'])->get()->first();
-
+                $nombreDocumento = Documentos_id_formatos::where('id',  $request->documentoformato_id)->get()->first();
+                
                 // Obtener los datos del proyecto
                 $codigoUIS = Proyecto::where('id', $formatoWord->proyecto_id)->get()->first();
                 $codigoUIS = $codigoUIS->no18;
                 
+                 
                 
-
                 $currentTime = Carbon::now();
                 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
                 
+                
                 $my_template = new \PhpOffice\PhpWord\TemplateProcessor(storage_path('../public/assets/ID/5. FC-ID/' . $nombreDocumento['directorio'] . ''));
-                \PhpOffice\PhpWord\Settings::setOutputEscapingEnabled(true);
+                
+              
                
-                if (3 == $formatoWord['documento_formato_id']) {
+                
+               
+               
+                 
+                if (3 == $request->documentoformato_id) {
                  
                     $my_template->setValue('codigo',$array_depurado['codigo']);
                     $my_template->setValue('titulo',$array_depurado['titulo']);
@@ -341,8 +346,22 @@ class DocumentosIDController extends Controller
                     $my_template->setValue('criterio#'.($i+1),htmlspecialchars($array_depurado['75no'. ($i + 18)], ENT_COMPAT, 'UTF-8'));
                     }
             
-                }
-             
+                } 
+               
+                if (4 == $request->documentoformato_id) {
+                 
+                    $my_template->setValue('codigo',$array_depurado['codigo4']);
+                    $my_template->setValue('titulo',$array_depurado['titulo4']);
+                    $my_template->setValue('titulocorto',$array_depurado['titulocorto']);
+                    $my_template->setValue('departamento',$array_depurado['departamento']);
+                    $my_template->setValue('departamento',$array_depurado['patrocinador']);
+                    $my_template->setValue('versiones',$array_depurado['versiones']);
+                    $my_template->setValue('enmiendas',$array_depurado['enmiendas']);
+                    $my_template->setValue('fecha', date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
+                    
+                
+            
+                }   
                 //GUARDADO EN WORD
                 try{
                     // TODO: cambiar el nombre para que tenga el id del formato para diferenciarlos y que no se sobreescriban - se puede utilizar el codigo del proyecto
@@ -350,9 +369,9 @@ class DocumentosIDController extends Controller
                 }catch (Exception $e){
                     return back()->withError($e->getMessage())->withInput();
                 }
-       
+                /*
                 response()->download(storage_path( '../public/assets/ID-documents/'  . $request->documentoformato_id . '-' .$nombreDocumento['directorio'] ) );
-             
+            */
                 
                 
                if ($formatos) {
