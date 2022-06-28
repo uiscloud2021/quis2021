@@ -206,11 +206,6 @@ class DocumentosIDController extends Controller
 
     public function list_formatos(Request $request)
     {
-        
-        
-
-        
-
         $user_id = auth()->id();
         $formato_id = $request->formato_id;
         $codigo_id = $request->codigo_id;
@@ -228,7 +223,10 @@ class DocumentosIDController extends Controller
         $html3 = $fecha;
         return $html3;
         })
-
+        // ->addColumn('fecha_aprob', function ($formatos) {
+        // $html4 = $formatos->datos_json;
+        // return $html4;
+        // })
         ->addColumn('usuario', function ($formatos) {
         $user = $formatos->user_id;
         $user = User::where('id', $user)->get()->first();
@@ -259,6 +257,42 @@ class DocumentosIDController extends Controller
 
         if ($request->ajax()) {
 
+        // obtener el has_form del formato para ver si se guardan los datos o se genera el arhivo
+        // $documento_formato_id = $request->documentoformato_id;
+        $has_form = Documentos_id_formatos::where('id', $request->documentoformato_id)->value('has_form');
+        // condicion para crear los archivos que no se guardan
+        if ($has_form == 2) {
+            $nombreDocumento = Documentos_id_formatos::where('id', $request->documentoformato_id)->get()->first();
+            $datosProyecto = Proyecto::where('id', $request->proyecto_id)
+            ->get()->first();
+            $proyectos = Proyecto::where('proyectos.id', $request->proyecto_id)
+            ->join('investigadores', 'proyectos.investigador_id', '=', 'investigadores.id')
+            ->select('proyectos.*', 'investigadores.*')
+            ->get()->first();
+            $codigoUIS = $datosProyecto->no18;
+
+            // Obtener los datos del investigador
+            // TODO: probar cuando ya esten los investigadores capturados o poner los datos desde el modal
+            $investigador = Investigador::where('id', $datosProyecto->investigador_id)->get()->first();
+
+            $currentTime = Carbon::now();
+
+            $my_template = new \PhpOffice\PhpWord\TemplateProcessor(storage_path('../public/assets/ID/5. FC-ID/' . $nombreDocumento['directorio'] . ''));
+
+            try{
+                // TODO: cambiar el nombre para que tenga el id del formato para diferenciarlos y que no se sobreescriban 
+                $my_template->saveAs(storage_path( '../public/assets/ID-documents/' . $nombreDocumento['nombre_doc'] . '-' . $codigoUIS . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
+                // $my_template->saveAs(storage_path( '../public/assets/ID-documents/' . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
+            }catch (Exception $e){
+                return response(null);
+            }
+        
+            // return response()->download(storage_path( '../public/assets/ID-documents/'  . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] ));
+            
+            return response( $nombreDocumento['nombre_doc'] . '-' . $codigoUIS . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] );
+            // return response( $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] );
+            
+        }else {
 
             // VALIDAR CAMPOS
             $request->validate([
@@ -321,7 +355,9 @@ class DocumentosIDController extends Controller
                 $codigoUIS = Proyecto::where('id', $formatoWord->proyecto_id)->get()->first();
                 $codigoUIS = $codigoUIS->no18;
                 
-                
+                // Obtener los datos del investigador
+                // TODO: probar cuando ya esten los investigadores capturados o poner los datos desde el modal
+                // $investigador = Investigador::where('id', $codigoUIS->investigador_id)->get()->first();
 
                 $currentTime = Carbon::now();
                 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
@@ -336,9 +372,10 @@ class DocumentosIDController extends Controller
                     $my_template->setValue('disenio',$array_depurado['disenio']);
                     $my_template->setValue('tamanio',$array_depurado['tamanio']);
 
-                    $my_template->cloneBlock('bloque',(count($array_depurado) - 4), true, true);
+
+                    $my_template->cloneRow('criterio', count($array_depurado) - 4);
                     for ($i=0; $i < count($array_depurado) - 4; $i++) { 
-                    $my_template->setValue('criterio#'.($i+1),htmlspecialchars($array_depurado['75no'. ($i + 18)], ENT_COMPAT, 'UTF-8'));
+                    $my_template->setValue('criterio#'.($i+1),$array_depurado['75no18']);
                     }
             
                 }
@@ -346,13 +383,14 @@ class DocumentosIDController extends Controller
                 //GUARDADO EN WORD
                 try{
                     // TODO: cambiar el nombre para que tenga el id del formato para diferenciarlos y que no se sobreescriban - se puede utilizar el codigo del proyecto
-                    $my_template->saveAs(storage_path( '../public/assets/ID-documents/' . $request->documentoformato_id . '-' . $nombreDocumento['directorio'] ) );
+                    $my_template->saveAs(storage_path( '../public/assets/ID-documents/' . $request->documentoformato_id . '-' .$nombreDocumento['directorio'] ) );
+                    // $my_template->saveAs(storage_path( '../public/assets/CE-documents/' . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
                 }catch (Exception $e){
                     return back()->withError($e->getMessage())->withInput();
                 }
-       
+       /*
                 response()->download(storage_path( '../public/assets/ID-documents/'  . $request->documentoformato_id . '-' .$nombreDocumento['directorio'] ) );
-             
+             */
                 
                 
                if ($formatos) {
@@ -370,15 +408,11 @@ class DocumentosIDController extends Controller
             $datos_array = json_decode($datos_json, true);
             $datos = null;
 
-               
-            unset($datos_array['_token']);
-            unset($datos_array['formato_id']);
-            unset($datos_array['documentoformato_id']);
-            unset($datos_array['proyecto_id']);
-            unset($datos_array['empresa_id']);
-            unset($datos_array['menu_id']);
-            unset($datos_array['user_id']);
-
+            //count para saber cuantos datos son, dependiendo del formulario
+            $countArray = count($datos_array);
+            // TODO: ver que onda con el ultimo valor no se guarda,   ----  talvez ya resuelto 
+            // TODO: ver si todavia es $countArray -6, puede que se cambie a 5
+            
             $datos = json_encode($datos);
 
             $formatos = Formatos_id::find($formato_id);
@@ -400,13 +434,70 @@ class DocumentosIDController extends Controller
 
         };
         
-    
+    }
 
     }
 
 }
 
+/*
 
-   
+    function word(request $request, $id)
+    {
+
+        $formato = Formatos_id::where('id', $id)->get()->first();
+        $datos = json_decode($formato->datos_json);
+        
+        // Obtener Los datos del tipo de formato 
+        $nombreDocumento = Documentos_id_formatos::where('id', $formato['documento_formato_id'])->get()->first();
+
+        // Obtener los datos del proyecto
+        $codigoUIS = Proyecto::where('id', $formato->proyecto_id)->get()->first();
+        $codigoUIS = $codigoUIS->no18;
+
+        // Obtener los datos del investigador
+        // TODO: probar cuando ya esten los investigadores capturados o poner los datos desde el modal
+        // $investigador = Investigador::where('id', $codigoUIS->investigador_id)->get()->first();
+
+        $currentTime = Carbon::now();
+        $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+
+        $my_template = new \PhpOffice\PhpWord\TemplateProcessor(storage_path('../public/assets/ID/5. FC-ID/' . $nombreDocumento['directorio'] . ''));
+
+
+        
+
+        
+
+        // Documento Propuesta Inicial
+        if (3 == $formato['documento_formato_id']) {
+            // $my_template->setValue('fecha', $datos[0]);
+            //$my_template->setValue('fecha', date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
+            $my_template->setValue('codigo', $datos['0']);
+            $my_template->setValue('titulo', $datos['1']);
+            $my_template->setValue('disenio', $datos['2']);
+
+           $my_template->cloneRow('documento', count($datos) - 4);
+             /*for ($i=0; $i < count($datos) - 4; $i++) { 
+                $my_template->setValue('documento#'.($i+1), htmlspecialchars($datos[$i + 4], ENT_COMPAT, 'UTF-8'));
+            }
+            $my_template->setValue('tamanio', $datos[4]);
+            
+            
+        }
+
+       
+        try{
+            // TODO: cambiar el nombre para que tenga el id del formato para diferenciarlos y que no se sobreescriban - se puede utilizar el codigo del proyecto
+            $my_template->saveAs(storage_path( '../public/assets/ID-documents/' . $id . '-' .$nombreDocumento['directorio'] ) );
+            // $my_template->saveAs(storage_path( '../public/assets/CE-documents/' . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
+        }catch (Exception $e){
+            return back()->withError($e->getMessage())->withInput();
+        }
+
+        return response()->download(storage_path( '../public/assets/ID-documents/'  . $id . '-' .$nombreDocumento['directorio'] ) );
+        // return response()->download(storage_path( '../public/assets/CE-documents/'  . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] ));
+    }
+    */
 
 }

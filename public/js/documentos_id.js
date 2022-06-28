@@ -155,6 +155,9 @@ function list_formatos(){
                     codigo_id:codigo_id,
                     _token:$('input[name="_token"]').val()
                 },
+                success:function(resp){
+                    
+                }
                 
             },
             "columns": [
@@ -336,362 +339,8 @@ function edit_formatos(formato_id) {
                         datos_json[10] = utlimo_dato;
                     };
                 };
-                // pendiennte de aprobacion ================================================================================================================
-                if (documento_formato_id == 18) {
-                    var req = datos_json.length - 10;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            pendienteapro_cambio_count++;
-                            var id_cambioAprob = 'id="18no' + pendienteapro_cambio_count + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="pendienteaprobadoCambio form-control" type="text" placeholder="Escribir nombre, versión y fecha del documento, así como los cambios solicitados" ' + id_cambioAprob + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_pendienteaprobadodoc").append(fieldHTML);
-                        }
-                    };
-                };
-                // pendiente de aprobacion CEI ==========================================================================================================
-                if (documento_formato_id == 19) {
-                    var req = datos_json.length - 10;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            pendienteapro_cambio_countCEI++;
-                            var id_cambioAprob = 'id="19no' + pendienteapro_cambio_countCEI + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="pendienteaprobadoCambioCEI form-control" type="text" placeholder="Escribir nombre, versión y fecha del documento, así como los cambios solicitados" ' + id_cambioAprob + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_pendienteaprobadodocCEI").append(fieldHTML);
-                        }
-                    };
-                };
-                // pendiente de aprobacion CI ============================================================================================================
-                if (documento_formato_id == 20) {
-                    var req = datos_json.length - 10;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            pendienteapro_cambio_countCI++;
-                            var id_cambioAprob = 'id="20no' + pendienteapro_cambio_countCI + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="pendienteaprobadoCambioCI form-control" type="text" placeholder="Escribir nombre, versión y fecha del documento, así como los cambios solicitados" ' + id_cambioAprob + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_pendienteaprobadodocCI").append(fieldHTML);
-                        }
-                    };
-                };
-                // aprobacion inicial ============================================================================================================================
-                if (documento_formato_id == 21) {
-                    var req = datos_json.length - 11;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            aprobadoinicial_doc_count++;
-                            var id_docAprobIni = 'id="21no' + aprobadoinicial_doc_count + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="aprobacioninicialDoc form-control" type="text" placeholder="Describir con nombre, versión y fecha" ' + id_docAprobIni + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_aprobacioninicialdoc").append(fieldHTML);
-                        }
-                    };
-                };
-                // aprobacion inicial CEI ========================================================================================================================================
-                if (documento_formato_id == 22) {
-                    var req = datos_json.length - 11;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            aprobadoinicial_doc_countCEI++;
-                            var id_docAprobIniCEI = 'id="22no' + aprobadoinicial_doc_countCEI + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="aprobacioninicialDocCEI form-control" type="text" placeholder="Describir con nombre, versión y fecha" ' + id_docAprobIniCEI + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_aprobacioninicialdocCEI").append(fieldHTML);
-                        }
-                    };
-                };
-                // aprobacion inicial CI ========================================================================================================================================
-                if (documento_formato_id == 23) {
-                    var req = datos_json.length - 10;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            aprobadoinicial_doc_countCI++;
-                            var id_docAprobIniCI = 'id="23no' + aprobadoinicial_doc_countCI + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="aprobacioninicialDocCI form-control" type="text" placeholder="Describir con nombre, versión y fecha" ' + id_docAprobIniCI + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_aprobacioninicialdocCI").append(fieldHTML);
-                        }
-                    };
-                };
-                // aceptacion de responsabilidades ========================================================================================================================================
-                if (documento_formato_id == 24) {
-                    var req = datos_json.length - 11;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            aceptacionresp_doc_count++;
-                            var id_docAcepResp = 'id="24no' + aceptacionresp_doc_count + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="aceptacionrespDoc form-control" type="text" placeholder="Describir con nombre, versión y fecha" ' + id_docAcepResp + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_aceptacionResponsabilidadesdoc").append(fieldHTML);
-                        }
-                    };
-                };
-                // aceptacion de responsabilidades CEI ========================================================================================================================================
-                if (documento_formato_id == 25) {
-                    var req = datos_json.length - 11;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            aceptacionresp_doc_countCEI++;
-                            var id_docAcepRespCEI = 'id="25no' + aceptacionresp_doc_countCEI + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="aceptacionrespDocCEI form-control" type="text" placeholder="Describir con nombre, versión y fecha" ' + id_docAcepRespCEI + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_aceptacionResponsabilidadesdocCEI").append(fieldHTML);
-                        }
-                    };
-                };
-                // aceptacion de responsabilidades CI ========================================================================================================================================
-                if (documento_formato_id == 26) {
-                    var req = datos_json.length - 10;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            aceptacionresp_doc_countCI++;
-                            var id_docAcepRespCI = 'id="26no' + aceptacionresp_doc_countCI + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="aceptacionrespDocCI form-control" type="text" placeholder="Describir con nombre, versión y fecha" ' + id_docAcepRespCI + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_aceptacionResponsabilidadesdocCI").append(fieldHTML);
-                        }
-                    };
-                };
-                // aprobacion de enmienda ========================================================================================================================================
-                if (documento_formato_id == 43) {
-                    var req = datos_json.length - 10;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            aprobacionenmienda_doc_count++;
-                            var id_docAprobEnm = 'id="43no' + aprobacionenmienda_doc_count + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="aprobacionenmDoc form-control" type="text" placeholder="Escribir nombre, versión y fecha." ' + id_docAprobEnm + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_aprobacionEnmiendadoc").append(fieldHTML);
-                        }
-                    };
-                };
-                // aprobacion de enmienda CEI ========================================================================================================================================
-                if (documento_formato_id == 44) {
-                    var req = datos_json.length - 10;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            aprobacionenmienda_doc_countCEI++; 
-                            var id_docAprobEnmCEI = 'id="44no' + aprobacionenmienda_doc_countCEI + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="aprobacionenmDocCEI form-control" type="text" placeholder="Escribir nombre, versión y fecha." ' + id_docAprobEnmCEI + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_aprobacionEnmiendadocCEI").append(fieldHTML);
-                        }
-                    };
-                };
-                // aprobacion de enmienda CI ========================================================================================================================================
-                if (documento_formato_id == 45) {
-                    var req = datos_json.length - 10;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            aprobacionenmienda_doc_countCI++; 
-                            var id_docAprobEnmCI = 'id="45no' + aprobacionenmienda_doc_countCI + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="aprobacionenmDocCI form-control" type="text" placeholder="Escribir nombre, versión y fecha." ' + id_docAprobEnmCI + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_aprobacionEnmiendadocCI").append(fieldHTML);
-                        }
-                    };
-                };
-                // revision de desviacion ========================================================================================================================================
-                if (documento_formato_id == 46) {
-                    var doc = (datos_json.length - 16)/5;
-                    if (doc != 0) {
-                        for (let i = 0; i < doc; i++) {
-                            revision_desviacion_count++;
-                            var id_no_sujeto = 'id="46no' + revision_desviacion_count + '"';
-                            revision_desviacion_count++;
-                            var id_no_visita = 'id="46no' + revision_desviacion_count + '"';
-                            revision_desviacion_count++;
-                            var id_fecha = 'id="46no' + revision_desviacion_count + '"';
-                            revision_desviacion_count++;
-                            var id_descripcion = 'id="46no' + revision_desviacion_count + '"';
-                            revision_desviacion_count++;
-                            var id_acciones_tomadas = 'id="46no' + revision_desviacion_count + '"';
-
-                            var fieldHTML = '<div class="revisiondesviacioninpust p-2 rounded border">' +
-                            '<div class="row">' +
-
-                            '<div class="col form-group">' +
-                            '<label># Sujeto</label>' +
-                            '<div class="input-group-prepend">' +
-                            '<span class="input-group-text"><i class="fas fa-hashtag"></i></span>' +
-                            '<input class="revisiondesviacion form-control" type="text" placeholder="# Sujeto" ' + id_no_sujeto + ' value="" required/>' +
-                            '</div></div>' +
-                            
-                            '<div class="col form-group">' +
-                            '<label># Visita</label>' +
-                            '<div class="input-group-prepend">' +
-                            '<span class="input-group-text"><i class="fas fa-hashtag"></i></span>' +
-                            '<input class="revisiondesviacion form-control" type="text" placeholder="# Visita" ' + id_no_visita + ' value="" required/>' +
-                            '</div></div>' +
-
-                            '<div class="col form-group">' +
-                            '<label>Fecha reporte</label>' +
-                            '<div class="input-group-prepend">' +
-                            '<span class="input-group-text"><i class="fas fa-calendar"></i></span>' +
-                            '<input class="revisiondesviacion form-control" type="date" ' + id_fecha + ' value="" required/>' +
-                            '</div></div>' +
-
-                            '</div>' +
-
-
-                            '<div class="row">' +
-
-                            '<div class="col form-group">' +
-                            '<label>Descripción</label>' +
-                            '<div class="input-group-prepend">' +
-                            '<span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<textarea class="revisiondesviacion form-control" rows="2" placeholder="Descripción" ' + id_descripcion + ' required></textarea>' +
-                            '</div></div>' +
-
-                            '</div>' +
-
-                            '<div class="row">' +
-
-                            '<div class="col form-group">' +
-                            '<label>Acciones tomadas</label>' +
-                            '<div class="input-group-prepend">' +
-                            '<span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<textarea class="revisiondesviacion form-control" rows="2" placeholder="Acciones tomadas" ' + id_acciones_tomadas + ' required></textarea>' +
-                            '</div></div>' +
-
-                            '</div>' +
-
-                            '<div class="row"><div class="col text-center">' +
-                            '<button type="button" class="add_button btn btn-block btn-primary" title="Agregar campo"><i class="fas fa-plus-square"></i></button>' +
-                            '<button type="button" class="remove_button btn btn-block btn-danger" title="Eliminar campos"><i class="fas fa-minus-square"></i></button>' +
-                            '</div></div>' +
-
-                            '</div>';
-                            $("#wrapper_revisiondesviacion").append(fieldHTML);
-                        }
-                    };
-                };
-                // Enterado ========================================================================================================================================
-                if (documento_formato_id == 49) {
-                    var req = datos_json.length - 10;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            enterado_doc_count++;
-                            var id_docEnterado = 'id="49no' + enterado_doc_count + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="enteradoDoc form-control" type="text" placeholder="Escribir nombre, versión y fecha" ' + id_docEnterado + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_enteradodoc").append(fieldHTML);
-                        }
-                    };
-                };
-                // Enterado CEI ========================================================================================================================================
-                if (documento_formato_id == 50) {
-                    var req = datos_json.length - 10;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            enterado_doc_countCEI++;
-                            var id_docEnteradoCEI = 'id="50no' + enterado_doc_countCEI + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="enteradoDocCEI form-control" type="text" placeholder="Escribir nombre, versión y fecha" ' + id_docEnteradoCEI + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_enteradodocCEI").append(fieldHTML);
-                        }
-                    };
-                };
-                // Enterado CI ========================================================================================================================================
-                if (documento_formato_id == 51) {
-                    var req = datos_json.length - 10;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            enterado_doc_countCI++;
-                            var id_docEnteradoCI = 'id="51no' + enterado_doc_countCI + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="enteradoDocCI form-control" type="text" placeholder="Escribir nombre, versión y fecha" ' + id_docEnteradoCI + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_enteradodocCI").append(fieldHTML);
-                        }
-                    };
-                };
-                // Aprobacion subsecuente ========================================================================================================================================
-                if (documento_formato_id == 58) {
-                    var req = datos_json.length - 10;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            aprobacionsubsecuente_doc_count++;
-                            var id_docAprobacionsubse = 'id="58no' + aprobacionsubsecuente_doc_count + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="aprobacionsubsecuenteDoc form-control" type="text" placeholder="Escribir nombre, versión y fecha" ' + id_docAprobacionsubse + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_aprobadosubsecuentedoc").append(fieldHTML);
-                        }
-                    };
-                };
-                // Aprobacion subsecuente CEI ========================================================================================================================================
-                if (documento_formato_id == 59) {
-                    var req = datos_json.length - 10;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            aprobacionsubsecuente_doc_countCEI++;
-                            var id_docAprobacionsubseCEI = 'id="59no' + aprobacionsubsecuente_doc_countCEI + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="aprobacionsubsecuenteDocCEI form-control" type="text" placeholder="Escribir nombre, versión y fecha" ' + id_docAprobacionsubseCEI + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_aprobadosubsecuentedocCEI").append(fieldHTML);
-                        }
-                    };
-                };
-                // Aprobacion subsecuente CI ========================================================================================================================================
-                if (documento_formato_id == 60) {
-                    var req = datos_json.length - 10;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            aprobacionsubsecuente_doc_countCI++;
-                            var id_docAprobacionsubseCI = 'id="60no' + aprobacionsubsecuente_doc_countCI + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="aprobacionsubsecuenteDocCI form-control" type="text" placeholder="Escribir nombre, versión y fecha" ' + id_docAprobacionsubseCI + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_aprobadosubsecuentedocCI").append(fieldHTML);
-                        }
-                    };
-                };
-                // AViso al investigador ========================================================================================================================================
-                if (documento_formato_id == 68) {
-                    var req = datos_json.length - 10;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            avisoinvestigador_doc_countCEI++;
-                            var id_docAvisoinvestigadorCEI = 'id="68no' + avisoinvestigador_doc_countCEI + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="avisoinvestigadorDocCEI form-control" type="text" placeholder="Describir" ' + id_docAvisoinvestigadorCEI + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_avisoinvestigadordocCEI").append(fieldHTML);
-                        }
-                    };
-                };
-                if (documento_formato_id == 69) {
-                    var req = datos_json.length - 10;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            avisoinvestigador_doc_countCI++;
-                            var id_docAvisoinvestigadorCI = 'id="69no' + avisoinvestigador_doc_countCI + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="avisoinvestigadorDocCI form-control" type="text" placeholder="Describir" ' + id_docAvisoinvestigadorCI + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_avisoinvestigadordocCI").append(fieldHTML);
-                        }
-                    };
-                };
-                // Migracion =======================================================================================================================================================
-                if (documento_formato_id == 75) {
+               
+                    if (documento_formato_id == 75) {
                     var req = datos_json.length - 18;
                     if (req != 0) {
                         for (let i = 0; i < req; i++) {
@@ -704,34 +353,7 @@ function edit_formatos(formato_id) {
                         }
                     };
                 };
-                // Migracion CEI =======================================================================================================================================================
-                if (documento_formato_id == 76) {
-                    var req = datos_json.length - 18;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            migracion_doc_countCEI++; 
-                            var id_docMigracionCEI = 'id="76no' + migracion_doc_countCEI + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="migracionDocCEI form-control" type="text" placeholder="Documento" ' + id_docMigracionCEI + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_migraciondocCEI").append(fieldHTML);
-                        }
-                    };
-                };
-                // Migracion CI =======================================================================================================================================================
-                if (documento_formato_id == 77) {
-                    var req = datos_json.length - 18;
-                    if (req != 0) {
-                        for (let i = 0; i < req; i++) {
-                            migracion_doc_countCI++; 
-                            var id_docMigracionCI = 'id="77no' + migracion_doc_countCI + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
-                            '<input class="migracionDocCI form-control" type="text" placeholder="Documento" ' + id_docMigracionCI + 'required/>' +
-                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
-                            $("#wrapper_migraciondocCI").append(fieldHTML);
-                        }
-                    };
-                };
+    
                 
                 $('#documentoformato_id').val(formato.documento_formato_id);
                 $('#empresa_id').val(formato.empresa_id);
@@ -834,578 +456,10 @@ function cargarDatosProtocolo() {
             $("#codigo").val(proyect[0]['no20']);// codigo
             $("#titulo").val(proyect[0]['no19']);// titulo del protocolo
             $("#patrocinador").val(proyect[0]['no25']); // protrocinador
-
-            // No aprobado
-            $("#17no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#17no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#17no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#17no5").val(proyect[0]['no20']);// codigo
-            $("#17no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#17no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#17no8").val(proyect[0]['no25']); // domicilio
-            $("#17no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Pendiente de aprobacion
-            $("#18no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#18no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#18no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#18no5").val(proyect[0]['no20']);// codigo
-            $("#18no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#18no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#18no8").val(proyect[0]['no25']); // domicilio
-            $("#18no9").val(proyect[0]['apellido']); // apellido paterno
-            
-            // Pendiente de aprobacion CEI
-            $("#19no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#19no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#19no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#19no5").val(proyect[0]['no20']);// codigo
-            $("#19no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#19no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#19no8").val(proyect[0]['no25']); // domicilio
-            $("#19no9").val(proyect[0]['apellido']); // apellido paterno
-            
-            // Pendiente de aprobacion CI
-            $("#20no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#20no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#20no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#20no5").val(proyect[0]['no20']);// codigo
-            $("#20no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#20no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#20no8").val(proyect[0]['no25']); // domicilio
-            $("#20no9").val(proyect[0]['apellido']); // apellido paterno
-            
-            // Aprobacion inicial
-            $("#21no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#21no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#21no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#21no5").val(proyect[0]['no20']);// codigo
-            $("#21no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#21no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#21no8").val(proyect[0]['no25']); // domicilio
-            $("#21no9").val(proyect[0]['apellido']); // apellido paterno
-            
-            // Aprobacion inicial CEI
-            $("#22no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#22no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#22no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#22no5").val(proyect[0]['no20']);// codigo
-            $("#22no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#22no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#22no8").val(proyect[0]['no25']); // domicilio
-            $("#22no9").val(proyect[0]['apellido']); // apellido paterno
-            
-            // Aprobacion inicial CI
-            $("#23no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#23no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#23no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#23no5").val(proyect[0]['no20']);// codigo
-            $("#23no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#23no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#23no8").val(proyect[0]['no25']); // domicilio
-            $("#23no9").val(proyect[0]['apellido']); // apellido paterno
-            
-            // Aceptacion de responsabilidades
-            $("#24no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#24no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#24no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#24no5").val(proyect[0]['no20']);// codigo
-            $("#24no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#24no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#24no8").val(proyect[0]['no25']); // domicilio
-            $("#24no9").val(proyect[0]['apellido']); // apellido paterno
-            
-            // Aceptacion de responsabilidades CEI
-            $("#25no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#25no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#25no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#25no5").val(proyect[0]['no20']);// codigo
-            $("#25no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#25no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#25no8").val(proyect[0]['no25']); // domicilio
-            $("#25no9").val(proyect[0]['apellido']); // apellido paterno
-            
-            // Aceptacion de responsabilidades CI
-            $("#26no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#26no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#26no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#26no5").val(proyect[0]['no20']);// codigo
-            $("#26no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#26no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#26no8").val(proyect[0]['no25']); // domicilio
-            $("#26no9").val(proyect[0]['apellido']); // apellido paterno
-            
-            // Adherencia GCP-ICH
-            $("#27no2").val(proyect[0]['no20']);// codigo
-            $("#27no3").val(proyect[0]['no19']);// titulo del protocolo
-            $("#27no4").val(proyect[0]['no25']); // protrocinador
-            
-            // Adherencia GCP-ICH CEI
-            $("#28no2").val(proyect[0]['no20']);// codigo
-            $("#28no3").val(proyect[0]['no19']);// titulo del protocolo
-            $("#28no4").val(proyect[0]['no25']); // protrocinador
-            
-            // Adherencia GCP-ICH CI
-            $("#29no2").val(proyect[0]['no20']);// codigo
-            $("#29no3").val(proyect[0]['no19']);// titulo del protocolo
-            $("#29no4").val(proyect[0]['no25']); // protrocinador
-            
-            // Lista de miembros
-            $("#30no2").val(proyect[0]['no20']);// codigo
-            $("#30no3").val(proyect[0]['no19']);// titulo del protocolo
-            $("#30no4").val(proyect[0]['no25']); // protrocinador
-            
-            // Lista de miembros CEI
-            $("#31no2").val(proyect[0]['no20']);// codigo
-            $("#31no3").val(proyect[0]['no19']);// titulo del protocolo
-            $("#31no4").val(proyect[0]['no25']); // protrocinador
-            
-            // Lista de miembros CI
-            $("#32no2").val(proyect[0]['no20']);// codigo
-            $("#32no3").val(proyect[0]['no19']);// titulo del protocolo
-            $("#32no4").val(proyect[0]['no25']); // protrocinador
-            
-            // Confidencialidad y No conflicto
-            $("#34no2").val(proyect[0]['no20']);// codigo
-            $("#34no3").val(proyect[0]['no19']);// titulo del protocolo
-            $("#34no4").val(proyect[0]['no25']); // protrocinador
-            
-            // Confidencialidad y No conflicto CEI
-            $("#35no2").val(proyect[0]['no20']);// codigo
-            $("#35no3").val(proyect[0]['no19']);// titulo del protocolo
-            $("#35no4").val(proyect[0]['no25']); // protrocinador
-            
-            // Confidencialidad y No conflicto CI
-            $("#36no2").val(proyect[0]['no20']);// codigo
-            $("#36no3").val(proyect[0]['no19']);// titulo del protocolo
-            $("#36no4").val(proyect[0]['no25']); // protrocinador
-            
-            // Informacion sobre auditorias
-            $("#37no2").val(proyect[0]['no20']);// codigo
-            $("#37no3").val(proyect[0]['no19']);// titulo del protocolo
-            $("#37no4").val(proyect[0]['no25']); // protrocinador
-            
-            // Informacion sobre auditorias CEI
-            $("#38no2").val(proyect[0]['no20']);// codigo
-            $("#38no3").val(proyect[0]['no19']);// titulo del protocolo
-            $("#38no4").val(proyect[0]['no25']); // protrocinador
-            
-            // Informacion sobre auditorias CI
-            $("#39no2").val(proyect[0]['no20']);// codigo
-            $("#39no3").val(proyect[0]['no19']);// titulo del protocolo
-            $("#39no4").val(proyect[0]['no25']); // protrocinador
-
-            // Aprobacion de enmienda
-            $("#43no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#43no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#43no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#43no5").val(proyect[0]['no20']);// codigo
-            $("#43no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#43no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#43no8").val(proyect[0]['no25']); // domicilio
-            $("#43no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Aprobacion de enmienda CEI
-            $("#44no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#44no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#44no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#44no5").val(proyect[0]['no20']);// codigo
-            $("#44no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#44no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#44no8").val(proyect[0]['no25']); // domicilio
-            $("#44no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Aprobacion de enmienda CI
-            $("#45no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#45no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#45no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#45no5").val(proyect[0]['no20']);// codigo
-            $("#45no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#45no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#45no8").val(proyect[0]['no25']); // domicilio
-            $("#45no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Revision de desviacion
-            $("#46no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#46no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#46no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#46no5").val(proyect[0]['no20']);// codigo
-            $("#46no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#46no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#46no8").val(proyect[0]['no25']); // domicilio
-            $("#46no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Revision de desviacion CEI
-            $("#47no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#47no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#47no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#47no5").val(proyect[0]['no20']);// codigo
-            $("#47no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#47no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#47no8").val(proyect[0]['no25']); // domicilio
-            $("#47no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Revision de desviacion CI
-            $("#48no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#48no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#48no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#48no5").val(proyect[0]['no20']);// codigo
-            $("#48no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#48no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#48no8").val(proyect[0]['no25']); // domicilio
-            $("#48no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Enterado
-            $("#49no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#49no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#49no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#49no5").val(proyect[0]['no20']);// codigo
-            $("#49no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#49no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#49no8").val(proyect[0]['no25']); // domicilio
-            $("#49no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Enterado CEI
-            $("#50no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#50no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#50no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#50no5").val(proyect[0]['no20']);// codigo
-            $("#50no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#50no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#50no8").val(proyect[0]['no25']); // domicilio
-            $("#50no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Enterado CI
-            $("#51no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#51no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#51no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#51no5").val(proyect[0]['no20']);// codigo
-            $("#51no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#51no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#51no8").val(proyect[0]['no25']); // domicilio
-            $("#51no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Enterado EA
-            $("#52no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#52no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#52no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#52no5").val(proyect[0]['no20']);// codigo
-            $("#52no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#52no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#52no8").val(proyect[0]['no25']); // domicilio
-            $("#52no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Enterado EA CEI
-            $("#53no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#53no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#53no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#53no5").val(proyect[0]['no20']);// codigo
-            $("#53no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#53no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#53no8").val(proyect[0]['no25']); // domicilio
-            $("#53no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Enterado EA CI
-            $("#54no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#54no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#54no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#54no5").val(proyect[0]['no20']);// codigo
-            $("#54no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#54no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#54no8").val(proyect[0]['no25']); // domicilio
-            $("#54no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Enterado EAS
-            $("#55no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#55no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#55no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#55no5").val(proyect[0]['no20']);// codigo
-            $("#55no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#55no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#55no8").val(proyect[0]['no25']); // domicilio
-            $("#55no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Enterado EAS CEI
-            $("#56no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#56no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#56no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#56no5").val(proyect[0]['no20']);// codigo
-            $("#56no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#56no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#56no8").val(proyect[0]['no25']); // domicilio
-            $("#56no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Enterado EAS CI
-            $("#57no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#57no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#57no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#57no5").val(proyect[0]['no20']);// codigo
-            $("#57no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#57no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#57no8").val(proyect[0]['no25']); // domicilio
-            $("#57no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Aprobacion subsecuente
-            $("#58no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#58no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#58no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#58no5").val(proyect[0]['no20']);// codigo
-            $("#58no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#58no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#58no8").val(proyect[0]['no25']); // domicilio
-            $("#58no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Aprobacion subsecuente CEI
-            $("#59no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#59no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#59no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#59no5").val(proyect[0]['no20']);// codigo
-            $("#59no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#59no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#59no8").val(proyect[0]['no25']); // domicilio
-            $("#59no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Aprobacion subsecuente CI
-            $("#60no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#60no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#60no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#60no5").val(proyect[0]['no20']);// codigo
-            $("#60no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#60no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#60no8").val(proyect[0]['no25']); // domicilio
-            $("#60no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Renovacion anual
-            $("#61no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#61no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#61no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#61no5").val(proyect[0]['no20']);// codigo
-            $("#61no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#61no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#61no8").val(proyect[0]['no25']); // domicilio
-            $("#61no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Renovacion anual CEI
-            $("#62no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#62no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#62no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#62no5").val(proyect[0]['no20']);// codigo
-            $("#62no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#62no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#62no8").val(proyect[0]['no25']); // domicilio
-            $("#62no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Renovacion anual CI
-            $("#63no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#63no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            // $("#63no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#63no4").val(proyect[0]['no20']);// codigo
-            $("#63no5").val(proyect[0]['no19']);// titulo del protocolo
-            $("#63no6").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#63no8").val(proyect[0]['no25']); // domicilio
-            $("#63no8").val(proyect[0]['apellido']); // apellido paterno
-
-            // Fe de erratas
-            $("#64no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#64no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#64no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#64no5").val(proyect[0]['no20']);// codigo
-            $("#64no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#64no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#64no8").val(proyect[0]['no25']); // domicilio
-            $("#64no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Fe de erratas CEI
-            $("#65no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#65no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#65no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#65no5").val(proyect[0]['no20']);// codigo
-            $("#65no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#65no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#65no8").val(proyect[0]['no25']); // domicilio
-            $("#65no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Fe de erratas CI
-            $("#66no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#66no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            // $("#66no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#66no4").val(proyect[0]['no20']);// codigo
-            $("#66no5").val(proyect[0]['no19']);// titulo del protocolo
-            $("#66no6").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#66no8").val(proyect[0]['no25']); // domicilio
-            $("#66no8").val(proyect[0]['apellido']); // apellido paterno
-
-            // Recibo de informe
-            $("#67no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#67no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            // $("#67no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#67no4").val(proyect[0]['no20']);// codigo
-            $("#67no5").val(proyect[0]['no19']);// titulo del protocolo
-            $("#67no6").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#67no8").val(proyect[0]['no25']); // domicilio
-            $("#67no8").val(proyect[0]['apellido']); // apellido paterno
-
-            // Aviso al investigador CEI
-            $("#68no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#68no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#68no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#68no5").val(proyect[0]['no20']);// codigo
-            $("#68no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#68no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#68no8").val(proyect[0]['no25']); // domicilio
-            $("#68no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Aviso al investigador CI
-            $("#69no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#69no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#69no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#69no5").val(proyect[0]['no20']);// codigo
-            $("#69no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#69no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#69no8").val(proyect[0]['no25']); // domicilio
-            $("#69no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Aviso de auditoria
-            $("#70no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#70no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#70no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#70no5").val(proyect[0]['no20']);// codigo
-            $("#70no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#70no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#70no8").val(proyect[0]['no25']); // domicilio
-            $("#70no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Dictamen
-            $("#71no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#71no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#71no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#71no5").val(proyect[0]['no20']);// codigo
-            $("#71no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#71no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#71no8").val(proyect[0]['no25']); // domicilio
-            $("#71no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Dictamen CEI
-            $("#72no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#72no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#72no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#72no5").val(proyect[0]['no20']);// codigo
-            $("#72no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#72no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#72no8").val(proyect[0]['no25']); // domicilio
-            $("#72no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Dictamen CI
-            $("#73no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#73no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#73no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#73no5").val(proyect[0]['no20']);// codigo
-            $("#73no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#73no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#73no8").val(proyect[0]['no25']); // domicilio
-            $("#73no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Aviso de cancelacion
-            $("#74no2").val(proyect[0]['titulo']);//titulo del investigador
-            $("#74no3").val(proyect[0]['investigador']);//nombre completo del investigador
-            $("#74no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#74no5").val(proyect[0]['no20']);// codigo
-            $("#74no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#74no7").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#74no8").val(proyect[0]['no25']); // domicilio
-            $("#74no9").val(proyect[0]['apellido']); // apellido paterno
-
-            // Migracion
-            // TODO: ver donde se obtienen esos datos
-            // $("#75no2").val(proyect[0]['titulo']);//titulo del presidente de CE
-            // $("#75no3").val(proyect[0]['investigador']);//nombre completo del presidente de CE
-            // $("#75no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#75no6").val(proyect[0]['no20']);// codigo
-            $("#75no7").val(proyect[0]['no19']);// titulo del protocolo
-            $("#75no8").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#75no8").val(proyect[0]['no25']); // domicilio
-            $("#75no10").val(proyect[0]['investigador']); // Investigador principal
-            
-            // Migracion CEI
-            // TODO: ver donde se obtienen esos datos
-            // $("#76no2").val(proyect[0]['titulo']);//titulo del presidente de CE
-            // $("#76no3").val(proyect[0]['investigador']);//nombre completo del presidente de CE
-            // $("#76no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#76no6").val(proyect[0]['no20']);// codigo
-            $("#76no7").val(proyect[0]['no19']);// titulo del protocolo
-            $("#76no8").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#76no8").val(proyect[0]['no25']); // domicilio
-            $("#76no10").val(proyect[0]['investigador']); // Investigador principal
-            
-            // Migracion CI
-            // TODO: ver donde se obtienen esos datos
-            // $("#77no2").val(proyect[0]['titulo']);//titulo del presidente de CE
-            // $("#77no3").val(proyect[0]['investigador']);//nombre completo del presidente de CE
-            // $("#77no4").val(proyect[0]['no18']);//codigo UIS 
-            $("#77no6").val(proyect[0]['no20']);// codigo
-            $("#77no7").val(proyect[0]['no19']);// titulo del protocolo
-            $("#77no8").val(proyect[0]['no25']); // protrocinador
-            // TODO: queda pendiente donde obtener la direccion
-            // $("#77no8").val(proyect[0]['no25']); // domicilio
-            $("#77no10").val(proyect[0]['investigador']); // Investigador principal
-            
-            // Contenido del paquete
-            $("#78no1").val(proyect[0]['no20']);// codigo
-            $("#78no2").val(proyect[0]['no19']);// titulo del protocolo
-            $("#78no3").val(proyect[0]['investigador']);// Investigador
-            
-            // Contenido del paquete
-            $("#79no1").val(proyect[0]['no18']);// codigo UIS
-            $("#79no2").val(proyect[0]['no20']);// codigo
-
-            // Cambio de domicilio
-            $("#80no5").val(proyect[0]['no20']);// codigo
-            $("#80no6").val(proyect[0]['no19']);// titulo del protocolo
-            $("#80no7").val(proyect[0]['no25']); // protrocinador
+            $("#investigador").val(proyect[0]['investigador']);//nombre completo del investigador
+            $("#titulo").val(proyect[0]['titulo']);//titulo del investigador
+            $("#apellido").val(proyect[0]['apellido']); // apellido paterno
+       
 
         }
     });
@@ -1423,71 +477,7 @@ function borrar_campos() {
     $("#formato_id").val(null);
 
     $("#formcreate_propuestaInicial")[0].reset();
-    $("#formcreate_confidencialidad")[0].reset();
-    $("#formcreate_designacion")[0].reset();
-    $("#formcreate_instalacion")[0].reset();
-    $("#formcreate_constanciaMiembro")[0].reset();
-    $("#formcreate_noVoto")[0].reset();
-    $("#formcreate_noAprobado")[0].reset();
-    $("#formcreate_pendienteAprobacion")[0].reset();
-    $("#formcreate_pendienteAprobacionCEI")[0].reset();
-    $("#formcreate_pendienteAprobacionCI")[0].reset();
-    $("#formcreate_aprobacionInicial")[0].reset();
-    $("#formcreate_aprobacionInicialCEI")[0].reset();
-    $("#formcreate_aprobacionInicialCI")[0].reset();
-    $("#formcreate_aceptacionResponsabilidades")[0].reset();
-    $("#formcreate_aceptacionResponsabilidadesCEI")[0].reset();
-    $("#formcreate_aceptacionResponsabilidadesCI")[0].reset();
-    $("#formcreate_adherenciaGCP")[0].reset();
-    $("#formcreate_adherenciaGCPCEI")[0].reset();
-    $("#formcreate_adherenciaGCPCI")[0].reset();
-    $("#formcreate_listaMiembros")[0].reset();
-    $("#formcreate_listaMiembrosCEI")[0].reset();
-    $("#formcreate_listaMiembrosCI")[0].reset();
-    $("#formcreate_confiNoConfli")[0].reset();
-    $("#formcreate_confiNoConfliCEI")[0].reset();
-    $("#formcreate_confiNoConfliCI")[0].reset();
-    $("#formcreate_infoAuditorias")[0].reset();
-    $("#formcreate_infoAuditoriasCEI")[0].reset();
-    $("#formcreate_infoAuditoriasCI")[0].reset();
-    $("#formcreate_aprobacionEnmienda")[0].reset();
-    $("#formcreate_aprobacionEnmiendaCEI")[0].reset();
-    $("#formcreate_aprobacionEnmiendaCI")[0].reset();
-    $("#formcreate_revisionDesviacion")[0].reset();
-    $("#formcreate_revisionDesviacionCEI")[0].reset();
-    $("#formcreate_revisionDesviacionCI")[0].reset();
-    $("#formcreate_enterado")[0].reset();
-    $("#formcreate_enteradoCEI")[0].reset();
-    $("#formcreate_enteradoCI")[0].reset();
-    $("#formcreate_enteradoEA")[0].reset();
-    $("#formcreate_enteradoEACEI")[0].reset();
-    $("#formcreate_enteradoEACI")[0].reset();
-    $("#formcreate_enteradoEAS")[0].reset();
-    $("#formcreate_enteradoEASCEI")[0].reset();
-    $("#formcreate_enteradoEASCI")[0].reset();
-    $("#formcreate_aprobacionSubsecuente")[0].reset();
-    $("#formcreate_aprobacionSubsecuenteCEI")[0].reset();
-    $("#formcreate_aprobacionSubsecuenteCI")[0].reset();
-    $("#formcreate_renovacionAnual")[0].reset();
-    $("#formcreate_renovacionAnualCEI")[0].reset();
-    $("#formcreate_renovacionAnualCI")[0].reset();
-    $("#formcreate_fedeErratas")[0].reset();
-    $("#formcreate_fedeErratasCEI")[0].reset();
-    $("#formcreate_fedeErratasCI")[0].reset();
-    $("#formcreate_reciboInforme")[0].reset();
-    $("#formcreate_avisoInvestigadorCEI")[0].reset();
-    $("#formcreate_avisoInvestigadorCI")[0].reset();
-    $("#formcreate_avisoAuditoria")[0].reset();
-    $("#formcreate_dictamen")[0].reset();
-    $("#formcreate_dictamenCEI")[0].reset();
-    $("#formcreate_dictamenCI")[0].reset();
-    $("#formcreate_avisoCancelacion")[0].reset();
-    $("#formcreate_migracion")[0].reset();
-    $("#formcreate_migracionCEI")[0].reset();
-    $("#formcreate_migracionCI")[0].reset();
-    $("#formcreate_contenidoPaquete")[0].reset();
-    $("#formcreate_archivoConcentracion")[0].reset();
-    $("#formcreate_cambioDomicilio")[0].reset();
+   
 
     // no aprobado ============================================================================================================
     if(noaprobado_docrevisado_count > 10) {
@@ -1539,153 +529,7 @@ function borrar_campos() {
         })
         noaprobado_argumentos_count = 11;
     }
-    // pendiente de aprobacion ===========================================================================================
-    if(pendienteapro_cambio_count > 10) {
-        for (let i = 11; i <= pendienteapro_cambio_count; i++) {
-            $("#18no" + i).parent('div').remove();
-        }
-        pendienteapro_cambio_count = 10;
-    }
-    // pendiente de aprobacion CEI =============================================================================================
-    if(pendienteapro_cambio_countCEI > 10) {
-        for (let i = 11; i <= pendienteapro_cambio_countCEI; i++) {
-            $("#19no" + i).parent('div').remove();
-        }
-        pendienteapro_cambio_countCEI = 10;
-    }
-    // pendiente de aprobacion CI ===========================================================================================================
-    if(pendienteapro_cambio_countCI > 10) {
-        for (let i = 11; i <= pendienteapro_cambio_countCI; i++) {
-            $("#20no" + i).parent('div').remove();
-        }
-        pendienteapro_cambio_countCI = 10;
-    }
-    // aprobacion inicial =====================================================================================================================
-    if(aprobadoinicial_doc_count > 11) {
-        for (let i = 12; i <= aprobadoinicial_doc_count; i++) {
-            $("#21no" + i).parent('div').remove();
-        }
-        aprobadoinicial_doc_count = 11;
-    }
-    // aprobacion inicial CEI =======================================================================================================================
-    if(aprobadoinicial_doc_countCEI > 11) {
-        for (let i = 12; i <= aprobadoinicial_doc_countCEI; i++) {
-            $("#22no" + i).parent('div').remove();
-        }
-        aprobadoinicial_doc_countCEI = 11;
-    }
-    // aprobacion inicial CI =======================================================================================================================
-    if(aprobadoinicial_doc_countCI > 10) {
-        for (let i = 11; i <= aprobadoinicial_doc_countCI; i++) {
-            $("#23no" + i).parent('div').remove();
-        }
-        aprobadoinicial_doc_countCI = 10;
-    }
-    // aceptacion de responsabilidades =======================================================================================================================
-    if(aceptacionresp_doc_count > 11) {
-        for (let i = 12; i <= aceptacionresp_doc_count; i++) {
-            $("#24no" + i).parent('div').remove();
-        }
-        aceptacionresp_doc_count = 11;
-    }
-    // aceptacion de responsabilidades CEI =======================================================================================================================
-    if(aceptacionresp_doc_countCEI > 11) {
-        for (let i = 12; i <= aceptacionresp_doc_countCEI; i++) {
-            $("#25no" + i).parent('div').remove();
-        }
-        aceptacionresp_doc_countCEI = 11;
-    }
-    // aceptacion de responsabilidades CI =======================================================================================================================
-    if(aceptacionresp_doc_countCI > 10) {
-        for (let i = 11; i <= aceptacionresp_doc_countCI; i++) {
-            $("#26no" + i).parent('div').remove();
-        }
-        aceptacionresp_doc_countCI = 10;
-    }
-    // aprobacion de enmienda =======================================================================================================================
-    if(aprobacionenmienda_doc_count > 10) {
-        for (let i = 11; i <= aprobacionenmienda_doc_count; i++) {
-            $("#43no" + i).parent('div').remove();
-        }
-        aprobacionenmienda_doc_count = 10;
-    }
-    // aprobacion de enmienda CEI =======================================================================================================================
-    if(aprobacionenmienda_doc_countCEI > 10) {
-        for (let i = 11; i <= aprobacionenmienda_doc_countCEI; i++) {
-            $("#44no" + i).parent('div').remove();
-        }
-        aprobacionenmienda_doc_countCEI = 10;
-    }
-    // aprobacion de enmienda CI =======================================================================================================================
-    if(aprobacionenmienda_doc_countCI > 10) {
-        for (let i = 11; i <= aprobacionenmienda_doc_countCI; i++) {
-            $("#45no" + i).parent('div').remove();
-        }
-        aprobacionenmienda_doc_countCI = 10;
-    }
-    // revision de desviacion ================================================================================================================================================
-    if (revision_desviacion_count > 16) {
-        for (let i = 17; i <= revision_desviacion_count; i++) {
-            $("#46no" + i).parents('.revisiondesviacioninpust').remove();
-        }
-        revision_desviacion_count = 16;
-    }
-    // enterado =======================================================================================================================
-    if(enterado_doc_count > 10) {
-        for (let i = 11; i <= enterado_doc_count; i++) {
-            $("#49no" + i).parent('div').remove();
-        }
-        enterado_doc_count = 10;
-    }
-    // enterado CEI =======================================================================================================================
-    if(enterado_doc_countCEI > 10) {
-        for (let i = 11; i <= enterado_doc_countCEI; i++) {
-            $("#50no" + i).parent('div').remove();
-        }
-        enterado_doc_countCEI = 10;
-    }
-    // enterado CI =======================================================================================================================
-    if(enterado_doc_countCI > 10) {
-        for (let i = 11; i <= enterado_doc_countCI; i++) {
-            $("#51no" + i).parent('div').remove();
-        }
-        enterado_doc_countCI = 10;
-    }
-    // aprobacion subsecuente =======================================================================================================================
-    if(aprobacionsubsecuente_doc_count > 10) {
-        for (let i = 11; i <= aprobacionsubsecuente_doc_count; i++) {
-            $("#58no" + i).parent('div').remove();
-        }
-        aprobacionsubsecuente_doc_count = 10;
-    }
-    // aprobacion subsecuente CEI =======================================================================================================================
-    if(aprobacionsubsecuente_doc_countCEI > 10) {
-        for (let i = 11; i <= aprobacionsubsecuente_doc_countCEI; i++) {
-            $("#59no" + i).parent('div').remove();
-        }
-        aprobacionsubsecuente_doc_countCEI = 10;
-    }
-    // aprobacion subsecuente CI =======================================================================================================================
-    if(aprobacionsubsecuente_doc_countCI > 10) {
-        for (let i = 11; i <= aprobacionsubsecuente_doc_countCI; i++) {
-            $("#60no" + i).parent('div').remove();
-        }
-        aprobacionsubsecuente_doc_countCI = 10;
-    }
-    // Aviso al investigador CEI =======================================================================================================================
-    if(avisoinvestigador_doc_countCEI > 10) {
-        for (let i = 11; i <= avisoinvestigador_doc_countCEI; i++) {
-            $("#68no" + i).parent('div').remove();
-        }
-        avisoinvestigador_doc_countCEI = 10;
-    }
-    // Aviso al investigador CI =======================================================================================================================
-    if(avisoinvestigador_doc_countCI > 10) {
-        for (let i = 11; i <= avisoinvestigador_doc_countCI; i++) {
-            $("#69no" + i).parent('div').remove();
-        }
-        avisoinvestigador_doc_countCI = 10;
-    }
+   
     // Migracion =======================================================================================================================
     if(migracion_doc_count > 18) {
         for (let i = 19; i <= migracion_doc_count; i++) {
@@ -1693,20 +537,7 @@ function borrar_campos() {
         }
         migracion_doc_count = 18;
     }
-    // Migracion CEI =======================================================================================================================
-    if(migracion_doc_countCEI > 18) {
-        for (let i = 19; i <= migracion_doc_countCEI; i++) {
-            $("#76no" + i).parent('div').remove();
-        }
-        migracion_doc_countCEI = 18;
-    }
-    // Migracion CI =======================================================================================================================
-    if(migracion_doc_countCI > 18) {
-        for (let i = 19; i <= migracion_doc_countCI; i++) {
-            $("#77no" + i).parent('div').remove();
-        }
-        migracion_doc_countCI = 18;
-    }
+   
 
 }
 // END borrar campos --- reset form
@@ -10763,6 +9594,7 @@ $('').on('submit', function(e) {
     
 });
 
+
 $('#formcreate_propuestaInicial').on('submit', function(e) {
     e.preventDefault();
     var formData = new FormData(this);
@@ -10774,6 +9606,13 @@ $('#formcreate_propuestaInicial').on('submit', function(e) {
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
     
+     
+    guardadoConAgregado(formato_id, documentoformato_id, proyecto_id, empresa_id,menu_id, user_id);
+    
+
+});
+
+function guardadoConAgregado(formato_id, documentoformato_id, proyecto_id, empresa_id,menu_id, user_id){
     
     formData.append('formato_id', formato_id);
     formData.append('documentoformato_id', documentoformato_id);
@@ -10781,117 +9620,115 @@ $('#formcreate_propuestaInicial').on('submit', function(e) {
     formData.append('empresa_id', empresa_id);
     formData.append('menu_id', menu_id);
     formData.append('user_id', user_id);
-    
-  //  guardadoConAgregado(formato_id, documentoformato_id, proyecto_id, empresa_id,menu_id, user_id);
-    
-  
-  if (migracion_doc_count > 18) {
-    for (let i = 19; i <= migracion_doc_count; i++) {
-        var idAppend = "75no" + i;
-        var value = $("#" + idAppend).val();
-        formData.append(idAppend, value);
+
+
+    if (migracion_doc_count > 18) {
+        for (let i = 19; i <= migracion_doc_count; i++) {
+            var idAppend = "75no" + i;
+            var value = $("#" + idAppend).val();
+            formData.append(idAppend, value);
+        }
     }
+    
+    if (!formato_id) {
+        
+        if(documentoformato_id!="" && proyecto_id ){
+            var guardado = "";
+            $.ajax({
+                url: "/documentos_id/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    //$('#btnGuardar').hide();
+                },
+                success:function(resp){
+
+    
+                    if(migracion_doc_count > 18) {
+                        for (let i = 19; i <= migracion_doc_count; i++) {
+                            $("#75no" + i).parent('div').remove();
+                        }
+                        migracion_doc_count = 18;
+                    }
+    
+                    if(resp == 'guardado'){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        $('#btnGuardar').show();$('#btnGuardar').show();
+                        borrar_campos();
+                        list_formatos();
+    
+                    }else{
+                        
+                        if (resp == 'no guardado') {
+                            $('#createFormatoModal').modal('hide');
+                            $('#btnGuardar').show();
+                            borrar_campos()
+                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
+                        }
+                        if (resp == 'dato existe') {
+                            $('#createFormatoModal').modal('hide');
+                            $('#btnGuardar').show();
+                            borrar_campos()
+                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
+                        }
+                        
+                    };
+    
+                }
+            });
+    
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1550});
+        }
+    } else {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos_id/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGuardar').hide();
+                },
+                success:function(resp){
+                    
+                    // console.log(resp);
+    
+                    if(migracion_doc_count > 18) {
+                        for (let i = 19; i <= migracion_doc_count; i++) {
+                            $("#75no" + i).parent('div').remove();
+                        }
+                        migracion_doc_count = 18;
+                    }
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                        $('#btnGuardar').show();
+                        borrar_campos();
+                        list_formatos();
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGuardar').show();
+                        borrar_campos();
+                        toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                    }
+                    $('#formato_id').val(null);
+                }
+            });
+    
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+        }
+        }
 }
-
-if (!formato_id) {
-    
-    if(documentoformato_id!="" && proyecto_id ){
-        var guardado = "";
-        $.ajax({
-            url: "/documentos_id/create_formato",
-            type:'post',
-            data:formData,
-            cache:false,
-            contentType: false,
-            processData: false,
-            beforeSend:function(){
-                //$('#btnGuardar').hide();
-            },
-            success:function(resp){
-                
-
-                if(migracion_doc_count > 18) {
-                    for (let i = 19; i <= migracion_doc_count; i++) {
-                        $("#75no" + i).parent('div').remove();
-                    }
-                    migracion_doc_count = 18;
-                }
-
-                if(resp == 'guardado'){
-                    $('#createFormatoModal').modal('hide');
-                    toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                    $('#btnGuardar').show();$('#btnGuardar').show();
-                    borrar_campos();
-                    list_formatos();
-
-                }else{
-                    
-                    if (resp == 'no guardado') {
-                        $('#createFormatoModal').modal('hide');
-                        $('#btnGuardar').show();
-                        borrar_campos()
-                        toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
-                    }
-                    if (resp == 'dato existe') {
-                        $('#createFormatoModal').modal('hide');
-                        $('#btnGuardar').show();
-                        borrar_campos()
-                        toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
-                    }
-                    
-                };
-
-            }
-        });
-
-    }else{
-        $('#createFormatoModal').scrollTop(0);
-        // alert("Seleccione un proyecto");
-        toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1550});
-    }
-} else {
-    if(documentoformato_id!="" && proyecto_id ){
-        $.ajax({
-            url: "/documentos_id/create_formato",
-            type:'post',
-            data:formData,
-            cache:false,
-            contentType: false,
-            processData: false,
-            beforeSend:function(){
-                $('#btnGuardar').hide();
-            },
-            success:function(resp){
-
-                // console.log(resp);
-
-                if(migracion_doc_count > 18) {
-                    for (let i = 19; i <= migracion_doc_count; i++) {
-                        $("#75no" + i).parent('div').remove();
-                    }
-                    migracion_doc_count = 18;
-                }
-
-                if(resp){
-                    $('#createFormatoModal').modal('hide');
-                    toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
-                    $('#btnGuardar').show();
-                    borrar_campos();
-                    list_formatos();
-                }else{
-                    $('#createFormatoModal').modal('hide');
-                    $('#btnGuardar').show();
-                    borrar_campos();
-                    toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
-                }
-                $('#formato_id').val(null);
-            }
-        });
-
-    }else{
-        $('#createFormatoModal').scrollTop(0);
-        // alert("Seleccione un proyecto");
-        toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
-    }
-    }
-});

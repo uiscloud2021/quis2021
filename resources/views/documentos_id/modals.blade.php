@@ -100,7 +100,7 @@
                         {!! Form::label('disenio', '3. Diseño', ['class' => 'form-label']) !!}
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user-md"></i></span>
-                            {!! Form::text('diseno', null, ['class' => 'form-control', 'placeholder' => 'Diseño', 'required']) !!}
+                            {!! Form::text('disenio', null, ['class' => 'form-control', 'placeholder' => 'Diseño', 'required']) !!}
                         </div>
                     </div>
     
@@ -122,7 +122,7 @@
                         {!! Form::label('tamanio', '4. Tamaño de la muestra', ['class' => 'form-label']) !!}
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user-md"></i></span>
-                            {!! Form::text('3no3', null, ['class' => 'form-control', 'placeholder' => 'Tamaño de la muestra', 'required']) !!}
+                            {!! Form::text('tamanio', null, ['class' => 'form-control', 'placeholder' => 'Tamaño de la muestra', 'required']) !!}
                         </div>
                     </div>
         
