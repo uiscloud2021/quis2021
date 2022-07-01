@@ -533,6 +533,25 @@ class DocumentosIDController extends Controller
 
                     }
 
+                    if(14 == $request->documentoformato_id){
+                        $my_template->setValue('codigo',$array_depurado['codigo14']); 
+                        $my_template->setValue('numerositio',$array_depurado['numerositio14']);
+                        $my_template->setValue('fechavisita',$array_depurado['fechavisita14']);
+                        $my_template->setValue('fechaaviso',$array_depurado['fechaaviso14']);
+                        $my_template->setValue('tipovisita',$array_depurado['tipovisita14']);
+                        $my_template->setValue('horainicio',$array_depurado['horainicio']);
+                        $my_template->setValue('nombre',$array_depurado['nombre14']);
+                        $my_template->setValue('sitio',$array_depurado['sitio14']);
+                        $my_template->setValue('direccion',$array_depurado['direccion14']);
+                        $my_template->setValue('ciudad',$array_depurado['ciudad14']);
+                        $my_template->setValue('estado',$array_depurado['estado14']);
+                        $my_template->setValue('cp',$array_depurado['cp14']);
+                        $my_template->setValue('pais',$array_depurado['pais14']);
+
+                       
+
+                    }
+
 
                 //GUARDADO EN WORD
                 try{

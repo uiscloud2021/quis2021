@@ -1002,11 +1002,11 @@
                         </div>
                     </div>
 
-                    <div class="form-group" id="div2">
+                    <div class="form-group" id="div2>
                         {!! Form::label('numerositio14', '2. No. de Sitio', ['class' => 'form-label']) !!}
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
-                            {!! Form::number('numerositio14', null, ['class' => 'form-control', 'placeholder' => 'No. de Sitio', 'readonly']) !!}
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::number('numerositio14', null, ['class' => 'form-control', 'placeholder' => 'No. de Sitio', 'required']) !!}
                         </div>
                     </div>
 
