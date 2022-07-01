@@ -459,10 +459,22 @@ function cargarDatosProtocolo() {
 
             $("#codigo").val(codigo);// codigo
             $("#codigo4").val(codigo);
+            $("#codigo6").val(codigo);
+            $("#codigo7").val(codigo);
+            $("#codigo8").val(codigo);
+            $("#codigo9").val(codigo);
+            $("#codigo10").val(codigo);
+            $("#codigo11").val(codigo);
+            $("#codigo12").val(codigo);
 
 
             $("#titulo").val(proyect[0]['no19']);// titulo del protocolo
             $("#titulo4").val(proyect[0]['no19']);
+            $("#titulo8").val(proyect[0]['no19']);
+            $("#titulo9").val(proyect[0]['no19']);
+            $("#titulo10").val(proyect[0]['no19']);
+            $("#titulo11").val(proyect[0]['no19']);
+            $("#titulo12").val(proyect[0]['no19']);
 
   
             $("#patrocinador").val(proyect[0]['no25']); // protrocinador
@@ -487,7 +499,22 @@ function borrar_campos() {
     $("#formato_id").val(null);
 
     $("#formcreate_propuestaInicial")[0].reset();
+    $("#formcreate_protocoloInvestigacion")[0].reset();
+    $("#formcreate_consentimientoInformado")[0].reset();
+    $("#formcreate_reporteCaso")[0].reset();
+    $("#formcreate_folletoInvestigador")[0].reset();
+    $("#formcreate_sometimiento")[0].reset();
+    $("#formcreate_compromisos")[0].reset();
+    $("#formcreate_responsabilidades")[0].reset();
+    $("#formcreate_autorizacion")[0].reset();
+    $("#formcreate_instalaciones")[0].reset();
+    $("#formcreate_anticorrupcion")[0].reset();
+    $("#formcreate_avisovisita")[0].reset();
+    
    
+    
+    
+    
 
     // no aprobado ============================================================================================================
     if(noaprobado_docrevisado_count > 10) {
@@ -582,6 +609,17 @@ function select_content_modal(documento_formato_id, nombre_formato) {
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Metodos para llenar campos con un select del form
+$("#lugar12").change(
+    function() {
+        rol = $("#lugar12").val();
+        if (rol == 'Chihuahua, Chih.') {
+            $("#direccion12").val('Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.');
+            
+        }
+        
+    }
+)
+
 
 // Llenar campos Invitacion
 $("#1no4").change(
@@ -684,7 +722,7 @@ $("#15no2").change(
 
 
 
-// Metodo para agregar y eliminar campos del modal de Migracion
+// Metodo para agregar y eliminar campos del modal
 var migracion_doc_count = 18;
 $("#add_doc_migracion").click(
     function() {
@@ -719,10 +757,96 @@ $("#wrapper_migraciondoc").on('click', '.remove_button', function(e) {
     });
 
     migracion_doc_count--;
+});
+// END Metodo para agregar y eliminar campos del modal
+
+// Metodo para agregar y eliminar campos del modal
+var migracion_doc_count = 18;
+$("#add_doc_migracion2").click(
+    function() {
+        migracion_doc_count++;
+        
+        var id_docMigracionv = 'id="6v-75no' + migracion_doc_count +'"';
+        var id_docMigracion = 'id="6-75no' + migracion_doc_count + '"';
+        var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
+        '<input class="migracionDoc form-control" type="text" placeholder="Agregar Variable" ' + id_docMigracionv + 'required/>' +
+        '<input class="migracionDoc form-control" type="text" placeholder="Agregar Valor" ' + id_docMigracion + 'required/>' +
+        '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
+        $("#wrapper_migraciondoc2").append(fieldHTML);
+
+    }
+)
+$("#wrapper_migraciondoc2").on('click', '.remove_button', function(e) {
+    e.preventDefault();
+
+    var idBody = "#body-"+idFormato;
+    
+    var div = $(this).parents(idBody);
+    $(this).parent('div').remove();
+
+    var aux = 19;
+    var auxId = '6-75no';
+    var hijos = div.find(".migracionDoc");
+    // console.log(hijos[0].id)
+    $.each(hijos, function() {
+        var aux_id = this.id;
+        $("#"+ aux_id +"").prop('id', auxId + aux);
+        aux++;
+        // console.log(this);
+    });
+
+    var auxIdv = '6v-75no';
+    var hijos = div.find(".migracionDoc");
+    // console.log(hijos[0].id)
+    $.each(hijos, function() {
+        var aux_idv = this.id;
+        $("#"+ aux_idv +"").prop('id', auxIdv + aux);
+        aux++;
+        // console.log(this);
+    });
+
+    migracion_doc_count--;
 })
-// END Metodo para agregar y eliminar campos del modal de Migracion
 
 
+
+// END Metodo para agregar y eliminar campos del modal "add_doc_(id del modal)"
+
+var migracion_doc_count = 18;
+$("#add_doc_8").click(
+    function() {
+        migracion_doc_count++;
+        
+        var id_docMigracion = 'id="8-75no' + migracion_doc_count + '"';
+        
+        var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
+        '<input class="migracionDoc form-control" type="text" placeholder="Agregar documento" ' + id_docMigracion + 'required/>' +
+        '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
+        $("#wrapper_doc_8").append(fieldHTML);
+
+    }
+)
+$("#wrapper_doc_8").on('click', '.remove_button', function(e) {
+    e.preventDefault();
+
+    var idBody = "#body-"+idFormato;
+    
+    var div = $(this).parents(idBody);
+    $(this).parent('div').remove();
+
+    var aux = 19;
+    var auxId = '8-75no';
+    var hijos = div.find(".migracionDoc");
+    // console.log(hijos[0].id)
+    $.each(hijos, function() {
+        var aux_id = this.id;
+        $("#"+ aux_id +"").prop('id', auxId + aux);
+        aux++;
+        // console.log(this);
+    });
+
+    migracion_doc_count--;
+});
 
 
 
@@ -782,7 +906,7 @@ $('#formcreate_propuestaInicial').on('submit', function(e) {
                     //$('#btnGuardar').hide();
                 },
                 success:function(resp){
-                    alert(resp)
+                   
     
                     if(migracion_doc_count > 18) {
                         for (let i = 19; i <= migracion_doc_count; i++) {
@@ -978,3 +1102,1145 @@ $('#formcreate_protocoloInvestigacion').on('submit', function(e) {
         }
     }
 });
+
+$('#formcreate_consentimientoInformado').on('submit', function(e) {
+    e.preventDefault();
+
+    var formData = new FormData(this);
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#protocolo_id').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    user_id = $('#user_id').val();
+    
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('user_id', user_id);
+    
+    
+    
+    if (!formato_id) {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos_id/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                  //  $('#btnGuardar').hide();
+                },
+                success:function(resp){
+                   
+                    // console.log(resp);
+    
+                    if(resp == 'guardado'){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        $('#btnGuardar').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        if (resp == 'no guardado') {
+                            $('#createFormatoModal').modal('hide');
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
+                        }
+                        if (resp == 'dato existe') {
+                            $('#createFormatoModal').modal('hide');
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
+                        }
+                        
+                    }
+    
+                }
+            });
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+        }
+    } else {
+        if(documentoformato_id!="" && proyecto_id ){
+
+            $.ajax({
+                url: "/documentos_id/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    //$('#btnGuardar').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                        $('#btnGuardar').show();
+                        borrar_campos();
+                        list_formatos();
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGuardar').show();
+                        borrar_campos();
+                        toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                    }
+                    $('#formato_id').val(null);
+                }
+            });
+
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+        }
+    }
+});
+
+$('#formcreate_reporteCaso').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#protocolo_id').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    user_id = $('#user_id').val();
+    
+     
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('user_id', user_id);
+
+
+    if (migracion_doc_count > 18) {
+        for (let i = 19; i <= migracion_doc_count; i++) {
+            var idAppend = "6-75no" + i;
+            var value = $("#" + idAppend).val();
+            formData.append(idAppend, value);
+
+            var idAppendv = "6v-75no" + i;
+            var valuev = $("#" + idAppendv).val();
+            formData.append(idAppendv, valuev);
+        }
+    }
+    
+    if (!formato_id) {
+        
+        if(documentoformato_id!="" && proyecto_id ){
+           
+            $.ajax({
+                url: "/documentos_id/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    //$('#btnGuardar').hide();
+                },
+                success:function(resp){
+                    
+    
+                    if(migracion_doc_count > 18) {
+                        for (let i = 19; i <= migracion_doc_count; i++) {
+                            $("#6v-75no" + i).parent('div').remove();
+                            $("#6-75no" + i).parent('div').remove();
+                        }
+                        migracion_doc_count = 18;
+                    }
+    
+                    if(resp == 'guardado'){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        $('#btnGuardar').show();$('#btnGuardar').show();
+                        borrar_campos();
+                        list_formatos();
+    
+                    }else{
+                        
+                        if (resp == 'no guardado') {
+                            $('#createFormatoModal').modal('hide');
+                            $('#btnGuardar').show();
+                            borrar_campos()
+                            toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
+                        }
+                        if (resp == 'dato existe') {
+                            $('#createFormatoModal').modal('hide');
+                            $('#btnGuardar').show();
+                            borrar_campos()
+                            toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
+                        }
+                        
+                    };
+    
+                }
+            });
+    
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1550});
+        }
+    } else {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos_id/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGuardar').hide();
+                },
+                success:function(resp){
+                    
+                    // console.log(resp);
+    
+                    if(migracion_doc_count > 18) {
+                        for (let i = 19; i <= migracion_doc_count; i++) {
+                            $("#6-75no" + i).parent('div').remove();
+                            $("#6v-75no" + i).parent('div').remove();
+                        }
+                        migracion_doc_count = 18;
+                    }
+
+                    
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                        $('#btnGuardar').show();
+                        borrar_campos();
+                        list_formatos();
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGuardar').show();
+                        borrar_campos();
+                        toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                    }
+                    $('#formato_id').val(null);
+                }
+            });
+    
+        }else{
+            $('#createFormatoModal').scrollTop(0);
+            // alert("Seleccione un proyecto");
+            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+        }
+    }
+
+});
+
+$('#formcreate_folletoInvestigador').on('submit', function(e) {
+        e.preventDefault();
+    
+        var formData = new FormData(this);
+    
+        formato_id = $('#formato_id').val();
+        documentoformato_id = $("#doc_formatos").val();
+        proyecto_id = $('#protocolo_id').val();
+        empresa_id = $('#empresa_id').val();
+        menu_id = $('#menu_id').val();
+        user_id = $('#user_id').val();
+        
+        
+        formData.append('formato_id', formato_id);
+        formData.append('documentoformato_id', documentoformato_id);
+        formData.append('proyecto_id', proyecto_id);
+        formData.append('empresa_id', empresa_id);
+        formData.append('menu_id', menu_id);
+        formData.append('user_id', user_id);
+        
+        
+        
+        if (!formato_id) {
+            if(documentoformato_id!="" && proyecto_id ){
+                $.ajax({
+                    url: "/documentos_id/create_formato",
+                    type:'post',
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function(){
+                      //  $('#btnGuardar').hide();
+                    },
+                    success:function(resp){
+                       
+                        // console.log(resp);
+        
+                        if(resp == 'guardado'){
+                            $('#createFormatoModal').modal('hide');
+                            toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            list_formatos(documentoformato_id);
+                        }else{
+                            if (resp == 'no guardado') {
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos();
+                                toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
+                            }
+                            if (resp == 'dato existe') {
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos();
+                                toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
+                            }
+                            
+                        }
+        
+                    }
+                });
+            }else{
+                $('#createFormatoModal').scrollTop(0);
+                // alert("Seleccione un proyecto");
+                toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+            }
+        } else {
+            if(documentoformato_id!="" && proyecto_id ){
+    
+                $.ajax({
+                    url: "/documentos_id/create_formato",
+                    type:'post',
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function(){
+                        //$('#btnGuardar').hide();
+                    },
+                    success:function(resp){
+        
+                        // console.log(resp);
+        
+                        if(resp){
+                            $('#createFormatoModal').modal('hide');
+                            toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            list_formatos();
+                        }else{
+                            $('#createFormatoModal').modal('hide');
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                        }
+                        $('#formato_id').val(null);
+                    }
+                });
+    
+            }else{
+                $('#createFormatoModal').scrollTop(0);
+                // alert("Seleccione un proyecto");
+                toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+            }
+        }
+    });
+
+    
+
+    $('#formcreate_sometimiento').on('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+    
+        formato_id = $('#formato_id').val();
+        documentoformato_id = $("#doc_formatos").val();
+        proyecto_id = $('#protocolo_id').val();
+        empresa_id = $('#empresa_id').val();
+        menu_id = $('#menu_id').val();
+        user_id = $('#user_id').val();
+        
+         
+        formData.append('formato_id', formato_id);
+        formData.append('documentoformato_id', documentoformato_id);
+        formData.append('proyecto_id', proyecto_id);
+        formData.append('empresa_id', empresa_id);
+        formData.append('menu_id', menu_id);
+        formData.append('user_id', user_id);
+    
+    
+        if (migracion_doc_count > 18) {
+            for (let i = 19; i <= migracion_doc_count; i++) {
+                var idAppend = "8-75no" + i;
+                var value = $("#" + idAppend).val();
+                formData.append(idAppend, value);
+
+            }
+        }
+        
+        if (!formato_id) {
+            
+            if(documentoformato_id!="" && proyecto_id ){
+               
+                $.ajax({
+                    url: "/documentos_id/create_formato",
+                    type:'post',
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function(){
+                        //$('#btnGuardar').hide();
+                    },
+                    success:function(resp){
+                        
+        
+                        if(migracion_doc_count > 18) {
+                            for (let i = 19; i <= migracion_doc_count; i++) {
+                                $("#8-75no" + i).parent('div').remove();
+                            }
+                            migracion_doc_count = 18;
+                        }
+        
+                        if(resp == 'guardado'){
+                            $('#createFormatoModal').modal('hide');
+                            toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                            $('#btnGuardar').show();$('#btnGuardar').show();
+                            borrar_campos();
+                            list_formatos();
+        
+                        }else{
+                            
+                            if (resp == 'no guardado') {
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos()
+                                toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
+                            }
+                            if (resp == 'dato existe') {
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos()
+                                toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
+                            }
+                            
+                        };
+        
+                    }
+                });
+        
+            }else{
+                $('#createFormatoModal').scrollTop(0);
+                // alert("Seleccione un proyecto");
+                toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1550});
+            }
+        } else {
+            if(documentoformato_id!="" && proyecto_id ){
+                $.ajax({
+                    url: "/documentos_id/create_formato",
+                    type:'post',
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function(){
+                        $('#btnGuardar').hide();
+                    },
+                    success:function(resp){
+                        
+                        // console.log(resp);
+        
+                        if(migracion_doc_count > 18) {
+                            for (let i = 19; i <= migracion_doc_count; i++) {
+                                $("#8-75no" + i).parent('div').remove();
+                                
+                            }
+                            migracion_doc_count = 18;
+                        }
+    
+                        
+        
+                        if(resp){
+                            $('#createFormatoModal').modal('hide');
+                            toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            list_formatos();
+                        }else{
+                            $('#createFormatoModal').modal('hide');
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                        }
+                        $('#formato_id').val(null);
+                    }
+                });
+        
+            }else{
+                $('#createFormatoModal').scrollTop(0);
+                // alert("Seleccione un proyecto");
+                toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+            }
+        }
+    
+    });
+
+    $('#formcreate_folletoInvestigador').on('submit', function(e) {
+        e.preventDefault();
+    
+        var formData = new FormData(this);
+    
+        formato_id = $('#formato_id').val();
+        documentoformato_id = $("#doc_formatos").val();
+        proyecto_id = $('#protocolo_id').val();
+        empresa_id = $('#empresa_id').val();
+        menu_id = $('#menu_id').val();
+        user_id = $('#user_id').val();
+        
+        
+        formData.append('formato_id', formato_id);
+        formData.append('documentoformato_id', documentoformato_id);
+        formData.append('proyecto_id', proyecto_id);
+        formData.append('empresa_id', empresa_id);
+        formData.append('menu_id', menu_id);
+        formData.append('user_id', user_id);
+        
+        
+        
+        if (!formato_id) {
+            if(documentoformato_id!="" && proyecto_id ){
+                $.ajax({
+                    url: "/documentos_id/create_formato",
+                    type:'post',
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function(){
+                      //  $('#btnGuardar').hide();
+                    },
+                    success:function(resp){
+                       
+                        // console.log(resp);
+        
+                        if(resp == 'guardado'){
+                            $('#createFormatoModal').modal('hide');
+                            toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            list_formatos(documentoformato_id);
+                        }else{
+                            if (resp == 'no guardado') {
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos();
+                                toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
+                            }
+                            if (resp == 'dato existe') {
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos();
+                                toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
+                            }
+                            
+                        }
+        
+                    }
+                });
+            }else{
+                $('#createFormatoModal').scrollTop(0);
+                // alert("Seleccione un proyecto");
+                toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+            }
+        } else {
+            if(documentoformato_id!="" && proyecto_id ){
+    
+                $.ajax({
+                    url: "/documentos_id/create_formato",
+                    type:'post',
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function(){
+                        //$('#btnGuardar').hide();
+                    },
+                    success:function(resp){
+        
+                        // console.log(resp);
+        
+                        if(resp){
+                            $('#createFormatoModal').modal('hide');
+                            toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            list_formatos();
+                        }else{
+                            $('#createFormatoModal').modal('hide');
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                        }
+                        $('#formato_id').val(null);
+                    }
+                });
+    
+            }else{
+                $('#createFormatoModal').scrollTop(0);
+                // alert("Seleccione un proyecto");
+                toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+            }
+        }
+    });
+
+    $('#formcreate_compromisos').on('submit', function(e) {
+        e.preventDefault();
+    
+        var formData = new FormData(this);
+    
+        formato_id = $('#formato_id').val();
+        documentoformato_id = $("#doc_formatos").val();
+        proyecto_id = $('#protocolo_id').val();
+        empresa_id = $('#empresa_id').val();
+        menu_id = $('#menu_id').val();
+        user_id = $('#user_id').val();
+        
+        
+        formData.append('formato_id', formato_id);
+        formData.append('documentoformato_id', documentoformato_id);
+        formData.append('proyecto_id', proyecto_id);
+        formData.append('empresa_id', empresa_id);
+        formData.append('menu_id', menu_id);
+        formData.append('user_id', user_id);
+        
+        
+        
+        if (!formato_id) {
+            if(documentoformato_id!="" && proyecto_id ){
+                $.ajax({
+                    url: "/documentos_id/create_formato",
+                    type:'post',
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function(){
+                      //  $('#btnGuardar').hide();
+                    },
+                    success:function(resp){
+                       
+                        // console.log(resp);
+        
+                        if(resp == 'guardado'){
+                            $('#createFormatoModal').modal('hide');
+                            toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            list_formatos(documentoformato_id);
+                        }else{
+                            if (resp == 'no guardado') {
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos();
+                                toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
+                            }
+                            if (resp == 'dato existe') {
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos();
+                                toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
+                            }
+                            
+                        }
+        
+                    }
+                });
+            }else{
+                $('#createFormatoModal').scrollTop(0);
+                // alert("Seleccione un proyecto");
+                toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+            }
+        } else {
+            if(documentoformato_id!="" && proyecto_id ){
+    
+                $.ajax({
+                    url: "/documentos_id/create_formato",
+                    type:'post',
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function(){
+                        //$('#btnGuardar').hide();
+                    },
+                    success:function(resp){
+        
+                        // console.log(resp);
+        
+                        if(resp){
+                            $('#createFormatoModal').modal('hide');
+                            toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            list_formatos();
+                        }else{
+                            $('#createFormatoModal').modal('hide');
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                        }
+                        $('#formato_id').val(null);
+                    }
+                });
+    
+            }else{
+                $('#createFormatoModal').scrollTop(0);
+                // alert("Seleccione un proyecto");
+                toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+            }
+        }
+    });
+
+    $('#formcreate_responsabilidades').on('submit', function(e) {
+        e.preventDefault();
+    
+        var formData = new FormData(this);
+    
+        formato_id = $('#formato_id').val();
+        documentoformato_id = $("#doc_formatos").val();
+        proyecto_id = $('#protocolo_id').val();
+        empresa_id = $('#empresa_id').val();
+        menu_id = $('#menu_id').val();
+        user_id = $('#user_id').val();
+        
+        
+        formData.append('formato_id', formato_id);
+        formData.append('documentoformato_id', documentoformato_id);
+        formData.append('proyecto_id', proyecto_id);
+        formData.append('empresa_id', empresa_id);
+        formData.append('menu_id', menu_id);
+        formData.append('user_id', user_id);
+        
+        
+        
+        if (!formato_id) {
+            if(documentoformato_id!="" && proyecto_id ){
+                $.ajax({
+                    url: "/documentos_id/create_formato",
+                    type:'post',
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function(){
+                      //  $('#btnGuardar').hide();
+                    },
+                    success:function(resp){
+                       
+                        // console.log(resp);
+        
+                        if(resp == 'guardado'){
+                            $('#createFormatoModal').modal('hide');
+                            toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            list_formatos(documentoformato_id);
+                        }else{
+                            if (resp == 'no guardado') {
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos();
+                                toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
+                            }
+                            if (resp == 'dato existe') {
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos();
+                                toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
+                            }
+                            
+                        }
+        
+                    }
+                });
+            }else{
+                $('#createFormatoModal').scrollTop(0);
+                // alert("Seleccione un proyecto");
+                toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+            }
+        } else {
+            if(documentoformato_id!="" && proyecto_id ){
+    
+                $.ajax({
+                    url: "/documentos_id/create_formato",
+                    type:'post',
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function(){
+                        //$('#btnGuardar').hide();
+                    },
+                    success:function(resp){
+        
+                        // console.log(resp);
+        
+                        if(resp){
+                            $('#createFormatoModal').modal('hide');
+                            toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            list_formatos();
+                        }else{
+                            $('#createFormatoModal').modal('hide');
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                        }
+                        $('#formato_id').val(null);
+                    }
+                });
+    
+            }else{
+                $('#createFormatoModal').scrollTop(0);
+                // alert("Seleccione un proyecto");
+                toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+            }
+        }
+    });
+
+$('#formcreate_autorizacion').on('submit', function(e) {
+        e.preventDefault();
+    
+        var formData = new FormData(this);
+    
+        formato_id = $('#formato_id').val();
+        documentoformato_id = $("#doc_formatos").val();
+        proyecto_id = $('#protocolo_id').val();
+        empresa_id = $('#empresa_id').val();
+        menu_id = $('#menu_id').val();
+        user_id = $('#user_id').val();
+        
+        
+        formData.append('formato_id', formato_id);
+        formData.append('documentoformato_id', documentoformato_id);
+        formData.append('proyecto_id', proyecto_id);
+        formData.append('empresa_id', empresa_id);
+        formData.append('menu_id', menu_id);
+        formData.append('user_id', user_id);
+        
+        
+        
+        if (!formato_id) {
+            if(documentoformato_id!="" && proyecto_id ){
+                $.ajax({
+                    url: "/documentos_id/create_formato",
+                    type:'post',
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function(){
+                      //  $('#btnGuardar').hide();
+                    },
+                    success:function(resp){
+                       
+                        // console.log(resp);
+        
+                        if(resp == 'guardado'){
+                            $('#createFormatoModal').modal('hide');
+                            toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            list_formatos(documentoformato_id);
+                        }else{
+                            if (resp == 'no guardado') {
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos();
+                                toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
+                            }
+                            if (resp == 'dato existe') {
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos();
+                                toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
+                            }
+                            
+                        }
+        
+                    }
+                });
+            }else{
+                $('#createFormatoModal').scrollTop(0);
+                // alert("Seleccione un proyecto");
+                toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+            }
+        } else {
+            if(documentoformato_id!="" && proyecto_id ){
+    
+                $.ajax({
+                    url: "/documentos_id/create_formato",
+                    type:'post',
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function(){
+                        //$('#btnGuardar').hide();
+                    },
+                    success:function(resp){
+        
+                        // console.log(resp);
+        
+                        if(resp){
+                            $('#createFormatoModal').modal('hide');
+                            toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            list_formatos();
+                        }else{
+                            $('#createFormatoModal').modal('hide');
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                        }
+                        $('#formato_id').val(null);
+                    }
+                });
+    
+            }else{
+                $('#createFormatoModal').scrollTop(0);
+                // alert("Seleccione un proyecto");
+                toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+            }
+        }
+    });
+
+    $('#formcreate_instalaciones').on('submit', function(e) {
+        e.preventDefault();
+    
+        var formData = new FormData(this);
+    
+        formato_id = $('#formato_id').val();
+        documentoformato_id = $("#doc_formatos").val();
+        proyecto_id = $('#protocolo_id').val();
+        empresa_id = $('#empresa_id').val();
+        menu_id = $('#menu_id').val();
+        user_id = $('#user_id').val();
+        
+        
+        formData.append('formato_id', formato_id);
+        formData.append('documentoformato_id', documentoformato_id);
+        formData.append('proyecto_id', proyecto_id);
+        formData.append('empresa_id', empresa_id);
+        formData.append('menu_id', menu_id);
+        formData.append('user_id', user_id);
+        
+        
+        
+        if (!formato_id) {
+            if(documentoformato_id!="" && proyecto_id ){
+                $.ajax({
+                    url: "/documentos_id/create_formato",
+                    type:'post',
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function(){
+                      //  $('#btnGuardar').hide();
+                    },
+                    success:function(resp){
+                       
+                        // console.log(resp);
+        
+                        if(resp == 'guardado'){
+                            $('#createFormatoModal').modal('hide');
+                            toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            list_formatos(documentoformato_id);
+                        }else{
+                            if (resp == 'no guardado') {
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos();
+                                toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
+                            }
+                            if (resp == 'dato existe') {
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos();
+                                toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
+                            }
+                            
+                        }
+        
+                    }
+                });
+            }else{
+                $('#createFormatoModal').scrollTop(0);
+                // alert("Seleccione un proyecto");
+                toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+            }
+        } else {
+            if(documentoformato_id!="" && proyecto_id ){
+    
+                $.ajax({
+                    url: "/documentos_id/create_formato",
+                    type:'post',
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function(){
+                        //$('#btnGuardar').hide();
+                    },
+                    success:function(resp){
+        
+                        // console.log(resp);
+        
+                        if(resp){
+                            $('#createFormatoModal').modal('hide');
+                            toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            list_formatos();
+                        }else{
+                            $('#createFormatoModal').modal('hide');
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                        }
+                        $('#formato_id').val(null);
+                    }
+                });
+    
+            }else{
+                $('#createFormatoModal').scrollTop(0);
+                // alert("Seleccione un proyecto");
+                toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+            }
+        }
+    });
+
+    $('#formcreate_anticorrupcion').on('submit', function(e) {
+        e.preventDefault();
+    
+        var formData = new FormData(this);
+    
+        formato_id = $('#formato_id').val();
+        documentoformato_id = $("#doc_formatos").val();
+        proyecto_id = $('#protocolo_id').val();
+        empresa_id = $('#empresa_id').val();
+        menu_id = $('#menu_id').val();
+        user_id = $('#user_id').val();
+        
+        
+        formData.append('formato_id', formato_id);
+        formData.append('documentoformato_id', documentoformato_id);
+        formData.append('proyecto_id', proyecto_id);
+        formData.append('empresa_id', empresa_id);
+        formData.append('menu_id', menu_id);
+        formData.append('user_id', user_id);
+        
+        
+        
+        if (!formato_id) {
+            if(documentoformato_id!="" && proyecto_id ){
+                $.ajax({
+                    url: "/documentos_id/create_formato",
+                    type:'post',
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function(){
+                      //  $('#btnGuardar').hide();
+                    },
+                    success:function(resp){
+                       
+                        // console.log(resp);
+        
+                        if(resp == 'guardado'){
+                            $('#createFormatoModal').modal('hide');
+                            toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            list_formatos(documentoformato_id);
+                        }else{
+                            if (resp == 'no guardado') {
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos();
+                                toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
+                            }
+                            if (resp == 'dato existe') {
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos();
+                                toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
+                            }
+                            
+                        }
+        
+                    }
+                });
+            }else{
+                $('#createFormatoModal').scrollTop(0);
+                // alert("Seleccione un proyecto");
+                toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+            }
+        } else {
+            if(documentoformato_id!="" && proyecto_id ){
+    
+                $.ajax({
+                    url: "/documentos_id/create_formato",
+                    type:'post',
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function(){
+                        //$('#btnGuardar').hide();
+                    },
+                    success:function(resp){
+        
+                        // console.log(resp);
+        
+                        if(resp){
+                            $('#createFormatoModal').modal('hide');
+                            toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            list_formatos();
+                        }else{
+                            $('#createFormatoModal').modal('hide');
+                            $('#btnGuardar').show();
+                            borrar_campos();
+                            toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                        }
+                        $('#formato_id').val(null);
+                    }
+                });
+    
+            }else{
+                $('#createFormatoModal').scrollTop(0);
+                // alert("Seleccione un proyecto");
+                toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+            }
+        }
+    });

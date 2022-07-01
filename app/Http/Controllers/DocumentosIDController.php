@@ -309,7 +309,7 @@ class DocumentosIDController extends Controller
                 $formatos->user_id = $id_user;
                 $formatos->save();
                 
-                 
+                
                 $formatoWord = Formatos_id::where('id', $request->documentoformato_id)->get()->first();
                 $array_depurado =  json_decode($datos, true);;
                
@@ -329,7 +329,7 @@ class DocumentosIDController extends Controller
                 $my_template = new \PhpOffice\PhpWord\TemplateProcessor(storage_path('../public/assets/ID/5. FC-ID/' . $nombreDocumento['directorio'] . ''));
                 
               
-               
+                
                 
                
                
@@ -354,14 +354,186 @@ class DocumentosIDController extends Controller
                     $my_template->setValue('titulo',$array_depurado['titulo4']);
                     $my_template->setValue('titulocorto',$array_depurado['titulocorto']);
                     $my_template->setValue('departamento',$array_depurado['departamento']);
-                    $my_template->setValue('departamento',$array_depurado['patrocinador']);
+                    $my_template->setValue('patrocinador',$array_depurado['patrocinador']);
                     $my_template->setValue('versiones',$array_depurado['versiones']);
                     $my_template->setValue('enmiendas',$array_depurado['enmiendas']);
-                    $my_template->setValue('fecha', date('d', strtotime($datos[0])) . ' de '  . $meses[ date('n', strtotime($datos[0]))-1 ] . ' del ' . date('Y', strtotime($datos[0])) );
+                    $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha'])) );
                     
                 
             
-                }   
+                }
+                
+                if(5 == $request->documentoformato_id){
+                    $my_template->setValue('sitio',$array_depurado['sitio']);
+                    $my_template->setValue('numerosujeto',$array_depurado['numerosujeto']);
+                    $my_template->setValue('grupo',$array_depurado['grupo']);
+                    $my_template->setValue('version',$array_depurado['version']);
+                    $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha5'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha5']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha5'])) );
+                    
+                }
+
+                if(6 == $request->documentoformato_id){
+                   $my_template->setValue('sitio',$array_depurado['sitio6']);
+                    $my_template->setValue('numerosujeto',$array_depurado['numerosujeto6']);
+                    $my_template->setValue('codigo',$array_depurado['codigo6']);
+                    $my_template->setValue('version',$array_depurado['version6']);
+                    $my_template->setValue('iniciales',$array_depurado['iniciales']);
+                    $my_template->setValue('edad',$array_depurado['edad']);
+                    $my_template->setValue('sexo',$array_depurado['sexo']);
+                    $my_template->setValue('ocupacion',$array_depurado['ocupacion']);
+                    $my_template->setValue('escolaridad',$array_depurado['escolaridad']);
+
+                    $valoresagregados = ((count($array_depurado) - 10)/2);
+
+                    $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha6'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha6']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha6'])) );
+                    $my_template->cloneRow('variable',$valoresagregados);
+                    
+
+                    for ($i=0; $i < $valoresagregados; $i++) { 
+                        $my_template->setValue('valor#'.($i+1),htmlspecialchars($array_depurado['6-75no'. ($i + 18)], ENT_COMPAT, 'UTF-8'));
+                        $my_template->setValue('variable#'.($i+1),htmlspecialchars($array_depurado['6v-75no'. ($i + 18)], ENT_COMPAT, 'UTF-8'));
+                        }
+
+                }
+
+                if(7 == $request->documentoformato_id){
+                    $my_template->setValue('codigo',$array_depurado['codigo7']);
+                    $my_template->setValue('nombreproducto',$array_depurado['nombreproducto']);
+                    $my_template->setValue('patrocinador',$array_depurado['patrocinadores']);
+                    $my_template->setValue('versiones',$array_depurado['versiones7']);
+                    $my_template->setValue('enmiendas',$array_depurado['enmiendas7']);
+
+                    $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha7'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha7']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha7'])) );
+                    
+                }
+
+                if(8 == $request->documentoformato_id){
+                    $my_template->setValue('ciudad',$array_depurado['ciudad']);
+                    $my_template->setValue('estado',$array_depurado['estado']);
+                    $my_template->setValue('codigouis',$array_depurado['codigoUis']);
+                    $my_template->setValue('codigo',$array_depurado['codigo8']);
+                    $my_template->setValue('titulo',$array_depurado['titulo8']);
+                    $my_template->setValue('patrocinador',$array_depurado['patrocinadores8']);
+                    $my_template->setValue('investigadorprincipal',$array_depurado['investigadorprincipal']);
+
+                    $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha8'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha8']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha8'])) );
+
+                    $my_template->cloneBlock('bloque',(count($array_depurado) - 8), true, true);
+                    for ($i=0; $i < (count($array_depurado) - 8); $i++) { 
+                    $my_template->setValue('nombrevfdoc#'.($i+1),htmlspecialchars($array_depurado['8-75no'. ($i + 18)], ENT_COMPAT, 'UTF-8'));
+                    }
+                }
+                
+                if(9 == $request->documentoformato_id){
+                    $my_template->setValue('ciudad',$array_depurado['ciudad9']); 
+                    $my_template->setValue('estado',$array_depurado['estado9']);
+                    $my_template->setValue('codigo',$array_depurado['codigo9']);
+                    $my_template->setValue('titulo',$array_depurado['titulo9']); 
+                    $my_template->setValue('patrocinador',$array_depurado['patrocinadores9']);
+                    $my_template->setValue('direccion',$array_depurado['direccion']);
+                    $my_template->setValue('tipoinvestigador',$array_depurado['tipoinvestigador']);
+                    $my_template->setValue('tituloabreviado',$array_depurado['tituloabreviado9']);
+                    $my_template->setValue('nombre',$array_depurado['nombre9']);
+                    $my_template->setValue('cedula',$array_depurado['cedula9']);
+                    
+                    $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha9'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha9']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha9'])) );
+                    
+                    
+                        if($array_depurado['tipoinvestigador'] == 'Investigador Principal'){
+                            $my_template->cloneBlock('bloque',1, true, true);
+                            $my_template->setValue('elemento#1',htmlspecialchars('Integrar un equipo de trabajo con los recursos humanos necesarios y apropiados para la conducción del estudio. Asegurar su capacitación y supervisarlo al implementar la investigación. Removerlo en caso necesario, e informar a la COFEPRIS de cualquier cambio al respecto.', ENT_COMPAT, 'UTF-8'));
+                    
+                        }else{
+                            $my_template->cloneBlock('bloque',0, true, true);
+                        }
+                        
+                        if($array_depurado['tipoinvestigador'] != 'Coordinador de Estudios'){
+                            $my_template->cloneBlock('bloque2',1, true, true);
+                            $my_template->setValue('elemento2#1',htmlspecialchars('Durante el reclutamiento, no participar como investigador en otro protocolo que requiera el uso de un medicamento para la misma indicación, o que los criterios de inclusión y exclusión sean similares al protocolo descrito.', ENT_COMPAT, 'UTF-8'));
+                    
+                        }else{
+                            $my_template->cloneBlock('bloque2',0, true, true);
+                        }
+                    }
+
+                    if(10 == $request->documentoformato_id){
+                        $my_template->setValue('ciudad',$array_depurado['ciudad10']); 
+                        $my_template->setValue('estado',$array_depurado['estado10']);
+                        $my_template->setValue('codigo',$array_depurado['codigo10']);
+                        $my_template->setValue('titulo',$array_depurado['titulo10']); 
+                        $my_template->setValue('patrocinador',$array_depurado['patrocinadores10']);
+                        $my_template->setValue('direccion',$array_depurado['direccion10']);
+                        $my_template->setValue('tituloabreviado',$array_depurado['tituloabreviado10']);
+                        $my_template->setValue('nombre',$array_depurado['nombre10']);
+
+                        $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha10'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha10']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha10'])) );
+                    
+
+                    }
+
+                    if(11 == $request->documentoformato_id){
+                        $my_template->setValue('ciudad',$array_depurado['ciudad11']); 
+                        $my_template->setValue('estado',$array_depurado['estado11']);
+                        $my_template->setValue('codigo',$array_depurado['codigo11']);
+                        $my_template->setValue('titulo',$array_depurado['titulo11']); 
+                        $my_template->setValue('patrocinador',$array_depurado['patrocinadores11']);
+                        $my_template->setValue('direccion',$array_depurado['direccion11']);
+                        $my_template->setValue('hospital',$array_depurado['hospital11']);
+                        $my_template->setValue('nombre',$array_depurado['nombre11']);
+
+                        $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha11'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha11']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha11'])) );
+                    
+
+                    }
+
+                    if(12 == $request->documentoformato_id){
+                        $my_template->setValue('lugar',$array_depurado['lugar12']); 
+                        $my_template->setValue('codigo',$array_depurado['codigo12']);
+                        $my_template->setValue('titulo',$array_depurado['titulo12']); 
+                        $my_template->setValue('direccion',$array_depurado['direccion12']);
+                        $my_template->setValue('tituloabreviado',$array_depurado['tituloabreviado12']);
+                        $my_template->setValue('nombre',$array_depurado['nombre12']);
+
+                        $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha12'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha12']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha12'])) );
+                    
+                        if($array_depurado['cpe'] == 'Si'){
+                            $my_template->setValue('si','X');
+                            $my_template->setValue('no',' ');
+                        }elseif($array_depurado['cpe'] == 'No'){
+                            $my_template->setValue('no','X');
+                            $my_template->setValue('si',' ');
+                        }
+
+                        if($array_depurado['lugar12'] == 'Chihuahua, Chih.'){
+                            $my_template->cloneBlock('bloque',1, true, true);
+                            $my_template->cloneBlock('bloque3',1, true, true);
+                            $my_template->setValue('elemento#1',htmlspecialchars('Electrocardiógrafo de 12 derivaciones.', ENT_COMPAT, 'UTF-8'));
+                            $my_template->setValue('elemento3#1',htmlspecialchars('Recursos humanos de 12 personas dedicadas a actividades de investigación clínica.', ENT_COMPAT, 'UTF-8'));
+                        }else{
+                            $my_template->cloneBlock('bloque',0, true, true);
+                            $my_template->cloneBlock('bloque3',0, true, true);
+                        }
+                        
+                        if($array_depurado['lugar12'] == 'Ciudad de Mexico'){
+                            $my_template->cloneBlock('bloque2',1, true, true);
+                            $my_template->setValue('elemento2#1',htmlspecialchars('Farmacia equipada con refrigerador y congelador de -20°C, calibrados, y con respaldo de energía eléctrica.', ENT_COMPAT, 'UTF-8'));
+                    
+                        }else{
+                            $my_template->cloneBlock('bloque2',0, true, true);
+                        }
+                    }
+
+                    if(13 == $request->documentoformato_id){
+                        $my_template->setValue('lugar',$array_depurado['lugar13']); 
+                        $my_template->setValue('destinatario',$array_depurado['destinatario13']);
+                        
+
+                        $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha13'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha13']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha13'])) );
+                    
+
+                    }
+
+
                 //GUARDADO EN WORD
                 try{
                     // TODO: cambiar el nombre para que tenga el id del formato para diferenciarlos y que no se sobreescriban - se puede utilizar el codigo del proyecto
@@ -424,7 +596,6 @@ class DocumentosIDController extends Controller
     }
 
 }
-
 
    
 
