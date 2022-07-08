@@ -142,7 +142,7 @@
              <div style="display: none" id="body-4" name="body-protocolo-de-investigacion">
                 
                 <div class="modal-body">
-                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_protocoloInvestigacion']) !!}
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_4']) !!}
                     
                     
                     <div class="form-group" id="div1">
@@ -225,7 +225,7 @@
              <div style="display: none" id="body-5" name="body-consentimiento-informado">
                 
                 <div class="modal-body">
-                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_consentimientoInformado']) !!}
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_5']) !!}
                     
                     
                     <div class="form-group" id="div1">
@@ -283,7 +283,7 @@
 
 
              {{-- Reporte de caso --}}
-             <div style="display: none" id="body-6" name="body-consentimiento-informado">
+             <div style="display: none" id="body-6" name="body-reporteCaso">
                 
                 <div class="modal-body">
                     {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_reporteCaso']) !!}
@@ -404,7 +404,7 @@
              <div style="display: none" id="body-7" name="body-folleto-investigador">
                 
                 <div class="modal-body">
-                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_folletoInvestigador']) !!}
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_7']) !!}
                     
                     <div class="form-group" id="div1">
                         {!! Form::label('codigo7', '1. Código', ['class' => 'form-label']) !!}
@@ -573,7 +573,7 @@
              <div style="display: none" id="body-9" name="body-compromisos">
                 
                 <div class="modal-body">
-                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_compromisos']) !!}
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_9']) !!}
                     
                     <div class="form-group" id="div1">
                         {!! Form::label('fecha9', '1. Fecha', ['class' => 'form-label']) !!}
@@ -680,7 +680,7 @@
              <div style="display: none" id="body-10" name="body-responsabilidades">
                 
                 <div class="modal-body">
-                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_responsabilidades']) !!}
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_10']) !!}
                     
                     <div class="form-group" id="div1">
                         {!! Form::label('fecha10', '1. Fecha', ['class' => 'form-label']) !!}
@@ -771,7 +771,7 @@
              <div style="display: none" id="body-11" name="body-autorizacion">
                 
                 <div class="modal-body">
-                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_autorizacion']) !!}
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_11']) !!}
                     
                     <div class="form-group" id="div1">
                         {!! Form::label('fecha11', '1. Fecha', ['class' => 'form-label']) !!}
@@ -862,7 +862,7 @@
              <div style="display: none" id="body-12" name="body-instalaciones">
                 
                 <div class="modal-body">
-                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_instalaciones']) !!}
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_12']) !!}
                     
                     <div class="form-group" id="div1">
                         {!! Form::label('fecha12', '1. Fecha', ['class' => 'form-label']) !!}
@@ -946,7 +946,7 @@
              <div style="display: none" id="body-13" name="body-Anticorrupcion">
                 
                 <div class="modal-body">
-                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_anticorrupcion']) !!}
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_13']) !!}
                     
                     <div class="form-group" id="div1">
                         {!! Form::label('fecha13', '1. Fecha', ['class' => 'form-label']) !!}
@@ -991,7 +991,7 @@
              <div style="display: none" id="body-14" name="body-avisovisita">
                 
                 <div class="modal-body">
-                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_avisovisita']) !!}
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_14']) !!}
                     
 
                     <div class="form-group" id="div1">
@@ -1106,7 +1106,1167 @@
             </div>
             {!! Form::close() !!}
             </div>
-            {{-- END Instalaciones --}}
+            {{-- END Aviso de visita --}}
+
+{{-- ======================================================================================================================================================================= --}}
+
+
+             {{-- Carpeta Regulatoria --}}
+             <div style="display: none" id="body-15" name="body-carpetaregulatoria">
+                
+                <div class="modal-body">
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_15']) !!}
+                    
+
+                    <div class="form-group" id="div1">
+                        {!! Form::label('codigo15', '1. Código', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                            {!! Form::text('codigo15', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div2">
+                        {!! Form::label('titulo15', '2. Título', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                            {!! Form::text('titulo15', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div3>
+                        {!! Form::label('nombre15', '3. Nombre completo del investigador principal', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('nombre15', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div4>
+                        {!! Form::label('numerositio15', '4. No. de Sitio', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::number('numerositio15', null, ['class' => 'form-control', 'placeholder' => 'No. de Sitio', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div5>
+                        {!! Form::label('direccionsitio15', '5. Domicilio del sitio', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('direccionsitio15', null, ['class' => 'form-control', 'placeholder' => 'Domicilio del sitio', 'required']) !!}
+                        </div>
+                    </div>
+
+                </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCancelar" onclick="borrar_campos();" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="btnGuardar" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+            </div>
+            {!! Form::close() !!}
+            </div>
+            {{-- END Carpeta Regulatoria --}}
+
+
+{{-- ======================================================================================================================================================================= --}}
+
+
+             {{-- Carpeta firmas autorizadas --}}
+             <div style="display: none" id="body-16" name="body-firmasautorizadas">
+                
+                <div class="modal-body">
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_16']) !!}
+                    
+
+                    <div class="form-group" id="div1">
+                        {!! Form::label('codigo16', '1. Código', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                            {!! Form::text('codigo16', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div2>
+                        {!! Form::label('numerositio16', '4. No. de Sitio', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::number('numerositio16', null, ['class' => 'form-control', 'placeholder' => 'No. de Sitio', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div3>
+                        {!! Form::label('nombre16', '3. Nombre completo del investigador principal', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('nombre16', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'required']) !!}
+                        </div>
+                    </div>
+
+                    
+
+
+                </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCancelar" onclick="borrar_campos();" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="btnGuardar" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+            </div>
+            {!! Form::close() !!}
+            </div>
+            {{-- END firmas autorizadas --}}
+{{-- ======================================================================================================================================================================= --}}
+
+
+             {{-- Carpeta contabilidad general --}}
+             <div style="display: none" id="body-17" name="body-contablidadgeneral">
+                
+                <div class="modal-body">
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_17']) !!}
+                    
+
+                    <div class="form-group" id="div1">
+                        {!! Form::label('codigo17', '1. Código', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                            {!! Form::text('codigo17', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div2">
+                        {!! Form::label('nombre17', '2. Nombre completo del investigador principal', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('nombre17', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div3">
+                        {!! Form::label('descunidades17', '3. Descripción de las unidades', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('descunidades17', null, ['class' => 'form-control', 'placeholder' => 'Descripción de las unidades', 'required']) !!}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="div4">
+                        {!! Form::label('sitio17', '4. Sitio / Unidad', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('sitio17', null, ['class' => 'form-control', 'placeholder' => 'Sitio / Unidad', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div5">
+                        {!! Form::label('almacen17', '5. Almacén', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('almacen17', null, ['class' => 'form-control', 'placeholder' => 'Almacén', 'required']) !!}
+                        </div>
+                    </div>
+
+                </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCancelar" onclick="borrar_campos();" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="btnGuardar" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+            </div>
+            {!! Form::close() !!}
+            </div>
+
+            {{-- END Contabilidad general --}}
+
+{{-- ======================================================================================================================================================================= --}}
+
+
+             {{-- Carpeta contabilidad por sujeto --}}
+             <div style="display: none" id="body-18" name="body-contablidadsujeto">
+                
+                <div class="modal-body">
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_18']) !!}
+                    
+
+                    <div class="form-group" id="div1">
+                        {!! Form::label('codigo18', '1. Código', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                            {!! Form::text('codigo18', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div2">
+                        {!! Form::label('nombre18', '2. Nombre completo del investigador principal', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('nombre18', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div3">
+                        {!! Form::label('descunidades18', '3. Descripción de las unidades', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('descunidades18', null, ['class' => 'form-control', 'placeholder' => 'Descripción de las unidades', 'required']) !!}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="div4">
+                        {!! Form::label('numsitio18', '4. No. de Sitio', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('numsitio18', null, ['class' => 'form-control', 'placeholder' => 'No. de Sitio', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div5">
+                        {!! Form::label('numsujeto18', '5. Almacén', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('numsujeto18', null, ['class' => 'form-control', 'placeholder' => 'No. de sujeto', 'required']) !!}
+                        </div>
+                    </div>
+
+                </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCancelar" onclick="borrar_campos();" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="btnGuardar" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+            </div>
+            {!! Form::close() !!}
+            </div>
+
+            {{-- END Contabilidad por sujeto --}}
+
+{{-- ======================================================================================================================================================================= --}}
+
+
+             {{-- Carpeta embarque y devolucion--}}
+             <div style="display: none" id="body-19" name="body-embarquedevolucion">
+                
+                <div class="modal-body">
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_19']) !!}
+                    
+
+                    <div class="form-group" id="div1">
+                        {!! Form::label('codigo19', '1. Código', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                            {!! Form::text('codigo19', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div2">
+                        {!! Form::label('titulo19', '2. Título', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                            {!! Form::text('titulo19', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div3">
+                        {!! Form::label('patrocinadores19', '3. Patrocinador', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('patrocinadores19', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div4">
+                        {!! Form::label('sitio19', '4. Sitio', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('sitio19', null, ['class' => 'form-control', 'placeholder' => 'Sitio', 'required']) !!}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="div5">
+                        {!! Form::label('numsitio19', '5. No. de Sitio', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('numsitio19', null, ['class' => 'form-control', 'placeholder' => 'No. de Sitio', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div6">
+                        {!! Form::label('numsitioc19', '6. Contacto', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('numsitioc19', null, ['class' => 'form-control', 'placeholder' => 'No. de Sitio', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div7">
+                        {!! Form::label('numsitior19', '7. Respaldo', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('numsitior19', null, ['class' => 'form-control', 'placeholder' => 'No. de Sitio', 'required']) !!}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="div4">
+                        {!! Form::label('telefono19', '8. Teléfono', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::number('telefono19', null, ['class' => 'form-control', 'placeholder' => 'Teléfono', 'required']) !!}
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCancelar" onclick="borrar_campos();" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="btnGuardar" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+            </div>
+            {!! Form::close() !!}
+            </div>
+            {{-- END embarque y devolucions --}}
+
+
+
+{{-- ======================================================================================================================================================================= --}}
+
+
+            
+             {{-- Envio y rescepcion --}}
+             <div style="display: none" id="body-20" name="body-envio">
+                
+                <div class="modal-body">
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_20']) !!}
+
+                    <div class="form-group" id="div1">
+                        {!! Form::label('codigo20', '1. Código', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                            {!! Form::text('codigo20', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div2">
+                        {!! Form::label('numsitio20', '2. No. de Sitio', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('numsitio20', null, ['class' => 'form-control', 'placeholder' => 'No. de Sitio', 'required']) !!}
+                        </div>
+                    </div>
+                    
+                    <center>{!! Form::label('recibo', 'Para entregar a', ['class' => 'form-label']) !!}</center>
+                    
+                    <div class="form-group" id="div1">
+                        {!! Form::label('nombre20', '1. Nombre completo', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('nombre20', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'required']) !!}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="div2">
+                        {!! Form::label('direccion20', '2. Dirección', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('direccion20', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'required']) !!}
+                        </div>
+                    </div>
+
+                    
+                    <div class="form-group" id="div3">
+                        {!! Form::label('ciudad20', '3. Ciudad', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-map"></i></span>
+                            {!! Form::text('ciudad20', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div4">
+                        {!! Form::label('estado20', '4. Estado', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-map"></i></span>
+                            {!! Form::text('estado20', null, ['class' => 'form-control', 'placeholder' => 'Estado', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div5">
+                        {!! Form::label('pais20', '5. País', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('pais20', null, ['class' => 'form-control', 'placeholder' => 'País', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div6">
+                        {!! Form::label('cp20', '6. Código postal', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::number('cp20', null, ['class' => 'form-control', 'placeholder' => 'Código postal', 'required']) !!}
+                        </div>
+                    </div>            
+                    
+                    <div class="form-group" id="div7">
+                        {!! Form::label('telefono20', '7. Teléfono', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::number('telefono20', null, ['class' => 'form-control', 'placeholder' => 'Teléfono', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div8">
+                        {!! Form::label('correo20', '8. Correo', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('correo20', null, ['class' => 'form-control', 'placeholder' => 'Correo', 'required']) !!}
+                        </div>
+                    </div>
+                    
+
+                    <center>{!! Form::label('envio', 'Persona que envía', ['class' => 'form-label']) !!}</center>
+
+                    <div class="form-group" id="div9">
+                        {!! Form::label('nombree20', '1. Nombre completo', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('nombree20', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div10">
+                        {!! Form::label('telefonoe20', '2. Teléfono', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::number('telefonoe20', null, ['class' => 'form-control', 'placeholder' => 'Teléfono', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div11">
+                        {!! Form::label('correoe20', '3. Correo', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('correoe20', null, ['class' => 'form-control', 'placeholder' => 'Correo', 'required']) !!}
+                        </div>
+                    </div>
+
+
+
+                </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCancelar" onclick="borrar_campos();" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="btnGuardar" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+            </div>
+            {!! Form::close() !!}
+            </div>
+            {{-- END eenvio y recepcion --}}
+
+{{-- ======================================================================================================================================================================= --}}
+
+
+             {{-- Recibo de materiales--}}
+             <div style="display: none" id="body-23" name="body-recibomateriales">
+                
+                <div class="modal-body">
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_recibomateriales']) !!}
+                    
+
+                    <div class="form-group" id="div1">
+                        {!! Form::label('codigo23', '1. Código', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                            {!! Form::text('codigo23', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div2">
+                        {!! Form::label('titulo23', '2. Título', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                            {!! Form::text('titulo23', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div3">
+                        {!! Form::label('patrocinadores23', '3. Patrocinador', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('patrocinadores23', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div4">
+                        {!! Form::label('sitio23', '4. Sitio clínico', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('sitio23', null, ['class' => 'form-control', 'placeholder' => 'Nombre de sitio clínico', 'required']) !!}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="div5">
+                        {!! Form::label('direccionsitio23', '5. Dirección de sitio clínico', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('direccionsitio23', null, ['class' => 'form-control', 'placeholder' => 'Dirección de sitio clínico', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div6">
+                        {!! Form::label('fecha23', '6. Fecha', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                            {!! Form::date('fecha23', null, ['class' => 'form-control', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div8">
+                        {!! Form::label('investigador23', '7. Investigador Principal (Nombre Completo)', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-md"></i></span>
+                            {!! Form::text('investigador23', null, ['class' => 'form-control', 'placeholder' => 'Nombre Completo', 'required']) !!}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="div9">
+                        {!! Form::label('nombre23', '8. Nombre de quien envía', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-md"></i></span>
+                            {!! Form::text('nombre23', null, ['class' => 'form-control', 'placeholder' => 'Nombre Completo', 'required']) !!}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="div9">
+                        {!! Form::label('puesto23', '9. Puesto de quien envía', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-md"></i></span>
+                            {!! Form::text('puesto23', null, ['class' => 'form-control', 'placeholder' => 'Puesto', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="migracionCampos row">
+                        <div class="col form-group" id="div18">
+                            {!! Form::label('23-75no', 'Material a enviar:', ['class' => 'form-label']) !!}
+                            <div id="wrapper_doc_23">
+                                {!! Form::label('23-75no18', '', ['class' => 'form-label', 'hidden']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                {!! Form::text('23-75no18', null, ['class' => 'form-control','placeholder' => 'Descripción de material', 'required']) !!}
+                                <button type="button" id="add_doc_23" class="btn btn-primary" title="Agregar campo"><i class="fas fa-plus-square"></i></button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCancelar" onclick="borrar_campos();" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="btnGuardar" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+            </div>
+            {!! Form::close() !!}
+            </div>
+            {{-- END Recibo de materiales --}}
+
+{{-- ======================================================================================================================================================================= --}}
+
+
+             {{-- Carpeta Devolucion de materiales --}}
+             <div style="display: none" id="body-24" name="body-devolucion">
+                
+                <div class="modal-body">
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_24']) !!}
+                    
+
+                    <div class="form-group" id="div1">
+                        {!! Form::label('codigo24', '1. Código', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                            {!! Form::text('codigo24', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div2>
+                        {!! Form::label('numerositio24', '4. No. de Sitio', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::number('numerositio24', null, ['class' => 'form-control', 'placeholder' => 'No. de Sitio', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div3>
+                        {!! Form::label('nombre24', '3. Nombre completo del investigador principal', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('nombre24', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'required']) !!}
+                        </div>
+                    </div>
+
+                    
+
+
+                </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCancelar" onclick="borrar_campos();" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="btnGuardar" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+            </div>
+            {!! Form::close() !!}
+            </div>
+            {{-- END DEvolucion de materiales --}}
+
+{{-- ======================================================================================================================================================================= --}}
+
+
+             {{-- enrolamiento --}}
+             <div style="display: none" id="body-28" name="body-enrolamiento">
+                
+                <div class="modal-body">
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_28']) !!}
+                    
+
+                    <div class="form-group" id="div1">
+                        {!! Form::label('codigo28', '1. Código', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                            {!! Form::text('codigo28', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div2>
+                        {!! Form::label('numerositio28', '4. No. de Sitio', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::number('numerositio28', null, ['class' => 'form-control', 'placeholder' => 'No. de Sitio', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div3>
+                        {!! Form::label('nombre28', '3. Nombre completo del investigador principal', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('nombre28', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'required']) !!}
+                        </div>
+                    </div>
+
+                    
+
+
+                </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCancelar" onclick="borrar_campos();" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="btnGuardar" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+            </div>
+            {!! Form::close() !!}
+            </div>
+            {{-- END enrolamiento --}}
+
+{{-- ======================================================================================================================================================================= --}}
+
+
+             {{-- Carpeta identificacion de sujetos --}}
+             <div style="display: none" id="body-29" name="body-identificacion">
+                
+                <div class="modal-body">
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_29']) !!}
+                    
+
+                    <div class="form-group" id="div1">
+                        {!! Form::label('codigo29', '1. Código', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                            {!! Form::text('codigo29', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div2>
+                        {!! Form::label('numerositio29', '4. No. de Sitio', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::number('numerositio29', null, ['class' => 'form-control', 'placeholder' => 'No. de Sitio', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div3>
+                        {!! Form::label('nombre29', '3. Nombre completo del investigador principal', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('nombre29', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'required']) !!}
+                        </div>
+                    </div>
+
+                    
+
+
+                </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCancelar" onclick="borrar_campos();" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="btnGuardar" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+            </div>
+            {!! Form::close() !!}
+            </div>
+            {{-- END identificacion de sujetos --}}
+
+{{-- ======================================================================================================================================================================= --}}
+
+
+             {{-- Visitas al sitio --}}
+             <div style="display: none" id="body-30" name="body-visitas">
+                
+                <div class="modal-body">
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_30']) !!}
+                    
+
+                    <div class="form-group" id="div1">
+                        {!! Form::label('codigo30', '1. Código', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                            {!! Form::text('codigo30', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div2>
+                        {!! Form::label('numerositio30', '4. No. de Sitio', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::number('numerositio30', null, ['class' => 'form-control', 'placeholder' => 'No. de Sitio', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div3>
+                        {!! Form::label('nombre30', '3. Nombre completo del investigador principal', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('nombre30', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'required']) !!}
+                        </div>
+                    </div>
+
+                    
+
+
+                </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCancelar" onclick="borrar_campos();" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="btnGuardar" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+            </div>
+            {!! Form::close() !!}
+            </div>
+            {{-- END Visitas al sitio --}}
+
+{{-- ======================================================================================================================================================================= --}}
+
+
+             {{-- Aviso de falla de seleccion --}}
+             <div style="display: none" id="body-31" name="body-avisofalla">
+                
+                <div class="modal-body">
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_31']) !!}
+                    
+
+                    <div class="form-group" id="div1">
+                        {!! Form::label('codigo31', '1. Código', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                            {!! Form::text('codigo31', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div2">
+                        {!! Form::label('titulo31', '2. Título', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                            {!! Form::text('titulo31', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div3">
+                        {!! Form::label('patrocinadores31', '3. Patrocinador', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('patrocinadores31', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div4">
+                        {!! Form::label('direccionsitio31', '4. Dirección de sitio clínico', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('direccionsitio31', null, ['class' => 'form-control', 'placeholder' => 'Dirección de sitio clínico', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div5">
+                        {!! Form::label('fecha31', '5. Fecha', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                            {!! Form::date('fecha31', null, ['class' => 'form-control', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div6">
+                        {!! Form::label('investigador31', '7. Investigador Principal (Nombre Completo)', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-md"></i></span>
+                            {!! Form::text('investigador31', null, ['class' => 'form-control', 'placeholder' => 'Nombre Completo', 'required']) !!}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="div7">
+                        {!! Form::label('apellido31', '7. Apellido del Investigador Principal (Nombre Completo)', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-md"></i></span>
+                            {!! Form::text('apellido31', null, ['class' => 'form-control', 'placeholder' => 'Apellido', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div8">
+                        {!! Form::label('pais31', '8. País', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('pais31', null, ['class' => 'form-control', 'placeholder' => 'País', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div9">
+                        {!! Form::label('numsitio31', '9. No. de Sitio', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('numsitio31', null, ['class' => 'form-control', 'placeholder' => 'No. de Sitio', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div10">
+                        {!! Form::label('numsujeto31', '10. Almacén', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('numsujeto31', null, ['class' => 'form-control', 'placeholder' => 'No. de sujeto', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div11">
+                        {!! Form::label('fechanacimiento31', '11. Fecha de nacimiento', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                            {!! Form::date('fechanacimiento31', null, ['class' => 'form-control', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div12">
+                        {!! Form::label('genero31', '12. Género', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-md"></i></span>
+                            {!! Form::select('genero31', [ 'Hombre' => 'Hombre', 'Mujer' => 'Mujer','Otro'=>'Otro' ], null, ['class' => 'form-control', 'placeholder' => 'Seleccione género', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div13">
+                        {!! Form::label('fechafalla31', '13. Fecha de falla de selección', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                            {!! Form::date('fechafalla31', null, ['class' => 'form-control', 'required']) !!}
+                        </div>
+                    </div>
+
+
+                </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCancelar" onclick="borrar_campos();" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="btnGuardar" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+            </div>
+            {!! Form::close() !!}
+            </div>
+            {{-- END Aviso de falla de seleccion --}}
+
+{{-- ======================================================================================================================================================================= --}}
+
+
+             {{-- Seguimiento --}}
+             <div style="display: none" id="body-32" name="body-avisovisita">
+                
+                <div class="modal-body">
+                    {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_seguimiento']) !!}
+                    
+
+                    <div class="form-group" id="div1">
+                        {!! Form::label('codigo32', '1. Código', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                            {!! Form::text('codigo32', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div2>
+                        {!! Form::label('numerositio32', '2. No. de Sitio', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::number('numerositio32', null, ['class' => 'form-control', 'placeholder' => 'No. de Sitio', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div3">
+                        {!! Form::label('fechaseguimiento32', '3. Fecha de seguimineto', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                            {!! Form::date('fechaseguimiento32', null, ['class' => 'form-control', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div4">
+                        {!! Form::label('tipovisita32', '4. Tipo de visita', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-md"></i></span>
+                            {!! Form::select('tipovisita32', [ 'Apertura' => 'Apertura', 'Monitoreo' => 'Monitoreo', 'Auditoría'=>'Auditoría', 'Cierre'=>'Cierre','Terminación'=>'Terminación'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione tipo de visita', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div5">
+                        {!! Form::label('fechavisita32', '5. Fecha de visita', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                            {!! Form::date('fechavisita32', null, ['class' => 'form-control', 'required']) !!}
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" id="div6>
+                        {!! Form::label('nombre32', '6. Nombre completo del investigador', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('nombre32', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div7>
+                        {!! Form::label('sitio32', '7. Sitio', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('sitio32', null, ['class' => 'form-control', 'placeholder' => 'Sitio', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div8>
+                        {!! Form::label('direccion32', '8. Dirección', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            {!! Form::text('direccion32', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div9">
+                        {!! Form::label('estado32', '9. Estado', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-map"></i></span>
+                            {!! Form::text('estado32', null, ['class' => 'form-control', 'placeholder' => 'Estado', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div10">
+                        {!! Form::label('ciudad32', '10. Ciudad', ['class' => 'form-label']) !!}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-map"></i></span>
+                            {!! Form::text('ciudad32', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'required']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="div11">
+                    {!! Form::label('cp32', '11. C.P.', ['class' => 'form-label']) !!}
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-map"></i></span>
+                        {!! Form::text('cp32', null, ['class' => 'form-control', 'placeholder' => 'C.P.', 'required']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group" id="div12">
+                    {!! Form::label('pais32', '12.  País', ['class' => 'form-label']) !!}
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-map"></i></span>
+                        {!! Form::text('pais32', null, ['class' => 'form-control', 'placeholder' => 'País', 'required']) !!}
+                    </div>
+                </div>
+
+                <div class="migracionCampos row">
+                    <div class="col form-group" id="div13">
+                        
+                        <div id="wrapper_doc32">
+                            {!! Form::label('32-75no', '13.  Elementos de acción:', ['class' => 'form-label']) !!}
+                            <br>
+                            {!! Form::label('32-75no18', '', ['class' => 'form-label', 'hidden']) !!}
+                        
+                            <div class="form-group" id="div13-1">
+                                {!! Form::label('fi-75no18', 'Fecha inicio', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                    {!! Form::date('fi-75no18', null, ['class' => 'form-control', 'required']) !!}
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" id="div13-2">
+                                {!! Form::label('ff-75no18', 'Fecha fin', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                    {!! Form::date('ff-75no18', null, ['class' => 'form-control', 'required']) !!}
+                                </div>
+                            </div>
+                                
+                            <div class="form-group" id="div13-3">
+                                {!! Form::label('edo-75no18', 'Estado', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-md"></i></span>
+                                    {!! Form::select('edo-75no18', [ 'Abierto' => 'Abierto', 'Cerrado' => 'Cerrado' ], null, ['class' => 'form-control', 'placeholder' => 'Seleccione estado', 'required']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="div13-4">
+                                {!! Form::label('ti-75no18', 'Título', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                                    {!! Form::text('ti-75no18', null, ['class' => 'form-control', 'placeholder' => 'Título', 'required']) !!}
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" id="div13-5">
+                                {!! Form::label('ac-75no18', 'Acción requerida', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                                    {!! Form::text('ac-75no18', null, ['class' => 'form-control', 'placeholder' => 'Acción requerida', 'required']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="div13-6">
+                                {!! Form::label('no-75no18', 'Notas', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                                    {!! Form::text('no-75no18', null, ['class' => 'form-control', 'placeholder' => 'Notas', 'required']) !!}
+                                </div>
+                            </div>
+                         
+                        </div>
+                        <button type="button" id="add_doc_32" class="btn btn-primary" title="Agregar campo"><i class="fas fa-plus-square"></i></button>
+                        
+                    </div>
+                </div>
+
+
+                <div class="migracionCampos row">
+                    <div class="col form-group" id="div14">
+                        
+                        <div id="wrapper_doc32b">
+                            {!! Form::label('32b-75no', '14.  Desviaciones:', ['class' => 'form-label']) !!}
+                            <br>
+                            {!! Form::label('32b-75no18', '', ['class' => 'form-label', 'hidden']) !!}
+                            
+                            <div class="form-group" id="div14-1>
+                                {!! Form::label('su-75no18', 'Sujeto', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                                    {!! Form::text('su-75no18', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'required']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="div14-2">
+                                {!! Form::label('fe-75no18', 'Fecha evento', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                    {!! Form::date('fe-75no18', null, ['class' => 'form-control', 'required']) !!}
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" id="div14-3">
+                                {!! Form::label('fr-75no18', 'Fecha reporte', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                    {!! Form::date('fr-75no18', null, ['class' => 'form-control', 'required']) !!}
+                                </div>
+                            </div>
+                                
+                            <div class="form-group" id="div14-4">
+                                {!! Form::label('edod-75no18', 'Estado', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-md"></i></span>
+                                    {!! Form::select('edod-75no18', [ 'Abierto' => 'Abierto', 'Cerrado' => 'Cerrado' ], null, ['class' => 'form-control', 'placeholder' => 'Seleccione estado', 'required']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="div14-5">
+                                {!! Form::label('vi-75no18', 'Visita', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                                    {!! Form::text('vi-75no18', null, ['class' => 'form-control', 'placeholder' => 'Título', 'required']) !!}
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" id="div14-6">
+                                {!! Form::label('se-75no18', 'Severidad', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                                    {!! Form::text('se-75no18', null, ['class' => 'form-control', 'placeholder' => 'Acción requerida', 'required']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="div14-7">
+                                {!! Form::label('c1-75no18', 'Categoría 1', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                                    {!! Form::text('c1-75no18', null, ['class' => 'form-control', 'placeholder' => 'Notas', 'required']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="div14-8">
+                                {!! Form::label('c2-75no18', 'Categoría 2', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                                    {!! Form::text('c2-75no18', null, ['class' => 'form-control', 'placeholder' => 'Notas', 'required']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="14-9">
+                                {!! Form::label('de-75no18', 'Descripción', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                                    {!! Form::text('de-75no18', null, ['class' => 'form-control', 'placeholder' => 'Notas', 'required']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="div14-10">
+                                {!! Form::label('acc-75no18', 'Acciones', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                                    {!! Form::text('acc-75no18', null, ['class' => 'form-control', 'placeholder' => 'Notas', 'required']) !!}
+                                </div>
+                            </div>
+                         
+                            <div class="form-group" id="div14-11">
+                                {!! Form::label('av-75no18', 'Aviso CEI', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-md"></i></span>
+                                    {!! Form::select('av-75no18', [ 'Si' => 'Si', 'No' => 'No' ], null, ['class' => 'form-control', 'placeholder' => 'Seleccione', 'required']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="div14-12">
+                                {!! Form::label('fav-75no18', 'Fecha aviso', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                    {!! Form::date('fav-75no18', null, ['class' => 'form-control', 'required']) !!}
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" id="div14-13">
+                                {!! Form::label('ffi-75no18', 'Fecha fin', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                    {!! Form::date('ffi-75no18', null, ['class' => 'form-control', 'required']) !!}
+                                </div>
+                            </div>
+
+                        </div>
+                        <button type="button" id="add_doc_32b" class="btn btn-primary" title="Agregar campo"><i class="fas fa-plus-square"></i></button>
+                        
+                    </div>
+                </div>
+
+
+
+
+                </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCancelar" onclick="borrar_campos();" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="btnGuardar" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+            </div>
+            {!! Form::close() !!}
+            </div>
+            {{-- END Seguimiento --}}
+
+{{-- ======================================================================================================================================================================= --}}
+
+
 
         </div>
         <!-- END Modal -->

@@ -552,6 +552,152 @@ class DocumentosIDController extends Controller
 
                     }
 
+                    if(15 == $request->documentoformato_id){
+                        $my_template->setValue('codigo',$array_depurado['codigo15']); 
+                        $my_template->setValue('numerositio',$array_depurado['numerositio15']);
+                        $my_template->setValue('domiciliositio',$array_depurado['direccionsitio15']);
+                        $my_template->setValue('investigador',$array_depurado['nombre15']);
+                        $my_template->setValue('titulo',$array_depurado['titulo15']);
+
+                    }
+
+                    if(16 == $request->documentoformato_id){
+                        $my_template->setValue('codigo',$array_depurado['codigo16']); 
+                        $my_template->setValue('numerositio',$array_depurado['numerositio16']);
+                        $my_template->setValue('investigador',$array_depurado['nombre16']);
+
+                    }
+
+                    if(17 == $request->documentoformato_id){
+                        $my_template->setValue('codigo',$array_depurado['codigo17']); 
+                        $my_template->setValue('descunidades',$array_depurado['descunidades17']);
+                        $my_template->setValue('investigador',$array_depurado['nombre17']);
+                        $my_template->setValue('sitio',$array_depurado['sitio17']);
+                        $my_template->setValue('almacen',$array_depurado['almacen17']);
+
+                    }
+
+                    if(18 == $request->documentoformato_id){
+                        $my_template->setValue('codigo',$array_depurado['codigo18']); 
+                        $my_template->setValue('descunidades',$array_depurado['descunidades18']);
+                        $my_template->setValue('investigador',$array_depurado['nombre18']);
+                        $my_template->setValue('numsitio',$array_depurado['numsitio18']);
+                        $my_template->setValue('numsujeto',$array_depurado['numsujeto18']);
+
+                    }
+
+                    if(19 == $request->documentoformato_id){
+                        $my_template->setValue('codigo',$array_depurado['codigo19']); 
+                        $my_template->setValue('titulo',$array_depurado['titulo19']);
+                        $my_template->setValue('patrocinador',$array_depurado['patrocinadores19']);
+                        $my_template->setValue('numsitio',$array_depurado['numsitio19']);
+                        $my_template->setValue('numsitioc',$array_depurado['numsitioc19']);
+                        $my_template->setValue('numsitior',$array_depurado['numsitior19']);
+                        $my_template->setValue('sitio',$array_depurado['sitio19']);
+                        $my_template->setValue('telefono',$array_depurado['telefono19']);
+
+                    }
+
+                    if(20 == $request->documentoformato_id){
+                        $my_template->setValue('codigo',$array_depurado['codigo20']); 
+                        $my_template->setValue('numsitio',$array_depurado['numsitio20']);
+                        $my_template->setValue('nombreentrega',$array_depurado['nombre20']);
+                        $my_template->setValue('direccion',$array_depurado['direccion20']);
+                        $my_template->setValue('ciudad',$array_depurado['ciudad20']);
+                        $my_template->setValue('estado',$array_depurado['estado20']);
+                        $my_template->setValue('pais',$array_depurado['pais20']);
+                        $my_template->setValue('cp',$array_depurado['cp20']);
+                        $my_template->setValue('telefono',$array_depurado['telefono20']);
+                        $my_template->setValue('correo',$array_depurado['correo20']);
+                        
+                        $my_template->setValue('nombreenvio',$array_depurado['nombree20']);
+                        $my_template->setValue('telefonoenvio',$array_depurado['telefonoe20']);
+                        $my_template->setValue('correoenvio',$array_depurado['correoe20']);
+
+                    }
+
+                    if(23 == $request->documentoformato_id){
+                       $my_template->setValue('codigo',$array_depurado['codigo23']);
+                        $my_template->setValue('titulo',$array_depurado['titulo23']);
+                        $my_template->setValue('patrocinador',$array_depurado['patrocinadores23']);
+                        $my_template->setValue('nombresitio',$array_depurado['sitio23']);
+                        $my_template->setValue('direccionsitio',$array_depurado['direccionsitio23']);
+                        $my_template->setValue('investigador',$array_depurado['investigador23']);
+                        $my_template->setValue('nombre',$array_depurado['nombre23']);
+                        $my_template->setValue('puesto',$array_depurado['puesto23']);
+                        $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha23'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha23']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha23'])) );
+    
+                        $my_template->cloneBlock('bloque',(count($array_depurado) - 9), true, true);
+                         for ($i=0; $i < (count($array_depurado) - 9); $i++) { 
+                        $my_template->setValue('material#'.($i+1),htmlspecialchars($array_depurado['23-75no'. ($i + 18)], ENT_COMPAT, 'UTF-8'));
+                        }
+                    }
+
+                    if(24 == $request->documentoformato_id){
+                        $my_template->setValue('codigo',$array_depurado['codigo24']); 
+                        $my_template->setValue('numsitio',$array_depurado['numerositio24']);
+                        $my_template->setValue('investigador',$array_depurado['nombre24']);
+
+                    }
+
+                    if(28 == $request->documentoformato_id){
+                        $my_template->setValue('codigo',$array_depurado['codigo28']); 
+                        $my_template->setValue('numsitio',$array_depurado['numerositio28']);
+                        $my_template->setValue('investigador',$array_depurado['nombre28']);
+
+                    }
+                    if(29 == $request->documentoformato_id){
+                        $my_template->setValue('codigo',$array_depurado['codigo29']); 
+                        $my_template->setValue('numsitio',$array_depurado['numerositio29']);
+                        $my_template->setValue('investigador',$array_depurado['nombre29']);
+
+                    }
+                    if(30 == $request->documentoformato_id){
+                        $my_template->setValue('codigo',$array_depurado['codigo30']); 
+                        $my_template->setValue('numsitio',$array_depurado['numerositio30']);
+                        $my_template->setValue('investigador',$array_depurado['nombre30']);
+
+                    }
+
+                    if(31 == $request->documentoformato_id){
+                        //principal
+                        $my_template->setValue('codigo',$array_depurado['codigo32']); 
+                        $my_template->setValue('numerositio',$array_depurado['numerositio32']);
+                        $my_template->setValue('tipovisita',$array_depurado['tipovisita32']);
+                        $my_template->setValue('investigador',$array_depurado['nombre32']);
+                        $my_template->setValue('direccion',$array_depurado['direccion32']); 
+                        $my_template->setValue('sitio',$array_depurado['sitio32']);
+                        $my_template->setValue('estado',$array_depurado['estado32']);
+                        $my_template->setValue('ciudad',$array_depurado['ciudad32']); 
+                        $my_template->setValue('cp',$array_depurado['cp32']);
+                        $my_template->setValue('pais',$array_depurado['pais31']);
+                        
+                        $my_template->setValue('fechavisita', date('d', strtotime($array_depurado['fechavisita32'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fechavisita32']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fechavisita32'])) );
+                        $my_template->setValue('fechaseguimiento', date('d', strtotime($array_depurado['fechaseguimiento32'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fechaseguimiento32']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fechaseguimiento32'])) );
+                       
+                        //elementos de acciones
+                        $my_template->cloneBlock('bloque',$array_depurado['clon'], true, true);
+                        for ($i=0; $i < $array_depurado['clon']; $i++) { 
+                        $my_template->setValue('ti#'.($i+1),htmlspecialchars($array_depurado['ti-75no'. ($i + 18)], ENT_COMPAT, 'UTF-8'));
+                        $my_template->setValue('edo#'.($i+1),htmlspecialchars($array_depurado['edo-75no'. ($i + 18)], ENT_COMPAT, 'UTF-8'));
+                        $my_template->setValue('ac#'.($i+1),htmlspecialchars($array_depurado['ac-75no'. ($i + 18)], ENT_COMPAT, 'UTF-8'));
+                        $my_template->setValue('no#'.($i+1),htmlspecialchars($array_depurado['no-75no'. ($i + 18)], ENT_COMPAT, 'UTF-8'));
+                        $my_template->setValue('fi#', date('d', strtotime($array_depurado['fi-75no'. ($i + 18)])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fi-75no'. ($i + 18)]))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fi-75no'. ($i + 18)])) );
+                        $my_template->setValue('ff#', date('d', strtotime($array_depurado['ff-75no'] . ($i + 18))) . ' de '  . $meses[ date('n', strtotime($array_depurado['ff-75no'. ($i + 18)]))-1 ] . ' del ' . date('Y', strtotime($array_depurado['ff-75no'. ($i + 18)])) );
+                       
+
+
+                       }
+
+
+
+
+                    }
+
+                    
+                    
+
+
 
                 //GUARDADO EN WORD
                 try{
