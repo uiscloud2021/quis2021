@@ -325,5 +325,5 @@
     <!-- Select2 -->
     <script src="{{ asset('vendor/select2/js/select2.full.js') }}"></script>
 
-    <script src="{{ asset('js/documentos_id.js?10') }}"></script>
+    <script src="{{ asset('js/documentos_id.js?13') }}"></script>
 @stop

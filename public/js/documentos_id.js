@@ -140,6 +140,7 @@ $("#doc_formatos").change(
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
 function list_formatos(){
     formato_id = $("#doc_formatos").val();
     codigo_id = $("#protocolo_id").val();
@@ -157,9 +158,6 @@ function list_formatos(){
                     codigo_id:codigo_id,
                     _token:$('input[name="_token"]').val()
                 },
-                success:function(resp){
-                    
-                }
                 
             },
             "columns": [
@@ -496,33 +494,17 @@ function borrar_campos() {
     $("#proyecto_id").val(null);
     $("#formato_id").val(null);
 
-   
-    
 
+    
     $("#formcreate_propuestaInicial")[0].reset();
-    $("#formcreate_protocoloInvestigacion")[0].reset();
-    $("#formcreate_consentimientoInformado")[0].reset();
     $("#formcreate_reporteCaso")[0].reset();
-    $("#formcreate_folletoInvestigador")[0].reset();
     $("#formcreate_sometimiento")[0].reset();
-    $("#formcreate_compromisos")[0].reset();
-    $("#formcreate_responsabilidades")[0].reset();
-    $("#formcreate_autorizacion")[0].reset();
-    $("#formcreate_instalaciones")[0].reset();
-    $("#formcreate_anticorrupcion")[0].reset();
-    $("#formcreate_avisovisita")[0].reset();
-    $("#formcreate_carpetaregulatoria")[0].reset();
-    $("#formcreate_firmasautorizadas")[0].reset();
-    $("#formcreate_contabilidadgeneral")[0].reset();
-    $("#formcreate_contabilidadsujeto")[0].reset();
-    $("#formcreate_embarquedevolucion")[0].reset();
-    $("#formcreate_envio")[0].reset();
     $("#formcreate_recibomateriales")[0].reset();
-    $("#formcreate_devolucion")[0].reset();
-    $("#formcreate_enrolamiento")[0].reset();
-    $("#formcreate_identificacion")[0].reset();
-    $("#formcreate_visitas")[0].reset();
-   
+    $("#formcreate_seguimiento")[0].reset();
+    $("#formcreate_informe")[0].reset();
+    $("#formcreate_"+idFormato)[0].reset();
+     
+
     
     
     
@@ -684,6 +666,7 @@ $("#add_doc_migracion2").click(
         var id_docMigracion = 'id="6-75no' + migracion_doc_count + '"';
         var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
         '<input class="migracionDoc form-control" type="text" placeholder="Agregar Variable" ' + id_docMigracionv + 'required/>' +
+        '<span class="input-group-text"><i class="fas fa-pen-square"></i></span>' +
         '<input class="migracionDoc form-control" type="text" placeholder="Agregar Valor" ' + id_docMigracion + 'required/>' +
         '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
         $("#wrapper_migraciondoc2").append(fieldHTML);
@@ -837,7 +820,6 @@ $("#add_doc_32b").click(
     function() {
         migracion_doc_countb++;
         elementosdesviaciones++;
-        alert(migracion_doc_countb);
         var id_docMigracionsu = 'id="su-75no' + migracion_doc_countb +'"';
         var id_docMigracionfe = 'id="fe-75no' + migracion_doc_countb + '"';
         var id_docMigracionfr = 'id="fr-75no' + migracion_doc_countb + '"';
@@ -933,13 +915,14 @@ $("#add_doc_32b").click(
 
 $("#wrapper_doc32b").on('click', '.remove_buttonb', function(e) {
     e.preventDefault();
-
+    
   
     var idBody = "#body-"+idFormato;
     
     var div = $(this).parents(idBody);
     $(this).parent('div').remove();
-
+    migracion_doc_countb--;
+    elementosdesviaciones--;
     var aux = 19;
     var auxIdsu = 'su-75no';
     var auxIdfe = 'fe-75no';
@@ -980,9 +963,8 @@ $("#wrapper_doc32b").on('click', '.remove_buttonb', function(e) {
         btnb.style.marginTop="0";
         btnb.style.marginLeft="0";
    
-
-    elementosAccionesb--;
-    migracion_doc_countb--;
+    
+   
 })
 
 
@@ -1022,6 +1004,78 @@ $("#wrapper_doc_8").on('click', '.remove_button', function(e) {
     });
 
     migracion_doc_count--;
+});
+
+
+$("#add_doc_40").click(
+    function() {
+        migracion_doc_count++;
+        
+        var id_docMigracion = 'id="40-75no' + migracion_doc_count + '"';
+        
+        var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
+        '<input class="migracionDoc form-control" type="text" placeholder="Agregar Instituciones participantes" ' + id_docMigracion + 'required/>' +
+        '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
+        $("#wrapper_doc_40").append(fieldHTML);
+
+    }
+)
+
+$("#wrapper_doc_40").on('click', '.remove_button', function(e) {
+    e.preventDefault();
+
+    var idBody = "#body-"+idFormato;
+    
+    var div = $(this).parents(idBody);
+    $(this).parent('div').remove();
+
+    var aux = 19;
+    var auxId = '40-75no';
+    var hijos = div.find(".migracionDoc");
+    // console.log(hijos[0].id)
+    $.each(hijos, function() {
+        var aux_id = this.id;
+        $("#"+ aux_id +"").prop('id', auxId + aux);
+        aux++;
+        // console.log(this);
+    });
+
+    migracion_doc_count--;
+});
+
+$("#add_doc_40b").click(
+    function() {
+        migracion_doc_countb++;
+        
+        var id_docMigracion = 'id="40b-75no' + migracion_doc_countb + '"';
+        
+        var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
+        '<input class="migracionDoc form-control" type="text" placeholder="Agregar personal participante" ' + id_docMigracion + 'required/>' +
+        '<button type="button" class="remove_buttonb btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
+        $("#wrapper_doc_40b").append(fieldHTML);
+
+    }
+)
+$("#wrapper_doc_40b").on('click', '.remove_buttonb', function(e) {
+    e.preventDefault();
+
+    var idBody = "#body-"+idFormato;
+    
+    var div = $(this).parents(idBody);
+    $(this).parent('div').remove();
+
+    var aux = 19;
+    var auxId = '40b-75no';
+    var hijos = div.find(".migracionDoc");
+    // console.log(hijos[0].id)
+    $.each(hijos, function() {
+        var aux_id = this.id;
+        $("#"+ aux_id +"").prop('id', auxId + aux);
+        aux++;
+        // console.log(this);
+    });
+    migracion_doc_countb--;
+    
 });
 
 
@@ -1744,7 +1798,7 @@ $('#formcreate_reporteCaso').on('submit', function(e) {
     $('#formcreate_seguimiento').on('submit', function(e) {
             e.preventDefault();
             var formData = new FormData(this);
-            alert(migracion_doc_countb);
+            
             formato_id = $('#formato_id').val();
             documentoformato_id = $("#doc_formatos").val();
             proyecto_id = $('#protocolo_id').val();
@@ -1759,7 +1813,8 @@ $('#formcreate_reporteCaso').on('submit', function(e) {
             formData.append('empresa_id', empresa_id);
             formData.append('menu_id', menu_id);
             formData.append('user_id', user_id);
-        
+            formData.append("clon",(migracion_doc_count-17));
+            formData.append("clonb",(migracion_doc_countb-17));
         
             if (migracion_doc_count > 18) {
                 for (let i = 19; i <= migracion_doc_count; i++) {
@@ -1785,7 +1840,9 @@ $('#formcreate_reporteCaso').on('submit', function(e) {
                     formData.append(idAppendac, valueac);
                     formData.append(idAppendno, valueno);
                 }
-                formData.append("clon",(migracion_doc_count-17));
+
+                migracion_doc_count = 18;
+                
             }
 
             if (migracion_doc_countb > 18) {
@@ -1834,7 +1891,8 @@ $('#formcreate_reporteCaso').on('submit', function(e) {
                     formData.append(idAppendffi, valueffi); 
                     
                 }
-                formData.append("clonb",(migracion_doc_countb-17));
+                migracion_doc_countb = 18;
+                
             }
             
 
@@ -1990,3 +2048,164 @@ $('#formcreate_reporteCaso').on('submit', function(e) {
             }
         
         });
+
+        $('#formcreate_informe').on('submit', function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+        
+            formato_id = $('#formato_id').val();
+            documentoformato_id = $("#doc_formatos").val();
+            proyecto_id = $('#protocolo_id').val();
+            empresa_id = $('#empresa_id').val();
+            menu_id = $('#menu_id').val();
+            user_id = $('#user_id').val();
+            
+             
+            formData.append('formato_id', formato_id);
+            formData.append('documentoformato_id', documentoformato_id);
+            formData.append('proyecto_id', proyecto_id);
+            formData.append('empresa_id', empresa_id);
+            formData.append('menu_id', menu_id);
+            formData.append('user_id', user_id);
+            formData.append("clon",(migracion_doc_count-17));
+            formData.append("clonb",(migracion_doc_countb-17));
+
+        
+        
+            if (migracion_doc_count > 18) {
+                for (let i = 19; i <= migracion_doc_count; i++) {
+                    var idAppend = "40-75no" + i;
+                    var value = $("#" + idAppend).val();
+                    formData.append(idAppend, value);
+                }
+            }
+            
+            if (migracion_doc_countb > 18) {
+                for (let i = 19; i <= migracion_doc_countb; i++) {
+                    var idAppendv = "40b-75no" + i;
+                    var valuev = $("#" + idAppendv).val();
+                    formData.append(idAppendv, valuev);
+                }
+            }
+
+
+            if (!formato_id) {
+                
+                if(documentoformato_id!="" && proyecto_id ){
+                   
+                    $.ajax({
+                        url: "/documentos_id/create_formato",
+                        type:'post',
+                        data:formData,
+                        cache:false,
+                        contentType: false,
+                        processData: false,
+                        beforeSend:function(){
+                            //$('#btnGuardar').hide();
+                        },
+                        success:function(resp){
+                            
+            
+                            if(migracion_doc_count > 18) {
+                                for (let i = 19; i <= migracion_doc_count; i++) {
+                                    $("#40-75no" + i).parent('div').remove();
+                                }
+                                migracion_doc_count = 18;
+                            }
+
+                            if(migracion_doc_countb > 18) {
+                                for (let i = 19; i <= migracion_doc_countb; i++) {
+                                    $("#40b-75no" + i).parent('div').remove();
+                                }
+                                migracion_doc_countb = 18;
+                            }
+            
+                            if(resp == 'guardado'){
+                                $('#createFormatoModal').modal('hide');
+                                toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                                $('#btnGuardar').show();$('#btnGuardar').show();
+                                borrar_campos();
+                                list_formatos();
+            
+                            }else{
+                                
+                                if (resp == 'no guardado') {
+                                    $('#createFormatoModal').modal('hide');
+                                    $('#btnGuardar').show();
+                                    borrar_campos()
+                                    toastr.warning('El formato no se guardo correctamento, intentelo de nuevo o comuníquese con el administrador', 'Guardar formato', {timeOut:3000});
+                                }
+                                if (resp == 'dato existe') {
+                                    $('#createFormatoModal').modal('hide');
+                                    $('#btnGuardar').show();
+                                    borrar_campos()
+                                    toastr.info('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});    
+                                }
+                                
+                            };
+            
+                        }
+                    });
+            
+                }else{
+                    $('#createFormatoModal').scrollTop(0);
+                    // alert("Seleccione un proyecto");
+                    toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1550});
+                }
+            } else {
+                if(documentoformato_id!="" && proyecto_id ){
+                    $.ajax({
+                        url: "/documentos_id/create_formato",
+                        type:'post',
+                        data:formData,
+                        cache:false,
+                        contentType: false,
+                        processData: false,
+                        beforeSend:function(){
+                            $('#btnGuardar').hide();
+                        },
+                        success:function(resp){
+                            
+                            // console.log(resp);
+            
+                            if(migracion_doc_count > 18) {
+                                for (let i = 19; i <= migracion_doc_count; i++) {
+                                    $("#40-75no" + i).parent('div').remove();
+                                }
+                                migracion_doc_count = 18;
+                            }
+
+                            if(migracion_doc_countb > 18) {
+                                for (let i = 19; i <= migracion_doc_countb; i++) {
+                                    $("#40b-75no" + i).parent('div').remove();
+                                }
+                                migracion_doc_countb = 18;
+                            }
+        
+                            
+            
+                            if(resp){
+                                $('#createFormatoModal').modal('hide');
+                                toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                                $('#btnGuardar').show();
+                                borrar_campos();
+                                list_formatos();
+                            }else{
+                                $('#createFormatoModal').modal('hide');
+                                $('#btnGuardar').show();
+                                borrar_campos();
+                                toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                            }
+                            $('#formato_id').val(null);
+                        }
+                    });
+            
+                }else{
+                    $('#createFormatoModal').scrollTop(0);
+                    // alert("Seleccione un proyecto");
+                    toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
+                }
+            }
+        
+        });
+        
