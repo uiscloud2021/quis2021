@@ -259,6 +259,42 @@ class DocumentosIDController extends Controller
 
         if ($request->ajax()) {
 
+        $has_form = Documentos_id_formatos::where('id', $request->documentoformato_id)->value('has_form');
+        // condicion para crear los archivos que no se guardan
+        if ($has_form == 2) {
+            $nombreDocumento = Documentos_id_formatos::where('id', $request->documentoformato_id)->get()->first();
+            $datosProyecto = Proyecto::where('id', $request->proyecto_id)
+            ->get()->first();
+            $proyectos = Proyecto::where('proyectos.id', $request->proyecto_id)
+            ->join('investigadores', 'proyectos.investigador_id', '=', 'investigadores.id')
+            ->select('proyectos.*', 'investigadores.*')
+            ->get()->first();
+            $codigoUIS = $datosProyecto->no18;
+
+            // Obtener los datos del investigador
+            // TODO: probar cuando ya esten los investigadores capturados o poner los datos desde el modal
+            $investigador = Investigador::where('id', $datosProyecto->investigador_id)->get()->first();
+
+            $currentTime = Carbon::now();
+
+            $my_template = new \PhpOffice\PhpWord\TemplateProcessor(storage_path('../public/assets/ID/5. FC-ID/' . $nombreDocumento['directorio'] . ''));
+
+
+            try{
+                // TODO: cambiar el nombre para que tenga el id del formato para diferenciarlos y que no se sobreescriban 
+                $my_template->saveAs(storage_path( '../public/assets/ID-documents/' . $nombreDocumento['nombre_doc'] . '-' . $codigoUIS . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
+                // $my_template->saveAs(storage_path( '../public/assets/CE-documents/' . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
+            }catch (Exception $e){
+                return response(null);
+            }
+        
+            // return response()->download(storage_path( '../public/assets/CE-documents/'  . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] ));
+            
+            return response( $nombreDocumento['nombre_doc'] . '-' . $codigoUIS . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] );
+            // return response( $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] );
+            
+        } else {
+
 
             // VALIDAR CAMPOS
             $request->validate([
@@ -333,10 +369,10 @@ class DocumentosIDController extends Controller
             unset($datos_array['menu_id']);
             unset($datos_array['user_id']);
 
-            $datos = json_encode($datos);
+            $datos = json_encode($datos_array);
 
             $formatos = Formatos_id::find($formato_id);
-
+            
             $formatos->documento_formato_id = $request->documentoformato_id;
             $formatos->datos_json = $datos;
             //TODO: cambiar para que sea la empresa y el menu correctos
@@ -354,7 +390,7 @@ class DocumentosIDController extends Controller
 
         };
         
-    
+    }
 
     }
 
@@ -364,7 +400,7 @@ class DocumentosIDController extends Controller
     {
 
         $formato = Formatos_id::where('id', $id)->get()->first();
-        $array_depurado= json_decode($formato->datos_json);
+        $array_depurado = json_decode($formato->datos_json, true);
 
         // Obtener Los datos del tipo de formato 
         $nombreDocumento = Documentos_id_formatos::where('id', $formato['documento_formato_id'])->get()->first();
@@ -380,59 +416,59 @@ class DocumentosIDController extends Controller
         $currentTime = Carbon::now();
         $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 
-        $my_template = new \PhpOffice\PhpWord\TemplateProcessor(storage_path('../public/assets/CE/5. FC-CE/' . $nombreDocumento['directorio'] . ''));
+        $my_template = new \PhpOffice\PhpWord\TemplateProcessor(storage_path('../public/assets/ID/5. FC-ID/' . $nombreDocumento['directorio'] . ''));
 
            
-        if (3 == $request->documentoformato_id) {
+        if (3 ==  $formato['documento_formato_id']) {
                  
-            $my_template->setValue('codigo',$array_depurado['codigo']);
-            $my_template->setValue('titulo',$array_depurado['titulo']);
-            $my_template->setValue('disenio',$array_depurado['disenio']);
-            $my_template->setValue('tamanio',$array_depurado['tamanio']);
+            $my_template->setValue('codigo',$array_depurado['codigo3']);
+            $my_template->setValue('titulo',$array_depurado['titulo3']);
+            $my_template->setValue('disenio',$array_depurado['disenio3']);
+            $my_template->setValue('tamanio',$array_depurado['tamanio3']);
 
-            $my_template->cloneBlock('bloque',(count($array_depurado) - 4), true, true);
-            for ($i=0; $i < count($array_depurado) - 4; $i++) { 
+            $my_template->cloneBlock('bloque',(count($array_depurado) - 5), true, true);
+            for ($i=0; $i < count($array_depurado) - 5; $i++) { 
             $my_template->setValue('criterio#'.($i+1),htmlspecialchars($array_depurado['75no'. ($i + 18)], ENT_COMPAT, 'UTF-8'));
             }
     
         } 
        
-        if (4 == $request->documentoformato_id) {
+        if (4 ==  $formato['documento_formato_id']) {
          
             $my_template->setValue('codigo',$array_depurado['codigo4']);
             $my_template->setValue('titulo',$array_depurado['titulo4']);
-            $my_template->setValue('titulocorto',$array_depurado['titulocorto']);
-            $my_template->setValue('departamento',$array_depurado['departamento']);
-            $my_template->setValue('patrocinador',$array_depurado['patrocinador']);
-            $my_template->setValue('versiones',$array_depurado['versiones']);
-            $my_template->setValue('enmiendas',$array_depurado['enmiendas']);
-            $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha'])) );
+            $my_template->setValue('titulocorto',$array_depurado['titulocorto4']);
+            $my_template->setValue('departamento',$array_depurado['departamento4']);
+            $my_template->setValue('patrocinador',$array_depurado['patrocinadores4']);
+            $my_template->setValue('versiones',$array_depurado['versiones4']);
+            $my_template->setValue('enmiendas',$array_depurado['enmiendas4']);
+            $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha4'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha4']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha4'])) );
             
         
     
         }
         
-        if(5 == $request->documentoformato_id){
-            $my_template->setValue('sitio',$array_depurado['sitio']);
-            $my_template->setValue('numerosujeto',$array_depurado['numerosujeto']);
-            $my_template->setValue('grupo',$array_depurado['grupo']);
-            $my_template->setValue('version',$array_depurado['version']);
+        if(5 ==  $formato['documento_formato_id']){
+            $my_template->setValue('sitio',$array_depurado['sitio5']);
+            $my_template->setValue('numerosujeto',$array_depurado['numerosujeto5']);
+            $my_template->setValue('grupo',$array_depurado['grupo5']);
+            $my_template->setValue('version',$array_depurado['version5']);
             $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha5'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha5']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha5'])) );
             
         }
 
-        if(6 == $request->documentoformato_id){
+        if(6 ==  $formato['documento_formato_id']){
            $my_template->setValue('sitio',$array_depurado['sitio6']);
             $my_template->setValue('numerosujeto',$array_depurado['numerosujeto6']);
             $my_template->setValue('codigo',$array_depurado['codigo6']);
             $my_template->setValue('version',$array_depurado['version6']);
-            $my_template->setValue('iniciales',$array_depurado['iniciales']);
-            $my_template->setValue('edad',$array_depurado['edad']);
-            $my_template->setValue('sexo',$array_depurado['sexo']);
-            $my_template->setValue('ocupacion',$array_depurado['ocupacion']);
-            $my_template->setValue('escolaridad',$array_depurado['escolaridad']);
+            $my_template->setValue('iniciales',$array_depurado['iniciales6']);
+            $my_template->setValue('edad',$array_depurado['edad6']);
+            $my_template->setValue('sexo',$array_depurado['sexo6']);
+            $my_template->setValue('ocupacion',$array_depurado['ocupacion6']);
+            $my_template->setValue('escolaridad',$array_depurado['escolaridad6']);
 
-            $valoresagregados = ((count($array_depurado) - 10)/2);
+            $valoresagregados = ((count($array_depurado) - 11)/2);
 
             $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha6'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha6']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha6'])) );
             $my_template->cloneRow('variable',$valoresagregados);
@@ -445,10 +481,10 @@ class DocumentosIDController extends Controller
 
         }
 
-        if(7 == $request->documentoformato_id){
+        if(7 ==  $formato['documento_formato_id']){
             $my_template->setValue('codigo',$array_depurado['codigo7']);
-            $my_template->setValue('nombreproducto',$array_depurado['nombreproducto']);
-            $my_template->setValue('patrocinador',$array_depurado['patrocinadores']);
+            $my_template->setValue('nombreproducto',$array_depurado['nombreproducto7']);
+            $my_template->setValue('patrocinador',$array_depurado['patrocinadores7']);
             $my_template->setValue('versiones',$array_depurado['versiones7']);
             $my_template->setValue('enmiendas',$array_depurado['enmiendas7']);
 
@@ -456,31 +492,31 @@ class DocumentosIDController extends Controller
             
         }
 
-        if(8 == $request->documentoformato_id){
-            $my_template->setValue('ciudad',$array_depurado['ciudad']);
-            $my_template->setValue('estado',$array_depurado['estado']);
-            $my_template->setValue('codigouis',$array_depurado['codigoUis']);
+        if(8 ==  $formato['documento_formato_id']){
+            $my_template->setValue('ciudad',$array_depurado['ciudad8']);
+            $my_template->setValue('estado',$array_depurado['estado8']);
+            $my_template->setValue('codigouis',$array_depurado['codigoUis8']);
             $my_template->setValue('codigo',$array_depurado['codigo8']);
             $my_template->setValue('titulo',$array_depurado['titulo8']);
             $my_template->setValue('patrocinador',$array_depurado['patrocinadores8']);
-            $my_template->setValue('investigadorprincipal',$array_depurado['investigadorprincipal']);
+            $my_template->setValue('investigadorprincipal',$array_depurado['investigadorprincipal8']);
 
             $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha8'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha8']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha8'])) );
 
-            $my_template->cloneBlock('bloque',(count($array_depurado) - 8), true, true);
-            for ($i=0; $i < (count($array_depurado) - 8); $i++) { 
+            $my_template->cloneBlock('bloque',(count($array_depurado) - 9), true, true);
+            for ($i=0; $i < (count($array_depurado) - 9); $i++) { 
             $my_template->setValue('nombrevfdoc#'.($i+1),htmlspecialchars($array_depurado['8-75no'. ($i + 18)], ENT_COMPAT, 'UTF-8'));
             }
         }
         
-        if(9 == $request->documentoformato_id){
+        if(9 ==  $formato['documento_formato_id']){
             $my_template->setValue('ciudad',$array_depurado['ciudad9']); 
             $my_template->setValue('estado',$array_depurado['estado9']);
             $my_template->setValue('codigo',$array_depurado['codigo9']);
             $my_template->setValue('titulo',$array_depurado['titulo9']); 
             $my_template->setValue('patrocinador',$array_depurado['patrocinadores9']);
             $my_template->setValue('direccion',$array_depurado['direccion']);
-            $my_template->setValue('tipoinvestigador',$array_depurado['tipoinvestigador']);
+            $my_template->setValue('tipoinvestigador',$array_depurado['tipoinvestigador9']);
             $my_template->setValue('tituloabreviado',$array_depurado['tituloabreviado9']);
             $my_template->setValue('nombre',$array_depurado['nombre9']);
             $my_template->setValue('cedula',$array_depurado['cedula9']);
@@ -505,7 +541,7 @@ class DocumentosIDController extends Controller
                 }
             }
 
-            if(10 == $request->documentoformato_id){
+            if(10 ==  $formato['documento_formato_id']){
                 $my_template->setValue('ciudad',$array_depurado['ciudad10']); 
                 $my_template->setValue('estado',$array_depurado['estado10']);
                 $my_template->setValue('codigo',$array_depurado['codigo10']);
@@ -520,7 +556,7 @@ class DocumentosIDController extends Controller
 
             }
 
-            if(11 == $request->documentoformato_id){
+            if(11 ==  $formato['documento_formato_id']){
                 $my_template->setValue('ciudad',$array_depurado['ciudad11']); 
                 $my_template->setValue('estado',$array_depurado['estado11']);
                 $my_template->setValue('codigo',$array_depurado['codigo11']);
@@ -535,7 +571,7 @@ class DocumentosIDController extends Controller
 
             }
 
-            if(12 == $request->documentoformato_id){
+            if(12 ==  $formato['documento_formato_id']){
                 $my_template->setValue('lugar',$array_depurado['lugar12']); 
                 $my_template->setValue('codigo',$array_depurado['codigo12']);
                 $my_template->setValue('titulo',$array_depurado['titulo12']); 
@@ -572,7 +608,7 @@ class DocumentosIDController extends Controller
                 }
             }
 
-            if(13 == $request->documentoformato_id){
+            if(13 ==  $formato['documento_formato_id']){
                 $my_template->setValue('lugar',$array_depurado['lugar13']); 
                 $my_template->setValue('destinatario',$array_depurado['destinatario13']);
                 
@@ -582,7 +618,7 @@ class DocumentosIDController extends Controller
 
             }
 
-            if(14 == $request->documentoformato_id){
+            if(14 ==  $formato['documento_formato_id']){
                 $my_template->setValue('codigo',$array_depurado['codigo14']); 
                 $my_template->setValue('numerositio',$array_depurado['numerositio14']);
                 $my_template->setValue('fechavisita',$array_depurado['fechavisita14']);
@@ -601,7 +637,7 @@ class DocumentosIDController extends Controller
 
             }
 
-            if(15 == $request->documentoformato_id){
+            if(15 ==  $formato['documento_formato_id']){
                 $my_template->setValue('codigo',$array_depurado['codigo15']); 
                 $my_template->setValue('numerositio',$array_depurado['numerositio15']);
                 $my_template->setValue('domiciliositio',$array_depurado['direccionsitio15']);
@@ -610,14 +646,14 @@ class DocumentosIDController extends Controller
 
             }
 
-            if(16 == $request->documentoformato_id){
+            if(16 ==  $formato['documento_formato_id']){
                 $my_template->setValue('codigo',$array_depurado['codigo16']); 
                 $my_template->setValue('numerositio',$array_depurado['numerositio16']);
                 $my_template->setValue('investigador',$array_depurado['nombre16']);
 
             }
 
-            if(17 == $request->documentoformato_id){
+            if(17 ==  $formato['documento_formato_id']){
                 $my_template->setValue('codigo',$array_depurado['codigo17']); 
                 $my_template->setValue('descunidades',$array_depurado['descunidades17']);
                 $my_template->setValue('investigador',$array_depurado['nombre17']);
@@ -626,7 +662,7 @@ class DocumentosIDController extends Controller
 
             }
 
-            if(18 == $request->documentoformato_id){
+            if(18 ==  $formato['documento_formato_id']){
                 $my_template->setValue('codigo',$array_depurado['codigo18']); 
                 $my_template->setValue('descunidades',$array_depurado['descunidades18']);
                 $my_template->setValue('investigador',$array_depurado['nombre18']);
@@ -635,7 +671,7 @@ class DocumentosIDController extends Controller
 
             }
 
-            if(19 == $request->documentoformato_id){
+            if(19 ==  $formato['documento_formato_id']){
                 $my_template->setValue('codigo',$array_depurado['codigo19']); 
                 $my_template->setValue('titulo',$array_depurado['titulo19']);
                 $my_template->setValue('patrocinador',$array_depurado['patrocinadores19']);
@@ -647,7 +683,7 @@ class DocumentosIDController extends Controller
 
             }
 
-            if(20 == $request->documentoformato_id){
+            if(20 ==  $formato['documento_formato_id']){
                 $my_template->setValue('codigo',$array_depurado['codigo20']); 
                 $my_template->setValue('numsitio',$array_depurado['numsitio20']);
                 $my_template->setValue('nombreentrega',$array_depurado['nombre20']);
@@ -665,7 +701,7 @@ class DocumentosIDController extends Controller
 
             }
 
-            if(23 == $request->documentoformato_id){
+            if(23 ==  $formato['documento_formato_id']){
                $my_template->setValue('codigo',$array_depurado['codigo23']);
                 $my_template->setValue('titulo',$array_depurado['titulo23']);
                 $my_template->setValue('patrocinador',$array_depurado['patrocinadores23']);
@@ -676,39 +712,39 @@ class DocumentosIDController extends Controller
                 $my_template->setValue('puesto',$array_depurado['puesto23']);
                 $my_template->setValue('fecha', date('d', strtotime($array_depurado['fecha23'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fecha23']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fecha23'])) );
 
-                $my_template->cloneBlock('bloque',(count($array_depurado) - 9), true, true);
-                 for ($i=0; $i < (count($array_depurado) - 9); $i++) { 
+                $my_template->cloneBlock('bloque',(count($array_depurado) - 10), true, true);
+                 for ($i=0; $i < (count($array_depurado) - 10); $i++) { 
                 $my_template->setValue('material#'.($i+1),htmlspecialchars($array_depurado['23-75no'. ($i + 18)], ENT_COMPAT, 'UTF-8'));
                 }
             }
 
-            if(24 == $request->documentoformato_id){
+            if(24 ==  $formato['documento_formato_id']){
                 $my_template->setValue('codigo',$array_depurado['codigo24']); 
                 $my_template->setValue('numsitio',$array_depurado['numerositio24']);
                 $my_template->setValue('investigador',$array_depurado['nombre24']);
 
             }
 
-            if(28 == $request->documentoformato_id){
+            if(28 ==  $formato['documento_formato_id']){
                 $my_template->setValue('codigo',$array_depurado['codigo28']); 
                 $my_template->setValue('numsitio',$array_depurado['numerositio28']);
                 $my_template->setValue('investigador',$array_depurado['nombre28']);
 
             }
-            if(29 == $request->documentoformato_id){
+            if(29 ==  $formato['documento_formato_id']){
                 $my_template->setValue('codigo',$array_depurado['codigo29']); 
                 $my_template->setValue('numsitio',$array_depurado['numerositio29']);
                 $my_template->setValue('investigador',$array_depurado['nombre29']);
 
             }
-            if(30 == $request->documentoformato_id){
+            if(30 ==  $formato['documento_formato_id']){
                 $my_template->setValue('codigo',$array_depurado['codigo30']); 
                 $my_template->setValue('numsitio',$array_depurado['numerositio30']);
                 $my_template->setValue('investigador',$array_depurado['nombre30']);
 
             }
 
-            if(31 == $request->documentoformato_id){
+            if(31 ==  $formato['documento_formato_id']){
                 $my_template->setValue('codigo',$array_depurado['codigo31']); 
                 $my_template->setValue('titulo',$array_depurado['titulo31']);
                 $my_template->setValue('patrocinador',$array_depurado['patrocinadores31']);
@@ -728,7 +764,7 @@ class DocumentosIDController extends Controller
             }
 
 
-            if(32 == $request->documentoformato_id){
+            if(32 ==  $formato['documento_formato_id']){
                 //principal
                 $my_template->setValue('codigo',$array_depurado['codigo32']); 
                 $my_template->setValue('numerositio',$array_depurado['numerositio32']);
@@ -788,7 +824,7 @@ class DocumentosIDController extends Controller
             }
 
             
-            if(40 == $request->documentoformato_id){
+            if(40 == $formato['documento_formato_id']){
                 $my_template->setValue('codigo',$array_depurado['codigo40']); 
                 $my_template->setValue('patrocinador',$array_depurado['patrocinadores40']);
                 $my_template->setValue('md',$array_depurado['md40']);
@@ -800,7 +836,7 @@ class DocumentosIDController extends Controller
                 $my_template->setValue('fechainicio', date('d', strtotime($array_depurado['fechainicio40'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fechainicio40']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fechainicio40'])) );
                 $my_template->setValue('fechater', date('d', strtotime($array_depurado['fechater40'])) . ' de '  . $meses[ date('n', strtotime($array_depurado['fechater40']))-1 ] . ' del ' . date('Y', strtotime($array_depurado['fechater40'])) );
                
-
+ 
                 $my_template->cloneBlock('bloque',$array_depurado['clon'], true, true);
                 for ($i=0; $i < $array_depurado['clon']; $i++) { 
                 $my_template->setValue('institucion#'.($i+1),htmlspecialchars($array_depurado['40-75no'. ($i + 18)], ENT_COMPAT, 'UTF-8'));
@@ -816,13 +852,13 @@ class DocumentosIDController extends Controller
 
         try{
             // TODO: cambiar el nombre para que tenga el id del formato para diferenciarlos y que no se sobreescriban - se puede utilizar el codigo del proyecto
-            $my_template->saveAs(storage_path( '../public/assets/CE-documents/' . $id . '-' .$nombreDocumento['directorio'] ) );
+            $my_template->saveAs(storage_path( '../public/assets/ID-documents/' . $id . '-' .$nombreDocumento['directorio'] ) );
             // $my_template->saveAs(storage_path( '../public/assets/CE-documents/' . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' .$nombreDocumento['format'] ));
         }catch (Exception $e){
             return back()->withError($e->getMessage())->withInput();
         }
 
-        return response()->download(storage_path( '../public/assets/CE-documents/'  . $id . '-' .$nombreDocumento['directorio'] ) );
+        return response()->download(storage_path( '../public/assets/ID-documents/'  . $id . '-' .$nombreDocumento['directorio'] ) );
         // return response()->download(storage_path( '../public/assets/CE-documents/'  . $nombreDocumento['nombre_doc'] . '-' . $currentTime->toDateString() . '.' . $nombreDocumento['format'] ));
     }
 
